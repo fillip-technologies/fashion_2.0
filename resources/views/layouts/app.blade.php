@@ -27,9 +27,15 @@
                         tertiary: "#D2C9D5",
                         background: "#F2F2F2"
                     },
+
                     backgroundImage: {
                         'dash-dot': 'repeating-linear-gradient(to right, rgba(0,0,0,0.4) 0 8px, transparent 8px 12px, rgba(0,0,0,0.4) 12px 20px, transparent 20px 24px, rgba(0,0,0,0.4) 24px 26px, transparent 20px 30px)',
+
+                        'dash-dot-h': 'repeating-linear-gradient(to right, rgba(0,0,0,0.4) 0 8px, transparent 8px 12px, rgba(0,0,0,0.4) 12px 20px, transparent 20px 24px, rgba(0,0,0,0.4) 24px 26px, transparent 26px 30px)',
+
+                        'dash-dot-v': 'repeating-linear-gradient(to bottom, rgba(0,0,0,0.4) 0 8px, transparent 8px 12px, rgba(0,0,0,0.4) 12px 20px, transparent 20px 24px, rgba(0,0,0,0.4) 24px 26px, transparent 26px 30px)',
                     }
+
                 }
             }
         }
@@ -68,6 +74,8 @@
     @include('partials.searchbar')
 
     @include('partials.cookies')
+
+    @include('shared.filter')
 
 
 
@@ -146,6 +154,18 @@
             cookieConsent.classList.add("hidden");
         }
     </script>
+
+    <!-- Script for the menu bar -->
+    <script>
+        function toggleDrawer() {
+            const drawer = document.querySelector('#drawer');
+            if (drawer) {
+                drawer.classList.toggle('translate-x-full');
+                drawer.classList.toggle('translate-x-0');
+            }
+        }
+    </script>
+
 
 
 

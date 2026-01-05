@@ -22,4 +22,8 @@ Route::get('/lookbook', function () {
     return view('pages.lookbook');
 });
 
+Route::get('/yarn', function () {
+    return view('pages.yarn');
+});
+
 
