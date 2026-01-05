@@ -167,6 +167,11 @@
     </script>
 
 
+    <script>
+        window.appliedFilters = {};
+    </script>
+
+
 
 
 </body>

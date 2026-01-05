@@ -26,4 +26,19 @@ Route::get('/yarn', function () {
     return view('pages.yarn');
 });
 
+Route::get('/newcollection', function () {
+    return view('pages.newcollection');
+});
+
+Route::get('/seeall', function () {
+    return view('pages.seeall');
+});
+
+Route::get('/specific', function () {
+    return view('pages.specific');
+});
+
+
+
+
 

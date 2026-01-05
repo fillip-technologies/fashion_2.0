@@ -3,7 +3,7 @@
 
     <div class="flex justify-between items-center px-6 md:px-14 py-5">
         <div class="text-[0.875rem]">
-            Pashmina (13)
+            Accessories (71)
         </div>
         <div class="flex items-center space-x-8">
             <img src="{{ asset('assets/images/category/arrow.png') }}" alt="Back" />
@@ -17,21 +17,9 @@
     <div id="selectedFilters" class="w-full px-6 md:px-14 bg-white py-5 flex flex-wrap gap-2 hidden">
     </div>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 py-20 px-6 md:px-14">
 
-        <div class="aspect-[4/3]">
-            <img src="{{ asset('assets/images/category/one.png') }}" alt="Back" class="w-full h-full " />
-        </div>
-
-        <div class="aspect-[4/3]">
-            <img src="{{ asset('assets/images/category/two.png') }}" alt="Back" class="w-full h-full " />
-        </div>
-
-    </div>
-
-
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pb-20 px-6 md:px-14">
-        @for ($i = 1; $i <= 9; $i++)
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pt-12 px-6 md:px-8">
+        @for ($i = 1; $i <= 3; $i++)
             <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
                 hoverImage="{{ asset('assets/images/category/second-photo.png') }}" title="Title {{ $i }}"
                 subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
@@ -39,18 +27,60 @@
     </div>
 
 
-    <div class="max-w-7xl mx-auto px-6 md:px-14 pb-20">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pt-12 px-6 md:px-8">
+        @for ($i = 1; $i <= 3; $i++)
+            <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
+                hoverImage="{{ asset('assets/images/category/second-photo.png') }}" title="Title {{ $i }}"
+                subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
+        @endfor
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 py-12 px-6 md:px-8
+            items-center justify-items-center">
+        <img src="{{ asset('assets/images/category/vertical-visual.png') }}" alt="Back" />
+        <img src="{{ asset('assets/images/category/vertical-visual.png') }}" alt="Back" />
+    </div>
+
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pt-12 px-6 md:px-8">
+        @for ($i = 1; $i <= 3; $i++)
+            <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
+                hoverImage="{{ asset('assets/images/category/second-photo.png') }}" title="Title {{ $i }}"
+                subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
+        @endfor
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pt-12 px-6 md:px-8">
+        @for ($i = 1; $i <= 3; $i++)
+            <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
+                hoverImage="{{ asset('assets/images/category/second-photo.png') }}" title="Title {{ $i }}"
+                subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
+        @endfor
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pt-12 px-6 md:px-8">
+        @for ($i = 1; $i <= 3; $i++)
+            <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
+                hoverImage="{{ asset('assets/images/category/second-photo.png') }}" title="Title {{ $i }}"
+                subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
+        @endfor
+    </div>
+
+
+
+
+
+
+    <div class="max-w-7xl mx-auto px-6 md:px-14 pt-10 pb-7">
         <div class="aspect-[16/7]">
             <img src="{{ asset('assets/images/category/visual.png') }}" alt="Back" class="w-full h-full " />
         </div>
     </div>
 
-    <div class="max-w-md mx-auto px-6 md:px-14 text-black text-center font-medium space-y-4 pb-20">
-       <p class="text-[0.75rem]">09 / 13</p>
-       <p class="text-[0.875rem]">Load more products</p>
+    <div class="max-w-md mx-auto px-6 md:px-14 text-black text-center font-medium space-y-4 pt-20 pb-10">
+        <p class="text-[0.75rem]">15 / 71</p>
+        <p class="text-[0.875rem]">Load more products</p>
     </div>
-
-
 
 
 </div>
