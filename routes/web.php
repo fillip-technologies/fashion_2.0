@@ -38,6 +38,16 @@ Route::get('/specific', function () {
     return view('pages.specific');
 });
 
+Route::get('/filteredproduct', function () {
+    return view('pages.filteredprodcuts');
+});
+
+Route::get('/productdetails', function () {
+    return view('pages.productdetails');
+});
+
+
+
 
 
 

@@ -77,6 +77,8 @@
 
     @include('shared.filter')
 
+    @include('shared.sizeguide')
+
 
 
 
@@ -159,6 +161,16 @@
     <script>
         function toggleDrawer() {
             const drawer = document.querySelector('#drawer');
+            if (drawer) {
+                drawer.classList.toggle('translate-x-full');
+                drawer.classList.toggle('translate-x-0');
+            }
+        }
+    </script>
+
+    <script>
+        function toggleSizeGuide() {
+            const drawer = document.querySelector('#drawersizeguide');
             if (drawer) {
                 drawer.classList.toggle('translate-x-full');
                 drawer.classList.toggle('translate-x-0');
