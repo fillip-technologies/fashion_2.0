@@ -6,17 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'My App')</title>
 
-    <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
 
-    <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Libre+Franklin:wght@300;400;500;600;700&display=swap"
         rel="stylesheet">
 
-    <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- YOUR TAILWIND CONFIG (UNCHANGED) -->
     <script>
         tailwind.config = {
             theme: {
@@ -41,7 +37,6 @@
         }
     </script>
 
-    <!-- APPLY FONT NORMALLY -->
     <style>
         body {
             font-family: 'Libre Franklin', sans-serif;
@@ -79,6 +74,8 @@
 
     @include('shared.sizeguide')
 
+    @include('shared.login')
+
 
 
 
@@ -91,7 +88,7 @@
         </a>
     </div>
 
-    <!-- Scroll To Top -->
+    <!-- Scroll To Top Button -->
     <div id="scrollToTop" class="fixed bottom-6 right-6 z-50 hidden">
         <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })"
             class="bg-tertiary text-primary px-4 py-2  shadow hover:bg-secondary hover:text-primary transition">
@@ -99,6 +96,8 @@
         </button>
     </div>
 
+
+    {{-- For scroll to top --}}
     <script>
         const scrollToTopBtn = document.getElementById("scrollToTop");
         const whatsappBtn = document.getElementById("whatsappBtn");
@@ -114,6 +113,7 @@
         });
     </script>
 
+    {{-- For search bar --}}
     <script>
         const openSearchBtn = document.getElementById("openSearchBtn");
         const searchOverlay = document.getElementById("searchOverlay");
@@ -125,6 +125,8 @@
         }
     </script>
 
+
+    {{-- For cookies display --}}
     <script>
         const cookieConsent = document.getElementById("cookieConsent");
         window.addEventListener("load", () => {
@@ -157,7 +159,7 @@
         }
     </script>
 
-    <!-- Script for the menu bar -->
+    {{-- Script for the filter drawer --}}
     <script>
         function toggleDrawer() {
             const drawer = document.querySelector('#drawer');
@@ -168,23 +170,21 @@
         }
     </script>
 
+
+    {{-- Script for the other drawer --}}
     <script>
-        function toggleSizeGuide() {
-            const drawer = document.querySelector('#drawersizeguide');
-            if (drawer) {
-                drawer.classList.toggle('translate-x-full');
-                drawer.classList.toggle('translate-x-0');
-            }
+        function toggleMasterDrawer(id) {
+            const drawer = document.getElementById(id);
+            if (!drawer) return;
+
+            drawer.classList.toggle('translate-x-full');
+            drawer.classList.toggle('translate-x-0');
         }
     </script>
-
 
     <script>
         window.appliedFilters = {};
     </script>
-
-
-
 
 </body>
 

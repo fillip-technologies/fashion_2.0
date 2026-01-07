@@ -7,7 +7,7 @@
 
     <div class="py-8 px-6 md:px-14 flex items-center justify-between">
         <p class="text-[1.25rem]">Size Guide</p>
-        <button onclick="toggleSizeGuide()" class="text-3xl font-light text-black/60 hover:text-black">
+        <button onclick="toggleMasterDrawer('drawersizeguide')" class="text-3xl font-light text-black/60 hover:text-black">
             &times;
         </button>
     </div>

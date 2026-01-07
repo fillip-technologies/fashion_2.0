@@ -157,7 +157,7 @@
                     </div>
 
                     <div class="flex justify-end mt-10">
-                        <p class="text-[0.75rem] underline cursor-pointer" onclick="toggleSizeGuide()">
+                        <p class="text-[0.75rem] underline cursor-pointer" onclick="toggleMasterDrawer('drawersizeguide')">
                             Size Guide
                         </p>
                     </div>
@@ -176,7 +176,7 @@
                         </h1>
                     </div>
                     <div class="flex justify-start items-end mt-5">
-                        <p class="text-[0.875rem] underline font-medium">
+                        <p class="text-[0.875rem] underline font-medium cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')">
                             Sign in?
                         </p>
                     </div>
