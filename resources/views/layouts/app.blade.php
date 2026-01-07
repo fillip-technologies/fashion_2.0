@@ -22,7 +22,7 @@
                         secondary: '#97A0A1',
                         tertiary: "#D2C9D5",
                         background: "#F2F2F2",
-                        border: "#727070";
+                        border: "#727070"
                     },
 
                     backgroundImage: {
