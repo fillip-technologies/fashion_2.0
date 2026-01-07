@@ -211,17 +211,22 @@
                             </div>
                         </div>
 
-                        <div class="flex flex-col justify-start items-start mt-5" id="productstory">
-                            <p class="text-[0.75rem] text-justify text-secondary pr-8">
+                        <div class="flex flex-col mt-5 pr-8" id="productstory">
+                            <p id="storyText"
+                                class="text-[0.75rem] text-justify text-secondary overflow-hidden transition-all duration-300 max-h-[4.2em]">
                                 This pullover is a sophisticated staple in a cozy cashmere knit in a rich seasonal shade
                                 for elevated daily styling. It is crafted in a classic fit with a crew neckline and wide
-                                ribbed hems.
+                                ribbed hems. Designed for comfort and durability, it pairs effortlessly with both casual
+                                and formal looks across seasons.
                             </p>
-                            <p class="text-[0.6875rem] underline font-medium text-secondary mt-3 uppercase">
+
+                            <button onclick="toggleReadMore()" id="readMoreBtn"
+                                class="text-[0.6875rem] underline font-medium text-secondary mt-3 uppercase self-start">
                                 Read More
-                            </p>
+                            </button>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="h-0.5 bg-white mt-4"></div>
@@ -378,6 +383,24 @@
     </div>
 
 </div>
+
+
+<script>
+    function toggleReadMore() {
+        const text = document.getElementById("storyText");
+        const btn = document.getElementById("readMoreBtn");
+
+        if (text.classList.contains("max-h-[4.2em]")) {
+            text.classList.remove("max-h-[4.2em]");
+            text.classList.add("max-h-[1000px]");
+            btn.innerText = "Read Less";
+        } else {
+            text.classList.add("max-h-[4.2em]");
+            text.classList.remove("max-h-[1000px]");
+            btn.innerText = "Read More";
+        }
+    }
+</script>
 
 
 <style>
