@@ -21,7 +21,8 @@
                         primary: '#3E3E40',
                         secondary: '#97A0A1',
                         tertiary: "#D2C9D5",
-                        background: "#F2F2F2"
+                        background: "#F2F2F2",
+                        border: "#727070";
                     },
 
                     backgroundImage: {
@@ -60,7 +61,10 @@
 <body class="m-0 p-0 overflow-x-hidden scroll-smooth">
 
 
-    @include('partials.header')
+    @if (!request()->is('createaccount'))
+        @include('partials.header')
+    @endif
+
 
     <main>
         @yield('content')

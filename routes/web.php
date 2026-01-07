@@ -46,6 +46,11 @@ Route::get('/productdetails', function () {
     return view('pages.productdetails');
 });
 
+Route::get('/createaccount', function () {
+    return view('pages.createaccount');
+});
+
+
 
 
 
