@@ -50,6 +50,9 @@ Route::get('/createaccount', function () {
     return view('pages.createaccount');
 });
 
+Route::get('/accountconfirmed', function () {
+    return view('pages.accountconfirmed');
+});
 
 
 

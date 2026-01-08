@@ -1,0 +1,38 @@
+<div class="w-full h-screen overflow-hidden relative">
+
+    <header class="relative border-b bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
+        <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-white">
+
+            <a href="/" class="flex items-center space-x-2 text-[0.7rem] sm:text-[0.8125rem] cursor-pointer">
+                <i class="fa-solid fa-arrow-left fa-sm"></i>
+                <span>Back to browsing!</span>
+            </a>
+            <div class="mx-auto">
+                <div class="w-16 h-16 sm:w-24 sm:h-24 bg-purple-600 flex items-center justify-center">
+                    <span class="text-white text-xs sm:text-sm font-semibold">LOGO 1</span>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-1 sm:space-x-0 text-[0.7rem] sm:text-[0.8125rem] cursor-pointer">
+                <span class="mr-1 sm:mr-2">Go to your profile</span>
+                <i class="fa-solid fa-chevron-right fa-sm"></i>
+                <i class="fa-solid fa-chevron-right fa-sm"></i>
+            </div>
+
+        </div>
+    </header>
+
+
+    <video autoplay muted loop playsinline class="absolute top-0 left-0 w-full h-full object-cover z-0">
+        <source src="{{ asset('assets/videos/accountcreation.mp4') }}" type="video/mp4" />
+        Your browser does not support the video tag.
+    </video>
+
+    <div class="absolute top-0 left-0 w-full h-full bg-black/30 z-5"></div>
+
+    <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 text-white px-4">
+        <h1 class="text-[1.5625rem] font-light mb-2">Your Title Here</h1>
+        <p class="text-[1.5625rem] font-light">Your Subtitle Here</p>
+    </div>
+
+</div>

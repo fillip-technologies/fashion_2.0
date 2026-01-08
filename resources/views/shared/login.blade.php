@@ -87,7 +87,7 @@
                     New to Yarnstone Wren? Create an account to stay in touch with us
                 </p>
 
-                <button
+                <button  onclick="window.location.href='/createaccount'"
                     class="w-full mt-2 h-9 rounded
                border border-white/70
                text-[0.75rem] tracking-widest
