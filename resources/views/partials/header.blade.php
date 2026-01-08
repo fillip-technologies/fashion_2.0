@@ -1,5 +1,4 @@
 <div class="bg-background sticky top-0 z-50">
-
     <header class="w-full border-b border-gray-200">
         <div class="mx-auto px-4 sm:px-14">
 
@@ -37,14 +36,14 @@
 
                 </div>
                 <div class="absolute left-1/2 -translate-x-1/2">
-                    <div class="w-20 h-12 sm:w-28 sm:h-20 bg-purple-600 flex items-center justify-center">
+                    <a href="/" class="w-20 h-12 sm:w-28 sm:h-20 bg-purple-600 flex items-center justify-center">
                         <span class="text-white font-semibold text-xs sm:text-base">
                             LOGO 1
                         </span>
-                    </div>
+                    </a>
                 </div>
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <img src="{{ asset('assets/icons/user.png') }}" alt="User" class="w-5 sm:w-[20px] h-auto" />
+                    <img src="{{ asset('assets/icons/user.png') }}" alt="User" class="w-5 sm:w-[20px] h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
 
                     <img src="{{ asset('assets/icons/cart.png') }}" alt="Cart" class="w-6 sm:w-[25px] h-auto" />
                 </div>
@@ -53,9 +52,6 @@
         </div>
     </header>
 </div>
-
-
-
 
 <!-- MENU DESKTOP -->
 <div id="menuOverlay" class="fixed left-0 right-0 top-[116px] z-[999] bg-black/80 hidden pt-10">
@@ -150,28 +146,80 @@
 <script>
     const MENU_DATA = {
         newarrival: {
+            route: "/newcollection",
             items: [],
             image: "{{ asset('assets/images/menu/one.png') }}"
         },
         accessories: {
-            items: ["See All", "Shawls", "Hats & Caps", "Gloves"],
+            route: "/",
+            items: [{
+                    label: "See All",
+                    route: "/seeall"
+                },
+                {
+                    label: "Shawls",
+                    route: "/specific"
+                },
+                {
+                    label: "Hats & Caps",
+                    route: "/specific"
+                },
+                {
+                    label: "Gloves",
+                    route: "/specific"
+                }
+            ],
             image: "{{ asset('assets/images/menu/two.png') }}"
         },
         readytowear: {
-            items: ["See All", "Jackets", "Overcoats", "Blazers"],
+            route: "/",
+            items: [{
+                    label: "See All",
+                    route: "/seeall"
+                },
+                {
+                    label: "Jackets",
+                    route: "/specific"
+                },
+                {
+                    label: "Overcoats",
+                    route: "/specific"
+                },
+                {
+                    label: "Blazers",
+                    route: "/specific"
+                }
+            ],
             image: "{{ asset('assets/images/menu/three.png') }}"
         },
         discoveryarns: {
-            items: ["See All", "Pashmina", "Linen", "Yak", "Wool"],
+            route: "/",
+            items: [{
+                    label: "Pashmina",
+                    route: "/yarn"
+                },
+                {
+                    label: "Linen",
+                    route: "/specific"
+                },
+                {
+                    label: "Yak",
+                    route: "/specific"
+                },
+                {
+                    label: "Wool",
+                    route: "/specific"
+                }
+            ],
             image: "{{ asset('assets/images/menu/four.png') }}"
         }
     };
 </script>
 
+
 <script>
     const mobileMenu = document.getElementById("mobileMenu");
     const closeMobileMenu = document.getElementById("closeMobileMenu");
-
     const mobileLevel1 = document.getElementById("mobileLevel1");
     const mobileLevel2 = document.getElementById("mobileLevel2");
     const mobileSubMenu = document.getElementById("mobileSubMenu");
@@ -185,11 +233,9 @@
 
     openMenu.addEventListener("click", () => {
         if (window.innerWidth < 768) {
-            // MOBILE
             mobileMenu.classList.remove("hidden");
             menuOverlay.classList.add("hidden");
         } else {
-            // DESKTOP
             menuOverlay.classList.remove("hidden");
             mobileMenu.classList.add("hidden");
         }
@@ -228,10 +274,11 @@
 
             data.items.forEach(sub => {
                 const a = document.createElement("a");
-                a.href = "#";
-                a.textContent = sub;
 
-                if (sub.toLowerCase() === "see all") {
+                a.href = sub.route;
+                a.textContent = sub.label;
+
+                if (sub.label.toLowerCase() === "see all") {
                     a.className = "block text-sm underline underline-offset-4";
                 } else {
                     a.className = "block text-sm opacity-60 hover:opacity-100";
@@ -239,6 +286,7 @@
 
                 mobileSubMenu.appendChild(a);
             });
+
         });
     });
 
@@ -277,8 +325,6 @@
 
         if (!items || items.length === 0) {
             subMenuWrapper.classList.add("hidden");
-
-
             menuDivider.classList.remove("w-2");
             menuDivider.classList.add("w-5");
         } else {
@@ -291,10 +337,10 @@
 
             items.forEach(item => {
                 const a = document.createElement("a");
-                a.href = "#";
-                a.textContent = item;
+                a.href = item.route;
+                a.textContent = item.label;
 
-                if (item.toLowerCase() === "see all") {
+                if (item.label.toLowerCase() === "see all") {
                     a.className = "block underline underline-offset-4";
                 } else {
                     a.className = "block opacity-60 hover:opacity-100";
@@ -302,6 +348,7 @@
 
                 subMenu.appendChild(a);
             });
+
         }
 
         menuImage.src = image;
@@ -312,10 +359,20 @@
         btn.addEventListener("click", (e) => {
             e.preventDefault();
 
+            const key = btn.dataset.menu;
+            const data = MENU_DATA[key];
+
+            if (!data) return;
+
+            if (!data.items || data.items.length === 0) {
+                window.location.href = data.route;
+                return;
+            }
+
             menuItems.forEach(b => b.classList.add("opacity-60"));
             btn.classList.remove("opacity-60");
 
-            loadMenu(btn.dataset.menu);
+            loadMenu(key);
         });
     });
 
