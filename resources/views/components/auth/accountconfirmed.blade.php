@@ -31,8 +31,8 @@
     <div class="absolute top-0 left-0 w-full h-full bg-black/30 z-5"></div>
 
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 text-white px-4">
-        <h1 class="text-[1.5625rem] font-light mb-2">Your Title Here</h1>
-        <p class="text-[1.5625rem] font-light">Your Subtitle Here</p>
+        <h1 class="text-[1.5625rem] mb-2" style="font-weight: 300">Welcome to Brand name </h1>
+        <p class="text-[1.5625rem]" style="font-weight: 300">Ms. Name Surname</p>
     </div>
 
 </div>
