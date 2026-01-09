@@ -61,7 +61,7 @@
 <body class="m-0 p-0 overflow-x-hidden scroll-smooth">
 
 
-    @if (!request()->is(['createaccount','accountconfirmed']))
+    @if (!request()->is(['createaccount', 'accountconfirmed']))
         @include('partials.header')
     @endif
 
@@ -83,6 +83,9 @@
     @include('shared.login')
 
     @include('shared.newsletter')
+
+    @include('shared.cartnotification')
+
 
 
 

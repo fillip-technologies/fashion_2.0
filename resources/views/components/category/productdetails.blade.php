@@ -157,7 +157,8 @@
                     </div>
 
                     <div class="flex justify-end mt-10">
-                        <p class="text-[0.75rem] underline cursor-pointer" onclick="toggleMasterDrawer('drawersizeguide')">
+                        <p class="text-[0.75rem] underline cursor-pointer"
+                            onclick="toggleMasterDrawer('drawersizeguide')">
                             Size Guide
                         </p>
                     </div>
@@ -176,7 +177,8 @@
                         </h1>
                     </div>
                     <div class="flex justify-start items-end mt-5">
-                        <p class="text-[0.875rem] underline font-medium cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')">
+                        <p class="text-[0.875rem] underline font-medium cursor-pointer"
+                            onclick="toggleMasterDrawer('drawerlogin')">
                             Sign in?
                         </p>
                     </div>
@@ -185,7 +187,8 @@
 
             <div class="pt-10 pb-5 px-6 md:px-16 bg-background">
                 <div class="max-w-6xl mx-auto flex items-center justify-center">
-                    <button class="bg-secondary hover:bg-primary text-white px-10 py-3 rounded text-[1rem]">
+                    <button class="bg-secondary hover:bg-primary text-white px-10 py-3 rounded text-[1rem]"
+                        onclick="toggleMasterDrawer('cartnotification')">
                         Add to bag
                     </button>
                 </div>
