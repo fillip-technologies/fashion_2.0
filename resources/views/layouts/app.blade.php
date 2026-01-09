@@ -82,6 +82,8 @@
 
     @include('shared.login')
 
+    @include('shared.newsletter')
+
 
 
 

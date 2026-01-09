@@ -27,7 +27,8 @@
                     <p class="text-[12px] text-background font-light mb-2">
                         Stay up to date with the latest news with us
                     </p>
-                    <p class="text-[12px] underline cursor-pointer text-background">
+                    <p class="text-[12px] underline cursor-pointer text-background"
+                        onclick="toggleMasterDrawer('newsletter')">
                         Join our newsletter
                     </p>
                 </div>
