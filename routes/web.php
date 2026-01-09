@@ -54,6 +54,13 @@ Route::get('/accountconfirmed', function () {
     return view('pages.accountconfirmed');
 });
 
+Route::get('/bag', function () {
+    return view('pages.bag');
+});
+
+
+
+
 
 
 
