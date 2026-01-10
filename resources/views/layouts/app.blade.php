@@ -63,7 +63,7 @@
 <body class="m-0 p-0 overflow-x-hidden scroll-smooth">
 
 
-    @if (!request()->is(['createaccount', 'accountconfirmed','bag']))
+    @if (!request()->is(['createaccount', 'accountconfirmed','bag','checkout']))
         @include('partials.header')
     @endif
 
