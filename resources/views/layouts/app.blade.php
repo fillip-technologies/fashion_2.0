@@ -33,6 +33,8 @@
                         'dash-dot-h': 'repeating-linear-gradient(to right, rgba(0,0,0,0.4) 0 8px, transparent 8px 12px, rgba(0,0,0,0.4) 12px 20px, transparent 20px 24px, rgba(0,0,0,0.4) 24px 26px, transparent 26px 30px)',
 
                         'dash-dot-v': 'repeating-linear-gradient(to bottom, rgba(0,0,0,0.4) 0 8px, transparent 8px 12px, rgba(0,0,0,0.4) 12px 20px, transparent 20px 24px, rgba(0,0,0,0.4) 24px 26px, transparent 26px 30px)',
+
+                        'dash-dot-v-white': 'repeating-linear-gradient(to bottom, rgba(255,255,255,0.4) 0 8px, transparent 8px 12px, rgba(255,255,255,0.4) 12px 20px, transparent 20px 24px, rgba(255,255,255,0.4) 24px 26px, transparent 26px 30px)',
                     }
 
                 }
@@ -61,7 +63,7 @@
 <body class="m-0 p-0 overflow-x-hidden scroll-smooth">
 
 
-    @if (!request()->is(['createaccount', 'accountconfirmed']))
+    @if (!request()->is(['createaccount', 'accountconfirmed','bag']))
         @include('partials.header')
     @endif
 
