@@ -266,11 +266,10 @@
                     Please confirm your shipping and billing addresses -
                 </div>
 
-                <!-- Address Box -->
                 <div class="border border-secondary grid grid-cols-1 md:grid-cols-2 mt-5 text-[0.875rem]"
                     style="font-weight: 300">
 
-                    <!-- Shipping -->
+
                     <div class=" pt-8 border-r border-secondary">
                         <div class="grid grid-cols-2 gap-6 px-10 pb-8">
                             <div>
@@ -302,8 +301,8 @@
 
                         <div class="flex justify-between py-7 text-[0.75rem] underline border-b md:border-b-0 md:border-t border-secondary px-10"
                             style="font-weight: 400">
-                            <button>Change address</button>
-                            <button>Edit address</button>
+                            <button onclick="toggleMasterDrawer('changeshippingaddress')">Change address</button>
+                            <button onclick="toggleMasterDrawer('editshippingaddress')">Edit address</button>
                         </div>
                     </div>
 
@@ -339,8 +338,8 @@
 
                         <div class="flex justify-between py-7 text-[0.75rem] underline md:border-t border-secondary px-10"
                             style="font-weight: 400">
-                            <button>Change address</button>
-                            <button>Edit address</button>
+                            <button onclick="toggleMasterDrawer('changebillingaddress')">Change address</button>
+                            <button onclick="toggleMasterDrawer('editbillingaddress')">Edit address</button>
                         </div>
                     </div>
                 </div>
