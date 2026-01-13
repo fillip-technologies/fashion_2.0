@@ -62,7 +62,9 @@ Route::get('/checkout', function () {
     return view('pages.checkout');
 });
 
-
+Route::get('/order-completed', function () {
+    return view('pages.confirmorder');
+});
 
 
 

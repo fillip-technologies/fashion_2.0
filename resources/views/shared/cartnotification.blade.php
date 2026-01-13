@@ -32,7 +32,7 @@
                 <p class="mb-1 text-[0.875rem]">
                     You have added this item in your cart.
                 </p>
-                <a href="/cart" class="underline font-normal hover:opacity-70 transition text-[0.75rem]">
+                <a href="/bag" class="underline font-normal hover:opacity-70 transition text-[0.75rem]">
                     Go to <span class="font-semibold text-[0.875rem]">My Cart</span>
                 </a>
             </div>

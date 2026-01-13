@@ -11,7 +11,8 @@
              </div>
          </div>
 
-         <a href="/" class="flex items-center space-x-1 sm:space-x-0 text-[0.8125rem] sm:text-[0.8125rem] cursor-pointer">
+         <a href="/"
+             class="flex items-center space-x-1 sm:space-x-0 text-[0.8125rem] sm:text-[0.8125rem] cursor-pointer">
              <i class="fa-solid fa-arrow-left fa-sm mr-1"></i>
              <span style="font-weight: 300">Back to browsing!</span>
          </a>
@@ -322,12 +323,15 @@
 
 
              <div class="flex justify-center pt-20 pb-16">
-                 <button
-                     class="bg-secondary text-white text-[0.875rem]
-             px-8 py-3 tracking-wide
-             hover:bg-primary rounded transition">
-                     Proceed to payment
-                 </button>
+                 <a href="/checkout">
+                     <button
+                         class="bg-secondary text-white text-[0.875rem]
+               px-8 py-3 tracking-wide
+               hover:bg-primary rounded transition">
+                         Proceed to payment
+                     </button>
+                 </a>
+
              </div>
 
          </div>
