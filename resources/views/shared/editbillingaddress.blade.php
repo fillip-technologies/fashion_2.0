@@ -16,17 +16,28 @@
             <div class="absolute left-0 top-0 bottom-0 h-full w-px bg-dash-dot-v"></div>
             <div class="absolute right-0 top-0 bottom-0 h-full w-px bg-dash-dot-v"></div>
 
-            <div class="py-6 px-6 md:px-8 flex items-center justify-between">
-                <p class="text-[0.875rem] underline underline-offset-1 decoration-secondary" style="font-weight: 400">
-                    Edit / Add Billing <span class="text-[1.25rem]" style="font-weight: 500">Address</span>
+            <div
+                class="py-6 px-6 md:px-8 flex flex-col md:flex-row
+            md:items-center md:justify-between gap-4 md:gap-0">
+
+                <p class="text-[0.875rem] underline underline-offset-1 decoration-secondary
+              leading-snug md:leading-normal"
+                    style="font-weight: 400">
+                    Edit / Add Billing
+                    <span class="block md:inline text-[1.25rem]" style="font-weight: 500">
+                        Address
+                    </span>
                 </p>
-                <div class="flex space-x-2">
+
+                <div class="flex items-center justify-end space-x-4">
                     <button onclick="toggleMasterDrawer('editbillingaddress')"
-                        class="text-3xl font-light text-black/60 hover:text-black z-50">
+                        class="text-3xl font-light text-black/60 hover:text-black
+                   leading-none">
                         &times;
                     </button>
                 </div>
             </div>
+
 
             <div class="">
                 <div class="h-px bg-dash-dot"></div>
@@ -35,60 +46,68 @@
             <div class="px-8">
                 <div class="relative">
                     <div class="text-[0.75rem]" style="font-weight: 400">
-                        <div class="px-6 md:px-8 grid grid-cols-12 gap-x-10 gap-y-7 text-[0.6875rem] relative py-8">
+                        <div class="px-6 md:px-8 grid grid-cols-12 md:gap-x-10 gap-y-7 text-[0.6875rem] relative py-8">
                             <div class="absolute left-0 top-0 bottom-0 w-px bg-dash-dot-v"></div>
                             <div class="absolute right-0 top-0 bottom-0 w-px bg-dash-dot-v"></div>
 
-                            <div class="col-span-6 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*First name</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="Name"
                                     style="font-weight: 400" />
                             </div>
 
 
-                            <div class="col-span-6 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*Surname</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="Surname"
                                     style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-6 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*Location</label>
                                 <input class="w-full border-b border-border focus:outline-none"
                                     placeholder="Location name" style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-6 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*Postal Code</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="123456"
                                     style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-12 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*Address line 1</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="Address"
                                     style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-12 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">Address line 2</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="Address"
                                     style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-6 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*State</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="State name"
                                     style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-6 space-y-5">
+                            <div class="col-span-12 md:col-span-6 space-y-5">
+
                                 <label class="block mb-1 text-black" style="font-weight: 300">*City</label>
                                 <input class="w-full border-b border-border focus:outline-none" placeholder="City name"
                                     style="font-weight: 400" />
                             </div>
 
-                            <div class="col-span-12 space-y-5 relative phone-wrapper">
+                            <div class="col-span-12 space-y-5 relative phone-wrapper-billing-edit">
 
                                 <label class="block mb-1 text-black text-[0.75rem]" style="font-weight: 300">
                                     *Phone no.
@@ -99,20 +118,20 @@
 
                                     <div class="col-span-4 flex items-center justify-between gap-3
                                         border-b border-border pb-1 cursor-pointer"
-                                        onclick="toggleCountryDropdown()">
+                                        onclick="togglecountryDropdownbillingedit()">
 
                                         <div class="flex items-center gap-3">
-                                            <span id="selectedCountry" class="text-[0.75rem]" style="font-weight: 400">
+                                            <span id="selectedCountrybillingedit" class="text-[0.75rem]" style="font-weight: 400">
                                                 In
                                             </span>
 
-                                            <span id="selectedCode" class="text-[0.75rem] text-black/60"
+                                            <span id="selectedCodebillingedit" class="text-[0.75rem] text-black/60"
                                                 style="font-weight: 400">
                                                 (+91)
                                             </span>
                                         </div>
 
-                                        <i id="phoneChevron"
+                                        <i id="phoneChevronbillingedit"
                                             class="fa-solid fa-chevron-down text-[0.625rem]
                                             transition-transform duration-300"></i>
                                     </div>
@@ -124,31 +143,31 @@
                                 </div>
 
 
-                                <div id="countryDropdown"
+                                <div id="countryDropdownbillingedit"
                                     class="absolute left-0 mt-3 w-72
                                 bg-background shadow-2xl z-[300] hidden">
 
                                     <div class="px-6 py-5 space-y-4 text-[0.75rem]" style="font-weight: 400">
 
-                                        <div onclick="selectCountry('In', '+91')"
+                                        <div onclick="selectCountrybillingedit('In', '+91')"
                                             class="flex justify-between cursor-pointer hover:opacity-70">
                                             <span>India</span>
                                             <span>(+91)</span>
                                         </div>
 
-                                        <div onclick="selectCountry('It', '+39')"
+                                        <div onclick="selectCountrybillingedit('It', '+39')"
                                             class="flex justify-between cursor-pointer hover:opacity-70">
                                             <span>Italy</span>
                                             <span>(+39)</span>
                                         </div>
 
-                                        <div onclick="selectCountry('Fr', '+33')"
+                                        <div onclick="selectCountrybillingedit('Fr', '+33')"
                                             class="flex justify-between cursor-pointer hover:opacity-70">
                                             <span>France</span>
                                             <span>(+33)</span>
                                         </div>
 
-                                        <div onclick="selectCountry('Jp', '+81')"
+                                        <div onclick="selectCountrybillingedit('Jp', '+81')"
                                             class="flex justify-between cursor-pointer hover:opacity-70">
                                             <span>Japan</span>
                                             <span>(+81)</span>
@@ -173,9 +192,12 @@
                             <div class="h-px bg-dash-dot"></div>
                         </div>
 
+                   
                         <div class="flex justify-center my-5">
                             <button class="px-16 py-3 bg-secondary hover:bg-primary rounded text-white text-[1rem]"
-                                style="font-weight: 500">
+                                style="font-weight: 500"
+                                onclick="toggleMasterDrawer('editbillingaddress')"
+                                >
                                 Save
                             </button>
                         </div>
@@ -216,28 +238,28 @@
 </style>
 
 <script>
-    function toggleCountryDropdown() {
-        const dropdown = document.getElementById("countryDropdown");
-        const chevron = document.getElementById("phoneChevron");
+    function togglecountryDropdownbillingedit() {
+        const dropdown = document.getElementById("countryDropdownbillingedit");
+        const chevron = document.getElementById("phoneChevronbillingedit");
 
         dropdown.classList.toggle("hidden");
         chevron.classList.toggle("rotate-180");
     }
 
-    function selectCountry(code, dial) {
-        document.getElementById("selectedCountry").textContent = code;
-        document.getElementById("selectedCode").textContent = `(${dial})`;
+    function selectCountrybillingedit(code, dial) {
+        document.getElementById("selectedCountrybillingedit").textContent = code;
+        document.getElementById("selectedCodebillingedit").textContent = `(${dial})`;
 
-        document.getElementById("countryDropdown").classList.add("hidden");
-        document.getElementById("phoneChevron").classList.remove("rotate-180");
+        document.getElementById("countryDropdownbillingedit").classList.add("hidden");
+        document.getElementById("phoneChevronbillingedit").classList.remove("rotate-180");
     }
 
     // Optional: click outside to close
     document.addEventListener("click", function(e) {
-        const wrapper = document.querySelector(".phone-wrapper");
+        const wrapper = document.querySelector(".phone-wrapper-billing-edit");
         if (!wrapper.contains(e.target)) {
-            document.getElementById("countryDropdown").classList.add("hidden");
-            document.getElementById("phoneChevron").classList.remove("rotate-180");
+            document.getElementById("countryDropdownbillingedit").classList.add("hidden");
+            document.getElementById("phoneChevronbillingedit").classList.remove("rotate-180");
         }
     });
 </script>

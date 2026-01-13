@@ -96,6 +96,9 @@
 
     @include('shared.editshippingaddress')
 
+    @include('shared.changeaddress')
+
+
 
 
 

@@ -303,6 +303,8 @@
                             style="font-weight: 400">
                             <button onclick="toggleMasterDrawer('changeshippingaddress')">Change address</button>
                             <button onclick="toggleMasterDrawer('editshippingaddress')">Edit address</button>
+                            {{-- <button onclick="toggleMasterDrawer('changeaddress')">Edit address</button> --}}
+
                         </div>
                     </div>
 

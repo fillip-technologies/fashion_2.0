@@ -205,7 +205,7 @@
 
                         <div class="flex justify-center my-5">
                             <button class="px-16 py-3 bg-secondary hover:bg-primary rounded text-white text-[1rem]"
-                                style="font-weight: 500">
+                                style="font-weight: 500" onclick="toggleMasterDrawer('changeshippingaddress')">
                                 Save
                             </button>
                         </div>
