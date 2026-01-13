@@ -96,7 +96,10 @@
 
     @include('shared.editshippingaddress')
 
-    @include('shared.changeaddress')
+    @include('shared.chooseshippingaddress')
+
+    @include('shared.choosebillingaddress')
+
 
 
 

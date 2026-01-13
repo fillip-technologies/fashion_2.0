@@ -31,7 +31,8 @@
 
                 <div class="flex items-center justify-end space-x-4">
                     <button class="text-[0.75rem] md:text-[0.875rem]
-                       underline text-black/50">
+                       underline text-black/50"
+                        onclick="toggleMasterDrawer('choosebillingaddress')">
                         Choose Address
                     </button>
 
@@ -126,7 +127,8 @@
                                         onclick="toggleCountryDropdownChangeBilling()">
 
                                         <div class="flex items-center gap-3">
-                                            <span id="selectedCountrychangebilling" class="text-[0.75rem]" style="font-weight: 400">
+                                            <span id="selectedCountrychangebilling" class="text-[0.75rem]"
+                                                style="font-weight: 400">
                                                 In
                                             </span>
 
@@ -205,9 +207,7 @@
 
                         <div class="flex justify-center my-5">
                             <button class="px-16 py-3 bg-secondary hover:bg-primary rounded text-white text-[1rem]"
-                                style="font-weight: 500"
-                                onclick="toggleMasterDrawer('changebillingaddress')"
-                                >
+                                style="font-weight: 500" onclick="toggleMasterDrawer('changebillingaddress')">
                                 Save
                             </button>
                         </div>

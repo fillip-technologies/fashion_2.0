@@ -31,7 +31,8 @@
 
                 <div class="flex items-center justify-end space-x-4">
                     <button class="text-[0.75rem] md:text-[0.875rem]
-                       underline text-black/50">
+                       underline text-black/50"
+                        onclick="toggleMasterDrawer('chooseshippingaddress')">
                         Choose Address
                     </button>
 
