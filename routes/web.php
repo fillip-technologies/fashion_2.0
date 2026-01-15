@@ -70,6 +70,12 @@ Route::get('/contact', function () {
     return view('pages.contact');
 });
 
+Route::get('/location', function () {
+    return view('pages.location');
+});
+
+
+
 
 
 

@@ -32,11 +32,11 @@
                         Join our newsletter
                     </p>
                 </div>
-                <div>
-                    <h4 class="text-[14px] tracking-widest mb-4">LOCATION</h4>
-                    <p class="text-[12px] underline cursor-pointer text-background">
+                <div class="flex flex-col">
+                    <a href="/location" class="text-[14px] tracking-widest mb-4">LOCATION</a>
+                    <a href="/location" class="text-[12px] underline cursor-pointer text-background">
                         INDIA / EN / ₹
-                    </p>
+                    </a>
                 </div>
             </div>
         </div>

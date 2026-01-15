@@ -63,16 +63,18 @@
 <body class="m-0 p-0 overflow-x-hidden scroll-smooth">
 
 
-    @if (!request()->is(['createaccount', 'accountconfirmed', 'bag', 'checkout', 'order-completed']))
+    @if (!request()->is(['createaccount', 'accountconfirmed', 'bag', 'checkout', 'order-completed', 'location']))
         @include('partials.header')
     @endif
-
 
     <main>
         @yield('content')
     </main>
 
-    @include('partials.footer')
+    @if (!request()->is(['location']))
+        @include('partials.footer')
+    @endif
+
 
     @include('partials.searchbar')
 
