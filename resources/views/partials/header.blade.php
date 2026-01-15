@@ -129,7 +129,7 @@
                 </div>
 
                 <div>
-                    <a href="#" class="block opacity-60 hover:opacity-100">Contact Us</a>
+                    <a href="/contact" class="block opacity-60 hover:opacity-100">Contact Us</a>
                 </div>
             </nav>
         </div>

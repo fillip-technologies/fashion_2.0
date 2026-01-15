@@ -66,6 +66,9 @@ Route::get('/order-completed', function () {
     return view('pages.confirmorder');
 });
 
+Route::get('/contact', function () {
+    return view('pages.contact');
+});
 
 
 
