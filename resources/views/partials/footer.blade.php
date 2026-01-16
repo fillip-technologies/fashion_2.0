@@ -1,17 +1,17 @@
-<footer class="bg-[#3f4042] text-white">
-    <div class="max-w-7xl mx-auto px-10 md:px-16 pt-20 pb-10">
+<footer class="bg-[#3f4042] text-white h-screen relative">
+    <div class="max-w-7xl mx-auto px-10 md:px-16 pt-24 pb-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-24">
             <div>
-                <h4 class="text-[16px] tracking-widest mb-8">COMPANY</h4>
-                <ul class="space-y-4 font-light text-background text-[12px]">
+                <h4 class="text-[1rem] tracking-widest mb-8">COMPANY</h4>
+                <ul class="space-y-4 font-light text-background text-[0.75rem]">
                     <li>ABOUT US</li>
                     <li>LEGAL</li>
                     <li>THE COLLECTIONS</li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-[16px] tracking-widest mb-8">SERVICES</h4>
-                <ul class="space-y-4 text-[12px] font-light text-background">
+                <h4 class="text-[1rem] tracking-widest mb-8">SERVICES</h4>
+                <ul class="space-y-4 text-[0.75rem] font-light text-background">
                     <li>TRACK YOUR ORDER</li>
                     <li>YOUR ORDERS</li>
                     <li>CONTACT US</li>
@@ -19,30 +19,33 @@
                 </ul>
             </div>
             <div>
-                <h4 class="text-[16px] tracking-widest mb-8">FOLLOW US</h4>
+                <h4 class="text-[1rem] tracking-widest mb-8">FOLLOW US</h4>
             </div>
             <div class="space-y-16">
                 <div>
-                    <h4 class="text-[16px] tracking-widest mb-8">NEWSLETTER</h4>
-                    <p class="text-[12px] text-background font-light mb-2">
+                    <h4 class="text-[1rem] tracking-widest mb-8">NEWSLETTER</h4>
+                    <p class="text-[0.75rem] text-background font-light mb-2">
                         Stay up to date with the latest news with us
                     </p>
-                    <p class="text-[12px] underline cursor-pointer text-background"
+                    <p class="text-[0.75rem] underline cursor-pointer text-background"
                         onclick="toggleMasterDrawer('newsletter')">
                         Join our newsletter
                     </p>
                 </div>
                 <div class="flex flex-col">
-                    <a href="/location" class="text-[14px] tracking-widest mb-4">LOCATION</a>
-                    <a href="/location" class="text-[12px] underline cursor-pointer text-background">
+                    <a href="/location" class="text-[0.875rem] tracking-widest mb-4">LOCATION</a>
+                    <a href="/location" class="text-[0.75rem] underline cursor-pointer text-background">
                         INDIA / EN / ₹
                     </a>
                 </div>
             </div>
         </div>
     </div>
-    <div class="mt-20 border-t border-gray-500"></div>
-    <div class="text-[10px] py-10 px-16">
-        © 2023 - 2025 Vastraton World · All rights reserved
+    <div class="absolute bottom-10 inset-x-0">
+        <div class="border-t border-secondary"></div>
+        <div class="text-[0.625rem] pt-10 pb-2 px-16">
+            © 2023 - 2025 Vastraton World · All rights reserved
+        </div>
     </div>
+
 </footer>
