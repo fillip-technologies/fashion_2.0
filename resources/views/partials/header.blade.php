@@ -1,8 +1,8 @@
-<div class="bg-background sticky top-0 z-50">
-    <header class="w-full border-b border-gray-200">
+<div class="bg-background sticky top-0 z-50" id="oldheader">
+    <header class="w-full border-b border-gray-200 md:h-[12.1875rem]">
         <div class="mx-auto px-4 sm:px-14">
 
-            <div class="hidden sm:flex items-center justify-between py-3">
+            <div class="hidden sm:flex items-center justify-between pt-7">
                 <div class="text-[12px] font-light">
                     Location <span class="underline">(India / EN / ₹)</span>
                 </div>
@@ -11,9 +11,9 @@
                 </div>
             </div>
 
-            <div class="relative flex items-center justify-between h-16 sm:h-20 pb-2 sm:pb-4">
+            <div class="relative flex items-center justify-between h-16 sm:h-40 pb-2 sm:pb-4">
                 <div class="flex items-center gap-4 sm:gap-20">
-                    <div class="flex items-center gap-2 cursor-pointer" id="openMenu">
+                    <div class="flex items-center gap-2 cursor-pointer openMenu">
                         <img src="{{ asset('assets/icons/hamburger.png') }}" alt="Menu"
                             class="w-7 sm:w-[36px] h-auto" />
                         {{-- <img src="{{ asset('assets/icons/search.png') }}" alt="Search"
@@ -23,10 +23,10 @@
                         </span>
                     </div>
 
-                    <div class="hidden sm:flex items-center gap-3 cursor-pointer">
+                    <div class="hidden sm:flex items-center gap-3 cursor-pointer openSearch">
                         <img src="{{ asset('assets/icons/search.png') }}" alt="Search" class="w-[15px] h-[15px]" />
 
-                        <div class="flex flex-col" id="openSearchBtn">
+                        <div class="flex flex-col">
                             <span class="text-[13px] text-black leading-none px-2 font-light">
                                 Search
                             </span>
@@ -36,14 +36,15 @@
 
                 </div>
                 <div class="absolute left-1/2 -translate-x-1/2">
-                    <a href="/" class="w-20 h-12 sm:w-28 sm:h-20 bg-purple-600 flex items-center justify-center">
+                    <a href="/" class="w-20 h-12 sm:w-32 sm:h-36 bg-purple-600 flex items-center justify-center">
                         <span class="text-white font-semibold text-xs sm:text-base">
                             LOGO 1
                         </span>
                     </a>
                 </div>
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <img src="{{ asset('assets/icons/user.png') }}" alt="User" class="w-5 sm:w-[20px] h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
+                    <img src="{{ asset('assets/icons/user.png') }}" alt="User"
+                        class="w-5 sm:w-[20px] h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
 
                     <img src="{{ asset('assets/icons/cart.png') }}" alt="Cart" class="w-6 sm:w-[25px] h-auto" />
                 </div>
@@ -53,9 +54,77 @@
     </header>
 </div>
 
+<div class="bg-secondary sticky top-0 z-50 hidden" id="newheader">
+    <header class="w-full">
+        <div class="mx-auto px-4 sm:px-14">
+
+            <div class="relative flex items-center justify-between h-14 md:h-[6.9375rem]">
+                <div class="flex items-center gap-4 sm:gap-20">
+                    <div class="flex items-center gap-2 cursor-pointer openMenu">
+                        <img src="{{ asset('assets/icons/hamburger.png') }}" alt="Menu"
+                            class="w-7 sm:w-[36px] h-auto" />
+                        <span class="hidden sm:block text-[13px] font-light">
+                            Menu
+                        </span>
+                    </div>
+
+                    <div class="hidden sm:flex items-center gap-3 cursor-pointer openSearch">
+                        <img src="{{ asset('assets/icons/search.png') }}" alt="Search" class="w-[15px] h-[15px]" />
+                        <div class="flex flex-col">
+                            <span class="text-[13px] text-black leading-none px-2 font-light">
+                                Search
+                            </span>
+                            <span class="h-[0.5px] w-36 bg-black mt-1"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute left-1/2 -translate-x-1/2 top-0 bottom-0">
+                    <a href="/"
+                        class="w-20 sm:w-[180px] h-full bg-[#4f6fc6]
+                              flex items-center justify-center">
+                        <span class="text-white font-semibold tracking-wide">
+                            LOGO 2
+                        </span>
+                    </a>
+                </div>
+
+                <div class="flex items-center gap-6">
+                    <img src="{{ asset('assets/icons/user.png') }}" class="w-[20px] cursor-pointer"
+                        onclick="toggleMasterDrawer('drawerlogin')" />
+
+                    <img src="{{ asset('assets/icons/cart.png') }}" class="w-[24px] cursor-pointer" />
+                </div>
+            </div>
+        </div>
+    </header>
+</div>
+
+
+
+<script>
+    const oldheader = document.getElementById("oldheader");
+    const newheader = document.getElementById("newheader");
+
+    window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+            oldheader.classList.add(
+                "hidden"
+            );
+            newheader.classList.remove("hidden");
+        } else {
+            oldheader.classList.remove(
+                "hidden"
+            );
+            newheader.classList.add("hidden");
+        }
+    });
+</script>
+
+
 <!-- MENU DESKTOP -->
-<div id="menuOverlay" class="fixed left-0 right-0 top-[116px] z-[999] bg-black/80 hidden pt-10">
-    <div class="flex w-full">
+<div id="menuOverlay" class="fixed left-0 right-0 z-[999] bg-black/80 hidden pt-10">
+    <div class="flex w-full h-[70vh]">
         <div class="w-[25%] bg-background relative">
             <nav
                 class="w-full px-14 py-12 flex flex-col justify-center
@@ -216,6 +285,51 @@
     };
 </script>
 
+<script>
+    function updateMenuTop() {
+        if (!menuOverlay) return;
+
+        if (newheader && !newheader.classList.contains("hidden")) {
+            // NEW HEADER VISIBLE
+            menuOverlay.style.top = "7rem";
+        } else {
+            // OLD HEADER VISIBLE
+            menuOverlay.style.top = "12rem";
+        }
+    }
+</script>
+
+
+<script>
+    document.addEventListener("click", function(e) {
+
+        /* OPEN MENU */
+        if (e.target.closest(".openMenu")) {
+
+            if (window.innerWidth < 768) {
+                mobileMenu.classList.remove("hidden");
+                menuOverlay.classList.add("hidden");
+            } else {
+                updateMenuTop()
+                menuOverlay.classList.remove("hidden");
+                mobileMenu.classList.add("hidden");
+            }
+
+            // 🔒 LOCK SCROLL
+            document.body.classList.add("no-scroll");
+        }
+
+        /* CLOSE MENU */
+        if (e.target.closest("#closeMenu")) {
+            menuOverlay.classList.add("hidden");
+            document.body.classList.remove("no-scroll");
+        }
+
+    });
+</script>
+
+
+
 
 <script>
     const mobileMenu = document.getElementById("mobileMenu");
@@ -231,15 +345,15 @@
     //     }
     // });
 
-    openMenu.addEventListener("click", () => {
-        if (window.innerWidth < 768) {
-            mobileMenu.classList.remove("hidden");
-            menuOverlay.classList.add("hidden");
-        } else {
-            menuOverlay.classList.remove("hidden");
-            mobileMenu.classList.add("hidden");
-        }
-    });
+    // openMenu.addEventListener("click", () => {
+    //     if (window.innerWidth < 768) {
+    //         mobileMenu.classList.remove("hidden");
+    //         menuOverlay.classList.add("hidden");
+    //     } else {
+    //         menuOverlay.classList.remove("hidden");
+    //         mobileMenu.classList.add("hidden");
+    //     }
+    // });
 
 
     closeMobileMenu.addEventListener("click", () => {

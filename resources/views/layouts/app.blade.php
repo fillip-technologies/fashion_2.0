@@ -55,6 +55,11 @@
             font-family: system-ui, -apple-system, BlinkMacSystemFont,
                 "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
         }
+
+        .no-scroll {
+            overflow: hidden;
+            height: 100vh;
+        }
     </style>
 
     <link rel="icon" href="{{ asset('images/cm-removebg-preview.png') }}" type="image/x-icon">
@@ -105,13 +110,6 @@
 
 
 
-
-
-
-
-
-
-
     <!-- WhatsApp Button -->
     <div id="whatsappBtn" class="fixed bottom-6 left-6 z-50 hidden">
         <a href="https://wa.me/919999999999" target="_blank"
@@ -146,7 +144,7 @@
     </script>
 
     {{-- For search bar --}}
-    <script>
+    {{-- <script>
         const openSearchBtn = document.getElementById("openSearchBtn");
         const searchOverlay = document.getElementById("searchOverlay");
 
@@ -155,6 +153,19 @@
                 searchOverlay.classList.remove("hidden");
             });
         }
+    </script> --}}
+
+    <script>
+        document.addEventListener("click", function(e) {
+            if (e.target.closest(".openSearch")) {
+                e.preventDefault();
+
+                const searchOverlay = document.getElementById("searchOverlay");
+                if (searchOverlay) {
+                    searchOverlay.classList.remove("hidden");
+                }
+            }
+        });
     </script>
 
 
