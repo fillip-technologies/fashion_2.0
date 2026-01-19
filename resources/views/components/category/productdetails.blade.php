@@ -1,4 +1,4 @@
-<div class="pt-20 bg-white">
+<div class="pt-0 bg-white">
     <div class="grid grid-cols-1 md:grid-cols-12">
 
         <div class="md:col-span-8">
@@ -103,21 +103,25 @@
                         <div class="flex space-x-5" id="colorPicker">
 
                             <span
-                                class="color-item cursor-pointer w-7 h-7 flex items-center justify-center ring-1 ring-transparent">
-                                <span class="block w-5 h-5" style="background:#4DBA3F"></span>
+                                class="color-item cursor-pointer w-[1.65rem] h-[1.65rem] flex items-center justify-center rounded ring-1 ring-transparent">
+                                <span class="block w-[1.45rem] h-[1.43rem]" style="background:#4DBA3F"></span>
                             </span>
 
                             <span
-                                class="color-item cursor-pointer w-7 h-7 flex items-center justify-center ring-1 ring-transparent">
-
-                                <span class="block w-5 h-5" style="background:#000000"></span>
+                                class="color-item cursor-pointer w-[1.65rem] h-[1.65rem] flex items-center justify-center rounded ring-1 ring-transparent">
+                                <span class="block w-[1.45rem] h-[1.43rem]" style="background:#000000"></span>
                             </span>
 
                             <span
+                                class="color-item cursor-pointer w-[1.65rem] h-[1.65rem] flex items-center justify-center rounded ring-1 ring-transparent">
+                                <span class="block w-[1.45rem] h-[1.43rem]" style="background:#B23A3A"></span>
+                            </span>
+
+                            {{-- <span
                                 class="color-item cursor-pointer w-7 h-7 flex items-center justify-center ring-1 ring-transparent">
 
                                 <span class="block w-5 h-5" style="background:#B23A3A"></span>
-                            </span>
+                            </span> --}}
 
                         </div>
                     </div>
