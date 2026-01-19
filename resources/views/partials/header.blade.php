@@ -290,10 +290,8 @@
         if (!menuOverlay) return;
 
         if (newheader && !newheader.classList.contains("hidden")) {
-            // NEW HEADER VISIBLE
             menuOverlay.style.top = "7rem";
         } else {
-            // OLD HEADER VISIBLE
             menuOverlay.style.top = "12rem";
         }
     }
@@ -303,7 +301,6 @@
 <script>
     document.addEventListener("click", function(e) {
 
-        /* OPEN MENU */
         if (e.target.closest(".openMenu")) {
 
             if (window.innerWidth < 768) {
@@ -314,12 +311,8 @@
                 menuOverlay.classList.remove("hidden");
                 mobileMenu.classList.add("hidden");
             }
-
-            // 🔒 LOCK SCROLL
             document.body.classList.add("no-scroll");
         }
-
-        /* CLOSE MENU */
         if (e.target.closest("#closeMenu")) {
             menuOverlay.classList.add("hidden");
             document.body.classList.remove("no-scroll");
