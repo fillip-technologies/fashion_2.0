@@ -6,7 +6,7 @@
 
     <div class="absolute inset-0 z-10
            bg-no-repeat bg-left bg-cover
-           w-1/2 left-14 hidden md:block top-10"
+           w-1/2 left-14 hidden md:block"
         style="background-image:url('/assets/images/vertical-flower.png')">
     </div>
 
