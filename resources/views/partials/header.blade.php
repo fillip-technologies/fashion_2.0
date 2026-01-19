@@ -123,7 +123,7 @@
 
 
 <!-- MENU DESKTOP -->
-<div id="menuOverlay" class="fixed left-0 right-0 z-[999] bg-black/80 hidden pt-10">
+<div id="menuOverlay" class="fixed left-0 right-0 z-[999] bg-primary/50 backdrop-blur-sm hidden pt-10">
     <div class="flex w-full h-[70vh]">
         <div class="w-[25%] bg-background relative">
             <nav
@@ -158,11 +158,12 @@
         </div>
 
 
-        <div class="flex-1 bg-primary/90 flex items-center justify-center relative py-10">
+        <div class="flex-1 bg-primary/30 backdrop-blur-sm flex items-center justify-center relative py-10">
             <img id="menuImage" class="object-contain" />
 
             <button id="closeMenu" class="absolute top-6 right-10 text-[24px] font-light text-white">
-                <i class="fa-solid fa-minus"></i>
+                {{-- <i class="fa-solid fa-minus"></i> --}}
+                <img src="{{ asset('assets/icons/minus.png') }}" alt="minus" />
             </button>
         </div>
 
@@ -175,7 +176,10 @@
 
         <div class="flex justify-between items-center mb-8">
             <span class="uppercase text-sm">Menu</span>
-            <button id="closeMobileMenu" class="text-2xl"><i class="fa-solid fa-minus"></i></button>
+            <button id="closeMobileMenu" class="text-2xl">
+                {{-- <i class="fa-solid fa-minus"></i> --}}
+                <img src="{{ asset('assets/icons/black-minus.png') }}" alt="black-minus" />
+            </button>
         </div>
 
         <div id="mobileLevel1" class="space-y-6">
