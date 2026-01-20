@@ -205,8 +205,7 @@
             <div class=" pb-5 bg-background overflow-y-auto max-h-screen custom-scroll">
                 <div class="px-6 md:px-16 pt-12 pb-5 ">
                     <div class="max-w-6xl mx-auto">
-                        <div class="flex justify-between items-center cursor-pointer"
-                            onclick="visibleSection('productstory')">
+                        <div class="flex justify-between items-center cursor-pointer" id="maindiv">
                             <h1 class="text-[0.875rem] font-medium">
                                 Product story
                             </h1>
@@ -235,6 +234,7 @@
                     </div>
 
                 </div>
+
 
                 <div class="h-0.5 bg-white mt-4"></div>
 
@@ -392,22 +392,7 @@
 </div>
 
 
-<script>
-    function toggleReadMore() {
-        const text = document.getElementById("storyText");
-        const btn = document.getElementById("readMoreBtn");
 
-        if (text.classList.contains("max-h-[4.2em]")) {
-            text.classList.remove("max-h-[4.2em]");
-            text.classList.add("max-h-[1000px]");
-            btn.innerText = "Read Less";
-        } else {
-            text.classList.add("max-h-[4.2em]");
-            text.classList.remove("max-h-[1000px]");
-            btn.innerText = "Read More";
-        }
-    }
-</script>
 
 
 <style>
@@ -454,10 +439,10 @@
     });
 </script>
 
-<script>
+{{-- <script>
     function visibleSection(activeId) {
         const sections = [
-            "productstory",
+            // "productstory",
             "materialbreakdown",
             "deliveryandpayment",
             "packaging",
@@ -474,7 +459,66 @@
             }
         });
     }
+</script> --}}
+
+<script>
+    function visibleSection(activeId) {
+        const sections = [
+            "materialbreakdown",
+            "deliveryandpayment",
+            "packaging",
+        ];
+
+        const activeEl = document.getElementById(activeId);
+        const isAlreadyOpen = !activeEl.classList.contains("hidden");
+
+        sections.forEach(id => {
+            const el = document.getElementById(id);
+            if (!el) return;
+
+            if (isAlreadyOpen) {
+                el.classList.add("hidden");
+            } else {
+                if (id === activeId) {
+                    el.classList.remove("hidden");
+                } else {
+                    el.classList.add("hidden");
+                }
+            }
+        });
+    }
 </script>
+
+
+<script>
+    const text = document.getElementById("storyText");
+    const btn = document.getElementById("readMoreBtn");
+    const mainDiv = document.getElementById("maindiv");
+
+    function toggleReadMore() {
+        text.classList.remove("max-h-[4.2em]");
+        text.classList.add("max-h-[1000px]");
+        btn.classList.add("hidden");
+
+    }
+
+    mainDiv.addEventListener("click", () => {
+        text.classList.add("max-h-[4.2em]");
+        text.classList.remove("max-h-[1000px]");
+
+        text.addEventListener(
+            "transitionend",
+            function handler() {
+                btn.classList.remove("hidden");
+                text.removeEventListener("transitionend", handler);
+            }, {
+                once: true
+            }
+        );
+    });
+</script>
+
+
 
 
 
