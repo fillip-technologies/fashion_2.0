@@ -16,8 +16,8 @@
 </header>
 <div class="w-full bg-white">
 
-    <div class="px-12 py-6 text-[1rem] font-light">
-        Your shipping location - <span style="font-weight: 400">INDIA (ENGLISH) / (₹)</span>
+    <div class="px-12 py-6 text-[0.875rem]" style="font-weight: 100">
+        Your shipping location - <span class="text-[1rem]" style="font-weight: 400">INDIA (ENGLISH) / (₹)</span>
     </div>
 
     <div class="w-full h-px bg-dash-dot"></div>
