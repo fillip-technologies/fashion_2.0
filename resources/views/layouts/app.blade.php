@@ -76,7 +76,7 @@
         @yield('content')
     </main>
 
-    @if (!request()->is(['location']))
+    @if (!request()->is(['location', 'accountconfirmed', 'order-completed']))
         @include('partials.footer')
     @endif
 
