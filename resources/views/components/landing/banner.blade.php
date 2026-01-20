@@ -1,4 +1,4 @@
-<section class="w-full bg-background pt-20 pb-32">
+<section class="w-full bg-background pt-20 pb-32 overflow-x-hidden">
     <div class="max-w-4xl mx-auto text-center px-4">
 
         <!-- COLLECTION NAME -->
@@ -13,7 +13,7 @@
             </p>
 
             <!-- DIVIDER WITH TEXT -->
-            <div class="flex items-center justify-center gap-16 mt-16">
+            {{-- <div class="flex items-center justify-center gap-16 mt-16">
 
                 <!-- LEFT -->
                 <svg width="2" height="64" viewBox="0 0 2 64" class="block">
@@ -35,7 +35,34 @@
                         stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
                 </svg>
 
+            </div> --}}
+
+            <div class="flex items-center justify-center
+            gap-6 md:gap-16
+            mt-16 px-4">
+
+                <!-- LEFT -->
+                <svg width="4" height="64" viewBox="0 0 4 64" class="shrink-0">
+                    <line x1="2" y1="0" x2="2" y2="64" stroke="rgba(0,0,0,0.4)"
+                        stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
+                </svg>
+
+                <!-- CENTER -->
+                <div class="flex flex-col items-center">
+                    <p class="text-[18px] mb-1 text-black/70" style="font-weight: 300">
+                        Discover this seasons pieces.
+                    </p>
+                    <span class="h-px w-56 md:w-72 bg-black/50"></span>
+                </div>
+
+                <!-- RIGHT -->
+                <svg width="4" height="64" viewBox="0 0 4 64" class="shrink-0">
+                    <line x1="2" y1="0" x2="2" y2="64" stroke="rgba(0,0,0,0.4)"
+                        stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
+                </svg>
+
             </div>
+
 
 
         </div>
