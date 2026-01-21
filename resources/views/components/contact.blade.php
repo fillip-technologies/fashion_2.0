@@ -62,11 +62,14 @@
                                     class="fa-solid fa-chevron-down absolute right-2 top-3
                                 text-[0.75rem] transition-transform duration-300"></i>
                                 <div id="titleDropdownnew"
-                                    class="absolute mt-2 px-6 py-5 space-y-4 text-[0.9375rem]
+                                    class="absolute mt-2 text-[0.9375rem]
                                 text-primary bg-background shadow-2xl w-full z-[100] hidden">
-                                    <p class="size-option cursor-pointer" onclick="selectTitleNew('Ms.')">Ms.</p>
-                                    <p class="size-option cursor-pointer" onclick="selectTitleNew('Mrs.')">Mrs.</p>
-                                    <p class="size-option cursor-pointer" onclick="selectTitleNew('Mr.')">Mr.</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectTitleNew('Ms.')">Ms.</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectTitleNew('Mrs.')">Mrs.</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectTitleNew('Mr.')">Mr.</p>
                                 </div>
 
                             </div>
@@ -185,32 +188,32 @@
                                 <div id="countryDropdownnew"
                                     class="absolute left-0 right-0 mt-1 bg-white shadow-xl z-[200] hidden">
                                     <div
-                                        class="absolute px-6 py-5 space-y-4
+                                        class="absolute 
                                     text-[0.9375rem] text-primary font-medium
                                     bg-background shadow-2xl
                                     w-full z-[100]">
 
                                         <div onclick="selectCountryNew('+91')"
-                                            class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                            <span>India</span>
+                                            class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                            <span class="px-6">India</span>
                                             <span>(+91)</span>
                                         </div>
 
                                         <div onclick="selectCountryNew('+39')"
-                                            class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                            <span>Italy</span>
+                                            class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                            <span class="px-6">Italy</span>
                                             <span>(+39)</span>
                                         </div>
 
                                         <div onclick="selectCountryNew('+33')"
-                                            class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                            <span>France</span>
+                                            class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                            <span class="px-6">France</span>
                                             <span>(+33)</span>
                                         </div>
 
                                         <div onclick="selectCountryNew('+81')"
-                                            class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                            <span>Japan</span>
+                                            class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                            <span class="px-6">Japan</span>
                                             <span>(+81)</span>
                                         </div>
 
@@ -240,23 +243,26 @@
                                     class="fa-solid fa-chevron-down absolute right-2 top-3
                                 text-[0.75rem] transition-transform duration-300"></i>
                                 <div id="subjectDropdownnew"
-                                    class="absolute mt-2 px-6 py-5 space-y-4 text-[0.9375rem]
+                                    class="absolute mt-2 text-[0.9375rem]
                                 text-primary bg-background shadow-2xl w-full z-[100] hidden">
-                                    <p class="size-option cursor-pointer"
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
                                         onclick="selectSubject('Product Infromation')">
                                         Product
                                         Infromation</p>
-                                    <p class="size-option cursor-pointer" onclick="selectSubject('OnlinePurchase')">
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectSubject('OnlinePurchase')">
                                         OnlinePurchase</p>
-                                    <p class="size-option cursor-pointer" onclick="selectSubject('Press')">Press</p>
-                                    <p class="size-option cursor-pointer" onclick="selectSubject('Other')">Other</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectSubject('Press')">Press</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectSubject('Other')">Other</p>
                                 </div>
 
                             </div>
                         </div>
 
                         <div class="grid grid-cols-1 mt-16">
-                            <label class="text-[0.9375rem]" style="font-weight: 300">*Your message</label>
+                            <label class="text-[0.9375rem]" style="font-weight: 400">*Your message</label>
                             <div class="relative mt-4">
                                 <textarea id="message" name="message" rows="6" maxlength="1000" required oninput="handleFilledNew(this)"
                                     onblur="handleFilledNew(this)"
