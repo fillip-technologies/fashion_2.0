@@ -1,11 +1,12 @@
 <section class="bg-background min-h-screen  pt-14 text-black">
     <div class="px-6 md:px-14">
-        <div class="mb-10">
-            <img src="{{ asset('assets/icons/open-angular.png') }}" alt="Back" class="w-[7px] h-[12px]" />
+
+        <div class="mb-10 cursor-pointer" onclick="window.history.back()">
+            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem]" />
         </div>
-        <div class="max-w-2xl mx-auto text-center mb-10 md:mb-16">
+        <div class="max-w-2xl mx-auto text-center mb-10 md:mb-20">
             <h2 class="text-[20px] tracking-[0.15em] font-medium mb-2 uppercase">
-                Journey
+                The Journey
             </h2>
         </div>
         <div class="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24  max-w-4xl mx-auto text-[14px] leading-relaxed text-justify"
@@ -61,7 +62,7 @@
         </div>
     </div>
 
-    <div class=" mt-20 md:mt-28 w-full mx-auto">
+    <div class=" mt-20 md:mt-32 w-full mx-auto">
         <img src="{{ asset('assets/images/journey.png') }}" alt="" class="w-full h-full object-contain" />
     </div>
 </section>
