@@ -3,34 +3,35 @@
         <div class="mx-auto px-4 sm:px-14">
 
             <div class="hidden sm:flex items-center justify-between pt-7">
-                <div class="text-[12px] font-light">
+                <a href="/location" class="text-[0.75rem]" style="font-weight: 200">
                     Location <span class="underline">(India / EN / ₹)</span>
-                </div>
-                <div class="text-[12px] font-light">
+                </a>
+                <a href="/contact" class="text-[0.75rem]" style="font-weight: 200">
                     Contact Us
-                </div>
+                </a>
             </div>
 
             <div class="relative flex items-center justify-between h-16 sm:h-40 pb-2 sm:pb-4">
                 <div class="flex items-center gap-4 sm:gap-20">
                     <div class="flex items-center gap-2 cursor-pointer openMenu">
-                        <img src="{{ asset('assets/icons/hamburger.png') }}" alt="Menu"
-                            class="w-7 sm:w-[36px] h-auto" />
+                        <img src="{{ asset('assets/SVG/Menu black.svg') }}" alt="Menu"
+                            class="w-10 sm:w-[36px] h-auto" />
                         {{-- <img src="{{ asset('assets/icons/search.png') }}" alt="Search"
                             class="w-[15px] h-[15px] md:hidden ml-2" /> --}}
-                        <span class="hidden sm:block text-[13px] font-light">
+                        <span class="hidden sm:block text-[0.8125rem]" style="font-weight: 300">
                             Menu
                         </span>
                     </div>
 
                     <div class="hidden sm:flex items-center gap-3 cursor-pointer openSearch">
-                        <img src="{{ asset('assets/icons/search.png') }}" alt="Search" class="w-[15px] h-[15px]" />
+                        <img src="{{ asset('assets/SVG/Search black.svg') }}" alt="Search"
+                            class="w-[0.9375rem] h-[0.9375rem]" />
 
                         <div class="flex flex-col">
-                            <span class="text-[13px] text-black leading-none px-2 font-light">
+                            <span class="text-[0.8125rem] text-black leading-none px-2" style="font-weight: 300">
                                 Search
                             </span>
-                            <span class="h-[0.5px] w-36 bg-black mt-1"></span>
+                            <span class="h-[0.5px] w-36 bg-black/60 mt-1"></span>
                         </div>
                     </div>
 
@@ -43,10 +44,10 @@
                     </a>
                 </div>
                 <div class="flex items-center gap-3 sm:gap-4">
-                    <img src="{{ asset('assets/icons/user.png') }}" alt="User"
+                    <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
                         class="w-5 sm:w-[20px] h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
 
-                    <img src="{{ asset('assets/icons/cart.png') }}" alt="Cart" class="w-6 sm:w-[25px] h-auto" />
+                    <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="w-6 sm:w-[25px] h-auto" />
                 </div>
 
             </div>
@@ -61,20 +62,21 @@
             <div class="relative flex items-center justify-between h-14 md:h-[6.9375rem]">
                 <div class="flex items-center gap-4 sm:gap-20">
                     <div class="flex items-center gap-2 cursor-pointer openMenu">
-                        <img src="{{ asset('assets/icons/hamburger.png') }}" alt="Menu"
-                            class="w-7 sm:w-[36px] h-auto" />
-                        <span class="hidden sm:block text-[13px] font-light">
+                        <img src="{{ asset('assets/SVG/Menu white.svg') }}" alt="Menu"
+                            class="w-10 sm:w-[36px] h-auto" />
+                        <span class="hidden sm:block text-[0.8125rem] text-white" style="font-weight: 300">
                             Menu
                         </span>
                     </div>
 
                     <div class="hidden sm:flex items-center gap-3 cursor-pointer openSearch">
-                        <img src="{{ asset('assets/icons/search.png') }}" alt="Search" class="w-[15px] h-[15px]" />
+                        <img src="{{ asset('assets/SVG/Search white.svg') }}" alt="Search"
+                            class="w-[15px] h-[15px]" />
                         <div class="flex flex-col">
-                            <span class="text-[13px] text-black leading-none px-2 font-light">
+                            <span class="text-[0.8125rem] text-white leading-none px-2" style="font-weight: 300">
                                 Search
                             </span>
-                            <span class="h-[0.5px] w-36 bg-black mt-1"></span>
+                            <span class="h-[0.5px] w-36 bg-white/60 mt-1"></span>
                         </div>
                     </div>
                 </div>
@@ -89,11 +91,11 @@
                     </a>
                 </div>
 
-                <div class="flex items-center gap-6">
-                    <img src="{{ asset('assets/icons/user.png') }}" class="w-[20px] cursor-pointer"
+                <div class="flex items-center gap-3 sm:gap-4">
+                    <img src="{{ asset('assets/SVG/Profile white.svg') }}" class="w-5 md:w-[20px] cursor-pointer"
                         onclick="toggleMasterDrawer('drawerlogin')" />
 
-                    <img src="{{ asset('assets/icons/cart.png') }}" class="w-[24px] cursor-pointer" />
+                    <img src="{{ asset('assets/SVG/Bag white.svg') }}" class="w-6 md:w-[24px] cursor-pointer" />
                 </div>
             </div>
         </div>
