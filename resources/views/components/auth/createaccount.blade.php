@@ -152,11 +152,14 @@
                                 class="fa-solid fa-chevron-down absolute right-2 top-3
                                 text-[0.75rem] transition-transform duration-300"></i>
                             <div id="titleDropdown"
-                                class="absolute mt-2 px-6 py-5 space-y-4 text-[0.9375rem]
+                                class="absolute mt-2  text-[0.9375rem]
                                 text-primary bg-background shadow-2xl w-full z-[100] hidden">
-                                <p class="size-option cursor-pointer" onclick="selectTitle('Ms.')">Ms.</p>
-                                <p class="size-option cursor-pointer" onclick="selectTitle('Mrs.')">Mrs.</p>
-                                <p class="size-option cursor-pointer" onclick="selectTitle('Mr.')">Mr.</p>
+                                <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                    onclick="selectTitle('Ms.')">Ms.</p>
+                                <p class="size-option cursor-pointer  px-6 py-3 hover:bg-black hover:text-white"
+                                    onclick="selectTitle('Mrs.')">Mrs.</p>
+                                <p class="size-option cursor-pointer  px-6 py-3 hover:bg-black hover:text-white"
+                                    onclick="selectTitle('Mr.')">Mr.</p>
                             </div>
                             <p class="text-[0.75rem] text-[#97A0A1] mt-1 font-[200]">
                                 * Required information
@@ -252,32 +255,32 @@
                             <div id="countryDropdown"
                                 class="absolute left-0 right-0 mt-1 bg-white shadow-xl z-[200] hidden">
                                 <div
-                                    class="absolute px-6 py-5 space-y-4
+                                    class="absolute
                                     text-[0.9375rem] text-primary font-medium
                                     bg-background shadow-2xl
                                     w-full z-[100]">
 
                                     <div onclick="selectCountry('+91')"
-                                        class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                        <span>India</span>
+                                        class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                        <span class="px-6">India</span>
                                         <span>(+91)</span>
                                     </div>
 
                                     <div onclick="selectCountry('+39')"
-                                        class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                        <span>Italy</span>
+                                        class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                        <span class="px-6">Italy</span>
                                         <span>(+39)</span>
                                     </div>
 
                                     <div onclick="selectCountry('+33')"
-                                        class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                        <span>France</span>
+                                        class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                        <span class="px-6">France</span>
                                         <span>(+33)</span>
                                     </div>
 
                                     <div onclick="selectCountry('+81')"
-                                        class="flex justify-between cursor-pointer max-w-xs mx-auto">
-                                        <span>Japan</span>
+                                        class="grid grid-cols-2 cursor-pointer mx-auto  px-10 py-3 hover:bg-black hover:text-white">
+                                        <span class="px-6">Japan</span>
                                         <span>(+81)</span>
                                     </div>
 
@@ -315,12 +318,12 @@
                                     class="fa-solid fa-chevron-down absolute right-2 top-3
                                 text-[0.75rem] transition-transform duration-300"></i>
                                 <div id="monthDropdown"
-                                    class="absolute mt-2 px-6 py-5 space-y-4 text-[0.9375rem] font-medium
+                                    class="absolute mt-2 text-[0.9375rem] font-medium
                                 text-primary bg-background shadow-2xl w-full z-[100] hidden">
-                                    <p class="size-option cursor-pointer" onclick="selectMonth('January')">January</p>
-                                    <p class="size-option cursor-pointer" onclick="selectMonth('February')">February
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white" onclick="selectMonth('January')">January</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white" onclick="selectMonth('February')">February
                                     </p>
-                                    <p class="size-option cursor-pointer" onclick="selectMonth('March')">March</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white" onclick="selectMonth('March')">March</p>
 
                                 </div>
                                 <p class="text-[0.75rem] text-[#97A0A1] mt-1 font-[200]">
@@ -712,7 +715,7 @@
 
                     <div class="flex flex-col items-center gap-6">
 
-                        <button  onclick="window.location.href='/accountconfirmed'"
+                        <button onclick="window.location.href='/accountconfirmed'"
                             class="w-64 h-12 bg-secondary text-white text-[1.25rem] rounded-md hover:bg-primary transition">
                             Create Account
                         </button>
