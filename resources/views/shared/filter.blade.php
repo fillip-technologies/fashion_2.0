@@ -10,9 +10,13 @@
     </button>
 
     <div class="pt-20 px-16 shrink-0">
-        <h2 class="text-[13px] tracking-[0.25em] font-semibold uppercase">
-            Filters
+        {{-- <h2 class="text-[1rem] uppercase tracking-wider" style="font-weight: 700">
+            Filters <span class="ml-3">(04)</span>
+        </h2> --}}
+        <h2 class="text-[1rem] uppercase tracking-wider font-bold">
+            Filters <span id="totalFilterCount" class="ml-3 hidden">(0)</span>
         </h2>
+
     </div>
 
     <div class="flex-1 px-16 mt-14 space-y-8 text-[14px] font-light overflow-y-auto custom-scroll">
@@ -21,11 +25,12 @@
             <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('categorySection')">
                 <span class="font-medium">By Category</span>
                 <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1 left-1 text-black font-semibold hidden"
+                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
                         data-count-for="categorySection"></span>
-                    .__ ..
+                    <span class="gradient-border-new"></span>
                 </span>
             </div>
+
             <div id="categorySection" class="px-6 md:px-16 mt-1 hidden">
 
                 <div class="flex items-center gap-6 mb-7">
@@ -42,9 +47,9 @@
             <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('colourSection')">
                 <span class="font-medium">By Colour</span>
                 <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1 left-1 text-black font-semibold hidden"
+                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
                         data-count-for="colourSection"></span>
-                    .__ ..
+                    <span class="gradient-border"></span>
                 </span>
             </div>
 
@@ -64,9 +69,9 @@
             <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('materialSection')">
                 <span class="font-medium">By Material</span>
                 <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1 left-1 text-black font-semibold hidden"
+                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
                         data-count-for="materialSection"></span>
-                    .__ ..
+                    <span class="gradient-border"></span>
                 </span>
             </div>
             <div id="materialSection" class="px-6 md:px-16 mt-1 hidden">
@@ -86,9 +91,9 @@
             <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('lineSection')">
                 <span class="font-medium">By Line</span>
                 <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1 left-1 text-black font-semibold hidden"
+                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
                         data-count-for="lineSection"></span>
-                    .__ ..
+                    <span class="gradient-border"></span>
                 </span>
             </div>
             <div id="lineSection" class="px-6 md:px-16 mt-1 hidden">
@@ -108,9 +113,9 @@
             <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('sortSection')">
                 <span class="font-medium">Sort By</span>
                 <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1 left-1 text-black font-semibold hidden"
+                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
                         data-count-for="sortSection"></span>
-                    .__ ..
+                    <span class="gradient-border-new"></span>
                 </span>
             </div>
             <div id="sortSection" class="px-6 md:px-16 mt-1 hidden">
@@ -129,12 +134,12 @@
 
     <div class="shrink-0 pb-16 flex flex-col md:flex-row items-center justify-center gap-5 md:gap-16">
         <button onclick="applyFilters()"
-            class="border border-primary hover:border-secondary/90 px-8 py-2 text-[16px]
+            class="border border-primary hover:border-secondary/90 px-8 py-3 text-[1rem]
              hover:bg-secondary/90 hover:text-white transition rounded">
             Apply filter
         </button>
         <button onclick="clearFilters()"
-            class="border border-primary hover:border-secondary/90 px-8 py-2 text-[16px]
+            class="border border-primary hover:border-secondary/90 px-8 py-3 text-[1rem]
              hover:bg-secondary/90 hover:text-white transition rounded">
             Clear filter
         </button>
@@ -144,6 +149,25 @@
     <div class="absolute top-28 right-0 left-0 h-[1.5px] bg-dash-dot-h opacity-60"></div>
 
 </nav>
+
+<script>
+    function updateTotalFilterCount() {
+        const totalChecked =
+            document.querySelectorAll('input[type="checkbox"]:checked').length;
+
+        const totalEl = document.getElementById("totalFilterCount");
+
+        if (!totalEl) return;
+
+        if (totalChecked > 0) {
+            totalEl.textContent = `(${totalChecked})`;
+            totalEl.classList.remove("hidden");
+        } else {
+            totalEl.classList.add("hidden");
+        }
+    }
+</script>
+
 
 <script>
     function updateSectionCount(sectionId) {
@@ -176,6 +200,7 @@
         if (!section) return;
 
         updateSectionCount(section.id);
+        updateTotalFilterCount();
     });
 </script>
 
@@ -193,13 +218,13 @@
             data-label="${item.name}"
             >
           <span
-            class="relative w-5 h-5 border border-black rounded-sm
-                   peer-checked:bg-white peer-checked:border-secondary
+            class="relative w-4 h-4 border border-black rounded-md
+                   peer-checked:bg-background peer-checked:border-black
                    after:absolute after:opacity-0
                    after:left-[5px] after:top-[1.5px]
-                   after:w-[6px] after:h-[11px]
+                   after:w-[4px] after:h-[9px]
                    after:border-r-2 after:border-b-2
-                   after:border-gray-600
+                   after:border-gray-500
                    after:rotate-45
                    peer-checked:after:opacity-100">
           </span>     
@@ -374,15 +399,17 @@
         data-section="${grid}"
         data-label="${item.name}"
         >
-         <span class="relative w-5 h-5 border border-black rounded-sm
-                        peer-checked:bg-white peer-checked:border-secondary
+         <span class="relative w-4 h-4 border border-black rounded-md
+                        peer-checked:bg-background peer-checked:border-black
                         after:absolute after:opacity-0
                         after:left-[5px] after:top-[1.5px]
-                        after:w-[6px] after:h-[11px]
+                        after:w-[4px] after:h-[9px]
                         after:border-r-2 after:border-b-2
-                        after:border-gray-600 after:rotate-45
+                        after:border-gray-500 after:rotate-45
                         peer-checked:after:opacity-100">
                     </span>      
+
+                    
         <span 
           class="w-10 h-10 rounded-md shadow-md border"
           style="background-color:${item.color}">
@@ -443,6 +470,46 @@
     }
 </style>
 
+<style>
+    .gradient-border {
+        display: inline-block;
+        width: 2rem;
+        height: 0.09375rem;
+        background: linear-gradient(to right,
+                #696e83 0% 12%,
+                transparent 12% 20%,
+
+                #696e83 20% 48%,
+                transparent 48% 58%,
+
+                #696e83 58% 64%,
+                transparent 64% 72%,
+
+                #696e83 72% 78%,
+                transparent 78% 100%);
+    }
+</style>
+
+<style>
+    .gradient-border-new {
+        display: inline-block;
+        width: 2rem;
+        height: 0.1rem;
+        background: linear-gradient(to right,
+                #696e83 0% 12%,
+                transparent 12% 20%,
+
+                #696e83 20% 48%,
+                transparent 48% 58%,
+
+                #696e83 58% 64%,
+                transparent 64% 72%,
+
+                #696e83 72% 78%,
+                transparent 78% 100%);
+    }
+</style>
+
 <script>
     function applyFilters() {
         window.appliedFilters = {};
@@ -461,6 +528,7 @@
                 window.appliedFilters[section].push(label);
             });
 
+        updateTotalFilterCount();
         renderSelectedFilters();
         toggleDrawer();
     }
@@ -482,5 +550,6 @@
             .forEach(counter => counter.classList.add("hidden"));
 
         toggleDrawer();
+        updateTotalFilterCount();
     }
 </script>
