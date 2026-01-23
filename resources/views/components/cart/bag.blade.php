@@ -1,10 +1,12 @@
  <header class="bg-background py-5">
-     <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-black">
+     <div class="grid grid-cols-3 px-4 sm:px-14 h-24  items-center text-black">
 
-         <a href="/" class="flex items-center space-x-2 text-[1.25rem] cursor-pointer">
-             <i class="fa-solid fa-chevron-left fa-sm text-[0.625rem]"></i>
+         <div class="flex items-center space-x-2 text-[1.25rem] cursor-pointer" onclick="window.history.back()">
+             {{-- <i class="fa-solid fa-chevron-left fa-sm text-[0.625rem]"></i> --}}
+             <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[6px] h-[10px]" />
              <span style="font-weight: 400">My Cart</span>
-         </a>
+         </div>
+
          <div class="mx-auto">
              <div class="w-16 h-16 sm:w-24 sm:h-24 bg-purple-600 flex items-center justify-center">
                  <span class="text-white text-xs sm:text-sm font-semibold">LOGO 1</span>
@@ -12,8 +14,9 @@
          </div>
 
          <a href="/"
-             class="flex items-center space-x-1 sm:space-x-0 text-[0.8125rem] sm:text-[0.8125rem] cursor-pointer">
-             <i class="fa-solid fa-arrow-left fa-sm mr-1"></i>
+             class="flex justify-end items-center space-x-1 sm:space-x-2 text-[0.8125rem] sm:text-[0.8125rem] cursor-pointer">
+             {{-- <i class="fa-solid fa-arrow-left fa-sm mr-1"></i> --}}
+             <img src="{{ asset('assets/SVG/Return black icon.svg') }}" alt="Arrow Left" class="w-[7px] h-[6px]" />
              <span style="font-weight: 300">Back to browsing!</span>
          </a>
 
