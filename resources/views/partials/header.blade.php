@@ -102,6 +102,30 @@
     </header>
 </div>
 
+<script>
+    const oldheader = document.getElementById("oldheader");
+    const newheader = document.getElementById("newheader");
+
+    const isAccountPage = window.location.pathname.includes("accountoverview");
+
+    if (isAccountPage) {
+        // Force only new header
+        oldheader.classList.add("hidden");
+        newheader.classList.remove("hidden");
+    } else {
+        // Normal scroll behavior
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                oldheader.classList.add("hidden");
+                newheader.classList.remove("hidden");
+            } else {
+                oldheader.classList.remove("hidden");
+                newheader.classList.add("hidden");
+            }
+        });
+    }
+</script>
+
 
 
 <script>

@@ -74,6 +74,9 @@ Route::get('/location', function () {
     return view('pages.location');
 });
 
+Route::get('/accountoverview', function () {
+    return view('pages.accountoverview');
+});
 
 
 
