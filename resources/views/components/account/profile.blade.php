@@ -40,7 +40,7 @@
         <img src="assets/images/Leaf.png" alt="background" class="w-full h-full" />
 
         <img src="assets/SVG/Profile page.svg"
-            class="w-4/12 hidden h-auto absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+            class="w-4/12 hidden md:block h-auto absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
     </div>
 
 

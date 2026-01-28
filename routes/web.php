@@ -82,6 +82,10 @@ Route::get('/profile', function () {
     return view('pages.profile');
 });
 
+Route::get('/wishlist', function () {
+    return view('pages.wishlist');
+});
+
 
 
 

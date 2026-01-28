@@ -109,14 +109,12 @@
     // const isAccountPage = window.location.pathname.includes("accountoverview");
     const path = window.location.pathname;
     const isAccountPage =
-        path.includes("accountoverview") || path.includes("profile");
+        path.includes("accountoverview") || path.includes("profile") || path.includes("wishlist");
 
     if (isAccountPage) {
-        // Force only new header
         oldheader.classList.add("hidden");
         newheader.classList.remove("hidden");
     } else {
-        // Normal scroll behavior
         window.addEventListener("scroll", () => {
             if (window.scrollY > 50) {
                 oldheader.classList.add("hidden");
