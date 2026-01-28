@@ -78,6 +78,10 @@ Route::get('/accountoverview', function () {
     return view('pages.accountoverview');
 });
 
+Route::get('/profile', function () {
+    return view('pages.profile');
+});
+
 
 
 

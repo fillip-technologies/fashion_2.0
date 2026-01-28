@@ -106,7 +106,10 @@
     const oldheader = document.getElementById("oldheader");
     const newheader = document.getElementById("newheader");
 
-    const isAccountPage = window.location.pathname.includes("accountoverview");
+    // const isAccountPage = window.location.pathname.includes("accountoverview");
+    const path = window.location.pathname;
+    const isAccountPage =
+        path.includes("accountoverview") || path.includes("profile");
 
     if (isAccountPage) {
         // Force only new header
