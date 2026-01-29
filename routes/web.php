@@ -90,9 +90,9 @@ Route::get('/orders', function () {
     return view('pages.orders');
 });
 
-
-
-
+Route::get('/orderhistory', function () {
+    return view('pages.orderhistory');
+});
 
 
 
