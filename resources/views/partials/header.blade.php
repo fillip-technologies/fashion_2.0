@@ -109,7 +109,7 @@
     // const isAccountPage = window.location.pathname.includes("accountoverview");
     const path = window.location.pathname;
     const isAccountPage =
-        path.includes("accountoverview") || path.includes("profile") || path.includes("wishlist");
+        path.includes("accountoverview") || path.includes("profile") || path.includes("wishlist") || path.includes("orders");
 
     if (isAccountPage) {
         oldheader.classList.add("hidden");

@@ -86,6 +86,9 @@ Route::get('/wishlist', function () {
     return view('pages.wishlist');
 });
 
+Route::get('/orders', function () {
+    return view('pages.orders');
+});
 
 
 
