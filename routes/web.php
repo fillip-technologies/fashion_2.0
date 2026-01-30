@@ -94,5 +94,8 @@ Route::get('/orderhistory', function () {
     return view('pages.orderhistory');
 });
 
+Route::get('/viewdetails', function () {
+    return view('pages.viewdetails');
+});
 
 
