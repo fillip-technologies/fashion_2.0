@@ -98,4 +98,6 @@ Route::get('/viewdetails', function () {
     return view('pages.viewdetails');
 });
 
-
+Route::get('/addressbook', function () {
+    return view('pages.addressbook');
+});
