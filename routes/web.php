@@ -101,3 +101,7 @@ Route::get('/viewdetails', function () {
 Route::get('/addressbook', function () {
     return view('pages.addressbook');
 });
+
+Route::get('/shippingaddress', function() {
+    return view('pages.shippingaddress');
+});
