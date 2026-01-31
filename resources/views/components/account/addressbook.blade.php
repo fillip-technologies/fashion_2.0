@@ -11,23 +11,23 @@
              pb-6 pt-6 sm:pt-8
              scrollbar-hide">
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/accountoverview" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     Account in perspective
                 </a>
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/profile" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Profile
                 </a>
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/wishlist" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Wishlist
                 </a>
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/orders" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Orders
                 </a>
 
-                <a href="#" class="relative text-white flex-shrink-0">
+                <a href="/addressbook" class="relative text-white flex-shrink-0">
                     My Addressbook
                     <span class="absolute left-0 -bottom-6 w-full h-1 bg-tertiary rounded"></span>
                 </a>
@@ -53,7 +53,8 @@
             My Shipping Addresses
         </h2>
 
-        <a href="/shippingaddress" class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
+        <a href="/shippingaddress"
+            class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
             style="font-weight: 600">
             +Add address
         </a>
@@ -127,7 +128,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -177,7 +179,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -229,7 +232,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -279,7 +283,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -382,7 +387,8 @@
             My Billing Addresses
         </h2>
 
-        <a href="/billingaddress" class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
+        <a href="/billingaddress"
+            class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
             style="font-weight: 600">
             +Add address
         </a>
@@ -455,7 +461,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -505,7 +512,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -557,7 +565,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -607,7 +616,8 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2"
+                            style="font-weight: 500">
                             Edit address
                         </a>
                     </div>

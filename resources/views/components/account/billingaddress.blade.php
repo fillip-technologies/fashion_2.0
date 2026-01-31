@@ -11,23 +11,24 @@
              pb-6 pt-6 sm:pt-8
              scrollbar-hide">
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+
+                <a href="/accountoverview" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     Account in perspective
                 </a>
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/profile" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Profile
                 </a>
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/wishlist" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Wishlist
                 </a>
 
-                <a href="#" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="/orders" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Orders
                 </a>
 
-                <a href="#" class="relative text-white flex-shrink-0">
+                <a href="/addressbook" class="relative text-white flex-shrink-0">
                     My Addressbook
                     <span class="absolute left-0 -bottom-6 w-full h-1 bg-tertiary rounded"></span>
                 </a>
@@ -53,8 +54,8 @@
         <button onclick="history.back()"
             class="absolute left-2 md:left-16 flex items-center justify-center w-8 h-8 text-black hover:opacity-70 transition"
             aria-label="Go back">
-            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem] cursor-pointer"
-                onclick="window.history.back()" />
+            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back"
+                class="w-[0.4375rem] h-[0.75rem] cursor-pointer" onclick="window.history.back()" />
         </button>
         <div class="text-[0.9375rem] font-semibold">
             MY BILLING ADDRESS
