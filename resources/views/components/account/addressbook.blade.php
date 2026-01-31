@@ -53,7 +53,7 @@
             My Shipping Addresses
         </h2>
 
-        <a href="#" class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
+        <a href="/shippingaddress" class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
             style="font-weight: 600">
             +Add address
         </a>
@@ -127,7 +127,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -177,7 +177,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -229,7 +229,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -279,7 +279,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/shippingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -301,8 +301,8 @@
             saved.</p>
 
         <div class="flex items-center gap-4 text-secondary">
-            <span id="prevBtn" class="text-2xl cursor-pointer">&lsaquo;</span>
-            <span id="nextBtn" class="text-2xl cursor-pointer">&rsaquo;</span>
+            <span id="prevBtn" class="text-3xl font-medium cursor-pointer">&lsaquo;</span>
+            <span id="nextBtn" class="text-3xl font-medium cursor-pointer">&rsaquo;</span>
         </div>
 
 
@@ -382,7 +382,7 @@
             My Billing Addresses
         </h2>
 
-        <a href="#" class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
+        <a href="/billingaddress" class="text-[0.9375rem] text-black uppercase tracking-wide underline underline-offset-2"
             style="font-weight: 600">
             +Add address
         </a>
@@ -455,7 +455,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -505,7 +505,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -557,7 +557,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -607,7 +607,7 @@
 
                     <!-- Edit -->
                     <div class="ml-12 mt-6">
-                        <a href="#" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
+                        <a href="/billingaddress" class="text-[1rem] underline underline-offset-2" style="font-weight: 500">
                             Edit address
                         </a>
                     </div>
@@ -629,8 +629,8 @@
             saved.</p>
 
         <div class="flex items-center gap-4 text-secondary">
-            <span id="billingPrevBtn" class="text-2xl cursor-pointer">&lsaquo;</span>
-            <span id="billingNextBtn" class="text-2xl cursor-pointer">&rsaquo;</span>
+            <span id="billingPrevBtn" class="text-3xl font-medium cursor-pointer">&lsaquo;</span>
+            <span id="billingNextBtn" class="text-3xl font-medium cursor-pointer">&rsaquo;</span>
         </div>
 
         <div></div>

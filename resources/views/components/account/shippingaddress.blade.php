@@ -53,7 +53,8 @@
         <button onclick="history.back()"
             class="absolute left-2 md:left-16 flex items-center justify-center w-8 h-8 text-black hover:opacity-70 transition"
             aria-label="Go back">
-            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem]" />
+            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem] cursor-pointer"
+                onclick="window.history.back()" />
         </button>
         <div class="text-[0.9375rem] font-semibold">
             MY SHIPPING ADDRESS
