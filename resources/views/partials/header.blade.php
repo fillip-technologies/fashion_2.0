@@ -111,7 +111,7 @@
     const isAccountPage =
         path.includes("accountoverview") || path.includes("profile") || path.includes("wishlist") || path.includes(
             "orders") || path.includes("orderhistory") || path.includes("viewdetails") || path.includes(
-        "addressbook") || path.includes("shippingaddress");
+            "addressbook") || path.includes("shippingaddress") || path.includes("billingaddress");
 
     if (isAccountPage) {
         oldheader.classList.add("hidden");

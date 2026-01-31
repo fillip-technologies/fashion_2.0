@@ -105,3 +105,7 @@ Route::get('/addressbook', function () {
 Route::get('/shippingaddress', function() {
     return view('pages.shippingaddress');
 });
+
+Route::get('/billingaddress', function() {
+    return view('pages.billingaddress');
+});
