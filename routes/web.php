@@ -109,3 +109,7 @@ Route::get('/shippingaddress', function() {
 Route::get('/billingaddress', function() {
     return view('pages.billingaddress');
 });
+
+Route::get('/sitemap', function() {
+    return view('pages.sitemap');
+});
