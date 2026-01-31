@@ -56,7 +56,8 @@
 
 
         <div class="max-w-7xl mx-auto flex flex-col gap-8 text-[1rem] mb-32">
-            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem]" />
+            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back"
+                class="w-[0.4375rem] h-[0.75rem] cursor-pointer" onclick="window.history.back()" />
             <div class="italic">Total orders (03)</div>
         </div>
 
@@ -95,8 +96,8 @@
                 </div>
 
                 <div class="flex justify-end space-x-5 text-[0.75rem] -mt-8" style="font-weight: 200">
-                    <a href="#" class="underline">Download invoice</a>
-                    <a href="#" class="underline">View details</a>
+                    <a href="/viewdetails" class="underline">Download invoice</a>
+                    <a href="/viewdetails" class="underline">View details</a>
                 </div>
             </div>
 
@@ -126,8 +127,8 @@
                 </div>
 
                 <div class="flex justify-end space-x-5 text-[0.75rem] -mt-8" style="font-weight: 200">
-                    <a href="#" class="underline">Download invoice</a>
-                    <a href="#" class="underline">View details</a>
+                    <a href="/viewdetails" class="underline">Download invoice</a>
+                    <a href="/viewdetails" class="underline">View details</a>
                 </div>
             </div>
 
@@ -152,8 +153,8 @@
                 </div>
 
                 <div class="flex justify-end space-x-5 text-[0.75rem] -mt-8" style="font-weight: 200">
-                    <a href="#" class="underline">Download invoice</a>
-                    <a href="#" class="underline">View details</a>
+                    <a href="/viewdetails" class="underline">Download invoice</a>
+                    <a href="/viewdetails" class="underline">View details</a>
                 </div>
             </div>
 
@@ -171,7 +172,7 @@
 
         <div class="max-w-7xl mx-auto flex flex-col gap-4 md:gap-8 text-[1rem] mb-10 md:mb-32">
             <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back"
-                class="w-[0.4375rem] h-[0.75rem]" />
+                class="w-[0.4375rem] h-[0.75rem] cursor-pointer" onclick="window.history.back()" />
             <div class="italic">Total orders (03)</div>
         </div>
 
@@ -211,8 +212,8 @@
 
             <!-- Actions -->
             <div class="flex justify-between pt-2 text-xs">
-                <a href="#" class="underline">Download invoice</a>
-                <a href="#" class="underline">View details</a>
+                <a href="/viewdetails" class="underline">Download invoice</a>
+                <a href="/viewdetails" class="underline">View details</a>
             </div>
 
         </div>
@@ -253,8 +254,8 @@
 
             <!-- Actions -->
             <div class="flex justify-between pt-2 text-xs">
-                <a href="#" class="underline">Download invoice</a>
-                <a href="#" class="underline">View details</a>
+                <a href="/viewdetails" class="underline">Download invoice</a>
+                <a href="/viewdetails" class="underline">View details</a>
             </div>
 
         </div>
@@ -294,8 +295,8 @@
 
             <!-- Actions -->
             <div class="flex justify-between pt-2 text-xs">
-                <a href="#" class="underline">Download invoice</a>
-                <a href="#" class="underline">View details</a>
+                <a href="/viewdetails" class="underline">Download invoice</a>
+                <a href="/viewdetails" class="underline">View details</a>
             </div>
 
         </div>

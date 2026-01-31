@@ -51,7 +51,7 @@
 
     <div
         class="max-w-7xl mx-auto flex items-center justify-start gap-5 md:gap-10 pt-14 md:pt-40 pb-2 md:pb-6 px-8 text-[1.125rem]">
-        <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem]" />
+        <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[0.4375rem] h-[0.75rem] cursor-pointer" onclick="window.history.back()"/>
         <p style="font-weight: 400"><span class="mr-0.5 md:mr-2" style="font-weight: 600">ORDER No. -</span> IN1234567
         </p>
     </div>

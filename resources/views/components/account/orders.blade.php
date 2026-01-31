@@ -68,7 +68,7 @@
         <div class="flex justify-center items-center gap-6 text-[0.9375rem] mb-32">
             <span class="uppercase font-semibold">My Last Order</span>
             <span class="h-7 w-0.5 bg-secondary"></span>
-            <span class="italic font-light">My order history</span>
+            <a href="/orderhistory" class="italic font-light cursor-pointer">My order history</a>
         </div>
 
         <div class="max-w-7xl mx-auto px-6">
@@ -107,8 +107,8 @@
 
 
             <div class="flex justify-end space-x-5 text-[0.75rem] -mt-8" style="font-weight: 200">
-                <a href="#" class="underline">Download invoice</a>
-                <a href="#" class="underline">View details</a>
+                <a href="/viewdetails" class="underline">Download invoice</a>
+                <a href="/viewdetails" class="underline">View details</a>
             </div>
 
         </div>
@@ -122,7 +122,7 @@
         <div class="flex justify-center items-center gap-4 text-sm mb-10">
             <span class="uppercase font-semibold">My Last Order</span>
             <span class="h-5 w-px bg-secondary"></span>
-            <span class="italic font-light text-gray-500">My order history</span>
+            <a href="/orderhistory" class="italic font-light text-gray-500 cursor-pointer">My order history</a>
         </div>
 
         <!-- Order Card -->
@@ -161,8 +161,8 @@
 
             <!-- Actions -->
             <div class="flex justify-between pt-2 text-xs">
-                <a href="#" class="underline">Download invoice</a>
-                <a href="#" class="underline">View details</a>
+                <a href="/viewdetails" class="underline">Download invoice</a>
+                <a href="/viewdetails" class="underline">View details</a>
             </div>
 
         </div>
