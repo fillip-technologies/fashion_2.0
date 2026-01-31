@@ -1,23 +1,5 @@
-<section class="bg-black">
+<section class="bg-black sticky top-14 md:top-[6.9375rem] z-20">
 
-    <!-- Top Navigation -->
-    {{-- <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
-        <div class="max-w-7xl mx-auto px-6">
-            <nav class="flex justify-center gap-20 text-[0.875rem] text-white pb-6 pt-8 relative">
-
-                <a href="#" class="relative pb-2 text-white">
-                    Account in perspective
-                    <span class="absolute left-0 -bottom-6 w-full h-1 bg-tertiary rounded"></span>
-                </a>
-
-                <a href="#" class="opacity-70 hover:opacity-100">My Profile</a>
-                <a href="#" class="opacity-70 hover:opacity-100">My Wishlist</a>
-                <a href="#" class="opacity-70 hover:opacity-100">My Orders</a>
-                <a href="#" class="opacity-70 hover:opacity-100">My Addressbook</a>
-
-            </nav>
-        </div>
-    </div> --}}
 
     <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
@@ -56,13 +38,13 @@
         </div>
     </div>
 
-
-    <div class="relative w-full h-[480px]">
-        <img src="assets/images/whiteflower.png" alt="background" class="absolute inset-0 w-full h-full object-cover" />
-        {{-- <div class="absolute inset-0 bg-black/40"></div> --}}
-    </div>
-
 </section>
+
+
+<div class="relative w-full h-[480px]">
+    <img src="assets/images/whiteflower.png" alt="background" class="absolute inset-0 w-full h-full object-cover" />
+    {{-- <div class="absolute inset-0 bg-black/40"></div> --}}
+</div>
 
 {{-- <section class="flex justify-center border-x-[1rem] border-secondary pt-10">
     <div class="w-4/12 mx-auto pt-16 relative">

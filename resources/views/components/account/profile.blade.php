@@ -1,4 +1,4 @@
-<section class="bg-black">
+<section class="bg-black sticky top-14 md:top-[6.9375rem] z-20">
     <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <nav
@@ -36,15 +36,15 @@
         </div>
     </div>
 
-    <div class="w-full relative ">
-        <img src="assets/images/Leaf.png" alt="background" class="w-full h-full" />
-
-        <img src="assets/SVG/Profile page.svg"
-            class="w-4/12 hidden md:block h-auto absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
-    </div>
-
 
 </section>
+
+<div class="w-full relative ">
+    <img src="assets/images/Leaf.png" alt="background" class="w-full h-full" />
+
+    <img src="assets/SVG/Profile page.svg"
+        class="w-4/12 hidden md:block h-auto absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
+</div>
 
 
 
