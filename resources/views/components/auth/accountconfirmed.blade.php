@@ -3,11 +3,11 @@
     <header class="relative border-b bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
         <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-white">
 
-            <a href="/" class="flex items-center space-x-2 text-[0.8125rem] cursor-pointer">
+            <div onclick="window.history.back()" class="flex items-center space-x-2 text-[0.8125rem] cursor-pointer">
                 {{-- <i class="fa-solid fa-arrow-left fa-sm"></i> --}}
                 <img src="{{ asset('assets/SVG/Return white icon.svg') }}" alt="Arrow Left" class="w-[7px] h-[6px]" />
                 <span class="hidden md:block" style="font-weight: 100">Back to browsing!</span>
-            </a>
+            </div>
             <div class="mx-auto">
                 <div class="w-16 h-16 sm:w-24 sm:h-24 bg-purple-600 flex items-center justify-center">
                     <span class="text-white text-xs sm:text-sm font-semibold">LOGO 1</span>
@@ -15,7 +15,8 @@
             </div>
 
             <div class="flex items-center text-[0.8125rem] cursor-pointer">
-                <span class="mr-1 sm:mr-2 hidden md:block" style="font-weight: 300">Go to your profile</span>
+                <a href="/accountoverview" class="mr-1 sm:mr-2 hidden md:block" style="font-weight: 300">Go to your
+                    profile</a>
                 {{-- <i class="fa-solid fa-chevron-right fa-sm"></i>
                 <i class="fa-solid fa-chevron-right fa-sm"></i> --}}
                 <img src="{{ asset('assets/SVG/Back white icon.svg') }}" alt="Arrow Left"

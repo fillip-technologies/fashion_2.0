@@ -174,7 +174,7 @@
                 </div>
 
                 <div>
-                    <a href="#" class="block opacity-60 hover:opacity-100">Contact Us</a>
+                    <a href="/contact" class="block opacity-60 hover:opacity-100">Contact Us</a>
                 </div>
             </nav>
             <div id="menuDivider" class="absolute right-0 top-10 bottom-10 w-2 bg-black/80 transition-all duration-200">

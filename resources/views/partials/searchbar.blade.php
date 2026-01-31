@@ -4,9 +4,9 @@
             <div class="mx-auto px-6 sm:px-14 h-24 flex items-center">
 
 
-                <div class="absolute top-3 left-6 sm:left-14 text-[12px] font-light opacity-70">
+                <a href="/location" class="absolute top-3 left-6 sm:left-14 text-[12px] font-light opacity-70">
                     Location <span class="underline">(India / EN / ₹)</span>
-                </div>
+                </a>
 
 
                 <div class="mx-auto">
@@ -15,11 +15,11 @@
                     </div>
                 </div>
 
-                <div class="absolute top-3 right-6 sm:right-14 flex items-center gap-6">
+                <a href="/contact" class="absolute top-3 right-6 sm:right-14 flex items-center gap-6">
                     <span class="text-[12px] font-light opacity-70">
                         Contact Us
                     </span>
-                </div>
+                </a>
 
                 <div class="absolute bottom-3 right-6 sm:right-14 flex items-center gap-6">
                     <button onclick="closeSearch()" class="text-2xl font-light">
@@ -32,18 +32,31 @@
 
         <div class="px-6 sm:px-14 pt-10">
             <div class="flex items-center gap-4 text-sm">
+
                 <svg class="w-4 h-4 opacity-60" fill="none" stroke="currentColor" stroke-width="1.5"
                     viewBox="0 0 24 24">
                     <circle cx="11" cy="11" r="7"></circle>
                     <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
                 </svg>
-                <input type="text" placeholder="" class="flex-1 bg-transparent outline-none text-sm" />
+
+                <!-- Input wrapper -->
+                <div class="relative flex-1">
+                    <input type="text" onfocus="hideBird()" onblur="showBirdIfEmpty(this)"
+                        class="w-full bg-transparent outline-none text-sm" />
+
+                    <!-- Bird -->
+                    <img id="bird" src="/assets/SVG/Bird Black (Search bar animation).svg"
+                        class="absolute left-1/2 top-1/2 w-10 h-10 -translate-x-1/2 -translate-y-1/2 pointer-events-none transition-opacity duration-300" />
+                </div>
+
                 <button onclick="clearSearch()" class="text-xs opacity-60 hover:opacity-100">
                     Clear
                 </button>
             </div>
+
             <div class="h-px bg-black/30 mt-2"></div>
         </div>
+
 
         <div class="mt-16 px-6 sm:px-14">
             <div class="relative w-full h-[100vh] overflow-hidden">
@@ -79,9 +92,26 @@
             document.getElementById("searchOverlay").classList.add("hidden");
         }
 
-        function clearSearch() {
-            document.querySelector("#searchOverlay input").value = "";
-        }
+       
     </script>
 
 </div>
+
+
+<script>
+    function hideBird() {
+        document.getElementById("bird").style.opacity = "0";
+    }
+
+    function showBirdIfEmpty(input) {
+        if (!input.value.trim()) {
+            document.getElementById("bird").style.opacity = "1";
+        }
+    }
+
+    function clearSearch() {
+        const input = document.querySelector("input");
+        input.value = "";
+        document.getElementById("bird").style.opacity = "1";
+    }
+</script>
