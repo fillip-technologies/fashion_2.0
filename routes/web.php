@@ -58,6 +58,10 @@ Route::get('/bag', function () {
     return view('pages.bag');
 });
 
+Route::get('/test', function () {
+    return view('test');
+});
+
 Route::get('/checkout', function () {
     return view('pages.checkout');
 });
