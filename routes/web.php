@@ -78,11 +78,42 @@ Route::get('/location', function () {
     return view('pages.location');
 });
 
+Route::get('/accountoverview', function () {
+    return view('pages.accountoverview');
+});
 
+Route::get('/profile', function () {
+    return view('pages.profile');
+});
 
+Route::get('/wishlist', function () {
+    return view('pages.wishlist');
+});
 
+Route::get('/orders', function () {
+    return view('pages.orders');
+});
 
+Route::get('/orderhistory', function () {
+    return view('pages.orderhistory');
+});
 
+Route::get('/viewdetails', function () {
+    return view('pages.viewdetails');
+});
 
+Route::get('/addressbook', function () {
+    return view('pages.addressbook');
+});
 
+Route::get('/shippingaddress', function() {
+    return view('pages.shippingaddress');
+});
 
+Route::get('/billingaddress', function() {
+    return view('pages.billingaddress');
+});
+
+Route::get('/sitemap', function() {
+    return view('pages.sitemap');
+});

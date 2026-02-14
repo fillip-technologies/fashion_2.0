@@ -1,7 +1,7 @@
 <div class="w-full h-screen overflow-hidden relative font-sans">
 
     <!-- HEADER -->
-    <header class="relative border-b bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
+    <header class="relative border-b bg-background z-20">
         <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-white">
 
             <div class="flex-1"></div>
@@ -12,9 +12,10 @@
                 </div>
             </div>
 
-            <a href="/" class="flex-1 flex items-center justify-end space-x-2 text-[0.75rem] opacity-80">
-                <i class="fa-solid fa-arrow-left"></i>
-                <span class="hidden md:block">Back to browsing!</span>
+            <a href="/" class="flex-1 flex items-center justify-end space-x-1.5 text-[0.75rem] opacity-80">
+                {{-- <i class="fa-solid fa-arrow-left"></i> --}}
+                <img src="{{ asset('assets/SVG/Return black icon.svg') }}" alt="Arrow Left" class="w-[7px] h-[6px]" />
+                <span class="hidden md:block text-black">Back to browsing!</span>
             </a>
         </div>
     </header>
@@ -41,8 +42,9 @@
 
             <div class="px-10 py-7">
 
-                <img src="assets/images/newbird.png" class="absolute left-1/2 -top-7 -ml-8 " />
+                {{-- <img src="assets/images/newbird.png" class="absolute left-1/2 -top-7 -ml-8 " /> --}}
 
+                <img src="assets/SVG/Bird white (Order confirmation).svg" class="absolute left-1/2 -top-7 -ml-8 w-[56px] h-[35px]" />
 
 
                 <!-- TITLE -->

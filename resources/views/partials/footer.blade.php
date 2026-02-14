@@ -4,9 +4,9 @@
             <div>
                 <h4 class="text-[1rem] tracking-widest mb-8">COMPANY</h4>
                 <ul class="space-y-4 font-light text-background text-[0.75rem]">
-                    <li>ABOUT US</li>
+                    <a href="/about">ABOUT US</a>
                     <li>LEGAL</li>
-                    <li>THE COLLECTIONS</li>
+                    <a href="/newcollection">THE COLLECTIONS</a>
                 </ul>
             </div>
             <div>
@@ -14,8 +14,8 @@
                 <ul class="space-y-4 text-[0.75rem] font-light text-background">
                     <li>TRACK YOUR ORDER</li>
                     <li>YOUR ORDERS</li>
-                    <li>CONTACT US</li>
-                    <li>SITEMAP</li>
+                    <a href="/contact">CONTACT US</a>
+                    <a href="/sitemap">SITEMAP</a>
                 </ul>
             </div>
             <div>

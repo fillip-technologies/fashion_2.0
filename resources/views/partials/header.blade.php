@@ -102,6 +102,33 @@
     </header>
 </div>
 
+<script>
+    const oldheader = document.getElementById("oldheader");
+    const newheader = document.getElementById("newheader");
+
+    // const isAccountPage = window.location.pathname.includes("accountoverview");
+    const path = window.location.pathname;
+    const isAccountPage =
+        path.includes("accountoverview") || path.includes("profile") || path.includes("wishlist") || path.includes(
+            "orders") || path.includes("orderhistory") || path.includes("viewdetails") || path.includes(
+            "addressbook") || path.includes("shippingaddress") || path.includes("billingaddress");
+
+    if (isAccountPage) {
+        oldheader.classList.add("hidden");
+        newheader.classList.remove("hidden");
+    } else {
+        window.addEventListener("scroll", () => {
+            if (window.scrollY > 50) {
+                oldheader.classList.add("hidden");
+                newheader.classList.remove("hidden");
+            } else {
+                oldheader.classList.remove("hidden");
+                newheader.classList.add("hidden");
+            }
+        });
+    }
+</script>
+
 
 
 <script>
@@ -147,7 +174,7 @@
                 </div>
 
                 <div>
-                    <a href="#" class="block opacity-60 hover:opacity-100">Contact Us</a>
+                    <a href="/contact" class="block opacity-60 hover:opacity-100">Contact Us</a>
                 </div>
             </nav>
             <div id="menuDivider" class="absolute right-0 top-10 bottom-10 w-2 bg-black/80 transition-all duration-200">

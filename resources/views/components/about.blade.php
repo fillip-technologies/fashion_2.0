@@ -1,4 +1,4 @@
-<div class="bg-background py-24">
+<div class="bg-background pt-24">
     <div class="flex flex-col items-center">
         <div class="flex items-center gap-5">
             <p class="text-black text-[18px] font-light relative top-[6px]">
@@ -13,7 +13,7 @@
         <div class="h-px w-80 mt-3 bg-black/40"></div>
     </div>
 
-    <div class="mt-20 max-w-7xl mx-auto bg-white pb-20 md:pb-32 pl:0 md:pl-16">
+    <div class="mt-20 w-11/12 mx-auto bg-white pb-20 md:pb-44 pl-10 md:pl-28">
 
         <img src="{{ asset('assets/images/about/one.png') }}" alt="about" class="w-full h-auto object-cover" />
 
@@ -37,11 +37,59 @@
         </div>
     </div>
 
-    <div class="max-w-7xl mx-auto bg-white pb-16 md:pb-24 flex flex-col items-center justify-center">
-        <img src="{{ asset('assets/images/about/two.png') }}" alt="about" class="w-full h-auto object-cover" />
-        <div class="px-10 mt-8">
+    <img src="{{ asset('assets/images/about/four.png') }}" alt="about" class="w-full h-auto object-cover" />
+
+</div>
+
+{{-- 
+<div class="w-11/12 mx-auto bg-white pb-28 md:pb-44 flex flex-col items-center justify-center">
+    <img src="{{ asset('assets/images/about/two.png') }}" alt="about" class="w-full h-auto object-cover" />
+    <div class="px-10 mt-16 md:mt-28">
+        <img src="{{ asset('assets/images/about/three.png') }}" alt="about"
+            class="w-auto h-auto object-contain" />
+    </div>
+</div> --}}
+
+<div class="w-11/12 mx-auto bg-white pb-16 md:pb-24 flex flex-col items-center justify-center">
+
+    <img src="{{ asset('assets/images/about/two.png') }}" alt="about" class="w-full h-auto object-cover" />
+
+    <div class="w-full">
+
+        <div class="relative group inline-block flex items-center justify-center pt-16 md:pt-28 pb-20 md:pb-28 ">
+
+
             <img src="{{ asset('assets/images/about/three.png') }}" alt="about"
-                class="w-auto h-auto md:h-[70vh] object-contain" />
+                class="w-auto h-auto object-contain" />
+
+            <div
+                class="absolute inset-0 
+                         bg-black/80
+                        opacity-0 group-hover:opacity-100
+                        transition-opacity duration-300
+                        flex flex-col items-center justify-center text-center px-6">
+
+                <h3 class="text-white text-[1.25rem] tracking-wide" style="font-weight: 600">
+                    THE YARN’S STORY
+                </h3>
+
+                <div class="w-80 h-px bg-white my-3"></div>
+
+                <p class="text-white text-[1rem] w-7/12 mt-10 opacity-80" style="font-weight: 300">
+                    A fashion collection is a curated group of clothing, footwear, and accessories designed around a
+                    central theme, concept, or inspiration, unified by shared colors, fabrics, silhouettes, and styles
+                    for a specific season (like Spring/Summer or Fall/Winter) to tell a cohesive story and predict
+                    trends. These collections often blend trendy, limited-edition pieces with timeless basics, creating
+                    a complete look that designers present to buyers and the public, often during Fashion
+                    Weeks....................<span class="text-[0.875rem] italic" style="font-weight: 200"> <a
+                            href="/yarn-story">Read
+                            more</a></span>
+                </p>
+
+
+            </div>
+
         </div>
     </div>
+
 </div>
