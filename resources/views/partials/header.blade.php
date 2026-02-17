@@ -36,20 +36,19 @@
                     </div>
 
                 </div>
-                <div class="absolute left-1/2 -translate-x-1/2">
+                <div class="absolute left-1/2 -translate-x-1/2 mt-2 md:-mt-9">
                     <a href="/" class="w-20 h-12 sm:w-32 sm:h-36 bg-purple-600 flex items-center justify-center">
                         <span class="text-white font-semibold text-xs sm:text-base">
                             LOGO 1
                         </span>
                     </a>
                 </div>
-                <div class="flex items-center gap-3 sm:gap-4">
+                <div class="flex items-center gap-3 sm:gap-9">
                     <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
                         class="w-5 sm:w-[20px] h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
 
                     <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="w-6 sm:w-[25px] h-auto" />
                 </div>
-
             </div>
         </div>
     </header>
@@ -91,7 +90,7 @@
                     </a>
                 </div>
 
-                <div class="flex items-center gap-3 sm:gap-4">
+                <div class="flex items-center gap-3 sm:gap-9">
                     <img src="{{ asset('assets/SVG/Profile white.svg') }}" class="w-5 md:w-[20px] cursor-pointer"
                         onclick="toggleMasterDrawer('drawerlogin')" />
 
@@ -152,7 +151,7 @@
 
 
 <!-- MENU DESKTOP -->
-<div id="menuOverlay" class="fixed left-0 right-0 z-[999] bg-primary/50 backdrop-blur-sm hidden pt-10">
+<div id="menuOverlay" class="fixed left-0 right-0 z-[999] bg-primary/50 backdrop-blur-sm hidden pt-10 overscroll-none">
     <div class="flex w-full h-[70vh]">
         <div class="w-[25%] bg-background relative">
             <nav
@@ -345,15 +344,17 @@
                 mobileMenu.classList.add("hidden");
             }
             document.body.classList.add("no-scroll");
+            document.body.classList.add("overflow-hidden");
+
         }
         if (e.target.closest("#closeMenu")) {
             menuOverlay.classList.add("hidden");
             document.body.classList.remove("no-scroll");
+            document.body.classList.remove("overflow-hidden");
         }
 
     });
 </script>
-
 
 
 
