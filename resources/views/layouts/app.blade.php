@@ -163,6 +163,7 @@
                 const searchOverlay = document.getElementById("searchOverlay");
                 if (searchOverlay) {
                     searchOverlay.classList.remove("hidden");
+                    document.body.classList.add("overflow-hidden");
                 }
             }
         });
