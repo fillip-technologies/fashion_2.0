@@ -1,5 +1,5 @@
 <div class="bg-background sticky top-0 z-50" id="oldheader">
-    <header class="w-full border-b border-gray-200 md:h-[12.1875rem]">
+    <header class="w-full md:h-[12.1875rem]">
         <div class="mx-auto px-4 sm:px-14">
 
             <div class="hidden sm:flex items-center justify-between pt-7">
