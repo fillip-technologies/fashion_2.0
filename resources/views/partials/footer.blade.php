@@ -2,29 +2,29 @@
     <div class="max-w-7xl mx-auto px-10 md:px-16 pt-24 pb-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-24">
             <div>
-                <h4 class="text-[1rem] tracking-widest mb-8">COMPANY</h4>
+                <h4 class="text-[1rem] tracking-widest mb-12">COMPANY</h4>
                 <ul class="space-y-4 font-light text-background text-[0.75rem]">
-                    <a href="/about">ABOUT US</a>
+                    <li> <a href="/about">ABOUT US</a></li>
                     <li>LEGAL</li>
-                    <a href="/newcollection">THE COLLECTIONS</a>
+                    <li><a href="/newcollection">THE COLLECTIONS</a></li>
                 </ul>
             </div>
             <div>
-                <h4 class="text-[1rem] tracking-widest mb-8">SERVICES</h4>
+                <h4 class="text-[1rem] tracking-widest mb-12">SERVICES</h4>
                 <ul class="space-y-4 text-[0.75rem] font-light text-background">
                     <li>TRACK YOUR ORDER</li>
                     <li>YOUR ORDERS</li>
-                    <a href="/contact">CONTACT US</a>
-                    <a href="/sitemap">SITEMAP</a>
+                    <li> <a href="/contact">CONTACT US</a></li>
+                    <li> <a href="/sitemap">SITEMAP</a></li>
                 </ul>
             </div>
             <div>
                 <h4 class="text-[1rem] tracking-widest mb-8">FOLLOW US</h4>
             </div>
-            <div class="space-y-16">
+            <div class="space-y-20">
                 <div>
-                    <h4 class="text-[1rem] tracking-widest mb-8">NEWSLETTER</h4>
-                    <p class="text-[0.75rem] text-background font-light mb-2">
+                    <h4 class="text-[1rem] tracking-widest mb-12">NEWSLETTER</h4>
+                    <p class="text-[0.75rem] text-background font-light mb-4">
                         Stay up to date with the latest news with us
                     </p>
                     <p class="text-[0.75rem] underline cursor-pointer text-background"
@@ -33,7 +33,7 @@
                     </p>
                 </div>
                 <div class="flex flex-col">
-                    <a href="/location" class="text-[0.875rem] tracking-widest mb-4">LOCATION</a>
+                    <a href="/location" class="text-[0.875rem] tracking-widest mb-6">LOCATION</a>
                     <a href="/location" class="text-[0.75rem] underline cursor-pointer text-background">
                         INDIA / EN / ₹
                     </a>

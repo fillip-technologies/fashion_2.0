@@ -40,7 +40,7 @@
                 @if (count($colors))
                     <div class="flex items-center gap-2 pt-1">
                         @foreach ($colors as $color)
-                            <span class="w-3 h-3 rounded-full" style="background-color: {{ $color }}"></span>
+                            <span class="w-3 h-3" style="background-color: {{ $color }}"></span>
                         @endforeach
                     </div>
                 @endif
