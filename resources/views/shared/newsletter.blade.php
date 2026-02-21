@@ -6,8 +6,8 @@
 
     <div class="grid grid-cols-1 md:grid-cols-2">
 
-        <div class="h-screen bg-black/80 hidden md:block"></div>
-        <div class="bg-background min-h-screen">
+        <div class="h-screen bg-black/80 hidden md:block overflow-hidden overscroll-none"  onclick="toggleMasterDrawer('newsletter')"></div>
+        <div class="bg-background min-h-screen overflow-hidden overscroll-none">
             <div class="py-8 px-6 md:px-14 flex items-center justify-between">
                 <p class="text-[1.25rem]">Join our newsletter</p>
                 <button onclick="toggleMasterDrawer('newsletter')"

@@ -8,7 +8,8 @@
     <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
 
         <div class="hidden md:block bg-black/70 h-screen sticky top-0
-         overflow-hidden overscroll-none">
+         overflow-hidden overscroll-none"
+            onclick="toggleMasterDrawer('drawersizeguide')">
         </div>
 
 

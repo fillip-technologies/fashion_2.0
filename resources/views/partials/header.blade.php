@@ -102,50 +102,55 @@
 </div>
 
 <script>
-    const oldheader = document.getElementById("oldheader");
-    const newheader = document.getElementById("newheader");
+    document.addEventListener("DOMContentLoaded", function() {
 
-    // const isAccountPage = window.location.pathname.includes("accountoverview");
-    const path = window.location.pathname;
-    const isAccountPage =
-        path.includes("accountoverview") || path.includes("profile") || path.includes("wishlist") || path.includes(
-            "orders") || path.includes("orderhistory") || path.includes("viewdetails") || path.includes(
-            "addressbook") || path.includes("shippingaddress") || path.includes("billingaddress");
+        const oldheader = document.getElementById("oldheader");
+        const newheader = document.getElementById("newheader");
 
-    if (isAccountPage) {
-        oldheader.classList.add("hidden");
-        newheader.classList.remove("hidden");
-    } else {
-        window.addEventListener("scroll", () => {
-            if (window.scrollY > 50) {
-                oldheader.classList.add("hidden");
-                newheader.classList.remove("hidden");
-            } else {
-                oldheader.classList.remove("hidden");
-                newheader.classList.add("hidden");
-            }
-        });
-    }
-</script>
+        const path = window.location.pathname;
 
+        const isAccountPage =
+            path.includes("accountoverview") ||
+            path.includes("profile") ||
+            path.includes("wishlist") ||
+            path.includes("orders") ||
+            path.includes("orderhistory") ||
+            path.includes("viewdetails") ||
+            path.includes("addressbook") ||
+            path.includes("shippingaddress") ||
+            path.includes("billingaddress");
 
+        const isSeeAllPage = path.includes("specific");
 
-<script>
-    const oldheader = document.getElementById("oldheader");
-    const newheader = document.getElementById("newheader");
-
-    window.addEventListener("scroll", () => {
-        if (window.scrollY > 50) {
-            oldheader.classList.add(
-                "hidden"
-            );
+        // ACCOUNT PAGES
+        if (isAccountPage) {
+            oldheader.classList.add("hidden");
             newheader.classList.remove("hidden");
-        } else {
-            oldheader.classList.remove(
-                "hidden"
-            );
-            newheader.classList.add("hidden");
+            return;
         }
+
+        window.addEventListener("scroll", () => {
+
+            if (isSeeAllPage) {
+                if (window.scrollY > 20) {
+                    oldheader.classList.add("hidden");
+                    newheader.classList.add("hidden");
+                } else {
+                    oldheader.classList.remove("hidden");
+                    newheader.classList.add("hidden");
+                }
+            } else {
+                if (window.scrollY > 50) {
+                    oldheader.classList.add("hidden");
+                    newheader.classList.remove("hidden");
+                } else {
+                    oldheader.classList.remove("hidden");
+                    newheader.classList.add("hidden");
+                }
+            }
+
+        });
+
     });
 </script>
 

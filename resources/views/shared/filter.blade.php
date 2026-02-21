@@ -1,155 +1,122 @@
 <nav id="drawer"
-    class="fixed top-0 right-0 w-full md:w-1/2 bg-background text-black z-[1200]
+    class="fixed top-0 right-0 w-full text-black z-[1200]
          transform translate-x-full transition-transform duration-500
          ease-[cubic-bezier(0.86,0,0.07,1)]
          h-screen flex flex-col cookie-reset">
 
-    <button onclick="toggleDrawer()"
-        class="absolute top-6 right-8 text-3xl font-light text-black/60 hover:text-black z-50">
-        &times;
-    </button>
+    <div class="grid grid-cols-1 md:grid-cols-2 h-full">
+        
+        <div class="h-screen bg-black/70 hidden md:block overflow-hidden overscroll-none" onclick="toggleDrawer()"></div>
 
-    <div class="pt-20 px-16 shrink-0">
-        {{-- <h2 class="text-[1rem] uppercase tracking-wider" style="font-weight: 700">
-            Filters <span class="ml-3">(04)</span>
-        </h2> --}}
-        <h2 class="text-[1rem] uppercase tracking-wider font-bold">
-            Filters <span id="totalFilterCount" class="ml-3 hidden">(0)</span>
-        </h2>
+        <div class="bg-background h-screen flex flex-col relative overflow-hidden overscroll-none">
+            
+            <button onclick="toggleDrawer()"
+                class="absolute top-6 right-8 text-3xl font-light text-black/60 hover:text-black z-50">
+                &times;
+            </button>
 
+            <div class="pt-20 px-16 shrink-0">
+                <h2 class="text-[1rem] uppercase tracking-wider font-bold">
+                    Filters <span id="totalFilterCount" class="ml-3 hidden">(0)</span>
+                </h2>
+            </div>
+
+            <div class="flex-1 px-16 mt-14 space-y-8 text-[14px] font-light overflow-y-auto custom-scroll pb-10">
+
+                <div>
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('categorySection')">
+                        <span class="font-medium">By Category</span>
+                        <span class="relative inline-block text-black/90">
+                            <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
+                                data-count-for="categorySection"></span>
+                            <span class="gradient-border-new"></span>
+                        </span>
+                    </div>
+                    <div id="categorySection" class="px-6 md:px-16 mt-1 hidden">
+                        <div class="flex items-center gap-6 mb-7"><div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div></div>
+                        <div id="categoryGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-24"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('colourSection')">
+                        <span class="font-medium">By Colour</span>
+                        <span class="relative inline-block text-black/90">
+                            <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
+                                data-count-for="colourSection"></span>
+                            <span class="gradient-border"></span>
+                        </span>
+                    </div>
+                    <div id="colourSection" class="px-6 md:px-16 mt-1 hidden">
+                        <div class="flex items-center gap-6 mb-7"><div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div></div>
+                        <div id="colourGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-12"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('materialSection')">
+                        <span class="font-medium">By Material</span>
+                        <span class="relative inline-block text-black/90">
+                            <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
+                                data-count-for="materialSection"></span>
+                            <span class="gradient-border"></span>
+                        </span>
+                    </div>
+                    <div id="materialSection" class="px-6 md:px-16 mt-1 hidden">
+                        <div class="flex items-center gap-6 mb-7"><div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div></div>
+                        <div id="materialGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-24"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('lineSection')">
+                        <span class="font-medium">By Line</span>
+                        <span class="relative inline-block text-black/90">
+                            <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
+                                data-count-for="lineSection"></span>
+                            <span class="gradient-border"></span>
+                        </span>
+                    </div>
+                    <div id="lineSection" class="px-6 md:px-16 mt-1 hidden">
+                        <div class="flex items-center gap-6 mb-7"><div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div></div>
+                        <div id="lineGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-24"></div>
+                    </div>
+                </div>
+
+                <div>
+                    <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('sortSection')">
+                        <span class="font-medium">Sort By</span>
+                        <span class="relative inline-block text-black/90">
+                            <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
+                                data-count-for="sortSection"></span>
+                            <span class="gradient-border-new"></span>
+                        </span>
+                    </div>
+                    <div id="sortSection" class="px-6 md:px-16 mt-1 hidden">
+                        <div class="flex items-center gap-6 mb-7"><div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div></div>
+                        <div id="sortGrid" class="grid grid-cols-1 sm:grid-cols-1 gap-y-10 gap-x-24"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="shrink-0 pb-16 flex flex-col md:flex-row items-center justify-center gap-5 md:gap-16 pt-5 bg-background border-t border-gray-100">
+                <button onclick="applyFilters()"
+                    class="border border-primary hover:border-secondary/90 px-8 py-3 text-[1rem]
+                     hover:bg-secondary/90 hover:text-white transition rounded">
+                    Apply filter
+                </button>
+                <button onclick="clearFilters()"
+                    class="border border-primary hover:border-secondary/90 px-8 py-3 text-[1rem]
+                     hover:bg-secondary/90 hover:text-white transition rounded">
+                    Clear filter
+                </button>
+            </div>
+
+            <div class="absolute left-8 top-20 bottom-0 w-[1.5px] bg-dash-dot-v opacity-60 pointer-events-none"></div>
+            <div class="absolute top-28 right-0 left-0 h-[1.5px] bg-dash-dot-h opacity-60 pointer-events-none"></div>
+        </div>
     </div>
-
-    <div class="flex-1 px-16 mt-14 space-y-8 text-[14px] font-light overflow-y-auto custom-scroll">
-
-        <div>
-            <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('categorySection')">
-                <span class="font-medium">By Category</span>
-                <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
-                        data-count-for="categorySection"></span>
-                    <span class="gradient-border-new"></span>
-                </span>
-            </div>
-
-            <div id="categorySection" class="px-6 md:px-16 mt-1 hidden">
-
-                <div class="flex items-center gap-6 mb-7">
-                    <div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div>
-                </div>
-
-                <div id="categoryGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-24">
-                </div>
-
-            </div>
-        </div>
-
-        <div>
-            <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('colourSection')">
-                <span class="font-medium">By Colour</span>
-                <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
-                        data-count-for="colourSection"></span>
-                    <span class="gradient-border"></span>
-                </span>
-            </div>
-
-            <div id="colourSection" class="px-6 md:px-16 mt-1 hidden">
-
-                <div class="flex items-center gap-6 mb-7">
-                    <div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div>
-                </div>
-
-                <div id="colourGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-12">
-                </div>
-
-            </div>
-        </div>
-
-        <div>
-            <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('materialSection')">
-                <span class="font-medium">By Material</span>
-                <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
-                        data-count-for="materialSection"></span>
-                    <span class="gradient-border"></span>
-                </span>
-            </div>
-            <div id="materialSection" class="px-6 md:px-16 mt-1 hidden">
-
-                <div class="flex items-center gap-6 mb-7">
-                    <div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div>
-                </div>
-
-                <div id="materialGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-24">
-                </div>
-
-            </div>
-        </div>
-
-
-        <div>
-            <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('lineSection')">
-                <span class="font-medium">By Line</span>
-                <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
-                        data-count-for="lineSection"></span>
-                    <span class="gradient-border"></span>
-                </span>
-            </div>
-            <div id="lineSection" class="px-6 md:px-16 mt-1 hidden">
-
-                <div class="flex items-center gap-6 mb-7">
-                    <div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div>
-                </div>
-
-                <div id="lineGrid" class="grid grid-cols-1 sm:grid-cols-3 gap-y-10 gap-x-24">
-                </div>
-
-            </div>
-        </div>
-
-
-        <div>
-            <div class="flex justify-between items-center cursor-pointer" onclick="toggleSection('sortSection')">
-                <span class="font-medium">Sort By</span>
-                <span class="relative inline-block text-black/90">
-                    <span class="absolute -top-1.5 left-1 text-black font-semibold hidden"
-                        data-count-for="sortSection"></span>
-                    <span class="gradient-border-new"></span>
-                </span>
-            </div>
-            <div id="sortSection" class="px-6 md:px-16 mt-1 hidden">
-
-                <div class="flex items-center gap-6 mb-7">
-                    <div class="flex-1 h-[1.5px] bg-dash-dot opacity-90"></div>
-                </div>
-
-                <div id="sortGrid" class="grid grid-cols-1 sm:grid-cols-1 gap-y-10 gap-x-24">
-                </div>
-
-            </div>
-        </div>
-
-    </div>
-
-    <div class="shrink-0 pb-16 flex flex-col md:flex-row items-center justify-center gap-5 md:gap-16">
-        <button onclick="applyFilters()"
-            class="border border-primary hover:border-secondary/90 px-8 py-3 text-[1rem]
-             hover:bg-secondary/90 hover:text-white transition rounded">
-            Apply filter
-        </button>
-        <button onclick="clearFilters()"
-            class="border border-primary hover:border-secondary/90 px-8 py-3 text-[1rem]
-             hover:bg-secondary/90 hover:text-white transition rounded">
-            Clear filter
-        </button>
-    </div>
-
-    <div class="absolute left-8 top-20 bottom-0 w-[1.5px] bg-dash-dot-v opacity-60"></div>
-    <div class="absolute top-28 right-0 left-0 h-[1.5px] bg-dash-dot-h opacity-60"></div>
-
 </nav>
-
 <script>
     function updateTotalFilterCount() {
         const totalChecked =
@@ -544,6 +511,7 @@
 
 
         document.getElementById("selectedFilters").innerHTML = "";
+        document.getElementById("selectedFilters").classList.add("hidden")
 
         document
             .querySelectorAll('[data-count-for]')
