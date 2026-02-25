@@ -1,9 +1,9 @@
 <header class="bg-secondary">
-    <div class="mx-auto px-6 sm:px-14 h-24 flex items-center justify-between">
+    <div class="mx-auto px-6 sm:px-14 h-28 flex items-center justify-between">
 
         <div></div>
 
-        <div class="w-24 h-24 bg-purple-600 flex items-center justify-center">
+        <div class="w-28 h-28 bg-purple-600 flex items-center justify-center">
             <span class="text-white text-sm font-semibold">LOGO 1</span>
         </div>
 
@@ -14,7 +14,7 @@
 
     </div>
 </header>
-<div class="w-full bg-white">
+<div class="w-full bg-white pb-7">
 
     <div class="px-12 py-6 text-[0.875rem]" style="font-weight: 100">
         Your shipping location - <span class="text-[1rem]" style="font-weight: 400">INDIA (ENGLISH) / (₹)</span>
@@ -39,7 +39,7 @@
         </div>
 
 
-        <div class="px-16 py-10 border-r border-border flex flex-col items-center">
+        <div class="px-16 py-10 border-r border-border flex flex-col items-center pb-56">
             <h3 class="mb-6 text-[1rem] font-semibold tracking-widest" style="font-weight: 500">
                 ASIA
             </h3>

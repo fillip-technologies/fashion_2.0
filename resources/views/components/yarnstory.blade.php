@@ -53,13 +53,13 @@
             <div
                 class="absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
             </div>
 
             <div
                 class="absolute top-6 left-6 md:top-24 md:left-24 text-white
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest">THE<br>PASHMINA</h3>
                 <p class="mt-14 text-sm">From the region of Changthang, Ladakh.</p>
@@ -135,14 +135,14 @@
             <div
                 class="absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
             </div>
 
 
             <div
                 class="absolute top-6 left-6 md:top-24 md:left-24 text-white
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest"><br>YAK</h3>
                 <p class="mt-4 md:mt-14 text-sm">From the valley of Kashmir, Srinagar.</p>
@@ -221,13 +221,13 @@
             <div
                 class="absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
             </div>
 
             <div
                 class="absolute top-6 left-6 md:top-24 md:left-24 text-white
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest">THE<br>SILK</h3>
                 <p class="mt-4 md:mt-14 text-sm">From the silk city of Bihar, Bhagalpur.</p>
@@ -299,14 +299,14 @@
             <div
                 class="absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
             </div>
 
 
             <div
                 class="absolute top-6 left-6 md:top-24 md:left-24 text-white
-           opacity-0 transition-opacity duration-300
+           opacity-0 transition-opacity duration-700
            group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest">THE<br>MUSLIN COTTON</h3>
                 <p class="mt-4 md:mt-14 text-sm">From the city of Kalna, WestBengal.</p>
