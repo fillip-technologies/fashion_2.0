@@ -1,7 +1,6 @@
-<section class="bg-black sticky top-14 md:top-[6.9375rem] z-20">
+<section class="scroll-glass bg-black sticky top-14 md:top-[6.9375rem] z-20 transition-all duration-300">
 
-
-    <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
+    <div class="w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <nav
                 class="flex items-center justify-start sm:justify-center
@@ -39,6 +38,7 @@
     </div>
 
 </section>
+
 
 
 <div class="relative w-full h-[480px]">
@@ -116,7 +116,7 @@
                             accordance with our <span class="underline underline-offset-2">Privacy Policy</span>. </p>
 
                         <button onclick="window.location.href='/accountconfirmed'"
-                            class="w-28 h-7 bg-secondary text-white text-[0.875rem] rounded hover:bg-primary transition"
+                            class="w-36 h-8 bg-secondary text-white text-[0.875rem] rounded hover:bg-primary transition"
                             style="font-weight: 400">
                             save
                         </button>
@@ -197,7 +197,7 @@
 
                         <button onclick="window.location.href='/accountconfirmed'"
                             class="mt-16 w-72 h-12 bg-secondary text-white text-[0.875rem] rounded-md hover:bg-primary transition">
-                            Change Password
+                            Change login credentials
                         </button>
 
                     </div>
@@ -255,7 +255,7 @@
                         </div>
 
                         <button onclick="window.location.href='/accountconfirmed'"
-                            class="w-28 h-7 mt-6 bg-secondary text-white text-[0.875rem] rounded hover:bg-primary transition"
+                            class="w-36 h-8 mt-6 bg-secondary text-white text-[0.875rem] rounded hover:bg-primary transition"
                             style="font-weight: 400">
                             save
                         </button>
@@ -344,9 +344,9 @@
 
 
                         <div class="mt-5 flex justify-center cursor-pointer">
-                            <p class="purchase-history text-black">
+                            <a href="/orders" class="purchase-history text-black">
                                 View my purchase history
-                            </p>
+                            </a>
                         </div>
 
                         <style>

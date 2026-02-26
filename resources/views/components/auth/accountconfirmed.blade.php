@@ -1,6 +1,6 @@
 <div class="w-full h-screen overflow-hidden relative">
 
-    <header class="relative border-b bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
+    <header class="relative bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
         <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-white">
 
             <div onclick="window.history.back()" class="flex items-center space-x-2 text-[0.8125rem] cursor-pointer">

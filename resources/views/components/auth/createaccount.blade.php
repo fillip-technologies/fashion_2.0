@@ -320,10 +320,13 @@
                                 <div id="monthDropdown"
                                     class="absolute mt-2 text-[0.9375rem] font-medium
                                 text-primary bg-background shadow-2xl w-full z-[100] hidden">
-                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white" onclick="selectMonth('January')">January</p>
-                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white" onclick="selectMonth('February')">February
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectMonth('January')">January</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectMonth('February')">February
                                     </p>
-                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white" onclick="selectMonth('March')">March</p>
+                                    <p class="size-option cursor-pointer px-6 py-3 hover:bg-black hover:text-white"
+                                        onclick="selectMonth('March')">March</p>
 
                                 </div>
                                 <p class="text-[0.75rem] text-[#97A0A1] mt-1 font-[200]">
@@ -403,7 +406,7 @@
                                 Add your shipping address and billing address later
                             </p>
 
-                            <input type="checkbox" class="w-4 h-4" />
+                            <input id="addressLaterCheckbox" type="checkbox" class="w-4 h-4 accent-black" />
                         </div>
 
 
@@ -418,8 +421,8 @@
                         </div>
 
 
-
-                        <div class="grid grid-cols-1 md:grid-cols-1 w-full">
+                        {{-- this div should become faded once the   Add your shipping address and billing address later checkbox is checked --}}
+                        <div id="addressSection" class="grid grid-cols-1 md:grid-cols-1 w-full">
 
                             <div class="px-0">
 
@@ -656,12 +659,12 @@
                         </div>
 
 
-                        <div class="flex justify-between w-full mt-10 md:mt-20">
+                        <div id="sameAddressSection" class="flex justify-between w-full mt-10 md:mt-20">
                             <p class="text-[0.75rem] text-black/60 mb-6 text-center">
                                 Is your shipping and billing address the same?
                             </p>
 
-                            <input type="checkbox" class="w-4 h-4" />
+                            <input id="sameAddressCheckbox" type="checkbox" class="w-4 h-4 accent-black" />
                         </div>
 
 
@@ -702,11 +705,11 @@
 
                             <label class="flex items-start gap-3 cursor-pointer">
                                 <input type="checkbox" class="mt-0.5 accent-black" />
-                                <>
+                                <span>
                                     I agree that my purchase preferences are shared with Yarnstone Wren to improve the
                                     relevance of the offers and recommendations I receive
                                     (More)
-                                    </span>
+                                </span>
                             </label>
 
                         </div>
@@ -802,6 +805,37 @@
             }
         });
     })();
+</script>
+
+<!-- address toggle behavior -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const checkbox = document.getElementById('addressLaterCheckbox');
+        const section = document.getElementById('addressSection');
+        const sameSection = document.getElementById('sameAddressSection');
+
+        function updateAddressState() {
+            const inputs = section.querySelectorAll('input, select, textarea');
+            if (checkbox.checked) {
+                section.classList.add('opacity-50', 'pointer-events-none');
+                sameSection.classList.add('opacity-50', 'pointer-events-none');
+                inputs.forEach(i => i.setAttribute('disabled', 'disabled'));
+                // disable the same-address checkbox as well
+                const sameInput = sameSection.querySelector('input');
+                if (sameInput) sameInput.setAttribute('disabled', 'disabled');
+            } else {
+                section.classList.remove('opacity-50', 'pointer-events-none');
+                sameSection.classList.remove('opacity-50', 'pointer-events-none');
+                inputs.forEach(i => i.removeAttribute('disabled'));
+                const sameInput = sameSection.querySelector('input');
+                if (sameInput) sameInput.removeAttribute('disabled');
+            }
+        }
+
+        checkbox.addEventListener('change', updateAddressState);
+        // initial
+        updateAddressState();
+    });
 </script>
 
 

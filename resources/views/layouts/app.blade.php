@@ -230,6 +230,31 @@
         window.appliedFilters = {};
     </script>
 
+
+    <script>
+        window.addEventListener("scroll", function() {
+
+            const elements = document.querySelectorAll(".scroll-glass");
+
+            elements.forEach((el) => {
+                if (window.scrollY > 10) {
+                    el.classList.remove("bg-black");
+                    el.classList.add(
+                        "bg-black/70",
+                        "backdrop-blur-lg",
+                    );
+                } else {
+                    el.classList.remove(
+                        "bg-black/70",
+                        "backdrop-blur-lg",
+                    );
+                    el.classList.add("bg-black");
+                }
+            });
+
+        });
+    </script>
+
 </body>
 
 </html>

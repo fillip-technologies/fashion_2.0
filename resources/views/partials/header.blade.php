@@ -44,10 +44,12 @@
                     </a>
                 </div>
                 <div class="flex items-center gap-3 sm:gap-9">
-                    <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
-                        class="w-5 sm:w-[20px] h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
+                    <img src="{{ asset('assets/SVG/Wishlist black.svg') }}" alt="Cart" class="w-6 sm:w-7 h-auto" />
 
-                    <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="w-6 sm:w-[25px] h-auto" />
+                    <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
+                        class="w-5 sm:w-5 h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
+
+                    <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="w-6 sm:w-7 h-auto" />
                 </div>
             </div>
         </div>
@@ -91,10 +93,18 @@
                 </div>
 
                 <div class="flex items-center gap-3 sm:gap-9">
-                    <img src="{{ asset('assets/SVG/Profile white.svg') }}" class="w-5 md:w-[20px] cursor-pointer"
-                        onclick="toggleMasterDrawer('drawerlogin')" />
 
-                    <img src="{{ asset('assets/SVG/Bag white.svg') }}" class="w-6 md:w-[24px] cursor-pointer" />
+                    @unless (request()->is('accountoverview', 'profile', 'wishlist', 'orders', 'addressbook', 'orderhistory', 'viewdetails', 'shippingaddress', 'billingaddress'))
+                        <img src="{{ asset('assets/SVG/Wishlist white.svg') }}" class="w-6 sm:w-7 h-auto" />
+                    @endunless
+
+                    @unless (request()->is('accountoverview', 'profile', 'wishlist', 'orders', 'addressbook', 'orderhistory', 'viewdetails', 'shippingaddress', 'billingaddress'))
+                        <img src="{{ asset('assets/SVG/Profile white.svg') }}" class="w-5 md:w-5 cursor-pointer"
+                            onclick="toggleMasterDrawer('drawerlogin')" />
+                    @endunless
+
+                    <img src="{{ asset('assets/SVG/Bag white.svg') }}" class="w-6 md:w-6 cursor-pointer" />
+
                 </div>
             </div>
         </div>
@@ -181,7 +191,8 @@
                     <a href="/contact" class="block opacity-60 hover:opacity-100">Contact Us</a>
                 </div>
             </nav>
-            <div id="menuDivider" class="absolute right-0 top-10 bottom-10 w-2 bg-black/80 transition-all duration-200">
+            <div id="menuDivider"
+                class="absolute right-0 top-10 bottom-10 w-2 bg-black/80 transition-all duration-200">
             </div>
 
         </div>
