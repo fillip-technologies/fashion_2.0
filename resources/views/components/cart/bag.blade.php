@@ -22,8 +22,8 @@
 
      </div>
  </header>
- <div class="border-8 border-secondary bg-background pb-8">
-     <div class="px-4 md:px-8 pt-6 md:pt-8 grid grid-cols-1 md:grid-cols-12 gap-6 bg-background">
+ <div class="border-[1.4rem] border-secondary bg-background pb-8">
+     <div class="px-4 md:px-14 pt-6 md:pt-20 grid grid-cols-1 md:grid-cols-12 gap-6 bg-background">
 
          <div class="md:col-span-8 pt-6 bg-white">
 
@@ -242,7 +242,7 @@
              </div>
 
              {{-- This should only shown when the cart is empty  --}}
-             <div class="md:col-span-8 bg-black text-white hidden empty-cart-showcase pb-8">
+             <div class="md:col-span-8 bg-black text-white hidden empty-cart-showcase">
 
                  <div class="grid grid-cols-1 md:grid-cols-3 relative">
                      <div class="hidden md:block absolute inset-y-0 left-1/3 w-px h-full bg-dash-dot-v-white"></div>
@@ -394,8 +394,8 @@
 
 
      {{-- this should get hide when the empty-cart-showcase is shown --}}
-     <div class="hidden md:block cart-showcase-info">
-         <div class="px-4 md:px-8 grid grid-cols-1 md:grid-cols-12 gap-2">
+     <div class="hidden md:block cart-showcase-info pb-20">
+         <div class="px-4 md:px-14 grid grid-cols-1 md:grid-cols-12 gap-2">
 
              <div class="md:col-span-8 bg-black text-white mr-1">
 

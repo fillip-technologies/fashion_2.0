@@ -1,5 +1,5 @@
 <header class="bg-background py-5">
-    <div class="grid grid-cols-3 px-4 sm:px-14 h-24 items-center text-black">
+    <div class="grid grid-cols-3 px-4 sm:px-14 h-40 items-center text-black">
 
         <div class="flex items-center space-x-2 text-[1.25rem] cursor-pointer" onclick="window.history.back()">
             {{-- <i class="fa-solid fa-chevron-left fa-sm text-[0.625rem]"></i> --}}
@@ -7,7 +7,7 @@
             <span style="font-weight: 400">My Cart</span>
         </div>
         <div class="mx-auto">
-            <div class="w-16 h-16 sm:w-24 sm:h-24 bg-purple-600 flex items-center justify-center">
+            <div class="w-16 h-16 sm:w-36 sm:h-40 bg-purple-600 flex items-center justify-center">
                 <span class="text-white text-xs sm:text-sm font-semibold">LOGO 1</span>
             </div>
         </div>
@@ -20,10 +20,10 @@
 <div class="h-px w-full bg-dash-dot"></div>
 
 
-<div class="w-full bg-background">
-    <div class="w-10/12 mx-auto py-6 bg-background">
+<div class="w-full bg-background sticky top-0 z-[999] border-b-8 border-secondary ">
+    <div class="w-10/12 mx-auto py-10 bg-background">
         <div class="flex items-center md:grid md:grid-cols-12 md:items-center">
-            <div class="flex items-center gap-3 md:col-span-3 md:flex-none">
+            <div class="flex items-center justify-center gap-3 md:col-span-3 md:flex-none">
                 <span
                     class="w-6 h-6 flex items-center justify-center
                            border border-secondary rounded-full
@@ -70,8 +70,8 @@
 </div>
 
 
-<div class="border-y-8 border-secondary bg-background">
-    <div class="px-4 md:px-8 py-6 md:py-8 grid grid-cols-1 md:grid-cols-12 bg-background gap-4 md:gap-0">
+<div class="border-b-8 border-secondary bg-background">
+    <div class="px-4 md:px-14 py-6 md:py-24 grid grid-cols-1 md:grid-cols-12 bg-background gap-4 md:gap-0">
 
         <div class="md:col-span-4 bg-white relative self-start">
 
@@ -378,8 +378,9 @@
                     </button>
                 </div>
 
-
-                <div id="deliverySection" class="mx-auto pt-12 hidden">
+                <div id="deliverySection"
+                    class="mx-auto pt-12 overflow-hidden transition-all duration-500 ease-in-out"
+                    style="max-height: 0; opacity: 0;">
                     <div class="flex flex-col md:flex-row items-start md:items-center gap-3 mb-4">
                         <p class="text-[0.875rem]">
                             *DELIVERY OPTIONS
@@ -559,7 +560,7 @@
     </div>
 </div>
 
-
+{{-- 
 <script>
     const checkoutBtn = document.getElementById("checkoutBtn");
     const deliverySection = document.getElementById("deliverySection");
@@ -571,5 +572,25 @@
             behavior: "smooth",
             block: "start"
         });
+    });
+</script> --}}
+
+<script>
+    const checkoutBtn = document.getElementById("checkoutBtn");
+    const deliverySection = document.getElementById("deliverySection");
+
+    checkoutBtn.addEventListener("click", () => {
+
+        // First scroll slightly above where section will appear
+        window.scrollTo({
+            top: deliverySection.offsetTop - 120, // adjust if header height differs
+            behavior: "smooth"
+        });
+
+        // After scroll completes, expand smoothly
+        setTimeout(() => {
+            deliverySection.style.maxHeight = deliverySection.scrollHeight + "px";
+            deliverySection.style.opacity = "1";
+        }, 400);
     });
 </script>
