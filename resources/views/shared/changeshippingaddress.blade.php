@@ -1,11 +1,15 @@
 <nav id="changeshippingaddress"
-    class="fixed top-0 right-0 w-full md:w-1/2 h-screen z-[1200]
-           bg-white
+    class="fixed top-0 right-0 w-full h-screen z-[1200]
            transform translate-x-full transition-transform duration-500
-           ease-[cubic-bezier(0.86,0,0.07,1)]">
+           ease-[cubic-bezier(0.86,0,0.07,1)] overflow-hidden">
 
-    <div class="h-full overflow-y-auto overscroll-contain pt-0.5 thin-scrollbar">
-        <div class="relative min-h-full">
+    <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+        <div class="h-screen bg-black/80 hidden md:block overflow-hidden overscroll-none"
+            onclick="toggleMasterDrawer('changeshippingaddress')"></div>
+
+        <div class="bg-white h-screen overflow-hidden overscroll-none">
+            <div class="h-full overflow-hidden overscroll-none pt-0.5">
+                <div class="relative h-full">
 
             <div class="">
                 <div class="h-px bg-dash-dot"></div>
@@ -219,6 +223,8 @@
                 <div class="h-px bg-dash-dot"></div>
             </div>
 
+                </div>
+            </div>
         </div>
     </div>
 </nav>

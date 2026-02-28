@@ -263,7 +263,7 @@
                     <p class="text-[0.875rem] text-secondary" style="font-weight: 600">Confirmed</p>
                 </div>
 
-                <div class="text-[0.75rem] mt-5" style="font-weight: 500">
+                <div class="text-[0.75rem] mt-5 md:mt-14" style="font-weight: 500">
                     Please confirm your shipping and billing addresses -
                 </div>
 
