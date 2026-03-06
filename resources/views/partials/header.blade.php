@@ -1,4 +1,4 @@
-<div class="bg-background sticky top-0 z-50" id="oldheader">
+<div class="bg-background fixed top-0 inset-x-0 z-50 header-visible" id="oldheader">
     <header class="w-full md:h-[12.1875rem]">
         <div class="mx-auto px-4 sm:px-14">
 
@@ -56,7 +56,7 @@
     </header>
 </div>
 
-<div class="bg-secondary sticky top-0 z-50 hidden" id="newheader">
+<div class="bg-secondary fixed top-0 inset-x-0 z-50 header-hidden" id="newheader">
     <header class="w-full">
         <div class="mx-auto px-4 sm:px-14">
 
@@ -110,12 +110,14 @@
         </div>
     </header>
 </div>
+<div id="headerSpacer" class="w-full transition-[height] duration-500 ease-[cubic-bezier(0.22,1,0.36,1)]"></div>
 
 <script>
     document.addEventListener("DOMContentLoaded", function() {
 
         const oldheader = document.getElementById("oldheader");
         const newheader = document.getElementById("newheader");
+        const headerSpacer = document.getElementById("headerSpacer");
 
         const path = window.location.pathname;
 
@@ -132,37 +134,131 @@
 
         const isSeeAllPage = path.includes("specific");
 
+        const getHeaderHeight = (el) => el ? el.getBoundingClientRect().height : 0;
+        let oldHeaderHeight = getHeaderHeight(oldheader);
+        let newHeaderHeight = getHeaderHeight(newheader);
+        let activeHeaderMode = null;
+
+        const setHeaderMode = (mode) => {
+            if (activeHeaderMode === mode) return;
+            activeHeaderMode = mode;
+
+            if (mode === "old") {
+                oldheader.classList.remove("header-hidden");
+                oldheader.classList.add("header-visible");
+                newheader.classList.remove("header-visible");
+                newheader.classList.add("header-hidden");
+                headerSpacer.style.height = `${oldHeaderHeight}px`;
+                return;
+            }
+
+            if (mode === "new") {
+                oldheader.classList.remove("header-visible");
+                oldheader.classList.add("header-hidden");
+                newheader.classList.remove("header-hidden");
+                newheader.classList.add("header-visible");
+                headerSpacer.style.height = `${newHeaderHeight}px`;
+                return;
+            }
+
+            oldheader.classList.remove("header-visible");
+            oldheader.classList.add("header-hidden");
+            newheader.classList.remove("header-visible");
+            newheader.classList.add("header-hidden");
+            headerSpacer.style.height = "0px";
+        };
+
+        const recalcHeights = () => {
+            oldHeaderHeight = getHeaderHeight(oldheader);
+            newHeaderHeight = getHeaderHeight(newheader);
+
+            if (activeHeaderMode === "old") {
+                headerSpacer.style.height = `${oldHeaderHeight}px`;
+            } else if (activeHeaderMode === "new") {
+                headerSpacer.style.height = `${newHeaderHeight}px`;
+            }
+        };
+
         // ACCOUNT PAGES
         if (isAccountPage) {
-            oldheader.classList.add("hidden");
-            newheader.classList.remove("hidden");
+            setHeaderMode("new");
+            window.addEventListener("resize", recalcHeights);
             return;
         }
 
-        window.addEventListener("scroll", () => {
+        const updateHeadersOnScroll = () => {
+            const y = window.scrollY;
 
             if (isSeeAllPage) {
-                if (window.scrollY > 20) {
-                    oldheader.classList.add("hidden");
-                    newheader.classList.add("hidden");
+                if (y > 20) {
+                    setHeaderMode("none");
                 } else {
-                    oldheader.classList.remove("hidden");
-                    newheader.classList.add("hidden");
+                    setHeaderMode("old");
                 }
             } else {
-                if (window.scrollY > 50) {
-                    oldheader.classList.add("hidden");
-                    newheader.classList.remove("hidden");
-                } else {
-                    oldheader.classList.remove("hidden");
-                    newheader.classList.add("hidden");
+                if (y > 60) {
+                    setHeaderMode("new");
+                } else if (y < 35) {
+                    setHeaderMode("old");
+                } else if (!activeHeaderMode) {
+                    setHeaderMode("old");
                 }
             }
+        };
 
+        let ticking = false;
+        window.addEventListener("scroll", () => {
+            if (ticking) return;
+            ticking = true;
+            window.requestAnimationFrame(() => {
+                updateHeadersOnScroll();
+                ticking = false;
+            });
+        }, {
+            passive: true
+        });
+
+        window.addEventListener("resize", () => {
+            recalcHeights();
+            updateHeadersOnScroll();
+        });
+
+        updateHeadersOnScroll();
+        requestAnimationFrame(() => {
+            recalcHeights();
+            if (!activeHeaderMode) {
+                setHeaderMode("old");
+            } else if (activeHeaderMode === "old") {
+                headerSpacer.style.height = `${oldHeaderHeight}px`;
+            } else if (activeHeaderMode === "new") {
+                headerSpacer.style.height = `${newHeaderHeight}px`;
+            } else {
+                headerSpacer.style.height = "0px";
+            }
         });
 
     });
 </script>
+
+<style>
+    #oldheader,
+    #newheader {
+        transition: opacity 360ms ease, transform 500ms cubic-bezier(0.22, 1, 0.36, 1);
+        will-change: opacity, transform;
+    }
+
+    .header-visible {
+        opacity: 1;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .header-hidden {
+        opacity: 0;
+        transform: translateY(-10px);
+        pointer-events: none;
+    }
+</style>
 
 
 <!-- MENU DESKTOP -->
@@ -335,12 +431,18 @@
 
 <script>
     function updateMenuTop() {
+        const menuOverlay = document.getElementById("menuOverlay");
+        const oldheader = document.getElementById("oldheader");
+        const newheader = document.getElementById("newheader");
+
         if (!menuOverlay) return;
 
-        if (newheader && !newheader.classList.contains("hidden")) {
+        if (newheader && newheader.classList.contains("header-visible")) {
             menuOverlay.style.top = "7rem";
-        } else {
+        } else if (oldheader && oldheader.classList.contains("header-visible")) {
             menuOverlay.style.top = "12rem";
+        } else {
+            menuOverlay.style.top = "0";
         }
     }
 </script>
