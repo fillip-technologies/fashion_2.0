@@ -1,7 +1,7 @@
 <div class="bg-white">
     <div id="searchOverlay" class="fixed inset-0 z-[1000] bg-white hidden">
         <header class="relative border-b border-black/10 bg-background">
-            <div class="mx-auto px-6 sm:px-14 h-44 flex items-center">
+            <div class="mx-auto px-6 sm:px-14 h-48 flex items-center">
 
 
                 <a href="/location" class="absolute top-3 left-6 sm:left-14 text-[12px] font-light opacity-70">
@@ -10,7 +10,7 @@
 
 
                 <div class="mx-auto">
-                    <div class="w-36 h-28 bg-purple-600 flex items-center justify-center">
+                    <div class="w-28 h-32 bg-purple-600 flex items-center justify-center">
                         <span class="text-white text-sm font-semibold">LOGO 1</span>
                     </div>
                 </div>

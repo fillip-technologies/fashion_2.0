@@ -64,14 +64,14 @@
 
             <div id="overlayBox"
                 class="absolute inset-0 
-           bg-black/80
+          bg-gradient-to-b from-black/40 to-black/70
            opacity-0
            transition-opacity duration-300
            flex flex-col items-center justify-center text-center px-6">
 
                 <h3 class="text-white text-[1.25rem] tracking-wide" style="font-weight: 600">
                     <a href="/yarn-story"> THE YARN’S STORY </a>
-                </h3>
+                </h3> 
 
                 <div class="w-80 h-px bg-white my-3"></div>
 

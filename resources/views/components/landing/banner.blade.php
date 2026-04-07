@@ -44,7 +44,7 @@
                 <!-- LEFT -->
                 <svg width="4" height="64" viewBox="0 0 4 64" class="shrink-0">
                     <line x1="2" y1="0" x2="2" y2="64" stroke="rgba(0,0,0,0.4)"
-                        stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
+                        stroke-width="0.5" stroke-dasharray="8 4 8 4 2 6" />
                 </svg>
 
                 <!-- CENTER -->
@@ -58,7 +58,7 @@
                 <!-- RIGHT -->
                 <svg width="4" height="64" viewBox="0 0 4 64" class="shrink-0">
                     <line x1="2" y1="0" x2="2" y2="64" stroke="rgba(0,0,0,0.4)"
-                        stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
+                        stroke-width="0.5" stroke-dasharray="8 4 8 4 2 6" />
                 </svg>
 
             </div>

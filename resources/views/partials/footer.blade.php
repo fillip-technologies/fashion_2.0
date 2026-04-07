@@ -1,4 +1,4 @@
-<footer class="bg-[#3f4042] text-white h-screen relative">
+<footer class="bg-[#3f4042] text-white h-screen relative z-[99]">
     <div class="max-w-7xl mx-auto px-8 md:px-16 pt-24 pb-12">
         <div class="grid grid-cols-2 md:grid-cols-4 gap-24">
             <div>

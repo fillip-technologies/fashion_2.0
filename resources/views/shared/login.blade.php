@@ -1,23 +1,23 @@
 <nav id="drawerlogin"
     class="fixed top-0 right-0 w-full h-screen z-[1200]
          overflow-hidden
-         transform translate-x-full transition-transform duration-500
-         ease-[cubic-bezier(0.86,0,0.07,1)">
+         translate-x-full">
 
-    <div class="grid grid-cols-1 md:grid-cols-[1fr_2fr] h-screen">
-        <div class="h-screen bg-black/80 hidden md:block overflow-hidden overscroll-none"
+    <div class="flex h-screen">
+        <div class="drawerlogin-backdrop hidden md:block flex-1 h-screen bg-black/80 overflow-hidden overscroll-none"
             onclick="toggleMasterDrawer('drawerlogin')"></div>
 
-        <div class="relative h-screen overflow-hidden overscroll-none bg-black/80">
-            <div class="absolute inset-0 z-10 bg-no-repeat bg-left bg-cover w-1/2 left-14 hidden md:block"
-                style="background-image:url('/assets/images/vertical-flower.png')">
-            </div>
+        <div class="drawerlogin-panel relative h-screen w-full md:w-2/3 shrink-0 overflow-hidden overscroll-none bg-black/80">
+            <div class="drawerlogin-motion relative h-full">
+                <div class="absolute inset-0 z-10 bg-no-repeat bg-left bg-cover w-1/2 left-14 hidden md:block"
+                    style="background-image:url('/assets/images/vertical-flower.png')">
+                </div>
 
-            <div
-                class="absolute top-0 right-0 h-full
-                        w-full  md:w-[calc(100%-6.875rem)]
-                        bg-primary text-background z-20
-                        overflow-hidden overscroll-none">
+                <div
+                    class="absolute top-0 right-0 h-full
+                            w-full  md:w-[calc(100%-6.875rem)]
+                            bg-primary text-background z-20
+                            overflow-hidden overscroll-none">
 
                 <div class="py-8 px-10 flex items-center justify-between">
                     <p class=" tracking-wide text-[0.875rem]">
@@ -221,13 +221,14 @@
                 </div>
 
 
-            </div>
+                </div>
 
-            <div
-                class="absolute top-1/2 
+                <div
+                    class="absolute top-1/2 
            -translate-y-1/2
            z-30 pointer-events-none hidden md:block">
-                <img src="/assets/images/flower.png" class="w-full h-52" alt="Logo" />
+                    <img src="/assets/images/flower.png" class="w-full h-52" alt="Logo" />
+                </div>
             </div>
         </div>
     </div>
@@ -286,6 +287,49 @@
 <style>
     body.drawerlogin-lock {
         overflow: hidden;
+    }
+
+    #drawerlogin {
+        translate: none !important;
+        pointer-events: none;
+        visibility: hidden;
+        transition: visibility 0s linear 500ms;
+    }
+
+    #drawerlogin.translate-x-0 {
+        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    #drawerlogin .drawerlogin-backdrop {
+        opacity: 0;
+        transition: opacity 220ms ease;
+    }
+
+    #drawerlogin .drawerlogin-panel {
+        opacity: 0;
+        transition: opacity 220ms ease;
+        pointer-events: auto;
+    }
+
+    #drawerlogin.translate-x-0 .drawerlogin-backdrop {
+        opacity: 1;
+    }
+
+    #drawerlogin .drawerlogin-motion {
+        height: 100%;
+        transform: translateX(100%);
+        transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+        will-change: transform;
+    }
+
+    #drawerlogin.translate-x-0 .drawerlogin-panel {
+        opacity: 1;
+    }
+
+    #drawerlogin.translate-x-0 .drawerlogin-motion {
+        transform: translateX(0);
     }
 
     .custom-scroll::-webkit-scrollbar {

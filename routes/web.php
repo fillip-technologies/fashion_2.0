@@ -31,7 +31,7 @@ Route::get('/newcollection', function () {
 });
 
 Route::get('/seeall', function () {
-    return view('pages.seeall');
+      return view('pages.seeall'); 
 });
 
 Route::get('/specific', function () {

@@ -14,7 +14,7 @@
             <div class="relative flex items-center justify-between h-16 sm:h-40 pb-2 sm:pb-4">
                 <div class="flex items-center gap-4 sm:gap-20">
                     <div class="flex items-center gap-2 cursor-pointer openMenu">
-                        <img src="{{ asset('assets/SVG/Menu black.svg') }}" alt="Menu"
+                        <img src="{{ asset('assets/SVG/Menu BLK.svg') }}" alt="Menu"
                             class="w-10 sm:w-[36px] h-auto" />
                         {{-- <img src="{{ asset('assets/icons/search.png') }}" alt="Search"
                             class="w-[15px] h-[15px] md:hidden ml-2" /> --}}
@@ -63,7 +63,7 @@
             <div class="relative flex items-center justify-between h-14 md:h-[6.9375rem]">
                 <div class="flex items-center gap-4 sm:gap-20">
                     <div class="flex items-center gap-2 cursor-pointer openMenu">
-                        <img src="{{ asset('assets/SVG/Menu white.svg') }}" alt="Menu"
+                        <img src="{{ asset('assets/SVG/Menu WH.svg') }}" alt="Menu"
                             class="w-10 sm:w-[36px] h-auto" />
                         <span class="hidden sm:block text-[0.8125rem] text-white" style="font-weight: 300">
                             Menu
