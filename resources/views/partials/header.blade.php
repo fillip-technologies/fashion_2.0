@@ -132,7 +132,8 @@
             path.includes("shippingaddress") ||
             path.includes("billingaddress");
 
-        const isSeeAllPage = path.includes("specific");
+        const isSeeAllPage = path.includes("specific") || path.includes("seeall") || path.includes("newcollection") || path.includes("yarn");
+        
 
         const getHeaderHeight = (el) => el ? el.getBoundingClientRect().height : 0;
         let oldHeaderHeight = getHeaderHeight(oldheader);

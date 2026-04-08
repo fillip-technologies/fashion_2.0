@@ -1,17 +1,18 @@
 <nav id="editshippingaddress"
     class="fixed top-0 right-0 w-full h-screen z-[1200]
-           transform translate-x-full transition-transform duration-500
-           ease-[cubic-bezier(0.86,0,0.07,1)] overflow-hidden">
+           translate-x-full overflow-hidden">
 
-    <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
-        <div class="h-screen bg-black/80 hidden md:block overflow-hidden overscroll-none"
+    <div class="relative h-screen w-full">
+        <div class="editshippingaddress-backdrop hidden md:block absolute inset-0 bg-black/80
+            overflow-hidden overscroll-none"
             onclick="toggleMasterDrawer('editshippingaddress')"></div>
 
-        <div class="bg-white h-screen overflow-hidden overscroll-none">
-            <div class="h-full overflow-hidden overscroll-none pt-0.5">
+        <div class="editshippingaddress-panel absolute top-0 right-0 bg-white h-screen w-full md:w-1/2
+            overflow-hidden overscroll-none">
+            <div class="h-full overflow-y-auto pt-0.5 thin-scrollbar">
                 <div class="relative h-full">
 
-            <div class="">
+            <div class="-mt-0.5">
                 <div class="h-px bg-dash-dot"></div>
             </div>
 
@@ -222,6 +223,40 @@
 
 
 <style>
+    #editshippingaddress {
+        translate: none !important;
+        pointer-events: none;
+        visibility: hidden;
+        transition: visibility 0s linear 500ms;
+    }
+
+    #editshippingaddress.translate-x-0 {
+        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    #editshippingaddress .editshippingaddress-backdrop {
+        /* opacity: 0;
+        transition: opacity 220ms ease; */
+    }
+
+    #editshippingaddress .editshippingaddress-panel {
+        transform: translateX(100%);
+        transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+        /* will-change: transform;
+        pointer-events: auto;
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18); */
+    }
+
+    #editshippingaddress.translate-x-0 .editshippingaddress-backdrop {
+        /* opacity: 1; */
+    }
+
+    #editshippingaddress.translate-x-0 .editshippingaddress-panel {
+        transform: translateX(0);
+    }
+
     .thin-scrollbar {
         scrollbar-width: thin;
         scrollbar-color: #b6bcbc transparent;

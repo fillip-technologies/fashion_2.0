@@ -2,16 +2,16 @@
     <div class="w-full h-px bg-dash-dot"></div>
 
     {{-- make this section sticky --}}
-    <div class="sticky top-0 z-[999] bg-background">
+    <div class="sticky top-0 z-10 bg-background">
         <div class="flex justify-between items-center px-6 md:px-14 py-5 ">
             <div class="text-[0.875rem]">
                 Shawls (31)
             </div>
             <div class="flex items-center space-x-8">
                 <div class="flex items-center space-x-4">
-                    <img src="{{ asset('assets/icons/Arrow-up.png') }}" alt="arrow-up" class="cursor-pointer"
+                    <img src="{{ asset('assets/icons/Arrow-up.svg') }}" alt="arrow-up" class="cursor-pointer h-5"
                         id="scrollUp" />
-                    <img src="{{ asset('assets/icons/Arrow-down.png') }}" alt="arrow-down" class="cursor-pointer"
+                    <img src="{{ asset('assets/icons/Arrow-down.svg') }}" alt="arrow-down" class="cursor-pointer h-5"
                         id="scrollDown" />
                 </div>
                 <button onclick="toggleDrawer()">

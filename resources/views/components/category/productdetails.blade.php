@@ -4,6 +4,24 @@
         <div class="md:col-span-8">
             <div id="bigCarousel" class="grid grid-cols-2 bg-background pb-7"></div>
 
+            <div class="md:hidden bg-background">
+                <div class="grid grid-cols-12 p-5">
+                    <div class="col-span-1 flex items-center justify-center">
+                        <div id="prevBtnMobile" class="py-4 px-1.5 bg-secondary cursor-pointer">
+                            <i class="fa-solid fa-chevron-left text-xs text-white"></i>
+                        </div>
+                    </div>
+                    <div class="col-span-10">
+                        <div id="thumbCarouselMobile" class="flex px-2 space-x-3"></div>
+                    </div>
+                    <div class="col-span-1 flex items-center justify-center">
+                        <div id="nextBtnMobile" class="py-4 px-1.5 bg-secondary cursor-pointer">
+                            <i class="fa-solid fa-chevron-right text-xs text-white"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
             <div class="w-full h-px bg-dash-dot"></div>
 
             <div class="my-8 border-x-[1.5rem] border-primary">
@@ -38,7 +56,7 @@
         </div>
 
         <div class="md:col-span-4 bg-background">
-            <div class="grid grid-cols-12 p-5">
+            <div class="hidden md:grid grid-cols-12 p-5">
                 <div class="col-span-1 flex items-center justify-center">
                     <div id="prevBtn" class="py-4 px-1.5 bg-secondary cursor-pointer">
                         <i class="fa-solid fa-chevron-left text-xs text-white"></i>
@@ -391,11 +409,215 @@
 
 </div>
 
+<div id="productImageViewer" class="product-image-viewer bg-primary" aria-hidden="true">
+    <div id="productImageViewerShell" class="product-image-viewer-shell">
+        <div class="hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
+            <div id="productViewerThumbs" class="flex flex-col gap-9 max-h-[78vh] overflow-y-auto custom-scroll pr-1"></div>
+        </div>
 
+        <div class="product-image-viewer-main flex-1 min-w-0 h-full">
+            <div class="product-image-viewer-mobile-top md:hidden">
+                <button type="button"
+                    class="product-viewer-close text-white/85 hover:text-white text-4xl leading-none font-light">
+                    &times;
+                </button>
+            </div>
 
+            <div class="product-image-viewer-stage-wrap">
+                <div class="product-image-viewer-stage">
+                    <img id="productViewerImage" src="" alt="Expanded product image"
+                        class="product-image-viewer-image" />
+                </div>
+            </div>
 
+            <div class="product-image-viewer-mobile-bottom md:hidden">
+                <div id="productViewerThumbsMobile"
+                    class="flex items-center gap-4 overflow-x-auto custom-scroll pb-1"></div>
+
+                <div class="product-image-viewer-mobile-zoom text-white/85">
+                    <button type="button" class="product-viewer-zoom-in text-4xl leading-none hover:text-white">
+                        +
+                    </button>
+                    <button type="button" class="product-viewer-zoom-out text-4xl leading-none hover:text-white">
+                        &minus;
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="hidden md:flex w-12 md:w-20 shrink-0 h-full flex-col items-center justify-between py-8 md:py-12">
+            <button id="productViewerClose" type="button"
+                class="product-viewer-close text-white/85 hover:text-white text-4xl leading-none font-light">
+                &times;
+            </button>
+
+            <div class="flex flex-col items-center gap-6 md:gap-8 text-white/85">
+                <button id="productViewerZoomIn" type="button"
+                    class="product-viewer-zoom-in text-4xl leading-none hover:text-white">
+                    +
+                </button>
+                <button id="productViewerZoomOut" type="button"
+                    class="product-viewer-zoom-out text-4xl leading-none hover:text-white">
+                    &minus;
+                </button>
+            </div>
+            <div></div>
+        </div>
+    </div>
+</div>
 
 <style>
+    body.product-image-viewer-lock {
+        overflow: hidden;
+    }
+
+    .product-image-viewer {
+        position: fixed;
+        inset: 0;
+        z-index: 1400;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        /* background: rgba(69, 69, 72, 0.97); */
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transition: opacity 220ms ease, visibility 0s linear 220ms;
+    }
+
+    .product-image-viewer.viewer-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transition-delay: 0s;
+    }
+
+    .product-image-viewer-shell {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        width: 100%;
+        height: 100%;
+        padding: 0.75rem 1rem;
+    }
+
+    .product-image-viewer-main {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 100%;
+    }
+
+    .product-image-viewer-stage-wrap {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+    }
+
+    .product-image-viewer-stage {
+        width: min(100%, 45rem);
+        height: calc(100vh - 1.5rem);
+        overflow: hidden;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .product-image-viewer-image {
+        max-width: 100%;
+        max-height: 100%;
+        object-fit: contain;
+        transform-origin: center center;
+        transition: transform 200ms ease;
+        will-change: transform;
+        user-select: none;
+    }
+
+    .product-viewer-thumb {
+        width: 4.75rem;
+        height: 4.75rem;
+        opacity: 0.28;
+        transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .product-viewer-thumb.active {
+        opacity: 1;
+        transform: scale(1.02);
+    }
+
+    .product-viewer-thumb img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .product-viewer-zoom-disabled {
+        opacity: 0.25;
+        pointer-events: none;
+    }
+
+    @media (max-width: 767px) {
+        .product-image-viewer-shell {
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        .product-image-viewer-main {
+            flex-direction: column;
+            align-items: stretch;
+            justify-content: flex-start;
+            min-height: 0;
+        }
+
+        .product-image-viewer-mobile-top {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        .product-image-viewer-stage-wrap {
+            flex: 1 1 auto;
+        }
+
+        .product-image-viewer-stage {
+            width: 100%;
+            height: calc(100vh - 16rem);
+        }
+
+        .product-image-viewer-mobile-bottom {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            width: 100%;
+            padding-top: 0.25rem;
+        }
+
+        #productViewerThumbsMobile {
+            width: 100%;
+            justify-content: flex-start;
+        }
+
+        .product-image-viewer-mobile-zoom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 2rem;
+        }
+
+        .product-viewer-thumb {
+            flex: none;
+            width: 3.75rem;
+            height: 3.75rem;
+        }
+    }
+
     .custom-scroll::-webkit-scrollbar {
         width: 4px;
     }
@@ -541,7 +763,19 @@
 
 <script>
     const thumbCarousel = document.getElementById("thumbCarousel");
+    const thumbCarouselMobile = document.getElementById("thumbCarouselMobile");
     const bigCarousel = document.getElementById("bigCarousel");
+    const productImageViewer = document.getElementById("productImageViewer");
+    const productImageViewerShell = document.getElementById("productImageViewerShell");
+    const productViewerImage = document.getElementById("productViewerImage");
+    const productViewerThumbs = document.getElementById("productViewerThumbs");
+    const productViewerThumbsMobile = document.getElementById("productViewerThumbsMobile");
+    const productViewerCloseButtons = document.querySelectorAll(".product-viewer-close");
+    const productViewerZoomInButtons = document.querySelectorAll(".product-viewer-zoom-in");
+    const productViewerZoomOutButtons = document.querySelectorAll(".product-viewer-zoom-out");
+    const thumbCarouselContainers = [thumbCarousel, thumbCarouselMobile].filter(Boolean);
+    const nextButtons = [document.getElementById("nextBtn"), document.getElementById("nextBtnMobile")].filter(Boolean);
+    const prevButtons = [document.getElementById("prevBtn"), document.getElementById("prevBtnMobile")].filter(Boolean);
 
 
     const imagePairs = [
@@ -560,12 +794,20 @@
         [
             "{{ asset('assets/images/products/four.png') }}",
             "{{ asset('assets/images/products/one.png') }}"
-        ]
+        ],
     ];
 
-    let queue = imagePairs.map(pair => {
+    const viewerGalleryImages = [...new Set(
+        imagePairs.flat().map(src => new URL(src, window.location.href).href)
+    )];
+    let viewerActiveIndex = 0;
+    let viewerZoomLevel = 1;
+
+    let queue = imagePairs.map(pair => [...pair]);
+
+    function createCarouselItem(pair, isActive = false) {
         const div = document.createElement("div");
-        div.className = "carousel-item grid grid-cols-2 gap-3 p-2 hidden";
+        div.className = `carousel-item grid grid-cols-2 gap-3 p-2 ${isActive ? "bg-primary active" : ""}`;
         div.innerHTML = `
             <div class="aspect-[1/1]">
                 <img src="${pair[0]}" class="w-full h-full" />
@@ -575,43 +817,157 @@
             </div>
         `;
         return div;
-    });
+    }
 
-    function renderBigFromItem(item) {
-        const imgs = item.querySelectorAll("img");
+    function updateViewerZoom() {
+        productViewerImage.style.transform = `scale(${viewerZoomLevel})`;
+        productViewerZoomOutButtons.forEach(button => {
+            button.classList.toggle("product-viewer-zoom-disabled", viewerZoomLevel <= 1);
+        });
+        productViewerZoomInButtons.forEach(button => {
+            button.classList.toggle("product-viewer-zoom-disabled", viewerZoomLevel >= 2.5);
+        });
+    }
+
+    function renderViewerThumbs(container) {
+        if (!container) return;
+
+        container.innerHTML = viewerGalleryImages.map((src, index) => `
+            <button
+                type="button"
+                class="product-viewer-thumb ${index === viewerActiveIndex ? "active" : ""}"
+                data-viewer-thumb-index="${index}">
+                <img src="${src}" alt="Product view ${index + 1}" />
+            </button>
+        `).join("");
+
+        container.querySelectorAll("[data-viewer-thumb-index]").forEach(button => {
+            button.addEventListener("click", () => {
+                viewerActiveIndex = Number(button.dataset.viewerThumbIndex);
+                viewerZoomLevel = 1;
+                renderViewer();
+            });
+        });
+    }
+
+    function renderViewer() {
+        if (!viewerGalleryImages.length) return;
+
+        productViewerImage.src = viewerGalleryImages[viewerActiveIndex];
+        renderViewerThumbs(productViewerThumbs);
+        renderViewerThumbs(productViewerThumbsMobile);
+        updateViewerZoom();
+    }
+
+    function openProductImageViewer(imageSrc) {
+        const normalizedSrc = new URL(imageSrc, window.location.href).href;
+        const matchedIndex = viewerGalleryImages.indexOf(normalizedSrc);
+
+        viewerActiveIndex = matchedIndex >= 0 ? matchedIndex : 0;
+        viewerZoomLevel = 1;
+        renderViewer();
+        productImageViewer.classList.add("viewer-open");
+        productImageViewer.setAttribute("aria-hidden", "false");
+        document.body.classList.add("product-image-viewer-lock");
+    }
+
+    function closeProductImageViewer() {
+        productImageViewer.classList.remove("viewer-open");
+        productImageViewer.setAttribute("aria-hidden", "true");
+        document.body.classList.remove("product-image-viewer-lock");
+    }
+
+    function bindBigCarouselClicks() {
+        bigCarousel.querySelectorAll("[data-viewer-image-src]").forEach(button => {
+            button.addEventListener("click", () => {
+                openProductImageViewer(button.dataset.viewerImageSrc);
+            });
+        });
+    }
+
+    function renderBigFromPair(pair) {
         bigCarousel.innerHTML = `
-            <img src="${imgs[0].src}" class="w-full" />
-            <img src="${imgs[1].src}" class="w-full" />
+            <button type="button" class="block cursor-zoom-in" data-viewer-image-src="${pair[0]}">
+                <img src="${pair[0]}" class="w-full" />
+            </button>
+            <button type="button" class="block cursor-zoom-in" data-viewer-image-src="${pair[1]}">
+                <img src="${pair[1]}" class="w-full" />
+            </button>
         `;
+        bindBigCarouselClicks();
     }
 
     function renderCarousel() {
-        thumbCarousel.innerHTML = "";
+        thumbCarouselContainers.forEach(container => {
+            container.innerHTML = "";
+            if (queue[0]) container.appendChild(createCarouselItem(queue[0], true));
+            if (queue[1]) container.appendChild(createCarouselItem(queue[1]));
+        });
 
-        queue[0].classList.remove("hidden");
-        queue[0].classList.add("bg-primary", "active");
-
-        if (queue[1]) {
-            queue[1].classList.remove("hidden", "bg-primary", "active");
+        if (queue[0]) {
+            renderBigFromPair(queue[0]);
         }
-
-        thumbCarousel.appendChild(queue[0]);
-        if (queue[1]) thumbCarousel.appendChild(queue[1]);
-
-        renderBigFromItem(queue[0]);
     }
 
     renderCarousel();
 
-    document.getElementById("nextBtn").addEventListener("click", () => {
-        const removed = queue.shift();
-        queue.push(removed);
-        renderCarousel();
+    nextButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const removed = queue.shift();
+            queue.push(removed);
+            renderCarousel();
+        });
     });
 
-    document.getElementById("prevBtn").addEventListener("click", () => {
-        const last = queue.pop();
-        queue.unshift(last);
-        renderCarousel();
+    prevButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            const last = queue.pop();
+            queue.unshift(last);
+            renderCarousel();
+        });
+    });
+
+    productViewerCloseButtons.forEach(button => {
+        button.addEventListener("click", closeProductImageViewer);
+    });
+
+    productImageViewer.addEventListener("click", event => {
+        if (event.target === productImageViewer || event.target === productImageViewerShell) {
+            closeProductImageViewer();
+        }
+    });
+
+    productViewerZoomInButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            viewerZoomLevel = Math.min(2.5, Number((viewerZoomLevel + 0.25).toFixed(2)));
+            updateViewerZoom();
+        });
+    });
+
+    productViewerZoomOutButtons.forEach(button => {
+        button.addEventListener("click", () => {
+            viewerZoomLevel = Math.max(1, Number((viewerZoomLevel - 0.25).toFixed(2)));
+            updateViewerZoom();
+        });
+    });
+
+    document.addEventListener("keydown", event => {
+        if (!productImageViewer.classList.contains("viewer-open")) return;
+
+        if (event.key === "Escape") {
+            closeProductImageViewer();
+        }
+
+        if (event.key === "ArrowRight" && viewerActiveIndex < viewerGalleryImages.length - 1) {
+            viewerActiveIndex += 1;
+            viewerZoomLevel = 1;
+            renderViewer();
+        }
+
+        if (event.key === "ArrowLeft" && viewerActiveIndex > 0) {
+            viewerActiveIndex -= 1;
+            viewerZoomLevel = 1;
+            renderViewer();
+        }
     });
 </script>

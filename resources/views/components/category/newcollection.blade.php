@@ -1,20 +1,28 @@
 <div class="pb-10 bg-background">
     <div class="w-full h-px bg-dash-dot"></div>
 
-    <div class="flex justify-between items-center px-6 md:px-14 py-5">
-        <div class="text-[0.875rem]">
-            New Arrivals (88)
+    <div class="sticky top-0 z-10 bg-background">
+        <div class="flex justify-between items-center px-6 md:px-14 py-5">
+            <div class="text-[0.875rem]">
+                New Arrivals (88)
+            </div>
+            <div class="flex items-center space-x-8">
+                {{-- <img src="{{ asset('assets/images/category/arrow.png') }}" alt="Back" /> --}}
+                <div class="flex items-center space-x-4">
+                    <img src="{{ asset('assets/icons/Arrow-up.svg') }}" alt="arrow-up" class="cursor-pointer h-5"
+                        id="scrollUp" />
+                    <img src="{{ asset('assets/icons/Arrow-down.svg') }}" alt="arrow-down" class="cursor-pointer h-5"
+                        id="scrollDown" />
+                </div>
+                <button onclick="toggleDrawer()">
+                    <img src="{{ asset('assets/images/category/filter.png') }}" alt="Back" />
+                </button>
+            </div>
         </div>
-        <div class="flex items-center space-x-8">
-            <img src="{{ asset('assets/images/category/arrow.png') }}" alt="Back" />
-            <button onclick="toggleDrawer()">
-                <img src="{{ asset('assets/images/category/filter.png') }}" alt="Back" />
-            </button>
-        </div>
-    </div>
-    <div class="h-1.5 bg-secondary"></div>
+        <div class="h-1.5 bg-secondary"></div>
 
-    <div id="selectedFilters" class="w-full px-6 md:px-14 bg-white py-5 flex flex-wrap gap-2 hidden">
+        <div id="selectedFilters" class="w-full px-6 md:px-14 bg-white py-5 flex flex-wrap gap-2 hidden">
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2">
@@ -123,6 +131,31 @@
 
 </div>
 
+
+<script>
+    (() => {
+        const scrollUpButton = document.getElementById("scrollUp");
+        const scrollDownButton = document.getElementById("scrollDown");
+
+        if (scrollUpButton) {
+            scrollUpButton.addEventListener("click", function() {
+                window.scrollBy({
+                    top: -500,
+                    behavior: "smooth"
+                });
+            });
+        }
+
+        if (scrollDownButton) {
+            scrollDownButton.addEventListener("click", function() {
+                window.scrollBy({
+                    top: 500,
+                    behavior: "smooth"
+                });
+            });
+        }
+    })();
+</script>
 
 
 <script>
