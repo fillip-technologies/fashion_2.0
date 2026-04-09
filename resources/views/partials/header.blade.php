@@ -265,7 +265,7 @@
 <!-- MENU DESKTOP -->
 <div id="menuOverlay" class="fixed left-0 right-0 z-[999] bg-primary/50 backdrop-blur-sm hidden pt-10 overscroll-none">
     <div class="flex w-full h-[70vh]">
-        <div class="w-[25%] bg-background relative">
+        <div class="w-[25%] bg-background relative" data-menu-keep-open>
             <nav
                 class="w-full px-14 py-12 flex flex-col justify-center
                 text-[12px] tracking-wide uppercase font-medium text-black space-y-10">
@@ -294,15 +294,15 @@
 
         </div>
 
-        <div id="subMenuWrapper" class="w-[25%] bg-background">
+        <div id="subMenuWrapper" class="w-[25%] bg-background" data-menu-keep-open>
             <nav id="subMenu" class="px-14 py-16 text-[12px] tracking-wide uppercase space-y-4"></nav>
         </div>
 
 
         <div class="flex-1 bg-primary/30 backdrop-blur-sm flex items-center justify-center relative py-10">
-            <img id="menuImage" class="object-contain" />
+            <img id="menuImage" class="object-contain" data-menu-keep-open />
 
-            <button id="closeMenu" class="absolute top-6 right-10 text-[24px] font-light text-white">
+            <button id="closeMenu" class="absolute top-6 right-10 text-[24px] font-light text-white" data-menu-keep-open>
                 {{-- <i class="fa-solid fa-minus"></i> --}}
                 <img src="{{ asset('assets/icons/minus.png') }}" alt="minus" />
             </button>
@@ -450,6 +450,40 @@
 
 
 <script>
+    function lockMenuScroll() {
+        document.body.classList.add("no-scroll");
+        document.body.classList.add("overflow-hidden");
+    }
+
+    function unlockMenuScroll() {
+        document.body.classList.remove("no-scroll");
+        document.body.classList.remove("overflow-hidden");
+    }
+
+    function closeDesktopMenuPanel() {
+        if (menuOverlay) {
+            menuOverlay.classList.add("hidden");
+        }
+
+        if (typeof resetDesktopMenuState === "function") {
+            resetDesktopMenuState();
+        }
+
+        unlockMenuScroll();
+    }
+
+    function closeMobileMenuPanel() {
+        if (mobileMenu) {
+            mobileMenu.classList.add("hidden");
+        }
+
+        if (typeof resetMobileMenu === "function") {
+            resetMobileMenu();
+        }
+
+        unlockMenuScroll();
+    }
+
     document.addEventListener("click", function(e) {
 
         if (e.target.closest(".openMenu")) {
@@ -458,18 +492,16 @@
                 mobileMenu.classList.remove("hidden");
                 menuOverlay.classList.add("hidden");
             } else {
+                if (typeof resetDesktopMenuState === "function") {
+                    resetDesktopMenuState();
+                }
+
                 updateMenuTop()
                 menuOverlay.classList.remove("hidden");
                 mobileMenu.classList.add("hidden");
             }
-            document.body.classList.add("no-scroll");
-            document.body.classList.add("overflow-hidden");
+            lockMenuScroll();
 
-        }
-        if (e.target.closest("#closeMenu")) {
-            menuOverlay.classList.add("hidden");
-            document.body.classList.remove("no-scroll");
-            document.body.classList.remove("overflow-hidden");
         }
 
     });
@@ -502,10 +534,7 @@
     // });
 
 
-    closeMobileMenu.addEventListener("click", () => {
-        mobileMenu.classList.add("hidden");
-        resetMobileMenu();
-    });
+    closeMobileMenu.addEventListener("click", closeMobileMenuPanel);
 
     function resetMobileMenu() {
         mobileLevel1.classList.remove("hidden");
@@ -523,8 +552,7 @@
             if (!data) return;
 
             if (!data.items || data.items.length === 0) {
-                mobileMenu.classList.add("hidden");
-                resetMobileMenu();
+                closeMobileMenuPanel();
                 return;
             }
             mobileLevel1.classList.add("hidden");
@@ -553,6 +581,12 @@
     mobileBack.addEventListener("click", () => {
         resetMobileMenu();
     });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 768 && !mobileMenu.classList.contains("hidden")) {
+            closeMobileMenuPanel();
+        }
+    });
 </script>
 
 <script>
@@ -561,7 +595,7 @@
     const menuOverlay = document.getElementById("menuOverlay");
     const subMenu = document.getElementById("subMenu");
     const menuImage = document.getElementById("menuImage");
-    const menuItems = document.querySelectorAll(".menu-item");
+    const menuItems = document.querySelectorAll("#menuOverlay .menu-item");
     const subMenuWrapper = document.getElementById("subMenuWrapper");
     const menuDivider = document.getElementById("menuDivider");
 
@@ -571,7 +605,19 @@
     // });
 
     closeMenu.addEventListener("click", () => {
-        menuOverlay.classList.add("hidden");
+        closeDesktopMenuPanel();
+    });
+
+    menuOverlay.addEventListener("click", (e) => {
+        if (window.innerWidth < 768 || menuOverlay.classList.contains("hidden")) {
+            return;
+        }
+
+        if (e.target.closest("[data-menu-keep-open]")) {
+            return;
+        }
+
+        closeDesktopMenuPanel();
     });
 
 
@@ -614,6 +660,18 @@
         menuImage.src = image;
     }
 
+    function resetDesktopMenuState() {
+        menuItems.forEach((item) => item.classList.add("opacity-60"));
+
+        const defaultMenuItem = document.querySelector('#menuOverlay [data-menu="newarrival"]');
+
+        if (defaultMenuItem) {
+            defaultMenuItem.classList.remove("opacity-60");
+        }
+
+        loadMenu("newarrival");
+    }
+
 
     menuItems.forEach(btn => {
         btn.addEventListener("click", (e) => {
@@ -636,8 +694,5 @@
         });
     });
 
-    loadMenu("newarrival");
-    document
-        .querySelector('[data-menu="newarrival"]')
-        .classList.remove("opacity-60");
+    resetDesktopMenuState();
 </script>
