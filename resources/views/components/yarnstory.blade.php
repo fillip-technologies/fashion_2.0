@@ -46,27 +46,27 @@
 
     <div id="storyGrid" class="grid grid-cols-1 md:grid-cols-2 mt-28 md:mt-36 w-full mx-auto">
 
-        <div class="group relative overflow-hidden cursor-pointer">
+        <div class="group story-card relative overflow-hidden cursor-pointer" data-story-card>
 
             <img src="{{ asset('assets/images/yarnstory/one.png') }}" class="w-full h-auto block" />
 
             <div
-                class="absolute inset-0
+                class="story-card-scrim absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
             </div>
 
             <div
-                class="absolute top-6 left-6 md:top-24 md:left-24 text-white
+                class="story-card-caption absolute top-6 left-6 md:top-24 md:left-24 text-white
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest">THE<br>PASHMINA</h3>
                 <p class="mt-14 text-sm">From the region of Changthang, Ladakh.</p>
             </div>
 
 
-            <div class="absolute inset-0
+            <div class="story-card-overlay absolute inset-0
                     bg-black/90
                 text-white
                 px-16 py-20
@@ -79,7 +79,7 @@
                 <button
                     class="absolute top-10 right-12 text-white/70 hover:text-white
                         text-2xl font-light tracking-widest"
-                    onclick="event.stopPropagation(); this.closest('[data-overlay]').classList.remove('opacity-100','pointer-events-auto')">
+                    data-overlay-close>
                     —
                 </button>
 
@@ -128,28 +128,28 @@
 
         </div>
 
-        <div class="group relative overflow-hidden cursor-pointer">
+        <div class="group story-card relative overflow-hidden cursor-pointer" data-story-card>
 
             <img src="{{ asset('assets/images/yarnstory/two.png') }}" class="w-full h-auto block" />
 
             <div
-                class="absolute inset-0
+                class="story-card-scrim absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
             </div>
 
 
             <div
-                class="absolute top-6 left-6 md:top-24 md:left-24 text-white
+                class="story-card-caption absolute top-6 left-6 md:top-24 md:left-24 text-white
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest"><br>YAK</h3>
                 <p class="mt-4 md:mt-14 text-sm">From the valley of Kashmir, Srinagar.</p>
             </div>
 
 
-            <div class="absolute inset-0
+            <div class="story-card-overlay absolute inset-0
                     bg-black/90
                 text-white
                 px-16 py-20
@@ -162,7 +162,7 @@
                 <button
                     class="absolute top-10 right-12 text-white/70 hover:text-white
                         text-2xl font-light tracking-widest"
-                    onclick="event.stopPropagation(); this.closest('[data-overlay]').classList.remove('opacity-100','pointer-events-auto')">
+                    data-overlay-close>
                     —
                 </button>
 
@@ -213,28 +213,28 @@
 
         </div>
 
-        <div class="group relative overflow-hidden cursor-pointer">
+        <div class="group story-card relative overflow-hidden cursor-pointer" data-story-card>
 
             <img src="{{ asset('assets/images/yarnstory/three.png') }}" class="w-full h-auto block" />
 
 
             <div
-                class="absolute inset-0
+                class="story-card-scrim absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
             </div>
 
             <div
-                class="absolute top-6 left-6 md:top-24 md:left-24 text-white
+                class="story-card-caption absolute top-6 left-6 md:top-24 md:left-24 text-white
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest">THE<br>SILK</h3>
                 <p class="mt-4 md:mt-14 text-sm">From the silk city of Bihar, Bhagalpur.</p>
             </div>
 
 
-            <div class="absolute inset-0
+            <div class="story-card-overlay absolute inset-0
                     bg-black/90
                 text-white
                 px-16 py-20
@@ -246,7 +246,7 @@
                 <button
                     class="absolute top-10 right-12 text-white/70 hover:text-white
                         text-2xl font-light tracking-widest"
-                    onclick="event.stopPropagation(); this.closest('[data-overlay]').classList.remove('opacity-100','pointer-events-auto')">
+                    data-overlay-close>
                     —
                 </button>
 
@@ -291,29 +291,29 @@
 
         </div>
 
-        <div class="group relative overflow-hidden cursor-pointer">
+        <div class="group story-card relative overflow-hidden cursor-pointer" data-story-card>
 
 
             <img src="{{ asset('assets/images/yarnstory/four.png') }}" class="w-full h-auto block" />
 
             <div
-                class="absolute inset-0
+                class="story-card-scrim absolute inset-0
            bg-gradient-to-b from-black/80 via-white/20 to-white/30
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
             </div>
 
 
             <div
-                class="absolute top-6 left-6 md:top-24 md:left-24 text-white
+                class="story-card-caption absolute top-6 left-6 md:top-24 md:left-24 text-white
            opacity-0 transition-opacity duration-700
-           group-hover:opacity-100  group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100">
+           md:group-hover:opacity-100 group-[.locked]:opacity-0 pointer-events-none hover-fixed:opacity-100 group-[.active]:opacity-100 group-[.story-preview]:opacity-100 group-[.story-active-mobile]:opacity-100">
                 <h3 class="text-[1.5rem] tracking-widest">THE<br>MUSLIN COTTON</h3>
                 <p class="mt-4 md:mt-14 text-sm">From the city of Kalna, WestBengal.</p>
             </div>
 
 
-            <div class="absolute inset-0
+            <div class="story-card-overlay absolute inset-0
                     bg-black/90
                 text-white
                 px-16 py-20
@@ -326,7 +326,7 @@
                 <button
                     class="absolute top-10 right-12 text-white/70 hover:text-white
                         text-2xl font-light tracking-widest"
-                    onclick="event.stopPropagation(); this.closest('[data-overlay]').classList.remove('opacity-100','pointer-events-auto')">
+                    data-overlay-close>
                     —
                 </button>
 
@@ -378,30 +378,244 @@
 
 
 <style>
-    .no-hover .group-hover\:opacity-100 {
+    .no-hover .group-hover\:opacity-100,
+    .no-hover .md\:group-hover\:opacity-100 {
         opacity: 0 !important;
+    }
+
+    body.story-overlay-lock {
+        overflow: hidden;
+    }
+
+    @media (max-width: 767px) {
+        #storyGrid .story-card-caption {
+            transform: translateY(0.75rem);
+            transition: opacity 450ms ease, transform 450ms ease;
+        }
+
+        #storyGrid .story-card.story-preview .story-card-scrim,
+        #storyGrid .story-card.story-active-mobile .story-card-scrim {
+            opacity: 1;
+        }
+
+        #storyGrid .story-card.story-preview .story-card-caption,
+        #storyGrid .story-card.story-active-mobile .story-card-caption {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        #storyGrid .story-card-overlay {
+            position: fixed;
+            inset: 0;
+            padding: 5rem 1.5rem 2rem;
+            background: rgba(0, 0, 0, 0.94);
+            z-index: 1200;
+            overscroll-behavior: contain;
+        }
+
+        #storyGrid .story-card-overlay .max-w-xl {
+            max-width: 100%;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        #storyGrid [data-overlay-close] {
+            top: 1.25rem;
+            right: 1.25rem;
+            font-size: 1.75rem;
+            line-height: 1;
+        }
     }
 </style>
 
 <script>
     document.addEventListener('DOMContentLoaded', () => {
-
         const grid = document.getElementById('storyGrid');
-        const cards = Array.from(grid.querySelectorAll('.group'));
+        if (!grid) return;
+
+        const cards = Array.from(grid.querySelectorAll('[data-story-card]'));
+        const previewTimers = new WeakMap();
+        const scrollHintTriggerRatio = 0.5;
+        const scrollHintPreviewDuration = 1400;
         let isDetailOpen = false;
         let activeCard = null;
+        let activeOverlay = null;
+        let hasStartedMobileScroll = false;
+        let scrollHintTicking = false;
+        let storyOverlayAddedBodyOverflow = false;
+        let storyOverlayAddedBodyNoScroll = false;
+        let storyOverlayAddedHtmlOverflow = false;
+
+        const isMobileViewport = () => window.innerWidth < 768;
+        const hasPendingScrollHints = () => cards.some((card) => card.dataset.scrollHintSeen !== 'true');
+        const getStoryContentCard = (index) => {
+            const pairedIndex = index % 2 === 0 ? index + 1 : index - 1;
+            return cards[pairedIndex] || cards[index] || null;
+        };
+
+        const clearPreviewTimer = (card) => {
+            const timerId = previewTimers.get(card);
+
+            if (!timerId) return;
+
+            window.clearTimeout(timerId);
+            previewTimers.delete(card);
+        };
+
+        const clearScrollPreview = (card) => {
+            clearPreviewTimer(card);
+            card.classList.remove('story-preview');
+        };
+
+        const clearAllScrollPreviews = (activePreviewCard = null) => {
+            cards.forEach((card) => {
+                if (card !== activePreviewCard) {
+                    clearScrollPreview(card);
+                }
+            });
+        };
+
+        const lockStoryOverlayScroll = () => {
+            storyOverlayAddedBodyOverflow = !document.body.classList.contains('overflow-hidden');
+            storyOverlayAddedBodyNoScroll = !document.body.classList.contains('no-scroll');
+            storyOverlayAddedHtmlOverflow = !document.documentElement.classList.contains('overflow-hidden');
+
+            document.body.classList.add('story-overlay-lock', 'overflow-hidden', 'no-scroll');
+            document.documentElement.classList.add('overflow-hidden');
+        };
+
+        const unlockStoryOverlayScroll = () => {
+            document.body.classList.remove('story-overlay-lock');
+
+            if (storyOverlayAddedBodyOverflow) {
+                document.body.classList.remove('overflow-hidden');
+            }
+
+            if (storyOverlayAddedBodyNoScroll) {
+                document.body.classList.remove('no-scroll');
+            }
+
+            if (storyOverlayAddedHtmlOverflow) {
+                document.documentElement.classList.remove('overflow-hidden');
+            }
+
+            storyOverlayAddedBodyOverflow = false;
+            storyOverlayAddedBodyNoScroll = false;
+            storyOverlayAddedHtmlOverflow = false;
+        };
+
+        const resetDesktopState = () => {
+            cards.forEach((card) => {
+                card.classList.remove('locked', 'active');
+            });
+        };
+
+        const resetMobileState = () => {
+            cards.forEach((card) => {
+                card.classList.remove('story-active-mobile');
+            });
+        };
+
+        const closeOverlay = () => {
+            if (activeOverlay) {
+                activeOverlay.classList.remove('opacity-100', 'pointer-events-auto');
+            }
+
+            clearAllScrollPreviews();
+            resetDesktopState();
+            resetMobileState();
+            unlockStoryOverlayScroll();
+
+            activeOverlay = null;
+            activeCard = null;
+            isDetailOpen = false;
+        };
+
+        const previewCardOnScroll = (card) => {
+            if (!isMobileViewport()) return;
+            if (isDetailOpen) return;
+            if (card.dataset.scrollHintSeen === 'true') return;
+
+            card.dataset.scrollHintSeen = 'true';
+            clearAllScrollPreviews(card);
+            card.classList.add('story-preview');
+
+            const timerId = window.setTimeout(() => {
+                if (!card.classList.contains('story-active-mobile')) {
+                    card.classList.remove('story-preview');
+                }
+
+                previewTimers.delete(card);
+            }, scrollHintPreviewDuration);
+
+            previewTimers.set(card, timerId);
+        };
+
+        const runScrollHintCheck = () => {
+            scrollHintTicking = false;
+
+            if (!isMobileViewport() || !hasStartedMobileScroll || !hasPendingScrollHints() || isDetailOpen) return;
+
+            const triggerLine = window.innerHeight * scrollHintTriggerRatio;
+            let nextCardToPreview = null;
+            let closestDistance = Number.POSITIVE_INFINITY;
+
+            cards.forEach((card) => {
+                if (card.dataset.scrollHintSeen === 'true') return;
+
+                const rect = card.getBoundingClientRect();
+                const intersectsTriggerLine = rect.top <= triggerLine && rect.bottom >= triggerLine;
+
+                if (!intersectsTriggerLine) return;
+
+                const cardCenter = rect.top + (rect.height / 2);
+                const distanceFromTrigger = Math.abs(cardCenter - triggerLine);
+
+                if (distanceFromTrigger < closestDistance) {
+                    closestDistance = distanceFromTrigger;
+                    nextCardToPreview = card;
+                }
+            });
+
+            if (nextCardToPreview) {
+                previewCardOnScroll(nextCardToPreview);
+            }
+        };
+
+        const queueScrollHintCheck = () => {
+            if (scrollHintTicking) return;
+
+            scrollHintTicking = true;
+            window.requestAnimationFrame(runScrollHintCheck);
+        };
 
         grid.addEventListener('click', (e) => {
-
             if (isDetailOpen) return;
 
-            const clickedCard = e.target.closest('.group');
+            const clickedCard = e.target.closest('[data-story-card]');
             if (!clickedCard) return;
 
             const index = cards.indexOf(clickedCard);
             if (index === -1) return;
 
+            clearAllScrollPreviews();
+            clearScrollPreview(clickedCard);
             activeCard = clickedCard;
+
+            if (isMobileViewport()) {
+                const contentCard = getStoryContentCard(index);
+                const overlay = contentCard ? contentCard.querySelector('[data-overlay]') : null;
+
+                if (!overlay) return;
+
+                activeCard.classList.add('story-active-mobile');
+                overlay.classList.add('opacity-100', 'pointer-events-auto');
+                activeOverlay = overlay;
+                isDetailOpen = true;
+                lockStoryOverlayScroll();
+                return;
+            }
+
             activeCard.classList.add('active');
 
             cards.forEach(card => {
@@ -410,29 +624,82 @@
                 }
             });
 
-            const targetIndex = index % 2 === 0 ? index + 1 : index - 1;
-            const targetCard = cards[targetIndex];
+            const targetCard = getStoryContentCard(index);
             if (!targetCard) return;
 
             const overlay = targetCard.querySelector('[data-overlay]');
+            if (!overlay) return;
+
             overlay.classList.add('opacity-100', 'pointer-events-auto');
+            activeOverlay = overlay;
 
             isDetailOpen = true;
         });
 
-        document.querySelectorAll('[data-overlay] button').forEach(btn => {
+        document.querySelectorAll('[data-overlay-close]').forEach(btn => {
             btn.addEventListener('click', (e) => {
                 e.stopPropagation();
-                const overlay = btn.closest('[data-overlay]');
-                overlay.classList.remove('opacity-100', 'pointer-events-auto');
-                cards.forEach(card => {
-                    card.classList.remove('locked', 'active');
-                });
-
-                activeCard = null;
-                isDetailOpen = false;
+                closeOverlay();
             });
         });
 
+        document.querySelectorAll('[data-overlay]').forEach((overlay) => {
+            overlay.addEventListener('click', (event) => {
+                if (!isMobileViewport()) return;
+                if (event.target !== overlay) return;
+
+                closeOverlay();
+            });
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key === 'Escape' && isDetailOpen) {
+                closeOverlay();
+            }
+        });
+
+        const handleMobileScroll = () => {
+            if (!isMobileViewport()) return;
+
+            if (!hasStartedMobileScroll && window.scrollY > 0) {
+                hasStartedMobileScroll = true;
+            }
+
+            if (!hasStartedMobileScroll) return;
+
+            queueScrollHintCheck();
+        };
+
+        window.addEventListener('scroll', handleMobileScroll, {
+            passive: true
+        });
+
+        window.addEventListener('resize', () => {
+            if (!isMobileViewport() && activeCard && activeCard.classList.contains('story-active-mobile')) {
+                closeOverlay();
+            }
+
+            if (isMobileViewport() && activeCard && activeCard.classList.contains('active')) {
+                closeOverlay();
+            }
+
+            if (!isMobileViewport()) {
+                clearAllScrollPreviews();
+                hasStartedMobileScroll = false;
+                scrollHintTicking = false;
+                return;
+            }
+
+            if (window.scrollY > 0) {
+                hasStartedMobileScroll = true;
+            }
+
+            queueScrollHintCheck();
+        });
+
+        if (isMobileViewport() && window.scrollY > 0) {
+            hasStartedMobileScroll = true;
+            queueScrollHintCheck();
+        }
     });
 </script>

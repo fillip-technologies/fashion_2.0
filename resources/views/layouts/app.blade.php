@@ -57,8 +57,7 @@
         }
 
         .no-scroll {
-            /* overflow: hidden;
-            height: 100vh; */
+            overflow: hidden;
         }
     </style>
 
@@ -173,12 +172,54 @@
     {{-- For cookies display --}}
     <script>
         const cookieConsent = document.getElementById("cookieConsent");
+        let cookiePopupAddedBodyOverflow = false;
+        let cookiePopupAddedBodyNoScroll = false;
+        let cookiePopupAddedHtmlOverflow = false;
+
+        function lockCookiePopupScroll() {
+            if (!document.body || !document.documentElement) return;
+
+            cookiePopupAddedBodyOverflow = !document.body.classList.contains("overflow-hidden");
+            cookiePopupAddedBodyNoScroll = !document.body.classList.contains("no-scroll");
+            cookiePopupAddedHtmlOverflow = !document.documentElement.classList.contains("overflow-hidden");
+
+            document.body.classList.add("overflow-hidden", "no-scroll");
+            document.documentElement.classList.add("overflow-hidden");
+        }
+
+        function unlockCookiePopupScroll() {
+            if (!document.body || !document.documentElement) return;
+
+            if (cookiePopupAddedBodyOverflow) {
+                document.body.classList.remove("overflow-hidden");
+            }
+
+            if (cookiePopupAddedBodyNoScroll) {
+                document.body.classList.remove("no-scroll");
+            }
+
+            if (cookiePopupAddedHtmlOverflow) {
+                document.documentElement.classList.remove("overflow-hidden");
+            }
+
+            cookiePopupAddedBodyOverflow = false;
+            cookiePopupAddedBodyNoScroll = false;
+            cookiePopupAddedHtmlOverflow = false;
+        }
+
+        function showCookiePopup() {
+            if (!cookieConsent || !cookieConsent.classList.contains("hidden")) return;
+
+            cookieConsent.classList.remove("hidden");
+            lockCookiePopupScroll();
+        }
+
         window.addEventListener("load", () => {
             setTimeout(() => {
 
                 const cookieDecision = localStorage.getItem("cookieConsent");
                 if (!cookieDecision) {
-                    cookieConsent.classList.remove("hidden");
+                    showCookiePopup();
                 }
 
             }, 2000);
@@ -199,7 +240,10 @@
         }
 
         function closeCookiePopup() {
+            if (!cookieConsent) return;
+
             cookieConsent.classList.add("hidden");
+            unlockCookiePopupScroll();
         }
     </script>
 

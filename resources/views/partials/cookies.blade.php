@@ -2,7 +2,7 @@
 
     <div class="fixed inset-0 bg-black/70 flex items-end justify-center z-50">
 
-        <div class="w-full bg-secondary px-6 py-10 md:px-20 md:py-4 max-h-[85vh] overflow-y-auto">
+        <div class="w-full bg-secondary px-6 py-10 md:px-20 md:py-4 max-h-[45vh] md:max-h-[85vh] overflow-y-auto">
 
             <div class="max-w-6xl mx-auto space-y-4 md:space-y-6 text-white text-[14px] leading-relaxed text-justify" style="font-weight: 300">
 

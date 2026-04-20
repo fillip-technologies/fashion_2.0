@@ -272,7 +272,7 @@
 
 
                     <div class=" pt-8 border-r border-secondary">
-                        <div class="grid grid-cols-2 gap-6 px-10 pb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10 pb-8">
                             <div>
                                 <p class="underline mb-1" style="font-weight: 400">Shipping address -</p>
                                 <p class="text-[0.625rem] text-secondary">(Default)</p>
@@ -311,7 +311,7 @@
 
                     <!-- Billing -->
                     <div class=" pt-8">
-                        <div class="grid grid-cols-2 gap-6 px-10 pb-8">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10 pb-8">
                             <div>
                                 <p class="underline mb-1" style="font-weight: 400">Billing address -</p>
                                 <p class="text-[0.625rem] text-secondary">(Default)</p>

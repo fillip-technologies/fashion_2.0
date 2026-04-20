@@ -23,7 +23,7 @@
             </div>
 
             <div
-                class="absolute left-1/2 top-[285px] max-w-3xl mx-auto -translate-x-1/2 space-y-5 text-[11px] font-light leading-[1.9]">
+                class="absolute left-1/2 top-[285px] max-w-3xl mx-auto -translate-x-1/2 space-y-5 text-[11px] font-light leading-[1.9] text-justify">
                 <p class="pb-10 text-[0.875rem] font-[200]">
                     A fashion collection is a curated group of clothing, footwear, and accessories designed around a
                     central theme, concept, or inspiration, unified by shared colors, fabrics, silhouettes, and styles
@@ -85,25 +85,31 @@
 
         <div class="relative mx-auto max-w-[24rem] pt-2">
             <img src="{{ $fruit }}" alt=""
-                class="pointer-events-none absolute left-0 top-0 w-[4.75rem] select-none" />
+                class="pointer-events-none absolute left-10 -top-28 w-[4.75rem] select-none" />
 
-            <div class="mx-auto flex w-[12rem] flex-col items-center gap-3 pt-10">
-                <h2 class="text-center text-[0.625rem] font-medium uppercase tracking-[0.34em] text-black/85">
+            <div class="mx-auto flex w-9/12 flex-col items-center gap-3 pt-10">
+                <h2 class="text-center text-[0.875rem] font-medium uppercase tracking-[0.34em] text-black" style="font-weight: 300">
                     Collection Name
                 </h2>
                 <div class="h-px w-full bg-black/30"></div>
             </div>
 
-            <div class="mx-auto mt-10 max-w-[20rem] space-y-4 text-[0.65625rem] font-light leading-[1.9] text-black/60">
+            <div class="mx-auto mt-10 max-w-[20rem] space-y-4 text-[0.875rem] font-light text-justify leading-[1.9] text-black" style="font-weight: 300">
                 <p>
                     A fashion collection is a curated group of clothing, footwear, and accessories designed around a
                     central theme, concept, or inspiration, unified by shared colors, fabrics, silhouettes, and styles
-                    for a specific season to tell a cohesive story and predict trends.
+                    for a specific season (like Spring/Summer or Fall/Winter) to tell a cohesive story and predict
+                    trends. These collections often blend trendy, limited-edition pieces with timeless basics, creating
+                    a complete look that designers present to buyers and the public, often during Fashion Weeks.
+                    A fashion collection is a curated group of clothing, footwear, and accessories designed around a
+                    central theme, concept,
                 </p>
                 <p>
-                    These collections often blend limited-edition statement pieces with timeless essentials, creating a
-                    complete visual narrative that designers present to buyers and the public through carefully styled
-                    looks and compositions.
+                     A fashion collection is a curated group of clothing, footwear, and accessories designed around a
+                    central theme, concept, or inspiration, unified by shared colors, fabrics, silhouettes, and styles
+                    for a specific season (like Spring/Summer or Fall/Winter) to tell a cohesive story and predict
+                    trends. These collections often blend trendy, limited-edition pieces with timeless basics, creating
+                    a complete look that designers present to buyers and the public, often during Fashion Weeks.
                 </p>
             </div>
         </div>
