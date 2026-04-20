@@ -86,7 +86,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-40">
 
                 <!-- ADDRESS 1 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -139,7 +139,7 @@
                 </div>
 
                 <!-- ADDRESS 2 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -190,7 +190,7 @@
                 </div>
 
                 <!-- ADDRESS 3 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -243,7 +243,7 @@
                 </div>
 
                 <!-- ADDRESS 4 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -419,7 +419,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-40">
 
                 <!-- ADDRESS 1 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -472,7 +472,7 @@
                 </div>
 
                 <!-- ADDRESS 2 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -523,7 +523,7 @@
                 </div>
 
                 <!-- ADDRESS 3 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -576,7 +576,7 @@
                 </div>
 
                 <!-- ADDRESS 4 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">

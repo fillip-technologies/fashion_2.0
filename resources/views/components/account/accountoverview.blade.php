@@ -83,14 +83,14 @@
 
     <section class="w-11/12 mx-auto px-2  md:px-10 pb-16 text-primary">
 
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative pt-2 md:py-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 relative pt-10 md:py-20">
 
             <div class="hidden lg:block absolute left-1/2 top-0 h-full w-px bg-dash-dot-v"></div>
 
-            <div class="space-y-12 md:space-y-16">
+            <div class="space-y-16 md:space-y-16">
                 <form autocomplete="off">
                     <div class="px-4 md:px-8">
-                        <h2 class="text-[0.9375rem] uppercase tracking-wide mb-7" style="font-weight: 600">
+                        <h2 class="text-sm md:text-[0.9375rem] uppercase tracking-wide mb-7" style="font-weight: 600">
                             OUR COMMUNICATION PREFERENCES
                         </h2>
 

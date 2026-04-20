@@ -396,7 +396,8 @@
                         <div class="px-10 py-8">
 
                             <div class="flex items-start gap-4">
-                                <input type="checkbox" class="mt-1 accent-black" />
+                                <input type="checkbox" class="mt-1 accent-black cursor-pointer"
+                                    onchange="handleOrderComplete(this)" />
                                 <div>
                                     <p class="text-[0.875rem]" style="font-weight: 500">Express Delivery</p>
                                     <p class="text-[0.6875rem] mt-1">
@@ -425,7 +426,8 @@
                         <div class="px-10 py-8">
 
                             <div class="flex items-start gap-4">
-                                <input type="checkbox" class="mt-1 accent-black" />
+                                <input type="checkbox" class="mt-1 accent-black cursor-pointer"
+                                    onchange="handleOrderComplete(this)" />
                                 <div>
                                     <p class="text-[0.875rem]" style="font-weight: 500">Standard Delivery</p>
                                     <p class="text-[0.6875rem] mt-1">
@@ -574,6 +576,14 @@
         });
     });
 </script> --}}
+
+<script>
+    function handleOrderComplete(el) {
+        if (el.checked) {
+            window.location.href = "/order-completed";
+        }
+    }
+</script>
 
 <script>
     const checkoutBtn = document.getElementById("checkoutBtn");

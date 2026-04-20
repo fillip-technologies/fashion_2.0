@@ -155,9 +155,9 @@
 
     <div class="w-full flex justify-center bg-white pb-28">
         <div class="w-[95%] max-w-6xl border border-border rounded px-10 md:px-20 pt-16 pb-32">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-16 text-black">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 md:gap-16 text-black">
                 <div>
-                    <h3 class="text-[1.125rem] mb-8" style="font-weight: 400">Shipping address</h3>
+                    <h3 class="text-[1.125rem] mb-4 md:mb-8" style="font-weight: 400">Shipping address</h3>
                     <div class="text-[0.75rem]" style="font-weight: 300">
                         <p class="text-[0.875rem]">Name Surname</p>
                         <p>Address line 1</p>
@@ -170,7 +170,7 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-[1.125rem] mb-8" style="font-weight: 400">Billing address</h3>
+                    <h3 class="text-[1.125rem] mb-4 md:mb-8" style="font-weight: 400">Billing address</h3>
                     <div class="text-[0.75rem]" style="font-weight: 300">
                         <p class="text-[0.875rem]">Name Surname</p>
                         <p>Address line 1</p>
@@ -183,11 +183,11 @@
                     </div>
                 </div>
                 <div>
-                    <h3 class="text-[1.125rem] mb-8" style="font-weight: 400">Payment method</h3>
+                    <h3 class="text-[1.125rem] mb-4 md:mb-8" style="font-weight: 400">Payment method</h3>
                     <p class="text-[0.875rem]" style="font-weight: 300">Online purchase</p>
                 </div>
                 <div>
-                    <h3 class="text-[1.125rem] mb-8" style="font-weight: 400">Additional compliments</h3>
+                    <h3 class="text-[1.125rem] mb-4 md:mb-8" style="font-weight: 400">Additional compliments</h3>
                     <ul class="text-[0.875rem] list-disc list-inside" style="font-weight: 300">
                         <li>Gift packaging</li>
                         <li>Shopping bag</li>

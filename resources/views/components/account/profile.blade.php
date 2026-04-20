@@ -53,7 +53,7 @@
 
     <div class="h-10 md:h-40 bg-white"> </div>
 
-    <div class="max-w-lg mx-auto px-6">
+    <div class="max-w-xl mx-auto px-6">
         <div class="text-[0.9375rem] flex items-center justify-center" style="font-weight: 600">PERSONAL DETAILS</div>
 
         <div class="text-[0.625rem] text-[#97A0A1] mt-7" style="font-weight: 300">*Required information</div>
