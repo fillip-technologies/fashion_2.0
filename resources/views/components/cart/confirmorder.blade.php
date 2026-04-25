@@ -2,12 +2,12 @@
 
     <!-- HEADER -->
     <header class="relative border-b bg-background z-20">
-        <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-white">
+        <div class="mx-auto px-4 sm:px-14 h-32 flex items-center text-white">
 
             <div class="flex-1"></div>
 
             <div class="flex items-center justify-center">
-                <div class="w-20 h-20 bg-purple-600 flex items-center justify-center">
+                <div class="w-28 h-28 bg-purple-600 flex items-center justify-center">
                     <span class="text-white text-xs font-semibold">LOGO 1</span>
                 </div>
             </div>
@@ -29,7 +29,7 @@
     <div class="absolute inset-0 bg-black/40 z-[1]"></div>
 
     <!-- CENTER CARD -->
-    <div class="absolute inset-x-0 top-24 bottom-0 flex items-center justify-center z-10 px-4">
+    <div class="absolute inset-x-0 top-28 bottom-0 flex items-center justify-center z-10 px-4">
 
         <div class="bg-white w-full max-w-sm  text-center shadow-2xl border border-black/10 relative">
 

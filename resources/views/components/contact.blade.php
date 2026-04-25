@@ -4,7 +4,7 @@
     <div class="px-6 md:px-14 pb-20">
 
         <a href="/" class="mb-9 flex items-center space-x-5">
-            <img src="{{ asset('assets/icons/open-angular.png') }}" alt="Back" class="w-[7px] h-[12px]" />
+            <img src="{{ asset('assets/SVG/Back black icon.svg') }}" alt="Back" class="w-[7px] h-[12px]" />
             <span class="text-[1rem]" style="font-weight: 400">Contact Us</span>
         </a>
 

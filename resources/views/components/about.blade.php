@@ -56,22 +56,22 @@
 
     <div class="w-full">
 
-        <div class="relative group inline-block flex items-center justify-center pt-16 md:pt-28 pb-20 md:pb-28 ">
+        <div class="relative group inline-block flex items-center justify-center pt-16 md:pt-28 pb-20 md:pb-28">
 
 
-            <img src="{{ asset('assets/images/about/three.png') }}" alt="about"
-                class="w-auto h-auto object-contain" />
+            <img src="{{ asset('assets/images/about/three.png') }}" alt="about" class="w-auto h-auto object-contain"
+                id="imageThree" />
 
-            <div
+            <div id="overlayBox"
                 class="absolute inset-0 
-                         bg-black/80
-                        opacity-0 group-hover:opacity-100
-                        transition-opacity duration-300
-                        flex flex-col items-center justify-center text-center px-6">
+          bg-gradient-to-b from-black/40 to-black/70
+           opacity-0
+           transition-opacity duration-300
+           flex flex-col items-center justify-center text-center px-6">
 
                 <h3 class="text-white text-[1.25rem] tracking-wide" style="font-weight: 600">
-                    THE YARN’S STORY
-                </h3>
+                    <a href="/yarn-story"> THE YARN’S STORY </a>
+                </h3> 
 
                 <div class="w-80 h-px bg-white my-3"></div>
 
@@ -93,3 +93,27 @@
     </div>
 
 </div>
+
+
+<script>
+    const image = document.getElementById("imageThree");
+    const overlay = document.getElementById("overlayBox");
+
+    document.addEventListener("mousemove", function(e) {
+
+        const rect = image.getBoundingClientRect();
+
+        const insideImage =
+            e.clientX >= rect.left &&
+            e.clientX <= rect.right &&
+            e.clientY >= rect.top &&
+            e.clientY <= rect.bottom;
+
+        if (insideImage) {
+            overlay.style.opacity = "1";
+        } else {
+            overlay.style.opacity = "0";
+        }
+
+    });
+</script>

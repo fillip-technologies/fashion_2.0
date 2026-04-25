@@ -1,13 +1,13 @@
 <nav id="newsletter"
     class="fixed top-0 right-0 w-full  text-black z-[1200]
-           transform translate-x-full transition-transform duration-500
-           ease-[cubic-bezier(0.86,0,0.07,1)]
-           h-screen flex flex-col cookie-reset overflow-y-auto custom-scroll">
+           translate-x-full
+           h-screen flex flex-col cookie-reset overflow-hidden">
 
-    <div class="grid grid-cols-1 md:grid-cols-2">
+    <div class="relative h-screen w-full">
 
-        <div class="h-screen bg-black/80 hidden md:block"></div>
-        <div class="bg-background min-h-screen">
+        <div class="newsletter-backdrop hidden md:block absolute inset-0 bg-black/80 overflow-hidden overscroll-none"
+            onclick="toggleMasterDrawer('newsletter')"></div>
+        <div class="newsletter-panel absolute top-0 right-0 bg-background h-screen w-full md:w-1/2 overflow-y-auto custom-scroll overscroll-none">
             <div class="py-8 px-6 md:px-14 flex items-center justify-between">
                 <p class="text-[1.25rem]">Join our newsletter</p>
                 <button onclick="toggleMasterDrawer('newsletter')"
@@ -53,3 +53,39 @@
 
     </div>
 </nav>
+
+<style>
+    #newsletter {
+        translate: none !important;
+        pointer-events: none;
+        visibility: hidden;
+        transition: visibility 0s linear 500ms;
+    }
+
+    #newsletter.translate-x-0 {
+        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    #newsletter .newsletter-backdrop {
+        opacity: 0;
+        transition: opacity 220ms ease;
+    }
+
+    #newsletter .newsletter-panel {
+        transform: translateX(100%);
+        transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+        will-change: transform;
+        pointer-events: auto;
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18);
+    }
+
+    #newsletter.translate-x-0 .newsletter-backdrop {
+        opacity: 1;
+    }
+
+    #newsletter.translate-x-0 .newsletter-panel {
+        transform: translateX(0);
+    }
+</style>

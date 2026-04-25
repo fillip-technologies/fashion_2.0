@@ -1,6 +1,6 @@
 <div class="w-full h-screen overflow-hidden relative">
 
-    <header class="relative border-b bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
+    <header class="relative bg-[rgba(151,160,161,0.5)] backdrop-blur-[44px] z-20">
         <div class="mx-auto px-4 sm:px-14 h-24 flex items-center text-white">
 
             <div onclick="window.history.back()" class="flex items-center space-x-2 text-[0.8125rem] cursor-pointer">
@@ -14,16 +14,17 @@
                 </div>
             </div>
 
-            <div class="flex items-center text-[0.8125rem] cursor-pointer">
-                <a href="/accountoverview" class="mr-1 sm:mr-2 hidden md:block" style="font-weight: 300">Go to your
-                    profile</a>
+           
+            <a href="{{ url('/accountoverview') }}" class="flex items-center text-[0.8125rem] cursor-pointer">
+                <span class="mr-1 sm:mr-2 hidden md:block" style="font-weight: 300">Go to your
+                    profile</span>
                 {{-- <i class="fa-solid fa-chevron-right fa-sm"></i>
                 <i class="fa-solid fa-chevron-right fa-sm"></i> --}}
                 <img src="{{ asset('assets/SVG/Back white icon.svg') }}" alt="Arrow Left"
                     class="w-[7px] h-[6px] rotate-180" />
                 <img src="{{ asset('assets/SVG/Back white icon.svg') }}" alt="Arrow Left"
                     class="w-[7px] h-[6px] rotate-180 -ml-0.5" />
-            </div>
+            </a>
 
         </div>
     </header>

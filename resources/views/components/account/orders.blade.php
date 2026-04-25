@@ -1,5 +1,6 @@
-<section class="bg-black sticky top-14 md:top-[6.9375rem] z-20">
-    <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
+<section class="scroll-glass bg-black sticky top-14 md:top-[6.9375rem] z-20 transition-all duration-300">
+
+    <div class="w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <nav
                 class="flex items-center justify-start sm:justify-center

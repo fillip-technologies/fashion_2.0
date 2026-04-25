@@ -1,5 +1,5 @@
 <nav id="cartnotification"
-    class="fixed top-0 right-0 w-full md:w-1/3 bg-background text-black z-[1200]
+    class="fixed -top-0.5 right-0 w-full md:w-1/3 bg-background text-black z-[1200]
          transform translate-x-full transition-transform duration-500
          ease-[cubic-bezier(0.86,0,0.07,1)]
         flex flex-col overflow-y-auto bg-background rounded-md shadow-2xl shadow-primary">

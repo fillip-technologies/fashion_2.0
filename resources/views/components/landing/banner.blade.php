@@ -1,4 +1,4 @@
-<section class="w-full bg-background pt-20 pb-32 overflow-x-hidden">
+<section class="w-full bg-background pt-28 pb-40 overflow-x-hidden">
     <div class="max-w-4xl mx-auto text-center px-4">
 
         <!-- COLLECTION NAME -->
@@ -38,13 +38,13 @@
             </div> --}}
 
             <div class="flex items-center justify-center
-            gap-6 md:gap-16
-            mt-16 px-4">
+            gap-6 md:gap-24
+            pt-20 pb-7 px-4">
 
                 <!-- LEFT -->
                 <svg width="4" height="64" viewBox="0 0 4 64" class="shrink-0">
                     <line x1="2" y1="0" x2="2" y2="64" stroke="rgba(0,0,0,0.4)"
-                        stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
+                        stroke-width="0.5" stroke-dasharray="8 4 8 4 2 6" />
                 </svg>
 
                 <!-- CENTER -->
@@ -58,7 +58,7 @@
                 <!-- RIGHT -->
                 <svg width="4" height="64" viewBox="0 0 4 64" class="shrink-0">
                     <line x1="2" y1="0" x2="2" y2="64" stroke="rgba(0,0,0,0.4)"
-                        stroke-width="1" stroke-dasharray="8 4 8 4 2 6" />
+                        stroke-width="0.5" stroke-dasharray="8 4 8 4 2 6" />
                 </svg>
 
             </div>
@@ -68,7 +68,7 @@
         </div>
 
         <!-- DESCRIPTION -->
-        <p class="mt-10 max-w-xl mx-auto text-[1rem] leading-relaxed text-black/50" style="font-weight: 200">
+        <p class="mt-10 max-w-xl mx-auto text-[1rem] leading-relaxed text-black" style="font-weight: 200">
             The Holiday 2025 Collection blends creativity with breathtaking nature
             and timeless elegance in the heart of the Swiss Alps.
         </p>

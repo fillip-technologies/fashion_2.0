@@ -1,5 +1,6 @@
-<section class="bg-black sticky top-14 md:top-[6.9375rem] z-20">
-    <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
+<section class="scroll-glass bg-black sticky top-14 md:top-[6.9375rem] z-20 transition-all duration-300">
+
+    <div class="w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <nav
                 class="flex items-center justify-start sm:justify-center
@@ -52,7 +53,7 @@
 
     <div class="h-10 md:h-40 bg-white"> </div>
 
-    <div class="max-w-md mx-auto px-6">
+    <div class="max-w-xl mx-auto px-6">
         <div class="text-[0.9375rem] flex items-center justify-center" style="font-weight: 600">PERSONAL DETAILS</div>
 
         <div class="text-[0.625rem] text-[#97A0A1] mt-7" style="font-weight: 300">*Required information</div>

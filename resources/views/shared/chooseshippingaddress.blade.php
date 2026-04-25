@@ -7,7 +7,7 @@
     <div class="h-full overflow-y-auto overscroll-contain pt-0.5 thin-scrollbar">
         <div class="relative min-h-full">
 
-            <div class="">
+            <div class="-mt-0.5">
                 <div class="h-px bg-dash-dot"></div>
             </div>
 
@@ -30,10 +30,9 @@
                 </p>
 
                 <div class="flex items-center justify-end space-x-4">
-                   
-                    <button onclick="toggleMasterDrawer('chooseshippingaddress')"
-                        class="text-3xl font-light text-black/60 hover:text-black
-                   leading-none">
+                    <button
+                        onclick="toggleMasterDrawer('chooseshippingaddress'); toggleMasterDrawer('changeshippingaddress');"
+                        class="text-3xl font-light text-black/60 hover:text-black leading-none">
                         &times;
                     </button>
                 </div>
@@ -175,13 +174,14 @@
 
                         <div
                             class=" px-3 md:px-8 flex items-center justify-center gap-3 mt-5 text-[0.625rem] text-black/60">
-                            <input type="checkbox" class="w-3 h-3" />
+                            <input type="checkbox" class="w-3 h-3 accent-black" />
                             <p>Do you want to use this address also as your billing address?</p>
                         </div>
 
                         <div class="flex justify-center my-5">
                             <button class="px-16 py-3 bg-secondary hover:bg-primary rounded text-white text-[1rem]"
-                                style="font-weight: 500">
+                                style="font-weight: 500"
+                                onclick="toggleMasterDrawer('chooseshippingaddress'); toggleMasterDrawer('changeshippingaddress');">
                                 Save
                             </button>
                         </div>

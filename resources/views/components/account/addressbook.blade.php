@@ -1,5 +1,6 @@
-<section class="bg-black sticky top-14 md:top-[6.9375rem] z-20">
-    <div class="w-full bg-gradient-to-b from-black/90 to-black/60">
+<section class="scroll-glass bg-black sticky top-14 md:top-[6.9375rem] z-20 transition-all duration-300">
+
+    <div class="w-full">
         <div class="max-w-7xl mx-auto px-4 sm:px-6">
             <nav
                 class="flex items-center justify-start sm:justify-center
@@ -36,6 +37,7 @@
     </div>
 
 </section>
+
 
 <div class="w-full relative ">
     <img src="assets/images/Leaf.png" alt="background" class="w-full h-full" />
@@ -84,7 +86,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-40">
 
                 <!-- ADDRESS 1 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -137,7 +139,7 @@
                 </div>
 
                 <!-- ADDRESS 2 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -188,7 +190,7 @@
                 </div>
 
                 <!-- ADDRESS 3 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -241,7 +243,7 @@
                 </div>
 
                 <!-- ADDRESS 4 -->
-                <div class="px-10 md:px-0 address-item">
+                <div class="px-5 md:px-0 address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -417,7 +419,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-20 md:gap-40">
 
                 <!-- ADDRESS 1 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -470,7 +472,7 @@
                 </div>
 
                 <!-- ADDRESS 2 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -521,7 +523,7 @@
                 </div>
 
                 <!-- ADDRESS 3 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">
@@ -574,7 +576,7 @@
                 </div>
 
                 <!-- ADDRESS 4 -->
-                <div class="px-10 md:px-0 billing-address-item">
+                <div class="px-5 md:px-0 billing-address-item">
 
                     <!-- Header -->
                     <div class="flex items-start gap-4 mb-6">

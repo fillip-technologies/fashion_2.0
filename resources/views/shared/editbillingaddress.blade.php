@@ -1,13 +1,18 @@
 <nav id="editbillingaddress"
-    class="fixed top-0 right-0 w-full md:w-1/2 h-screen z-[1200]
-           bg-white
-           transform translate-x-full transition-transform duration-500
-           ease-[cubic-bezier(0.86,0,0.07,1)]">
+    class="fixed top-0 right-0 w-full h-screen z-[1200]
+           translate-x-full overflow-hidden">
 
-    <div class="h-full overflow-y-auto overscroll-contain pt-0.5 thin-scrollbar">
-        <div class="relative min-h-full">
+    <div class="relative h-screen w-full">
+        <div class="editbillingaddress-backdrop hidden md:block absolute inset-0 bg-black/80
+            overflow-hidden overscroll-none"
+            onclick="toggleMasterDrawer('editbillingaddress')"></div>
 
-            <div class="">
+        <div class="editbillingaddress-panel absolute top-0 right-0 bg-white h-screen w-full md:w-1/2
+            overflow-hidden overscroll-none">
+            <div class="h-full overflow-y-auto pt-0.5 thin-scrollbar">
+                <div class="relative h-full">
+
+            <div class="-mt-0.5">
                 <div class="h-px bg-dash-dot"></div>
             </div>
 
@@ -210,12 +215,48 @@
                 <div class="h-px bg-dash-dot"></div>
             </div>
 
+                </div>
+            </div>
         </div>
     </div>
 </nav>
 
 
 <style>
+    #editbillingaddress {
+        translate: none !important;
+        pointer-events: none;
+        visibility: hidden;
+        transition: visibility 0s linear 500ms;
+    }
+
+    #editbillingaddress.translate-x-0 {
+        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    #editbillingaddress .editbillingaddress-backdrop {
+        /* opacity: 0;
+        transition: opacity 220ms ease; */
+    }
+
+    #editbillingaddress .editbillingaddress-panel {
+        transform: translateX(100%);
+        transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+        /* will-change: transform;
+        pointer-events: auto;
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18); */
+    }
+
+    #editbillingaddress.translate-x-0 .editbillingaddress-backdrop {
+        /* opacity: 1; */
+    }
+
+    #editbillingaddress.translate-x-0 .editbillingaddress-panel {
+        transform: translateX(0);
+    }
+
     .thin-scrollbar {
         scrollbar-width: thin;
         scrollbar-color: #b6bcbc transparent;

@@ -22,10 +22,10 @@
 
      </div>
  </header>
- <div class="border-8 border-secondary bg-background">
-     <div class="px-4 md:px-8 pt-6 md:pt-8 grid grid-cols-1 md:grid-cols-12 gap-6 bg-background">
+ <div class="border-[1.4rem] border-secondary bg-background pb-8">
+     <div class="px-4 md:px-14 pt-6 md:pt-20 grid grid-cols-1 md:grid-cols-12 gap-6 bg-background">
 
-         <div class="md:col-span-8 py-6 bg-white">
+         <div class="md:col-span-8 pt-6 bg-white">
 
              <p class=" px-6 pb-4 text-[1rem] tracking-wide mb-4">Number of items in your cart - <span>(2)</span></p>
 
@@ -226,7 +226,7 @@
                  <div class="w-full h-px bg-dash-dot"></div>
              </div>
 
-             <div class=" py-8 px-10 space-y-1 ">
+             <div class=" py-14 px-10 space-y-1">
                  <div class="text-[0.875rem] mb-4" style="font-weight: 400">Customer Care :</div>
                  <div class="underline underline-offset-1 decoration-secondary text-[0.625rem]">
                      <span class="text-secondary">Email Us :</span>
@@ -239,6 +239,56 @@
                  </div>
 
 
+             </div>
+
+             {{-- This should only shown when the cart is empty  --}}
+             <div class="md:col-span-8 bg-black text-white hidden empty-cart-showcase">
+
+                 <div class="grid grid-cols-1 md:grid-cols-3 relative">
+                     <div class="hidden md:block absolute inset-y-0 left-1/3 w-px h-full bg-dash-dot-v-white"></div>
+                     <div class="hidden md:block absolute inset-y-0 left-2/3 w-px h-full bg-dash-dot-v-white"></div>
+
+                     <div class="flex flex-col items-center justify-center py-10 gap-8">
+                         <img src="/assets/images/bag/bag-one.png" />
+                     </div>
+
+                     <div class="flex flex-col items-center justify-center py-10 gap-8">
+                         <img src="/assets/images/bag/bag-two.png" />
+                     </div>
+
+                     <div class="flex flex-col items-center justify-center py-10 gap-8">
+                         <img src="/assets/images/bag/bag-three.png" />
+                     </div>
+
+                 </div>
+
+
+                 <div class="relative">
+                     <div class="w-full h-px bg-dash-dot-white"></div>
+                 </div>
+
+                 <div class="grid grid-cols-1 md:grid-cols-3 relative">
+                     <div class="hidden md:block absolute inset-y-0 left-1/3 w-px h-full bg-dash-dot-v-white"></div>
+                     <div class="hidden md:block absolute inset-y-0 left-2/3 w-px h-full bg-dash-dot-v-white"></div>
+
+                     <div class="flex flex-col items-center justify-center py-10 gap-8">
+                         <p class="text-[0.875rem] tracking-wide text-secondary" style="font-weight: 400">
+                             Free standard shipping
+                         </p>
+                     </div>
+
+                     <div class="flex flex-col items-center justify-center py-10 gap-8">
+                         <p class="text-[0.875rem] tracking-wide text-secondary" style="font-weight: 400">
+                             Return and exchange
+                         </p>
+                     </div>
+
+                     <div class="flex flex-col items-center justify-center py-10 gap-8">
+                         <p class="text-[0.875rem] tracking-wide text-secondary" style="font-weight: 400">
+                             Shop securely
+                         </p>
+                     </div>
+                 </div>
              </div>
 
          </div>
@@ -340,11 +390,12 @@
          </div>
 
 
-
      </div>
 
-     <div class="hidden md:block">
-         <div class="px-4 md:px-8 pb-8 grid grid-cols-1 md:grid-cols-12 gap-2">
+
+     {{-- this should get hide when the empty-cart-showcase is shown --}}
+     <div class="hidden md:block cart-showcase-info pb-20">
+         <div class="px-4 md:px-14 grid grid-cols-1 md:grid-cols-12 gap-2">
 
              <div class="md:col-span-8 bg-black text-white mr-1">
 
@@ -614,6 +665,8 @@
          const bagTotal = document.querySelector(".bag-total");
          const itemCount = document.querySelector(".item-count");
          const emptyCart = document.querySelector(".empty-cart");
+         const emptyCartShowcase = document.querySelector(".empty-cart-showcase");
+         const cartShowcaseInfo = document.querySelector(".cart-showcase-info");
 
          function updateCart() {
              const activeItems = [...cartItems].filter(
@@ -631,9 +684,20 @@
 
              bagTotal.textContent = `₹ ${total.toLocaleString()}`;
 
+             const isDesktop = window.matchMedia("(min-width: 768px)").matches;
+
              if (activeItems.length === 0) {
                  bagTotalBox.classList.add("hidden");
                  emptyCart.classList.remove("hidden");
+                 cartShowcaseInfo.style.display = "none";
+                 
+                 if (isDesktop) {
+                     emptyCartShowcase.classList.remove("hidden");
+                     emptyCartShowcase.style.display = "block";
+                 } else {
+                     emptyCartShowcase.classList.add("hidden");
+                     emptyCartShowcase.style.display = "none";
+                 }
 
                  cartItems.forEach(item => {
                      const undoBox = item.querySelector(".undo-box");
@@ -643,6 +707,9 @@
              } else {
                  bagTotalBox.classList.remove("hidden");
                  emptyCart.classList.add("hidden");
+                 emptyCartShowcase.classList.add("hidden");
+                 emptyCartShowcase.style.display = "none";
+                 cartShowcaseInfo.style.display = "";
              }
          }
 

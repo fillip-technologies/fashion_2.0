@@ -1,44 +1,44 @@
 <nav id="drawersizeguide"
     class="fixed top-0 right-0 w-full  text-black z-[1200]
-           transform translate-x-full transition-transform duration-500
-           ease-[cubic-bezier(0.86,0,0.07,1)]
+           translate-x-full
            h-screen flex flex-col cookie-reset overflow-hidden">
 
 
-    <div class="grid grid-cols-1 md:grid-cols-2 h-screen">
+    <div class="relative h-screen w-full">
 
-        <div class="hidden md:block bg-black/70 h-screen sticky top-0
-         overflow-hidden overscroll-none">
+        <div class="sizeguide-backdrop hidden md:block absolute inset-0 bg-black/70
+         overflow-hidden overscroll-none"
+            onclick="toggleMasterDrawer('drawersizeguide')">
         </div>
 
 
-        <div class="bg-background h-screen overflow-y-auto custom-scroll overscroll-none">
+        <div class="sizeguide-panel absolute top-0 right-0 bg-background h-screen w-full md:w-1/2 overflow-y-auto custom-scroll overscroll-none">
 
-            <div class="py-8 px-6 md:px-14 flex items-center justify-between">
-                <p class="text-[1.25rem]">Size Guide</p>
-                <button onclick="toggleMasterDrawer('drawersizeguide')"
-                    class="text-3xl font-light text-black/60 hover:text-black">
-                    &times;
-                </button>
-            </div>
+                <div class="py-8 px-6 md:px-14 flex items-center justify-between">
+                    <p class="text-[1.25rem]">Size Guide</p>
+                    <button onclick="toggleMasterDrawer('drawersizeguide')"
+                        class="text-3xl font-light text-black/60 hover:text-black">
+                        &times;
+                    </button>
+                </div>
 
-            <div class="relative">
-                <div class="w-full h-px bg-dash-dot"></div>
-            </div>
+                <div class="relative">
+                    <div class="w-full h-px bg-dash-dot"></div>
+                </div>
 
-            <div class="py-8 px-6 md:px-14 max-w-3xl mx-auto flex items-center justify-center gap-20 text-[0.875rem]">
-                <p id="tabNumeric" class="underline underline-offset-4 cursor-pointer">
-                    Numeric Guide
-                </p>
-                <p id="tabDetailed" class="text-black/70 cursor-pointer">
-                    Detailed Measurement
-                </p>
-            </div>
+                <div class="py-8 px-6 md:px-14 max-w-3xl mx-auto flex items-center justify-center gap-20 text-[0.875rem]">
+                    <p id="tabNumeric" class="underline underline-offset-4 cursor-pointer">
+                        Numeric Guide
+                    </p>
+                    <p id="tabDetailed" class="text-black/70 cursor-pointer">
+                        Detailed Measurement
+                    </p>
+                </div>
 
 
 
-            {{-- Numeric Guide --}}
-            <div id="numericSection">
+                {{-- Numeric Guide --}}
+                <div id="numericSection">
 
                 <div
                     class="px-6 md:px-14 mt-5 max-w-3xl mx-auto flex items-center justify-center gap-4 text-[0.875rem] text-secondary">
@@ -136,10 +136,10 @@
                         <span>'Detailed Measurement'</span>.
                     </p>
                 </div>
-            </div>
+                </div>
 
-            {{-- Detailed Measurement --}}
-            <div id="detailedSection" class="hidden">
+                {{-- Detailed Measurement --}}
+                <div id="detailedSection" class="hidden">
 
                 <div
                     class="mt-0 py-4 px-6 md:px-14 max-w-3xl mx-auto flex items-center justify-center gap-20 text-[0.875rem]">
@@ -368,7 +368,7 @@
 
 
 
-            </div>
+                </div>
 
         </div>
     </div>
@@ -404,3 +404,39 @@
         tabNumeric.classList.add("text-black/70");
     });
 </script>
+
+<style>
+    #drawersizeguide {
+        translate: none !important;
+        pointer-events: none;
+        visibility: hidden;
+        transition: visibility 0s linear 500ms;
+    }
+
+    #drawersizeguide.translate-x-0 {
+        pointer-events: auto;
+        visibility: visible;
+        transition-delay: 0s;
+    }
+
+    #drawersizeguide .sizeguide-backdrop {
+        opacity: 0;
+        transition: opacity 220ms ease;
+    }
+
+    #drawersizeguide .sizeguide-panel {
+        transform: translateX(100%);
+        transition: transform 500ms cubic-bezier(0.86, 0, 0.07, 1);
+        will-change: transform;
+        pointer-events: auto;
+        box-shadow: -24px 0 60px rgba(0, 0, 0, 0.18);
+    }
+
+    #drawersizeguide.translate-x-0 .sizeguide-backdrop {
+        opacity: 1;
+    }
+
+    #drawersizeguide.translate-x-0 .sizeguide-panel {
+        transform: translateX(0);
+    }
+</style>

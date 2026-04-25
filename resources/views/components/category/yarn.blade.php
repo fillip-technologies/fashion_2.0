@@ -1,20 +1,28 @@
 <div class="pb-10 bg-background">
     <div class="w-full h-px bg-dash-dot"></div>
 
-    <div class="flex justify-between items-center px-6 md:px-14 py-5">
-        <div class="text-[0.875rem]">
-            Pashmina (13)
+    <div class="sticky top-0 z-10 bg-background">
+        <div class="flex justify-between items-center px-6 md:px-14 py-5">
+            <div class="text-[0.875rem]">
+                Pashmina (13)
+            </div>
+            <div class="flex items-center space-x-8">
+                {{-- <img src="{{ asset('assets/images/category/arrow.png') }}" alt="Back" /> --}}
+                <div class="flex items-center space-x-4">
+                    <img src="{{ asset('assets/icons/Arrow-up.svg') }}" alt="arrow-up" class="cursor-pointer h-5"
+                        id="scrollUp" />
+                    <img src="{{ asset('assets/icons/Arrow-down.svg') }}" alt="arrow-down" class="cursor-pointer h-5"
+                        id="scrollDown" />
+                </div>
+                <button onclick="toggleDrawer()">
+                    <img src="{{ asset('assets/images/category/filter.png') }}" alt="Back" />
+                </button>
+            </div>
         </div>
-        <div class="flex items-center space-x-8">
-            <img src="{{ asset('assets/images/category/arrow.png') }}" alt="Back" />
-            <button onclick="toggleDrawer()">
-                <img src="{{ asset('assets/images/category/filter.png') }}" alt="Back" />
-            </button>
-        </div>
-    </div>
-    <div class="h-1.5 bg-secondary"></div>
+        <div class="h-1.5 bg-secondary"></div>
 
-    <div id="selectedFilters" class="w-full px-6 md:px-14 bg-white py-5 flex flex-wrap gap-2 hidden">
+        <div id="selectedFilters" class="w-full px-6 md:px-14 bg-white py-5 flex flex-wrap gap-2 hidden">
+        </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 py-20 px-6 md:px-14">
@@ -46,8 +54,8 @@
     </div>
 
     <div class="max-w-md mx-auto px-6 md:px-14 text-black text-center font-medium space-y-4 pb-20">
-       <p class="text-[0.75rem]">09 / 13</p>
-       <p class="text-[0.875rem]">Load more products</p>
+        <p class="text-[0.75rem]">09 / 13</p>
+        <p class="text-[0.875rem]">Load more products</p>
     </div>
 
 
@@ -55,6 +63,31 @@
 
 </div>
 
+
+<script>
+    (() => {
+        const scrollUpButton = document.getElementById("scrollUp");
+        const scrollDownButton = document.getElementById("scrollDown");
+
+        if (scrollUpButton) {
+            scrollUpButton.addEventListener("click", function() {
+                window.scrollBy({
+                    top: -500,
+                    behavior: "smooth"
+                });
+            });
+        }
+
+        if (scrollDownButton) {
+            scrollDownButton.addEventListener("click", function() {
+                window.scrollBy({
+                    top: 500,
+                    behavior: "smooth"
+                });
+            });
+        }
+    })();
+</script>
 
 
 <script>
