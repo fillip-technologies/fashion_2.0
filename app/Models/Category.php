@@ -2,24 +2,36 @@
 
 namespace App\Models;
 
-use GuzzleHttp\Psr7\Request;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Category extends Model
 {
-    protected $fillable = ['tenant_id', 'name', 'slug', 'description'];
+    protected $fillable = [
+        'name',
+        'slug',
+        'parent_id',
+        'status'
+    ];
 
-    public function tenant()
+    protected static function boot()
     {
-        return $this->belongsTo(Tenant::class);
-    }
-    public function products()
-    {
-        return $this->hasMany(Product::class);
+        parent::boot();
+
+        static::creating(function ($category) {
+            $category->slug = Str::slug($category->name);
+        });
     }
 
-    public function subcate()
+    // Parent Category
+    public function parent()
     {
-        return $this->hasMany(Subcategory::class);
+        return $this->belongsTo(Category::class, 'parent_id');
+    }
+
+    // Child Categories
+    public function children()
+    {
+        return $this->hasMany(Category::class, 'parent_id');
     }
 }

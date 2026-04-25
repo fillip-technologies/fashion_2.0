@@ -2,118 +2,34 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('pages.landing');
-});
+use App\Http\Controllers\HomeController;
 
-Route::get('/about', function () {
-    return view('pages.about');
-});
-
-Route::get('/yarn-story', function () {
-    return view('pages.yarnstory');
-});
-
-Route::get('/journey', function () {
-    return view('pages.journey');
-});
-
-Route::get('/lookbook', function () {
-    return view('pages.lookbook');
-});
-
-Route::get('/yarn', function () {
-    return view('pages.yarn');
-});
-
-Route::get('/newcollection', function () {
-    return view('pages.newcollection');
-});
-
-Route::get('/seeall', function () {
-    return view('pages.seeall');
-});
-
-Route::get('/specific', function () {
-    return view('pages.specific');
-});
-
-Route::get('/filteredproduct', function () {
-    return view('pages.filteredprodcuts');
-});
-
-Route::get('/productdetails', function () {
-    return view('pages.productdetails');
-});
-
-Route::get('/createaccount', function () {
-    return view('pages.createaccount');
-});
-
-Route::get('/accountconfirmed', function () {
-    return view('pages.accountconfirmed');
-});
-
-Route::get('/bag', function () {
-    return view('pages.bag');
-});
-
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/checkout', function () {
-    return view('pages.checkout');
-});
-
-Route::get('/order-completed', function () {
-    return view('pages.confirmorder');
-});
-
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
-
-Route::get('/location', function () {
-    return view('pages.location');
-});
-
-Route::get('/accountoverview', function () {
-    return view('pages.accountoverview');
-});
-
-Route::get('/profile', function () {
-    return view('pages.profile');
-});
-
-Route::get('/wishlist', function () {
-    return view('pages.wishlist');
-});
-
-Route::get('/orders', function () {
-    return view('pages.orders');
-});
-
-Route::get('/orderhistory', function () {
-    return view('pages.orderhistory');
-});
-
-Route::get('/viewdetails', function () {
-    return view('pages.viewdetails');
-});
-
-Route::get('/addressbook', function () {
-    return view('pages.addressbook');
-});
-
-Route::get('/shippingaddress', function() {
-    return view('pages.shippingaddress');
-});
-
-Route::get('/billingaddress', function() {
-    return view('pages.billingaddress');
-});
-
-Route::get('/sitemap', function() {
-    return view('pages.sitemap');
-});
+Route::get('/', [HomeController::class, 'index']);
+Route::get('/about', [HomeController::class, 'about']);
+Route::get('/yarn-story', [HomeController::class, 'yarnStory']);
+Route::get('/journey', [HomeController::class, 'journey']);
+Route::get('/lookbook', [HomeController::class, 'lookbook']);
+Route::get('/yarn', [HomeController::class, 'yarn']);
+Route::get('/newcollection', [HomeController::class, 'newCollection']);
+Route::get('/seeall', [HomeController::class, 'seeAll']);
+Route::get('/specific', [HomeController::class, 'specific']);
+Route::get('/filteredproduct', [HomeController::class, 'filteredProduct']);
+Route::get('/productdetails', [HomeController::class, 'productDetails']);
+Route::get('/createaccount', [HomeController::class, 'createAccount']);
+Route::get('/accountconfirmed', [HomeController::class, 'accountConfirmed']);
+Route::get('/bag', [HomeController::class, 'bag']);
+Route::get('/test', [HomeController::class, 'test']);
+Route::get('/checkout', [HomeController::class, 'checkout']);
+Route::get('/order-completed', [HomeController::class, 'orderCompleted']);
+Route::get('/contact', [HomeController::class, 'contact']);
+Route::get('/location', [HomeController::class, 'location']);
+Route::get('/accountoverview', [HomeController::class, 'accountOverview']);
+Route::get('/profile', [HomeController::class, 'profile']);
+Route::get('/wishlist', [HomeController::class, 'wishlist']);
+Route::get('/orders', [HomeController::class, 'orders']);
+Route::get('/orderhistory', [HomeController::class, 'orderHistory']);
+Route::get('/viewdetails', [HomeController::class, 'viewDetails']);
+Route::get('/addressbook', [HomeController::class, 'addressBook']);
+Route::get('/shippingaddress', [HomeController::class, 'shippingAddress']);
+Route::get('/billingaddress', [HomeController::class, 'billingAddress']);
+Route::get('/sitemap', [HomeController::class, 'sitemap']);

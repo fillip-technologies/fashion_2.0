@@ -18,6 +18,123 @@ use Illuminate\Support\Facades\Mail;
 
 class HomeController extends Controller
 {
+
+    public function index() {
+        return view('pages.landing');
+    }
+
+    public function about() {
+        return view('pages.about');
+    }
+
+    public function yarnStory() {
+        return view('pages.yarnstory');
+    }
+
+    public function journey() {
+        return view('pages.journey');
+    }
+
+    public function lookbook() {
+        return view('pages.lookbook');
+    }
+
+    public function yarn() {
+        return view('pages.yarn');
+    }
+
+    public function newCollection() {
+        return view('pages.newcollection');
+    }
+
+    public function seeAll() {
+        return view('pages.seeall');
+    }
+
+    public function specific() {
+        return view('pages.specific');
+    }
+
+    public function filteredProduct() {
+        return view('pages.filteredprodcuts');
+    }
+
+    public function productDetails() {
+        return view('pages.productdetails');
+    }
+
+    public function createAccount() {
+        return view('pages.createaccount');
+    }
+
+    public function accountConfirmed() {
+        return view('pages.accountconfirmed');
+    }
+
+    public function bag() {
+        return view('pages.bag');
+    }
+
+    public function test() {
+        return view('test');
+    }
+
+    public function checkout() {
+        return view('pages.checkout');
+    }
+
+    public function orderCompleted() {
+        return view('pages.confirmorder');
+    }
+
+    public function contact() {
+        return view('pages.contact');
+    }
+
+    public function location() {
+        return view('pages.location');
+    }
+
+    public function accountOverview() {
+        return view('pages.accountoverview');
+    }
+
+    public function profile() {
+        return view('pages.profile');
+    }
+
+    public function wishlist() {
+        return view('pages.wishlist');
+    }
+
+    public function orders() {
+        return view('pages.orders');
+    }
+
+    public function orderHistory() {
+        return view('pages.orderhistory');
+    }
+
+    public function viewDetails() {
+        return view('pages.viewdetails');
+    }
+
+    public function addressBook() {
+        return view('pages.addressbook');
+    }
+
+    public function shippingAddress() {
+        return view('pages.shippingaddress');
+    }
+
+    public function billingAddress() {
+        return view('pages.billingaddress');
+    }
+
+    public function sitemap() {
+        return view('pages.sitemap');
+    }
+
     public function homePage()
     {
 
@@ -123,58 +240,58 @@ class HomeController extends Controller
         return view('admin.login.signin');
     }
 
-    public function checkout()
-    {
-        $userId = Auth::id();
+    // public function checkout()
+    // {
+    //     $userId = Auth::id();
 
-        if (! $userId) {
-            return redirect()->route('login')->with('error', 'Please login to proceed to checkout.');
-        }
+    //     if (! $userId) {
+    //         return redirect()->route('login')->with('error', 'Please login to proceed to checkout.');
+    //     }
 
-        $getcheckouts = CartItem::with('product')->where('user_id', $userId)->get();
+    //     $getcheckouts = CartItem::with('product')->where('user_id', $userId)->get();
 
-        $subtotal = 0;
-        $tax = 0;
-        $shipping = 0;
-        $discount = 0;
-        $total = 0;
+    //     $subtotal = 0;
+    //     $tax = 0;
+    //     $shipping = 0;
+    //     $discount = 0;
+    //     $total = 0;
 
-        if ($getcheckouts->isNotEmpty()) {
-            $subtotal = $getcheckouts->sum(function ($item) {
-                return $item->quantity * ($item->product->price ?? 0);
-            });
+    //     if ($getcheckouts->isNotEmpty()) {
+    //         $subtotal = $getcheckouts->sum(function ($item) {
+    //             return $item->quantity * ($item->product->price ?? 0);
+    //         });
 
-            $tax = 200;
-            $shipping = 500;
+    //         $tax = 200;
+    //         $shipping = 500;
 
-            if (session()->has('promo_code')) {
-                $coupon = Coupon::where('code', session('promo_code'))->first();
-                if ($coupon && (! $coupon->expires_at || now()->lessThan($coupon->expires_at))) {
-                    $discount = $coupon->type === 'fixed'
-                        ? $coupon->value
-                        : ($subtotal * $coupon->value) / 100;
-                } else {
-                    session()->forget('promo_code');
-                }
-            }
+    //         if (session()->has('promo_code')) {
+    //             $coupon = Coupon::where('code', session('promo_code'))->first();
+    //             if ($coupon && (! $coupon->expires_at || now()->lessThan($coupon->expires_at))) {
+    //                 $discount = $coupon->type === 'fixed'
+    //                     ? $coupon->value
+    //                     : ($subtotal * $coupon->value) / 100;
+    //             } else {
+    //                 session()->forget('promo_code');
+    //             }
+    //         }
 
-            $total = max(0, $subtotal + $tax + $shipping - $discount);
-        }
+    //         $total = max(0, $subtotal + $tax + $shipping - $discount);
+    //     }
 
-        session()->put([
-            'product_price' => $total,
-            'user_id' => $userId,
-        ]);
+    //     session()->put([
+    //         'product_price' => $total,
+    //         'user_id' => $userId,
+    //     ]);
 
-        return view('pages.checkout', compact(
-            'getcheckouts',
-            'subtotal',
-            'tax',
-            'shipping',
-            'discount',
-            'total'
-        ));
-    }
+    //     return view('pages.checkout', compact(
+    //         'getcheckouts',
+    //         'subtotal',
+    //         'tax',
+    //         'shipping',
+    //         'discount',
+    //         'total'
+    //     ));
+    // }
 
     public function updateQuantity(Request $request, $id)
     {
@@ -197,7 +314,7 @@ class HomeController extends Controller
 
     public function store_users(Request $request)
     {
-       
+
 
         $request->validate([
             'name' => 'required|string',
@@ -219,31 +336,6 @@ class HomeController extends Controller
         return redirect('/')->with('success', 'Welcome, you are logged in!');
     }
 
-    public function show(string $id)
-    {
-        //
-    }
-
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 
     public function login_user(Request $request)
     {
