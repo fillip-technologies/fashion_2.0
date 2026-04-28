@@ -802,6 +802,8 @@
     )];
     let viewerActiveIndex = 0;
     let viewerZoomLevel = 1;
+    const carouselAutoRotateDelay = 2000;
+    let carouselAutoRotateTimer = null;
 
     let queue = imagePairs.map(pair => [...pair]);
 
@@ -809,13 +811,28 @@
         const div = document.createElement("div");
         div.className = `carousel-item grid grid-cols-2 gap-3 p-2 ${isActive ? "bg-primary active" : ""}`;
         div.innerHTML = `
-            <div class="aspect-[1/1]">
-                <img src="${pair[0]}" class="w-full h-full" />
-            </div>
-            <div class="aspect-[1/1]">
-                <img src="${pair[1]}" class="w-full h-full" />
-            </div>
+            <button
+                type="button"
+                class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden appearance-none border-0 bg-transparent p-0"
+                data-viewer-image-src="${pair[0]}"
+                aria-label="Open product image 1">
+                <img src="${pair[0]}" class="w-full h-full" alt="Product thumbnail 1" />
+            </button>
+            <button
+                type="button"
+                class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden appearance-none border-0 bg-transparent p-0"
+                data-viewer-image-src="${pair[1]}"
+                aria-label="Open product image 2">
+                <img src="${pair[1]}" class="w-full h-full" alt="Product thumbnail 2" />
+            </button>
         `;
+
+        div.querySelectorAll("[data-viewer-image-src]").forEach(button => {
+            button.addEventListener("click", () => {
+                openProductImageViewer(button.dataset.viewerImageSrc);
+            });
+        });
+
         return div;
     }
 
@@ -865,6 +882,7 @@
 
         viewerActiveIndex = matchedIndex >= 0 ? matchedIndex : 0;
         viewerZoomLevel = 1;
+        stopCarouselAutoRotate();
         renderViewer();
         productImageViewer.classList.add("viewer-open");
         productImageViewer.setAttribute("aria-hidden", "false");
@@ -875,6 +893,7 @@
         productImageViewer.classList.remove("viewer-open");
         productImageViewer.setAttribute("aria-hidden", "true");
         document.body.classList.remove("product-image-viewer-lock");
+        startCarouselAutoRotate();
     }
 
     function bindBigCarouselClicks() {
@@ -909,22 +928,67 @@
         }
     }
 
+    function moveCarouselNext() {
+        if (queue.length <= 1) return;
+
+        const removed = queue.shift();
+        queue.push(removed);
+        renderCarousel();
+    }
+
+    function moveCarouselPrev() {
+        if (queue.length <= 1) return;
+
+        const last = queue.pop();
+        queue.unshift(last);
+        renderCarousel();
+    }
+
+    function stopCarouselAutoRotate() {
+        if (!carouselAutoRotateTimer) return;
+
+        clearInterval(carouselAutoRotateTimer);
+        carouselAutoRotateTimer = null;
+    }
+
+    function startCarouselAutoRotate() {
+        stopCarouselAutoRotate();
+
+        if (queue.length <= 1 || document.hidden) return;
+
+        carouselAutoRotateTimer = window.setInterval(() => {
+            moveCarouselNext();
+        }, carouselAutoRotateDelay);
+    }
+
+    function restartCarouselAutoRotate() {
+        startCarouselAutoRotate();
+    }
+
     renderCarousel();
+    startCarouselAutoRotate();
 
     nextButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const removed = queue.shift();
-            queue.push(removed);
-            renderCarousel();
+            moveCarouselNext();
+            restartCarouselAutoRotate();
         });
     });
 
     prevButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const last = queue.pop();
-            queue.unshift(last);
-            renderCarousel();
+            moveCarouselPrev();
+            restartCarouselAutoRotate();
         });
+    });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopCarouselAutoRotate();
+            return;
+        }
+
+        startCarouselAutoRotate();
     });
 
     productViewerCloseButtons.forEach(button => {
