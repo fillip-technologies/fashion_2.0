@@ -411,7 +411,7 @@
 
 <div id="productImageViewer" class="product-image-viewer bg-primary" aria-hidden="true">
     <div id="productImageViewerShell" class="product-image-viewer-shell">
-        <div class="hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
+        <div class="product-image-viewer-sidebar hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
             <div id="productViewerThumbs" class="flex flex-col gap-9 max-h-[78vh] overflow-y-auto custom-scroll pr-1"></div>
         </div>
 
@@ -445,7 +445,8 @@
             </div>
         </div>
 
-        <div class="hidden md:flex w-12 md:w-20 shrink-0 h-full flex-col items-center justify-between py-8 md:py-12">
+        <div
+            class="product-image-viewer-actions hidden md:flex w-12 md:w-20 shrink-0 h-full flex-col items-center justify-between py-8 md:py-12">
             <button id="productViewerClose" type="button"
                 class="product-viewer-close text-white/85 hover:text-white text-4xl leading-none font-light">
                 &times;
@@ -463,6 +464,12 @@
             </div>
             <div></div>
         </div>
+
+        <button id="productViewerFloatingClose" type="button"
+            class="product-viewer-close product-viewer-floating-close text-white/85 hover:text-white text-4xl leading-none font-light"
+            aria-label="Close image viewer">
+             &minus;
+        </button>
     </div>
 </div>
 
@@ -482,6 +489,7 @@
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
+        overflow-y: auto;
         transition: opacity 220ms ease, visibility 0s linear 220ms;
     }
 
@@ -499,7 +507,14 @@
         gap: 1rem;
         width: 100%;
         height: 100%;
-        padding: 0.75rem 1rem;
+     }
+
+    .product-viewer-floating-close {
+        position: fixed;
+        top: 4.5rem;
+        right: 6.5rem;
+        z-index: 5;
+        display: none;
     }
 
     .product-image-viewer-main {
@@ -528,12 +543,11 @@
     }
 
     .product-image-viewer-image {
+        display: block;
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
-        transform-origin: center center;
-        transition: transform 200ms ease;
-        will-change: transform;
+        transition: width 220ms ease, max-width 220ms ease;
         user-select: none;
     }
 
@@ -558,6 +572,60 @@
     .product-viewer-zoom-disabled {
         opacity: 0.25;
         pointer-events: none;
+    }
+
+    .product-image-viewer.viewer-detail-mode {
+        align-items: flex-start;
+        background: #000;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-shell {
+        align-items: flex-start;
+        min-height: 100vh;
+        height: auto;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-main {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-stage-wrap {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-stage {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        display: block;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-image {
+        width: 100%;
+        max-width: 100%;
+        max-height: none;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-sidebar,
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-actions,
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-mobile-top,
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-mobile-bottom {
+        display: none !important;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-viewer-floating-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 
     @media (max-width: 767px) {
@@ -616,10 +684,42 @@
             width: 3.75rem;
             height: 3.75rem;
         }
+
+        .product-viewer-floating-close {
+            top: 1.5rem;
+            right: 2rem;
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-shell {
+            padding: 0.75rem;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 1.5rem);
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-stage-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 1.5rem);
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .custom-scroll::-webkit-scrollbar {
-        width: 4px;
+        width: 1px;
     }
 
     .custom-scroll::-webkit-scrollbar-track {
@@ -801,7 +901,7 @@
         imagePairs.flat().map(src => new URL(src, window.location.href).href)
     )];
     let viewerActiveIndex = 0;
-    let viewerZoomLevel = 1;
+    let viewerIsDetailMode = false;
     const carouselAutoRotateDelay = 2000;
     let carouselAutoRotateTimer = null;
 
@@ -836,14 +936,26 @@
         return div;
     }
 
-    function updateViewerZoom() {
-        productViewerImage.style.transform = `scale(${viewerZoomLevel})`;
+    function scrollViewerToTop() {
+        productImageViewer.scrollTo({
+            top: 0,
+            behavior: "auto"
+        });
+    }
+
+    function updateViewerMode() {
+        productImageViewer.classList.toggle("viewer-detail-mode", viewerIsDetailMode);
+
         productViewerZoomOutButtons.forEach(button => {
-            button.classList.toggle("product-viewer-zoom-disabled", viewerZoomLevel <= 1);
+            button.classList.toggle("product-viewer-zoom-disabled", !viewerIsDetailMode);
         });
         productViewerZoomInButtons.forEach(button => {
-            button.classList.toggle("product-viewer-zoom-disabled", viewerZoomLevel >= 2.5);
+            button.classList.toggle("product-viewer-zoom-disabled", viewerIsDetailMode);
         });
+
+        if (viewerIsDetailMode) {
+            scrollViewerToTop();
+        }
     }
 
     function renderViewerThumbs(container) {
@@ -861,7 +973,6 @@
         container.querySelectorAll("[data-viewer-thumb-index]").forEach(button => {
             button.addEventListener("click", () => {
                 viewerActiveIndex = Number(button.dataset.viewerThumbIndex);
-                viewerZoomLevel = 1;
                 renderViewer();
             });
         });
@@ -873,7 +984,7 @@
         productViewerImage.src = viewerGalleryImages[viewerActiveIndex];
         renderViewerThumbs(productViewerThumbs);
         renderViewerThumbs(productViewerThumbsMobile);
-        updateViewerZoom();
+        updateViewerMode();
     }
 
     function openProductImageViewer(imageSrc) {
@@ -881,7 +992,7 @@
         const matchedIndex = viewerGalleryImages.indexOf(normalizedSrc);
 
         viewerActiveIndex = matchedIndex >= 0 ? matchedIndex : 0;
-        viewerZoomLevel = 1;
+        viewerIsDetailMode = false;
         stopCarouselAutoRotate();
         renderViewer();
         productImageViewer.classList.add("viewer-open");
@@ -890,9 +1001,12 @@
     }
 
     function closeProductImageViewer() {
+        viewerIsDetailMode = false;
+        updateViewerMode();
         productImageViewer.classList.remove("viewer-open");
         productImageViewer.setAttribute("aria-hidden", "true");
         document.body.classList.remove("product-image-viewer-lock");
+        scrollViewerToTop();
         startCarouselAutoRotate();
     }
 
@@ -1003,15 +1117,19 @@
 
     productViewerZoomInButtons.forEach(button => {
         button.addEventListener("click", () => {
-            viewerZoomLevel = Math.min(2.5, Number((viewerZoomLevel + 0.25).toFixed(2)));
-            updateViewerZoom();
+            if (viewerIsDetailMode) return;
+
+            viewerIsDetailMode = true;
+            updateViewerMode();
         });
     });
 
     productViewerZoomOutButtons.forEach(button => {
         button.addEventListener("click", () => {
-            viewerZoomLevel = Math.max(1, Number((viewerZoomLevel - 0.25).toFixed(2)));
-            updateViewerZoom();
+            if (!viewerIsDetailMode) return;
+
+            viewerIsDetailMode = false;
+            updateViewerMode();
         });
     });
 
@@ -1024,13 +1142,11 @@
 
         if (event.key === "ArrowRight" && viewerActiveIndex < viewerGalleryImages.length - 1) {
             viewerActiveIndex += 1;
-            viewerZoomLevel = 1;
             renderViewer();
         }
 
         if (event.key === "ArrowLeft" && viewerActiveIndex > 0) {
             viewerActiveIndex -= 1;
-            viewerZoomLevel = 1;
             renderViewer();
         }
     });
