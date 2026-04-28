@@ -27,7 +27,7 @@
             <div class="flex justify-between">
                 <div>
                     <p class="text-dark">Active Bookings</p>
-                    <h3 class="text-2xl font-bold text-dark mt-2">{{ App\Models\Order::count() }}</h3>
+                    <h3 class="text-2xl font-bold text-dark mt-2"></h3>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-secondary/10 flex items-center justify-center">
                     <i class="fas fa-calendar-check text-secondary text-xl"></i>
@@ -63,7 +63,7 @@
             <div class="flex justify-between">
                 <div>
                     <p class="text-dark">Total OrderRequest</p>
-                    <h3 class="text-2xl font-bold text-dark mt-2">{{ App\Models\CostumForm::count() }}</h3>
+                    <h3 class="text-2xl font-bold text-dark mt-2"></h3>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-yellow-400/10 flex items-center justify-center">
                     <i class="fas fa-star text-yellow-400 text-xl"></i>

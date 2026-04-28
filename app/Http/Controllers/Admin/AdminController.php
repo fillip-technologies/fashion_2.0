@@ -12,7 +12,7 @@ class AdminController extends Controller
 {
     public function admin()
     {
-        //  dd(Hash::make('123'));
+        // dd(Hash::make('123'));
         return view('admin.login.signin');
     }
 

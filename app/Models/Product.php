@@ -7,62 +7,31 @@ use Illuminate\Database\Eloquent\Model;
 class Product extends Model
 {
     protected $fillable = [
-        'tenant_id',
         'category_id',
         'name',
+        'brand',
+        'fabric',
+        'fit',
+        'short_description',
         'slug',
         'description',
-        'price',
-        'stock',
-        'image',
-        'subcategory_id',  
-        'discount',
-        'sku',
-        'show_product',
+        'meta_title',
+        'meta_description',
+        'status',
+        'is_featured'
     ];
 
-    public function tenant()
+    protected static function boot()
     {
-        return $this->belongsTo(Tenant::class);
+        parent::boot();
+
+        static::creating(function ($product) {
+            $product->slug = Str::slug($product->name);
+        });
     }
 
     public function category()
     {
         return $this->belongsTo(Category::class);
-    }
-
-    public function variants()
-    {
-        return $this->hasMany(ProductVariant::class);
-    }
-
-    public function inventories()
-    {
-        return $this->hasMany(Inventory::class);
-    }
-
-    public function reviews()
-    {
-        return $this->hasMany(Review::class);
-    }
-
-    public function orderItems()
-    {
-        return $this->hasMany(OrderItem::class);
-    }
-
-    public function cartItems()
-    {
-        return $this->hasMany(CartItem::class);
-    }
-
-    public function priceBreakdowns()
-    {
-        return $this->hasMany(PriceBreakDown::class);
-    }
-
-    public function customizations()
-    {
-        return $this->hasMany(ProductCustomization::class);
     }
 }
