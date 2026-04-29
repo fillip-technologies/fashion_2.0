@@ -64,7 +64,7 @@
 
             <div id="overlayBox"
                 class="absolute inset-0 
-          bg-gradient-to-b from-black/40 to-black/70
+          bg-gradient-to-b from-black/60 to-black/80
            opacity-0
            transition-opacity duration-300
            flex flex-col items-center justify-center text-center px-6">
@@ -75,7 +75,7 @@
 
                 <div class="w-80 h-px bg-white my-3"></div>
 
-                <p class="text-white text-[1rem] w-7/12 mt-10 opacity-80" style="font-weight: 300">
+                <p class="text-white text-[1rem] w-7/12 mt-10 " style="font-weight: 300">
                     A fashion collection is a curated group of clothing, footwear, and accessories designed around a
                     central theme, concept, or inspiration, unified by shared colors, fabrics, silhouettes, and styles
                     for a specific season (like Spring/Summer or Fall/Winter) to tell a cohesive story and predict

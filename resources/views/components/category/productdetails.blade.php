@@ -22,9 +22,9 @@
                 </div>
             </div>
 
-            <div class="w-full h-px bg-dash-dot"></div>
+            <div class="hidden md:block w-full h-px bg-dash-dot"></div>
 
-            <div class="my-8 border-x-[1.5rem] border-primary">
+            <div class="hidden md:block my-8 border-x-[1.5rem] border-primary">
                 <div class="w-full h-px bg-dash-dot"></div>
 
                 <div class="max-w-xl px-6 h-screen mx-auto pb-24 pt-16 text-[0.875rem] leading-relaxed flex flex-col items-center justify-center space-y-10 text-center"
@@ -163,7 +163,7 @@
 
 
 
-                    <div id="sizeDropdown" class="hidden w-full bg-white mt-4">
+                    {{-- <div id="sizeDropdown" class="hidden w-full bg-white mt-4">
 
 
                         <div class="bg-black text-white px-6 py-5 text-[ 0.875rem]">
@@ -171,10 +171,39 @@
                         </div>
 
                         <div class="px-6 py-5 space-y-8 text-[0.75rem] text-black">
-                            <p class="size-option cursor-pointer">Small</p>
+                            <p class="size-option cursor-pointer hover:bg-black hover:text-white">Small</p>
                             <p class="size-option cursor-pointer">Medium</p>
                             <p class="size-option cursor-pointer">Large</p>
                             <p class="size-option cursor-pointer">Extra Large</p>
+                        </div>
+                    </div> --}}
+
+                    <div id="sizeDropdown" class="hidden w-full bg-white mt-4 shadow-md">
+
+                        <!-- Header -->
+                        <div class="bg-black text-white px-6 py-5 text-sm border-b border-gray-700">
+                            Select size
+                        </div>
+
+                        <!-- Options -->
+                        <div class="text-sm text-black">
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Small
+                            </p>
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Medium
+                            </p>
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Large
+                            </p>
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Extra Large
+                            </p>
+
                         </div>
                     </div>
 
@@ -392,6 +421,34 @@
         </div>
     </div>
 
+    <div class="md:hidden my-8 border-x-[1.5rem] border-primary">
+        <div class="w-full h-px bg-dash-dot"></div>
+
+        <div class="max-w-xl px-6 h-screen mx-auto pb-24 pt-16 text-[0.875rem] leading-relaxed flex flex-col items-center justify-center space-y-10 text-center"
+            style="font-weight: 200">
+
+            <p class="text-[1.25rem] uppercase font-medium">The Line</p>
+            <p>
+                Honouring Loro Piana’s centenary, Loro Piana’s book Master of Fibres recounts
+                the Maison’s unique story from a wool-trading company to the ultimate destination for
+                sophistication, excellence, and textile artisanship. Published by Assouline and written by
+                Nicholas Foulkes.
+                Loro Piana Gift Card
+            </p>
+            <p>
+                Surprise your beloved ones with a refined Gift Card by Loro Piana. Let them discover a universe
+                of inspiration and unique elegance
+                Knit Design Award
+            </p>
+            <p>
+                The Knit Design Award celebrates talented students from leading design schools around the world
+                with an extraordinary passion for knitwear who demonstrate their creativity in reinterpreting
+                Loro Piana's iconic yarns.
+                Fall/Winter 2025-2026
+            </p>
+        </div>
+    </div>
+
     <div class="w-full h-px bg-dash-dot"></div>
     <div class="pt-28 pb-20 bg-background">
         <div class="text-[1.25rem] text-center italic text-secondary mb-3">Pair it with</div>
@@ -411,8 +468,10 @@
 
 <div id="productImageViewer" class="product-image-viewer bg-primary" aria-hidden="true">
     <div id="productImageViewerShell" class="product-image-viewer-shell">
-        <div class="product-image-viewer-sidebar hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
-            <div id="productViewerThumbs" class="flex flex-col gap-9 max-h-[78vh] overflow-y-auto custom-scroll pr-1"></div>
+        <div
+            class="product-image-viewer-sidebar hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
+            <div id="productViewerThumbs" class="flex flex-col gap-9 max-h-[78vh] overflow-y-auto custom-scroll pr-1">
+            </div>
         </div>
 
         <div class="product-image-viewer-main flex-1 min-w-0 h-full">
@@ -468,7 +527,7 @@
         <button id="productViewerFloatingClose" type="button"
             class="product-viewer-close product-viewer-floating-close text-white/85 hover:text-white text-4xl leading-none font-light"
             aria-label="Close image viewer">
-             &minus;
+            &minus;
         </button>
     </div>
 </div>
@@ -507,7 +566,7 @@
         gap: 1rem;
         width: 100%;
         height: 100%;
-     }
+    }
 
     .product-viewer-floating-close {
         position: fixed;
