@@ -387,6 +387,13 @@
         overflow: hidden;
     }
 
+    @media (min-width: 768px) {
+        #storyGrid .story-card.locked:hover .story-card-scrim,
+        #storyGrid .story-card.locked:hover .story-card-caption {
+            opacity: 0 !important;
+        }
+    }
+
     @media (max-width: 767px) {
         #storyGrid .story-card-caption {
             transform: translateY(0.75rem);
