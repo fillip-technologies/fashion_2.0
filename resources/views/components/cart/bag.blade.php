@@ -27,7 +27,8 @@
 
          <div class="md:col-span-8 pt-6 bg-white">
 
-             <p class=" px-6 pb-4 text-[1rem] tracking-wide mb-4">Number of items in your cart - <span>(2)</span></p>
+            <p class=" px-6 pb-4 text-[1rem] tracking-wide mb-4">Number of items in your cart - <span
+                    class="cart-count">(2)</span></p>
 
              <div class="relative">
                  <div class="w-full h-px bg-dash-dot"></div>
@@ -108,7 +109,7 @@
                  <div class="undo-box hidden flex flex-col items-center justify-center text-[0.875rem] py-28"
                      style="font-weight: 300">
                      <p>
-                         Your have removed an items from your cart.
+                        You have removed an item from your cart.
                          <span class="underline underline-offset-1 cursor-pointer undo-action">
                              Undo action?
                          </span>
@@ -192,7 +193,7 @@
                  <div class="undo-box hidden flex flex-col items-center justify-center text-[0.875rem] py-28"
                      style="font-weight: 300">
                      <p>
-                         Your have removed an items from your cart.
+                        You have removed an item from your cart.
                          <span class="underline underline-offset-1 cursor-pointer undo-action">
                              Undo action?
                          </span>
@@ -214,7 +215,7 @@
                  </div>
              </div>
 
-             <div class="flex flex-col items-center justify-center text-[0.875rem] pb-28 empty-cart hidden"
+             <div class="flex flex-col items-center justify-center text-[0.875rem] py-28 empty-cart hidden"
                  style="font-weight: 300">
                  <p>Your cart is empty</p>
                  <p class="text-center">Browse around the website to find something for yourself or add </br> items
@@ -660,20 +661,67 @@
  <script>
      document.addEventListener("DOMContentLoaded", () => {
 
-         const cartItems = document.querySelectorAll(".cart-item");
+         const undoVisibilityDuration = 3000;
+         const cartItems = Array.from(document.querySelectorAll(".cart-item"));
+         const cartCount = document.querySelector(".cart-count");
          const bagTotalBox = document.querySelector(".bag-total-box");
          const bagTotal = document.querySelector(".bag-total");
          const itemCount = document.querySelector(".item-count");
          const emptyCart = document.querySelector(".empty-cart");
          const emptyCartShowcase = document.querySelector(".empty-cart-showcase");
          const cartShowcaseInfo = document.querySelector(".cart-showcase-info");
+         const undoTimers = new WeakMap();
+
+         const clearUndoTimer = (item) => {
+             const timerId = undoTimers.get(item);
+
+             if (!timerId) {
+                 return;
+             }
+
+             window.clearTimeout(timerId);
+             undoTimers.delete(item);
+         };
+
+         const hideItemContent = (item) => {
+             [...item.children].forEach(child => {
+                 if (!child.classList.contains("undo-box")) {
+                     child.classList.add("hidden");
+                 }
+             });
+         };
+
+         const showItemContent = (item) => {
+             [...item.children].forEach(child => {
+                 if (!child.classList.contains("undo-box")) {
+                     child.classList.remove("hidden");
+                 }
+             });
+         };
+
+         const finalizeRemoval = (item) => {
+             const undoBox = item.querySelector(".undo-box");
+
+             clearUndoTimer(item);
+             item.classList.remove("pending-removal");
+             item.classList.add("removed", "hidden");
+             undoBox.classList.add("hidden");
+
+             updateCart();
+         };
 
          function updateCart() {
-             const activeItems = [...cartItems].filter(
-                 item => item.classList.contains("removed") === false
-             );
+             const activeItems = cartItems.filter(item => !item.classList.contains("removed") && !item
+                 .classList.contains("pending-removal"));
+             const hasPendingRemovals = cartItems.some(item => item.classList.contains("pending-removal"));
+             const isCartEmpty = activeItems.length === 0 && !hasPendingRemovals;
+             const shouldShowCartSections = activeItems.length > 0 || hasPendingRemovals;
 
              itemCount.textContent = `(${activeItems.length})`;
+
+             if (cartCount) {
+                 cartCount.textContent = `(${activeItems.length})`;
+             }
 
              let total = 0;
              activeItems.forEach(item => {
@@ -686,30 +734,24 @@
 
              const isDesktop = window.matchMedia("(min-width: 768px)").matches;
 
-             if (activeItems.length === 0) {
+             if (shouldShowCartSections) {
+                 bagTotalBox.classList.remove("hidden");
+                 emptyCart.classList.add("hidden");
+                 emptyCartShowcase.classList.add("hidden");
+                 emptyCartShowcase.style.display = "none";
+                 cartShowcaseInfo.style.display = "";
+             } else {
                  bagTotalBox.classList.add("hidden");
                  emptyCart.classList.remove("hidden");
                  cartShowcaseInfo.style.display = "none";
-                 
-                 if (isDesktop) {
+
+                 if (isDesktop && isCartEmpty) {
                      emptyCartShowcase.classList.remove("hidden");
                      emptyCartShowcase.style.display = "block";
                  } else {
                      emptyCartShowcase.classList.add("hidden");
                      emptyCartShowcase.style.display = "none";
                  }
-
-                 cartItems.forEach(item => {
-                     const undoBox = item.querySelector(".undo-box");
-                     undoBox.classList.add("hidden");
-                 });
-
-             } else {
-                 bagTotalBox.classList.remove("hidden");
-                 emptyCart.classList.add("hidden");
-                 emptyCartShowcase.classList.add("hidden");
-                 emptyCartShowcase.style.display = "none";
-                 cartShowcaseInfo.style.display = "";
              }
          }
 
@@ -734,25 +776,21 @@
              };
 
              removeBtn.onclick = () => {
-                 item.classList.add("removed", "border-none");
-
-                 [...item.children].forEach(child => {
-                     if (!child.classList.contains("undo-box")) {
-                         child.classList.add("hidden");
-                     }
-                 });
+                 clearUndoTimer(item);
+                 item.classList.remove("hidden", "removed");
+                 item.classList.add("pending-removal", "border-none");
+                 hideItemContent(item);
 
                  undoBox.classList.remove("hidden");
+                 undoTimers.set(item, window.setTimeout(() => finalizeRemoval(item), undoVisibilityDuration));
                  updateCart();
              };
 
 
              undoAction.onclick = () => {
-                 item.classList.remove("removed", "border-none");
-
-                 [...item.children].forEach(child => {
-                     child.classList.remove("hidden");
-                 });
+                 clearUndoTimer(item);
+                 item.classList.remove("pending-removal", "removed", "hidden", "border-none");
+                 showItemContent(item);
 
                  undoBox.classList.add("hidden");
                  updateCart();
