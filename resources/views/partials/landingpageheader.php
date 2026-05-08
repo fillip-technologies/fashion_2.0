@@ -1,4 +1,4 @@
-<header class="w-full bg-[#F2F2F2] fixed top-0 left-0 z-50">
+<header class="w-full bg-[#F2F2F2]">
 
     <div class="max-w-[1440px] mx-auto relative h-[218px]">
 
@@ -16,6 +16,3 @@
     </div>
 
 </header>
-
-<!-- Spacer -->
-<div class="h-[218px]"></div>
