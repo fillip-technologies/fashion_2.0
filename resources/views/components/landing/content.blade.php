@@ -147,15 +147,52 @@
 </section> --}}
 
 
-<section class="relative group mobile-hover-card mobile-hover-journey w-full h-[60vh] md:h-[80vh] bg-secondary overflow-hidden">
-    <a href="/journey" class="block h-full">
+<section class="relative group mobile-hover-card mobile-hover-journey w-full bg-secondary overflow-hidden md:h-[80vh]">
+    <a href="/journey" class="block md:hidden py-8">
+        <div class="flex flex-col items-center gap-6 px-4">
+
+            <p class="text-white py-2">
+                 <span class="text-[34px] font-extrabold">"The Journey"</span>
+                to find the best.
+            </p>
+
+            <img src="{{ asset('assets/images/landing/seven.png') }}" alt="Journey"
+                class="w-auto max-w-full h-auto object-contain" />
+
+            <div
+                class="flex flex-col items-center justify-center
+                    w-full
+                    text-center px-4 py-8
+                    text-[14px]
+                    text-white font-light">
+                {{-- <p class="mb-4">
+                    The <span class="text-[24px] font-extrabold">Journey</span>
+                    to find the best.
+                </p> --}}
+                <p class="max-w-md">
+                    The passage from a starting point to an end point involved many
+                    events, a lot of time, or a considerable amount of effort,
+                    leading to personal growth, change, or a significant
+                    accomplishment.
+                </p>
+                <span class="mt-5 text-[11px] uppercase tracking-[0.25em] text-white/80">
+                    Tap to explore more
+                </span>
+            </div>
+
+            {{-- <img src="{{ asset('assets/images/landing/seven.png') }}" alt="" aria-hidden="true"
+                class="w-auto max-w-full max-h-[24vh] object-contain" /> --}}
+        </div>
+    </a>
+
+    <a href="/journey" class="hidden h-full md:block">
         <img src="{{ asset('assets/images/landing/six.png') }}" alt="Center"
             class="absolute inset-0 m-auto max-h-full w-auto object-contain z-0" />
 
         <div class="relative z-10 grid grid-cols-1 md:grid-cols-2 h-full">
             <div
                 class="flex items-center justify-center h-full w-full
-                    order-2 md:order-1 
+                    order-2 md:order-1
                     ml-0 md:ml-10">
 
                 <div
@@ -184,7 +221,6 @@
                 <img src="{{ asset('assets/images/landing/seven.png') }}" alt="Search"
                     class="max-h-[35vh] md:max-h-[80vh] w-auto object-contain" />
             </div>
-
         </div>
     </a>
 </section>
@@ -207,7 +243,8 @@
         if (mobileHoverCards.length === 0) return;
 
         const isMobileViewport = () => window.innerWidth < 768;
-        const hasPendingScrollHints = () => mobileHoverCards.some((card) => card.dataset.scrollHintSeen !== "true");
+        const hasPendingScrollHints = () => mobileHoverCards.some((card) => card.dataset.scrollHintSeen !==
+            "true");
 
         const clearPreviewTimer = (card) => {
             const timerId = previewTimers.get(card);
@@ -366,6 +403,7 @@
 
 <style>
     @media (max-width: 767px) {
+
         .mobile-hover-card.touch-active .mobile-hover-content,
         .mobile-hover-card.scroll-preview .mobile-hover-content {
             opacity: 1;

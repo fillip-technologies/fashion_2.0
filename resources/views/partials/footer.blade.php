@@ -20,7 +20,7 @@
             </div>
             <div>
                 {{-- this h4 should be clickable --}}
-                <h4 class="text-[1rem] tracking-widest mb-12 cursor-pointer" onclick="toggleSocials()">FOLLOW US</h4>
+                <h4 class="text-[1rem] tracking-widest mb-12 cursor-default md:cursor-pointer" onclick="toggleSocials()">FOLLOW US</h4>
                 <div class="flex space-x-4 md:hidden">
                     <ul class="space-y-4 text-[0.75rem] font-light text-background">
                         <li><img src="assets/social-icons/icon1.png" /></li>
@@ -93,6 +93,16 @@
     function toggleSocials() {
         const drawer = document.getElementById("socialDrawer");
 
+        if (!drawer) {
+            return;
+        }
+
+        if (window.innerWidth < 768) {
+            drawer.classList.add("hidden");
+            drawer.classList.remove("block");
+            return;
+        }
+
         if (drawer.classList.contains("hidden")) {
             drawer.classList.remove("hidden");
             drawer.classList.add("block");
@@ -101,4 +111,15 @@
             drawer.classList.remove("block");
         }
     }
+
+    window.addEventListener("resize", function() {
+        const drawer = document.getElementById("socialDrawer");
+
+        if (!drawer || window.innerWidth >= 768) {
+            return;
+        }
+
+        drawer.classList.add("hidden");
+        drawer.classList.remove("block");
+    });
 </script>

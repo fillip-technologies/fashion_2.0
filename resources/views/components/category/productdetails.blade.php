@@ -22,9 +22,9 @@
                 </div>
             </div>
 
-            <div class="w-full h-px bg-dash-dot"></div>
+            <div class="hidden md:block w-full h-px bg-dash-dot"></div>
 
-            <div class="my-8 border-x-[1.5rem] border-primary">
+            <div class="hidden md:block my-8 border-x-[1.5rem] border-primary">
                 <div class="w-full h-px bg-dash-dot"></div>
 
                 <div class="max-w-xl px-6 h-screen mx-auto pb-24 pt-16 text-[0.875rem] leading-relaxed flex flex-col items-center justify-center space-y-10 text-center"
@@ -163,7 +163,7 @@
 
 
 
-                    <div id="sizeDropdown" class="hidden w-full bg-white mt-4">
+                    {{-- <div id="sizeDropdown" class="hidden w-full bg-white mt-4">
 
 
                         <div class="bg-black text-white px-6 py-5 text-[ 0.875rem]">
@@ -171,10 +171,39 @@
                         </div>
 
                         <div class="px-6 py-5 space-y-8 text-[0.75rem] text-black">
-                            <p class="size-option cursor-pointer">Small</p>
+                            <p class="size-option cursor-pointer hover:bg-black hover:text-white">Small</p>
                             <p class="size-option cursor-pointer">Medium</p>
                             <p class="size-option cursor-pointer">Large</p>
                             <p class="size-option cursor-pointer">Extra Large</p>
+                        </div>
+                    </div> --}}
+
+                    <div id="sizeDropdown" class="hidden w-full bg-white mt-4 shadow-md">
+
+                        <!-- Header -->
+                        <div class="bg-black text-white px-6 py-5 text-sm border-b border-gray-700">
+                            Select size
+                        </div>
+
+                        <!-- Options -->
+                        <div class="text-sm text-black">
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Small
+                            </p>
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Medium
+                            </p>
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Large
+                            </p>
+
+                            <p class="size-option px-6 py-4 cursor-pointer hover:bg-black hover:text-white transition">
+                                Extra Large
+                            </p>
+
                         </div>
                     </div>
 
@@ -392,6 +421,34 @@
         </div>
     </div>
 
+    <div class="md:hidden my-8 border-x-[1.5rem] border-primary">
+        <div class="w-full h-px bg-dash-dot"></div>
+
+        <div class="max-w-xl px-6 h-screen mx-auto pb-24 pt-16 text-[0.875rem] leading-relaxed flex flex-col items-center justify-center space-y-10 text-center"
+            style="font-weight: 200">
+
+            <p class="text-[1.25rem] uppercase font-medium">The Line</p>
+            <p>
+                Honouring Loro Piana’s centenary, Loro Piana’s book Master of Fibres recounts
+                the Maison’s unique story from a wool-trading company to the ultimate destination for
+                sophistication, excellence, and textile artisanship. Published by Assouline and written by
+                Nicholas Foulkes.
+                Loro Piana Gift Card
+            </p>
+            <p>
+                Surprise your beloved ones with a refined Gift Card by Loro Piana. Let them discover a universe
+                of inspiration and unique elegance
+                Knit Design Award
+            </p>
+            <p>
+                The Knit Design Award celebrates talented students from leading design schools around the world
+                with an extraordinary passion for knitwear who demonstrate their creativity in reinterpreting
+                Loro Piana's iconic yarns.
+                Fall/Winter 2025-2026
+            </p>
+        </div>
+    </div>
+
     <div class="w-full h-px bg-dash-dot"></div>
     <div class="pt-28 pb-20 bg-background">
         <div class="text-[1.25rem] text-center italic text-secondary mb-3">Pair it with</div>
@@ -411,8 +468,10 @@
 
 <div id="productImageViewer" class="product-image-viewer bg-primary" aria-hidden="true">
     <div id="productImageViewerShell" class="product-image-viewer-shell">
-        <div class="hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
-            <div id="productViewerThumbs" class="flex flex-col gap-9 max-h-[78vh] overflow-y-auto custom-scroll pr-1"></div>
+        <div
+            class="product-image-viewer-sidebar hidden md:flex w-24 lg:w-28 shrink-0 h-full items-center justify-center">
+            <div id="productViewerThumbs" class="flex flex-col gap-9 max-h-[78vh] overflow-y-auto custom-scroll pr-1">
+            </div>
         </div>
 
         <div class="product-image-viewer-main flex-1 min-w-0 h-full">
@@ -445,7 +504,8 @@
             </div>
         </div>
 
-        <div class="hidden md:flex w-12 md:w-20 shrink-0 h-full flex-col items-center justify-between py-8 md:py-12">
+        <div
+            class="product-image-viewer-actions hidden md:flex w-12 md:w-20 shrink-0 h-full flex-col items-center justify-between py-8 md:py-12">
             <button id="productViewerClose" type="button"
                 class="product-viewer-close text-white/85 hover:text-white text-4xl leading-none font-light">
                 &times;
@@ -463,6 +523,12 @@
             </div>
             <div></div>
         </div>
+
+        <button id="productViewerFloatingClose" type="button"
+            class="product-viewer-close product-viewer-floating-close text-white/85 hover:text-white text-4xl leading-none font-light"
+            aria-label="Close image viewer">
+            &minus;
+        </button>
     </div>
 </div>
 
@@ -482,6 +548,7 @@
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
+        overflow-y: auto;
         transition: opacity 220ms ease, visibility 0s linear 220ms;
     }
 
@@ -499,7 +566,14 @@
         gap: 1rem;
         width: 100%;
         height: 100%;
-        padding: 0.75rem 1rem;
+    }
+
+    .product-viewer-floating-close {
+        position: fixed;
+        top: 4.5rem;
+        right: 6.5rem;
+        z-index: 5;
+        display: none;
     }
 
     .product-image-viewer-main {
@@ -528,12 +602,11 @@
     }
 
     .product-image-viewer-image {
+        display: block;
         max-width: 100%;
         max-height: 100%;
         object-fit: contain;
-        transform-origin: center center;
-        transition: transform 200ms ease;
-        will-change: transform;
+        transition: width 220ms ease, max-width 220ms ease;
         user-select: none;
     }
 
@@ -558,6 +631,60 @@
     .product-viewer-zoom-disabled {
         opacity: 0.25;
         pointer-events: none;
+    }
+
+    .product-image-viewer.viewer-detail-mode {
+        align-items: flex-start;
+        background: #000;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-shell {
+        align-items: flex-start;
+        min-height: 100vh;
+        height: auto;
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-main {
+        display: block;
+        width: 100%;
+        height: auto;
+        min-height: 0;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-stage-wrap {
+        display: block;
+        width: 100%;
+        height: auto;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-stage {
+        width: 100%;
+        height: auto;
+        overflow: visible;
+        display: block;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-image {
+        width: 100%;
+        max-width: 100%;
+        max-height: none;
+        height: auto;
+        object-fit: cover;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-sidebar,
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-actions,
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-mobile-top,
+    .product-image-viewer.viewer-detail-mode .product-image-viewer-mobile-bottom {
+        display: none !important;
+    }
+
+    .product-image-viewer.viewer-detail-mode .product-viewer-floating-close {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
     }
 
     @media (max-width: 767px) {
@@ -616,10 +743,42 @@
             width: 3.75rem;
             height: 3.75rem;
         }
+
+        .product-viewer-floating-close {
+            top: 1.5rem;
+            right: 2rem;
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-shell {
+            padding: 0.75rem;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-main {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 1.5rem);
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-stage-wrap {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: calc(100vh - 1.5rem);
+        }
+
+        .product-image-viewer.viewer-detail-mode .product-image-viewer-stage {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
     }
 
     .custom-scroll::-webkit-scrollbar {
-        width: 4px;
+        width: 1px;
     }
 
     .custom-scroll::-webkit-scrollbar-track {
@@ -801,7 +960,9 @@
         imagePairs.flat().map(src => new URL(src, window.location.href).href)
     )];
     let viewerActiveIndex = 0;
-    let viewerZoomLevel = 1;
+    let viewerIsDetailMode = false;
+    const carouselAutoRotateDelay = 2000;
+    let carouselAutoRotateTimer = null;
 
     let queue = imagePairs.map(pair => [...pair]);
 
@@ -809,24 +970,51 @@
         const div = document.createElement("div");
         div.className = `carousel-item grid grid-cols-2 gap-3 p-2 ${isActive ? "bg-primary active" : ""}`;
         div.innerHTML = `
-            <div class="aspect-[1/1]">
-                <img src="${pair[0]}" class="w-full h-full" />
-            </div>
-            <div class="aspect-[1/1]">
-                <img src="${pair[1]}" class="w-full h-full" />
-            </div>
+            <button
+                type="button"
+                class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden appearance-none border-0 bg-transparent p-0"
+                data-viewer-image-src="${pair[0]}"
+                aria-label="Open product image 1">
+                <img src="${pair[0]}" class="w-full h-full" alt="Product thumbnail 1" />
+            </button>
+            <button
+                type="button"
+                class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden appearance-none border-0 bg-transparent p-0"
+                data-viewer-image-src="${pair[1]}"
+                aria-label="Open product image 2">
+                <img src="${pair[1]}" class="w-full h-full" alt="Product thumbnail 2" />
+            </button>
         `;
+
+        div.querySelectorAll("[data-viewer-image-src]").forEach(button => {
+            button.addEventListener("click", () => {
+                openProductImageViewer(button.dataset.viewerImageSrc);
+            });
+        });
+
         return div;
     }
 
-    function updateViewerZoom() {
-        productViewerImage.style.transform = `scale(${viewerZoomLevel})`;
+    function scrollViewerToTop() {
+        productImageViewer.scrollTo({
+            top: 0,
+            behavior: "auto"
+        });
+    }
+
+    function updateViewerMode() {
+        productImageViewer.classList.toggle("viewer-detail-mode", viewerIsDetailMode);
+
         productViewerZoomOutButtons.forEach(button => {
-            button.classList.toggle("product-viewer-zoom-disabled", viewerZoomLevel <= 1);
+            button.classList.toggle("product-viewer-zoom-disabled", !viewerIsDetailMode);
         });
         productViewerZoomInButtons.forEach(button => {
-            button.classList.toggle("product-viewer-zoom-disabled", viewerZoomLevel >= 2.5);
+            button.classList.toggle("product-viewer-zoom-disabled", viewerIsDetailMode);
         });
+
+        if (viewerIsDetailMode) {
+            scrollViewerToTop();
+        }
     }
 
     function renderViewerThumbs(container) {
@@ -844,7 +1032,6 @@
         container.querySelectorAll("[data-viewer-thumb-index]").forEach(button => {
             button.addEventListener("click", () => {
                 viewerActiveIndex = Number(button.dataset.viewerThumbIndex);
-                viewerZoomLevel = 1;
                 renderViewer();
             });
         });
@@ -856,7 +1043,7 @@
         productViewerImage.src = viewerGalleryImages[viewerActiveIndex];
         renderViewerThumbs(productViewerThumbs);
         renderViewerThumbs(productViewerThumbsMobile);
-        updateViewerZoom();
+        updateViewerMode();
     }
 
     function openProductImageViewer(imageSrc) {
@@ -864,7 +1051,8 @@
         const matchedIndex = viewerGalleryImages.indexOf(normalizedSrc);
 
         viewerActiveIndex = matchedIndex >= 0 ? matchedIndex : 0;
-        viewerZoomLevel = 1;
+        viewerIsDetailMode = false;
+        stopCarouselAutoRotate();
         renderViewer();
         productImageViewer.classList.add("viewer-open");
         productImageViewer.setAttribute("aria-hidden", "false");
@@ -872,9 +1060,13 @@
     }
 
     function closeProductImageViewer() {
+        viewerIsDetailMode = false;
+        updateViewerMode();
         productImageViewer.classList.remove("viewer-open");
         productImageViewer.setAttribute("aria-hidden", "true");
         document.body.classList.remove("product-image-viewer-lock");
+        scrollViewerToTop();
+        startCarouselAutoRotate();
     }
 
     function bindBigCarouselClicks() {
@@ -909,22 +1101,67 @@
         }
     }
 
+    function moveCarouselNext() {
+        if (queue.length <= 1) return;
+
+        const removed = queue.shift();
+        queue.push(removed);
+        renderCarousel();
+    }
+
+    function moveCarouselPrev() {
+        if (queue.length <= 1) return;
+
+        const last = queue.pop();
+        queue.unshift(last);
+        renderCarousel();
+    }
+
+    function stopCarouselAutoRotate() {
+        if (!carouselAutoRotateTimer) return;
+
+        clearInterval(carouselAutoRotateTimer);
+        carouselAutoRotateTimer = null;
+    }
+
+    function startCarouselAutoRotate() {
+        stopCarouselAutoRotate();
+
+        if (queue.length <= 1 || document.hidden) return;
+
+        carouselAutoRotateTimer = window.setInterval(() => {
+            moveCarouselNext();
+        }, carouselAutoRotateDelay);
+    }
+
+    function restartCarouselAutoRotate() {
+        startCarouselAutoRotate();
+    }
+
     renderCarousel();
+    startCarouselAutoRotate();
 
     nextButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const removed = queue.shift();
-            queue.push(removed);
-            renderCarousel();
+            moveCarouselNext();
+            restartCarouselAutoRotate();
         });
     });
 
     prevButtons.forEach(button => {
         button.addEventListener("click", () => {
-            const last = queue.pop();
-            queue.unshift(last);
-            renderCarousel();
+            moveCarouselPrev();
+            restartCarouselAutoRotate();
         });
+    });
+
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            stopCarouselAutoRotate();
+            return;
+        }
+
+        startCarouselAutoRotate();
     });
 
     productViewerCloseButtons.forEach(button => {
@@ -939,15 +1176,19 @@
 
     productViewerZoomInButtons.forEach(button => {
         button.addEventListener("click", () => {
-            viewerZoomLevel = Math.min(2.5, Number((viewerZoomLevel + 0.25).toFixed(2)));
-            updateViewerZoom();
+            if (viewerIsDetailMode) return;
+
+            viewerIsDetailMode = true;
+            updateViewerMode();
         });
     });
 
     productViewerZoomOutButtons.forEach(button => {
         button.addEventListener("click", () => {
-            viewerZoomLevel = Math.max(1, Number((viewerZoomLevel - 0.25).toFixed(2)));
-            updateViewerZoom();
+            if (!viewerIsDetailMode) return;
+
+            viewerIsDetailMode = false;
+            updateViewerMode();
         });
     });
 
@@ -960,13 +1201,11 @@
 
         if (event.key === "ArrowRight" && viewerActiveIndex < viewerGalleryImages.length - 1) {
             viewerActiveIndex += 1;
-            viewerZoomLevel = 1;
             renderViewer();
         }
 
         if (event.key === "ArrowLeft" && viewerActiveIndex > 0) {
             viewerActiveIndex -= 1;
-            viewerZoomLevel = 1;
             renderViewer();
         }
     });

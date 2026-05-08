@@ -106,14 +106,18 @@ Route::get('/addressbook', function () {
     return view('pages.addressbook');
 });
 
-Route::get('/shippingaddress', function() {
+Route::get('/shippingaddress', function () {
     return view('pages.shippingaddress');
 });
 
-Route::get('/billingaddress', function() {
+Route::get('/billingaddress', function () {
     return view('pages.billingaddress');
 });
 
-Route::get('/sitemap', function() {
+Route::get('/sitemap', function () {
     return view('pages.sitemap');
+});
+
+Route::get('/fashionlanding', function () {
+    return view('pages.fashionlanding');
 });

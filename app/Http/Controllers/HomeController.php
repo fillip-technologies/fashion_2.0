@@ -19,120 +19,154 @@ use Illuminate\Support\Facades\Mail;
 class HomeController extends Controller
 {
 
-    public function index() {
+    public function index()
+    {
         return view('pages.landing');
     }
 
-    public function about() {
+    public function about()
+    {
         return view('pages.about');
     }
 
-    public function yarnStory() {
+    public function yarnStory()
+    {
         return view('pages.yarnstory');
     }
 
-    public function journey() {
+    public function journey()
+    {
         return view('pages.journey');
     }
 
-    public function lookbook() {
+    public function lookbook()
+    {
         return view('pages.lookbook');
     }
 
-    public function yarn() {
+    public function yarn()
+    {
         return view('pages.yarn');
     }
 
-    public function newCollection() {
+    public function newCollection()
+    {
         return view('pages.newcollection');
     }
 
-    public function seeAll() {
+    public function seeAll()
+    {
         return view('pages.seeall');
     }
 
-    public function specific() {
+    public function specific()
+    {
         return view('pages.specific');
     }
 
-    public function filteredProduct() {
+    public function filteredProduct()
+    {
         return view('pages.filteredprodcuts');
     }
 
-    public function productDetails() {
+    public function productDetails()
+    {
         return view('pages.productdetails');
     }
 
-    public function createAccount() {
+    public function createAccount()
+    {
         return view('pages.createaccount');
     }
 
-    public function accountConfirmed() {
+    public function accountConfirmed()
+    {
         return view('pages.accountconfirmed');
     }
 
-    public function bag() {
+    public function bag()
+    {
         return view('pages.bag');
     }
 
-    public function test() {
+    public function test()
+    {
         return view('test');
     }
 
-    public function checkout() {
+    public function checkout()
+    {
         return view('pages.checkout');
     }
 
-    public function orderCompleted() {
+    public function orderCompleted()
+    {
         return view('pages.confirmorder');
     }
 
-    public function contact() {
+    public function contact()
+    {
         return view('pages.contact');
     }
 
-    public function location() {
+    public function location()
+    {
         return view('pages.location');
     }
 
-    public function accountOverview() {
+    public function accountOverview()
+    {
         return view('pages.accountoverview');
     }
 
-    public function profile() {
+    public function profile()
+    {
         return view('pages.profile');
     }
 
-    public function wishlist() {
+    public function wishlist()
+    {
         return view('pages.wishlist');
     }
 
-    public function orders() {
+    public function orders()
+    {
         return view('pages.orders');
     }
 
-    public function orderHistory() {
+    public function orderHistory()
+    {
         return view('pages.orderhistory');
     }
 
-    public function viewDetails() {
+    public function viewDetails()
+    {
         return view('pages.viewdetails');
     }
 
-    public function addressBook() {
+    public function addressBook()
+    {
         return view('pages.addressbook');
     }
 
-    public function shippingAddress() {
+    public function shippingAddress()
+    {
         return view('pages.shippingaddress');
     }
 
-    public function billingAddress() {
+    public function billingAddress()
+    {
         return view('pages.billingaddress');
     }
 
-    public function sitemap() {
+    public function sitemap()
+    {
         return view('pages.sitemap');
+    }
+
+    public function fashionlanding()
+    {
+        return view('pages.fashionlanding');
     }
 
     public function homePage()
@@ -152,19 +186,16 @@ class HomeController extends Controller
             ->get();
 
         return view('pages.home', compact('products', 'top_product', 'new_arrival'));
-
     }
 
     public function loginPage()
     {
         return view('pages.login');
-
     }
 
     public function registerPage()
     {
         return view('pages.register');
-
     }
 
     public function productDescriptionPage($slugs)
@@ -174,7 +205,6 @@ class HomeController extends Controller
             ->firstOrFail();
 
         return view('pages.product-description', compact('product_details'));
-
     }
 
     public function wishlistPage()
@@ -193,7 +223,6 @@ class HomeController extends Controller
         $cartItems = CartItem::with('product')->where('user_id', Auth::check() ? Auth::user()->id : '')->get();
 
         return view('pages.cart', compact('cartItems'));
-
     }
 
     // public function checkoutPage()
@@ -205,7 +234,6 @@ class HomeController extends Controller
     public function completeOrderPage()
     {
         return view('pages.complete-order');
-
     }
 
     public function viewProductPage()
@@ -214,7 +242,6 @@ class HomeController extends Controller
         $product = Product::with(['variants', 'category'])->paginate(10);
 
         return view('pages.view-product', compact('product'));
-
     }
 
     public function accountOverviewPage()
@@ -226,13 +253,11 @@ class HomeController extends Controller
         $wishlists = Product::whereIn('id', $wishListData)->get();
 
         return view('pages.account-overview', compact('wishlists'));
-
     }
 
     public function aboutPage()
     {
         return view('pages.about');
-
     }
 
     public function admin_login()
@@ -396,7 +421,7 @@ class HomeController extends Controller
         $total = session()->get('product_price');
         $user = Auth::user();
         $user_id = $user->id;
-        $orderNumber = 'ORD-'.date('Ymd').'-'.strtoupper(uniqid());
+        $orderNumber = 'ORD-' . date('Ymd') . '-' . strtoupper(uniqid());
         $cartItems = CartItem::where('user_id', $user_id)->with('product')->get();
 
         if ($cartItems->isEmpty()) {
@@ -491,7 +516,6 @@ class HomeController extends Controller
             ->withQueryString();
 
         return view('pages.view-product', compact('product', 'query'));
-
     }
 
     public function BuyNow(Request $request)

@@ -49,7 +49,7 @@
                     <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
                         class="w-5 sm:w-5 h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
 
-                    <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="w-6 sm:w-7 h-auto" />
+                    <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="hidden md:block w-6 sm:w-7 h-auto" />
                 </div>
             </div>
         </div>
@@ -103,7 +103,7 @@
                             onclick="toggleMasterDrawer('drawerlogin')" />
                     @endunless
 
-                    <img src="{{ asset('assets/SVG/Bag white.svg') }}" class="w-6 md:w-6 cursor-pointer" />
+                    <img src="{{ asset('assets/SVG/Bag white.svg') }}" class="hidden md:block w-6 md:w-6 cursor-pointer" />
 
                 </div>
             </div>
