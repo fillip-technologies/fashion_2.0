@@ -46,7 +46,7 @@
     <link rel="icon" href="{{ asset('images/cm-removebg-preview.png') }}" type="image/x-icon">
 </head>
 
-<body class="m-0 p-0 overflow-x-hidden scroll-smooth">
+<body class="m-0 p-0 overflow-x-hidden scroll-smooth bg-[#f2f2f2]">
 
     {{-- NEW LANDING HEADER --}}
     @include('partials.landingpageheader')
@@ -54,6 +54,9 @@
     <main>
         @yield('content')
     </main>
+
+       {{-- NEW LANDING HEADER --}}
+    @include('partials.landingpagefooter')
 
 
     {{-- Optional Shared Components --}}
