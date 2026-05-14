@@ -34,6 +34,12 @@
             font-family: 'Libre Franklin', sans-serif;
         }
 
+        html,
+        body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+
         html {
             scroll-behavior: smooth;
         }

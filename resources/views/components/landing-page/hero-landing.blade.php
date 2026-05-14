@@ -1,10 +1,10 @@
-<section class="relative w-full overflow-hidden">
+<section class="relative mx-auto w-[calc(100%_-_28px)] max-w-[430px] overflow-hidden md:w-full md:max-w-none">
 
     <!-- GIF Fallback -->
     <img
-        src="assets\images\landingpage\fallback.gif"
+        src="{{ asset('assets/images/landingpage/fallback.gif') }}"
         alt="Loading Animation"
-        class="w-full h-auto block"
+        class="block h-[225px] w-full object-cover md:h-auto"
         id="fallbackGif" />
 
     <!-- MP4 Video -->
@@ -16,7 +16,7 @@
         preload="auto"
         class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-500"
         id="heroVideo">
-        <source src="videos\scene.mp4" type="video/mp4">
+        <source src="{{ asset('videos/scene.mp4') }}" type="video/mp4">
     </video>
 
 </section>

@@ -1,14 +1,14 @@
-<div class="w-full bg-[#f2f2f2] flex justify-center py-[80px]">
+<div class="w-full bg-[#f2f2f2] flex justify-center px-0 pt-[70px] pb-[62px] lg:px-0 lg:py-[80px]">
 
-    <div class="w-[633px]">
+    <div class="w-[calc(100%_-_64px)] max-w-[426px] lg:w-full lg:max-w-[633px]">
 
         <!-- Heading -->
-        <div class="text-center text-black text-[20px] italic font-normal break-words">
+        <div class="text-center text-black text-[18px] lg:text-[20px] italic font-normal leading-[22px] break-words">
             Join our newsletter
         </div>
 
         <!-- Input Box -->
-        <div class="w-full flex flex-col items-center mt-20">
+        <div class="w-full flex flex-col items-center mt-[61px] lg:mt-20">
 
             <!-- Success Message -->
             <div
@@ -20,14 +20,14 @@
             <!-- Top Label -->
             <div
                 id="topLabel"
-                class="hidden w-[790px] mb-3 text-left text-black text-[16px]">
+                class="hidden w-full lg:w-[790px] max-w-full mb-3 text-left text-black text-[16px]">
                 *Your E-mail
             </div>
 
             <!-- Input Box -->
             <div
                 id="inputWrapper"
-                class="w-[790px] h-[84px] border border-black rounded-[4px] px-8 flex items-center bg-transparent">
+                class="w-full lg:w-[790px] max-w-full h-[84px] border border-black rounded-[4px] px-[28px] lg:px-8 flex items-center bg-transparent">
 
                 <input
                     type="email"
@@ -42,7 +42,7 @@
             <button
                 id="verifyBox"
                 onclick="showSuccessMessage()"
-                class="hidden mt-5 w-[260px] h-[56px] border border-black rounded-[4px] text-[16px] text-black">
+                class="mt-[59px] lg:mt-5 w-[224px] lg:w-[260px] h-[50px] lg:h-[56px] border border-black rounded-[4px] text-[16px] text-black">
                 Verify your e-mail
             </button>
 
