@@ -56,7 +56,7 @@
 
 
         <div class="mt-16 px-6 sm:px-14">
-            <div class="relative w-full h-[100vh] overflow-hidden">
+            <div class="relative w-full aspect-[1340/976] overflow-hidden">
 
 
                 <img src="{{ asset('assets/images/menu/one.png') }}" alt="Search Visual"

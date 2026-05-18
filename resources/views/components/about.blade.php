@@ -41,13 +41,13 @@
 
 </div>
 
-{{-- 
+{{--
 <div class="w-11/12 mx-auto bg-white pb-28 md:pb-44 flex flex-col items-center justify-center">
     <img src="{{ asset('assets/images/about/two.png') }}" alt="about" class="w-full h-auto object-cover" />
-    <div class="px-10 mt-16 md:mt-28">
-        <img src="{{ asset('assets/images/about/three.png') }}" alt="about"
-            class="w-auto h-auto object-contain" />
-    </div>
+<div class="px-10 mt-16 md:mt-28">
+    <img src="{{ asset('assets/images/about/three.png') }}" alt="about"
+        class="w-auto h-auto object-contain" />
+</div>
 </div> --}}
 
 <div class="w-11/12 mx-auto bg-white pb-16 md:pb-24 flex flex-col items-center justify-center">
@@ -70,8 +70,8 @@
            flex flex-col items-center justify-center text-center px-6">
 
                 <h3 class="text-white text-[1.25rem] tracking-wide" style="font-weight: 600">
-                    <a href="/yarn-story"> THE YARN’S STORY </a>
-                </h3> 
+                    <a href="/yarn-story"> THE YARN’s STORY </a>
+                </h3>
 
                 <div class="w-80 h-px bg-white my-3"></div>
 

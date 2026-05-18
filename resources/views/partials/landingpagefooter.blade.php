@@ -8,7 +8,7 @@
         Our Socials
     </div>
 
-    <div class="mt-[86px] flex w-[min(412px,calc(100vw-72px))] items-center justify-between">
+    <div class="mt-[86px] flex w-[min(460px,calc(100vw-72px))] items-center justify-between">
 
         <a href="#"
             class="text-center text-black text-[16px] font-light leading-none hover:underline">

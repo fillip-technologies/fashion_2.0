@@ -2,7 +2,7 @@
 
     <section class="w-11/12 mx-auto pt-24 px-6">
 
-        <section class="w-full min-h-screen bg-secondary flex justify-center pt-24">
+        <section class="w-full min-h-[92.625rem] bg-secondary flex justify-center pt-24">
             <div class="w-full max-w-6xl text-white">
 
                 <!-- Title -->
