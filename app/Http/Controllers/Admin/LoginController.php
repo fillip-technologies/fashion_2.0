@@ -17,51 +17,7 @@ class LoginController extends Controller
     /**
      * Admin Login (Secure)
      */
-    public function login(Request $request)
-    {
-        $request->validate([
-            'email'    => ['required', 'email'],
-            'password' => ['required', 'string'],
-        ]);
-
-        $email = Str::lower($request->email);
-        $ip    = $request->ip();
-
-        // Unique throttle key
-        $throttleKey = $email . '|' . $ip;
-
-        // Max 5 attempts in 10 minutes
-        if (RateLimiter::tooManyAttempts($throttleKey, 5)) {
-            $seconds = RateLimiter::availableIn($throttleKey);
-
-            throw ValidationException::withMessages([
-                'email' => "Too many login attempts. Try again in {$seconds} seconds.",
-            ]);
-        }
-
-        $credentials = [
-            'email'    => $email,
-            'password' => $request->password,
-        ];
-
-        if (Auth::guard('admin')->attempt($credentials, $request->filled('remember'))) {
-
-            // Clear limiter after success
-            RateLimiter::clear($throttleKey);
-
-            // Prevent session fixation
-            $request->session()->regenerate();
-
-            return redirect()->intended('/admin/dashboard');
-        }
-
-        // Increase attempt count
-        RateLimiter::hit($throttleKey, 600);
-
-        return back()->withErrors([
-            'email' => 'Invalid credentials.',
-        ])->onlyInput('email');
-    }
+   
 
     /**
      * Create Admin User

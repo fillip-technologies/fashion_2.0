@@ -43,7 +43,7 @@ return [
 
          'admin' => [   // 👈 new guard
             'driver' => 'session',
-            'provider' => 'admins',
+            'provider' => 'users',
         ],
     ],
 

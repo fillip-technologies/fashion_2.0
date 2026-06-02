@@ -13,9 +13,8 @@ return Application::configure(basePath: dirname(__DIR__))
         commands: __DIR__.'/../routes/console.php',
         health: '/up',
         then: function () {
-            // ✅ Load custom admin routes without auth middleware
+
             Route::middleware('web')
-                ->prefix('admin')
                 ->as('admin.')
                 ->group(base_path('routes/admin.php'));
         }

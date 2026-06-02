@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Support\Facades\Route;
+
 
 Route::get('/', function () {
     return view('pages.landing');
@@ -121,3 +123,5 @@ Route::get('/sitemap', function () {
 Route::get('/fashionlanding', function () {
     return view('pages.fashionlanding');
 });
+
+

@@ -8,23 +8,30 @@ class ProductVariant extends Model
 {
     protected $fillable = [
         'product_id',
+        'color_id',
+        'size_id',
         'sku',
-        'size',
-        'color',
         'price',
-        'discount_price',
-        'stock'
+        'sale_price',
+        'stock',
+        'image',
+        'status'
     ];
 
-    // Belongs To Product
     public function product()
     {
         return $this->belongsTo(Product::class);
     }
 
-    // Final Price Helper
-    public function getFinalPriceAttribute()
+    public function color()
     {
-        return $this->discount_price ?? $this->price;
+        return $this->belongsTo(Color::class);
     }
+
+    public function size()
+    {
+        return $this->belongsTo(Size::class);
+    }
+
+    
 }
