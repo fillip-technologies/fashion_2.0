@@ -369,7 +369,45 @@
         }
     }
 </style>
+ @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 
+    {{-- Error Message --}}
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('error') }}"
+            });
+        </script>
+    @endif
+
+    {{-- Validation Errors --}}
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: `
+        <ul style="text-align:left;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    `
+            });
+        </script>
+    @endif
 <div class="color-management-container">
     <!-- Add Color Form Card -->
     <div class="color-card">
@@ -393,7 +431,7 @@
                 </div>
             @endif
 
-            <form action="" method="POST" id="colorForm">
+            <form action="{{ route('admin.store.color') }}" method="POST" >
                 @csrf
 
                 <div class="form-row">
@@ -408,7 +446,7 @@
                                class="form-control"
                                placeholder="e.g., Red, Blue, Green"
                                value="{{ old('name') }}"
-                               required>
+                               >
                     </div>
 
                     <div class="form-group">
@@ -423,7 +461,7 @@
                                    class="form-control"
                                    placeholder="#FF0000 or rgb(255,0,0)"
                                    value="{{ old('code') }}"
-                                   required>
+                                   >
                             <div class="color-preview" id="colorPreview" style="background-color: {{ old('code', '#667eea') }}"></div>
                         </div>
                     </div>
@@ -531,7 +569,7 @@
         }
     }
 
-  
+
     document.getElementById('colorForm').addEventListener('submit', function(e) {
         const name = document.getElementById('name').value.trim();
         const code = document.getElementById('code').value.trim();

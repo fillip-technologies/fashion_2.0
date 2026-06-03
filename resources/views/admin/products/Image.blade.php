@@ -1,206 +1,272 @@
 @extends('admin.include.layout')
 
 @section('content')
-<style>
-    .product-image-card {
-        background: white;
-        border-radius: 15px;
-        box-shadow: 0 0 20px rgba(0,0,0,0.1);
-        margin-top: 20px;
-    }
+    <style>
+        .product-image-card {
+            background: #fff;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, .1);
+            margin-top: 20px;
+        }
 
-    .card-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 20px;
-        border-radius: 15px 15px 0 0;
-    }
+        .card-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            padding: 20px;
+            border-radius: 15px 15px 0 0;
+        }
 
-    .card-header h3 {
-        margin: 0;
-        font-size: 24px;
-    }
+        .card-header h3 {
+            margin: 0;
+            font-size: 24px;
+        }
 
-    .card-body {
-        padding: 30px;
-    }
+        .card-body {
+            padding: 30px;
+        }
 
-    .form-group {
-        margin-bottom: 20px;
-    }
+        .form-group {
+            margin-bottom: 20px;
+        }
 
-    .form-group label {
-        display: block;
-        font-weight: bold;
-        margin-bottom: 8px;
-        color: #333;
-    }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #333;
+        }
 
-    .custom-select {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-        font-size: 14px;
-    }
+        .custom-select,
+        .file-upload-input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            outline: none;
+        }
 
-    .file-upload-wrapper {
-        position: relative;
-    }
+        .custom-select:focus,
+        .file-upload-input:focus {
+            border-color: #667eea;
+        }
 
-    .file-upload-input {
-        width: 100%;
-        padding: 10px;
-        border: 1px solid #ddd;
-        border-radius: 5px;
-    }
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: #fff;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
 
-    .btn-submit {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-    }
+        .btn-submit:hover {
+            opacity: .9;
+        }
 
-    .btn-cancel {
-        background: #6c757d;
-        color: white;
-        border: none;
-        padding: 12px 30px;
-        border-radius: 5px;
-        cursor: pointer;
-        font-size: 16px;
-        margin-left: 10px;
-    }
+        .btn-cancel {
+            background: #6c757d;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            margin-left: 10px;
+        }
 
-    .btn-submit:hover {
-        opacity: 0.9;
-    }
+        .btn-cancel:hover {
+            color: #fff;
+            background: #5a6268;
+        }
 
-    .btn-cancel:hover {
-        background: #5a6268;
-    }
+        .image-preview-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 20px;
+        }
 
-    .image-preview-container {
-        margin-top: 20px;
-    }
+        .preview-img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            padding: 3px;
+        }
 
-    .preview-img {
-        max-width: 200px;
-        max-height: 200px;
-        border-radius: 10px;
-        border: 2px solid #ddd;
-        padding: 5px;
-    }
+        .alert-danger {
+            background: #f8d7da;
+            color: #721c24;
+            padding: 12px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
 
-    .alert-danger {
-        background: #f8d7da;
-        color: #721c24;
-        padding: 12px;
-        border-radius: 5px;
-        margin-bottom: 20px;
-        border-left: 4px solid #dc3545;
-    }
+        .text-danger {
+            color: #dc3545;
+            font-size: 13px;
+            margin-top: 5px;
+        }
+    </style>
+@if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 
-    .text-danger {
-        color: #dc3545;
-        font-size: 12px;
-        margin-top: 5px;
-    }
-</style>
+    {{-- Error Message --}}
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('error') }}"
+            });
+        </script>
+    @endif
 
-<div class="container-fluid">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="product-image-card">
-                <div class="card-header">
-                    <h3>📸 Add Product Image</h3>
-                </div>
-                <div class="card-body">
-                    @if(session('error'))
-                        <div class="alert-danger">
-                            {{ session('error') }}
-                        </div>
-                    @endif
+    {{-- Validation Errors --}}
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: `
+        <ul style="text-align:left;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    `
+            });
+        </script>
+    @endif
+    <div class="container-fluid">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
 
-                    <form action=""
-                          method="POST"
-                          enctype="multipart/form-data"
-                          id="productImageForm">
-                        @csrf
+                <div class="product-image-card">
 
-                        <div class="form-group">
-                            <label for="product_id">Select Product</label>
-                            <select name="product_id"
-                                    id="product_id"
-                                    class="custom-select"
-                                    required>
-                                <option value="">-- Select Product --</option>
-                                {{-- @foreach($products as $product)
-                                    <option value="{{ $product->id }}">
-                                        {{ $product->name }}
+                    <div class="card-header">
+                        <h3>📸 Add Product Images</h3>
+                    </div>
+
+                    <div class="card-body">
+
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+
+                        @if (session('error'))
+                            <div class="alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+
+                        <form action="{{ route('admin.store.images.product') }}" method="POST" enctype="multipart/form-data">
+
+                            @csrf
+
+                            <div class="form-group">
+                                <label>Select Product</label>
+
+                                <select name="product_id" class="custom-select" >
+
+                                    <option value="">
+                                        -- Select Product --
                                     </option>
-                                @endforeach --}}
-                            </select>
-                            @error('product_id')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
 
-                        <div class="form-group">
-                            <label for="image">Product Image</label>
-                            <div class="file-upload-wrapper">
-                                <input type="file"
-                                       name="image[]"
-                                       id="image"
-                                       multiple
-                                       class="file-upload-input"
-                                       accept="image/*"
-                                       required>
+                                    @foreach (allProduct() as $product)
+                                        <option value="{{ $product->id }}"
+                                            {{ old('product_id') == $product->id ? 'selected' : '' }}>
+                                            {{ $product->name }}
+                                        </option>
+                                    @endforeach
+
+                                </select>
+
+                                @error('product_id')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
                             </div>
 
-                            <div class="image-preview-container" id="imagePreviewContainer" style="display: none;">
-                                <img id="imagePreview" class="preview-img" src="#" alt="Preview">
+                            <div class="form-group">
+
+                                <label>Select Images</label>
+
+                                <input type="file" name="image[]" id="image" class="file-upload-input" multiple
+                                    accept="image/*" >
+
+                                @error('image')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                                @error('image.*')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+
+                                <div class="image-preview-container" id="imagePreviewContainer">
+                                </div>
+
                             </div>
 
-                            @error('image')
-                                <div class="text-danger">{{ $message }}</div>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <button type="submit" class="btn-submit" id="submitBtn">
-                                Upload Image
+                            <button type="submit" class="btn-submit">
+                                Upload Images
                             </button>
-                            <a href="" class="btn-cancel">
+
+                            <a href="{{ url()->previous() }}" class="btn-cancel">
                                 Cancel
                             </a>
-                        </div>
-                    </form>
+
+                        </form>
+
+                    </div>
                 </div>
+
             </div>
         </div>
     </div>
-</div>
 
-<script>
-// Image Preview JavaScript
-document.getElementById('image').addEventListener('change', function(e) {
-    const file = e.target.files[0];
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            const preview = document.getElementById('imagePreview');
-            const container = document.getElementById('imagePreviewContainer');
-            preview.src = e.target.result;
-            container.style.display = 'block';
-        }
-        reader.readAsDataURL(file);
-    }
-});
-</script>
+    <script>
+        document.getElementById('image').addEventListener('change', function() {
 
+            const previewContainer = document.getElementById('imagePreviewContainer');
+
+            previewContainer.innerHTML = '';
+
+            const files = this.files;
+
+            if (!files.length) {
+                return;
+            }
+
+            Array.from(files).forEach(file => {
+
+                if (!file.type.startsWith('image/')) {
+                    return;
+                }
+
+                const reader = new FileReader();
+
+                reader.onload = function(e) {
+
+                    const img = document.createElement('img');
+
+                    img.src = e.target.result;
+                    img.classList.add('preview-img');
+
+                    previewContainer.appendChild(img);
+                };
+
+                reader.readAsDataURL(file);
+            });
+        });
+    </script>
 @endsection

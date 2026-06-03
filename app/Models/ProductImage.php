@@ -11,6 +11,8 @@ class ProductImage extends Model
         'image',
     ];
 
+    protected $casts = ['image'=>'array'];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
