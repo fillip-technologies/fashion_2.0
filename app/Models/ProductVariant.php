@@ -18,6 +18,8 @@ class ProductVariant extends Model
         'status'
     ];
 
+    protected $casts = ['image'=>'array'];
+    
     public function product()
     {
         return $this->belongsTo(Product::class);
@@ -33,5 +35,5 @@ class ProductVariant extends Model
         return $this->belongsTo(Size::class);
     }
 
-    
+
 }

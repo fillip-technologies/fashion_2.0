@@ -8,6 +8,8 @@ use App\Models\Color;
 use App\Models\Product;
 use App\Models\ProductImage;
 use App\Models\ProductPrice;
+use App\Models\ProductVariant;
+use App\Models\Size;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -16,6 +18,11 @@ class ProductController extends Controller
     public function index()
     {
         return view('admin.products.creat');
+    }
+
+    public function sizes()
+    {
+        return view('admin.products.size_create');
     }
 
     public function produtList()
@@ -210,6 +217,81 @@ class ProductController extends Controller
             }
 
             return ErrorResponse('Product Images Creation Failed');
+        } catch (\Exception $e) {
+            return ErrorResponse($e->getMessage());
+        }
+
+    }
+
+    public function store_size(Request $request)
+    {
+        try {
+            $validate = $request->validate([
+                'name' => 'required',
+                'size_magerment' => 'required',
+            ]);
+
+            $result = CreateData(Size::class, $validate);
+            if ($result) {
+                return SuccessResponse('Create Size SuccessFull');
+            }
+
+            return ErrorResponse('Size Creation Failed');
+
+        } catch (\Exception $e) {
+            return ErrorResponse($e->getMessage());
+        }
+    }
+
+    public function store_product_variant(Request $request)
+    {
+        try {
+            $request->validate([
+                'product_id' => 'required|integer',
+                'color_id' => 'required|integer',
+                'size_id' => 'required|integer',
+                'sku' => 'nullable',
+                'price' => 'required',
+                'sale_price' => 'required',
+                'stock' => 'required',
+                'image' => 'array|nullable',
+                'image.*' => 'required',
+                'status' => 'required',
+            ]);
+
+            $uploadFiles = [];
+            if ($request->hasFile('image')) {
+
+                foreach ($request->file('image') as $image) {
+
+                    $filename = time().'_'.uniqid().'.'.$image->getClientOriginalExtension();
+
+                    $uploadPath = public_path('product_variant');
+
+                    $image->move($uploadPath, $filename);
+
+                    $uploadFiles[] = 'product_variant/'.$filename;
+                }
+            }
+
+            $data = [
+                'product_id' => $request->product_id,
+                'color_id' => $request->color_id,
+                'size_id' => $request->size_id,
+                'sku' => $request->sku,
+                'price' => $request->price,
+                'sale_price' => $request->sale_price,
+                'stock' => $request->stock,
+                'image' => $uploadFiles,
+                'status' => $request->status,
+            ];
+
+            $result = CreateData(ProductVariant::class, $data);
+            if ($result) {
+                return SuccessResponse('Product Variant Created SuccessFul');
+            }
+
+            return ErrorResponse('Product Variant Creation Failed');
         } catch (\Exception $e) {
             return ErrorResponse($e->getMessage());
         }

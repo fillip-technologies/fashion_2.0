@@ -1,7 +1,9 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Color;
 use App\Models\Product;
+use App\Models\Size;
 use Illuminate\Support\Facades\Log;
 
 
@@ -117,4 +119,20 @@ if (!function_exists('allProduct')) {
             ->get();
     }
 }
+if (!function_exists('GetSize')) {
+    function GetSize()
+    {
+        return Size::select('id', 'name', 'size_magerment')
+            ->get();
+    }
+}
+
+if (!function_exists('GetColor')) {
+    function GetColor()
+    {
+        return Color::select('id', 'name', 'code')
+            ->get();
+    }
+}
+
 

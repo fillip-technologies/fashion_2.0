@@ -22,6 +22,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
     Route::get('product/category', [ProductController::class, 'product_category'])->name('product.category');
     Route::get('product/variants', [ProductController::class, 'product_variants'])->name('product.variant');
     Route::get('product/create', [ProductController::class, 'index'])->name('product.create');
+    Route::get('/product/size',[ProductController::class, 'sizes'])->name('index.size');
     // categories route craeted by abhishek
 
     Route::post('store/categories', [CategoryController::class, 'store_category'])->name('add.categories');
@@ -34,6 +35,8 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
      Route::post('store/price',[ProductController::class, 'store_price'])->name('store.price');
      Route::post('store/color',[ProductController::class, 'store_color'])->name('store.color');
      Route::post('store/images/product',[ProductController::class, 'store_image'])->name('store.images.product');
+     Route::post('/store/size',[ProductController::class, 'store_size'])->name('store.size');
+     Route::post('/store/product/variant',[ProductController::class, 'store_product_variant'])->name('store.product.variant');
 
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
 });

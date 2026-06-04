@@ -348,7 +348,45 @@
         }
     }
 </style>
+@if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: "{{ session('success') }}",
+                timer: 3000,
+                showConfirmButton: false
+            });
+        </script>
+    @endif
 
+    {{-- Error Message --}}
+    @if (session('error'))
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: "{{ session('error') }}"
+            });
+        </script>
+    @endif
+
+    {{-- Validation Errors --}}
+    @if ($errors->any())
+        <script>
+            Swal.fire({
+                icon: 'error',
+                title: 'Validation Error',
+                html: `
+        <ul style="text-align:left;">
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    `
+            });
+        </script>
+    @endif
 <div class="variation-container">
     <!-- Add Variation Form -->
     <div class="variation-card">
@@ -360,14 +398,8 @@
             <p>Manage product variants with color, size, price, and stock</p>
         </div>
         <div class="card-body">
-            @if(session('success'))
-                <div class="alert alert-success">
-                    <i class="fas fa-check-circle"></i>
-                    {{ session('success') }}
-                </div>
-            @endif
 
-            <form action="" method="POST" enctype="multipart/form-data" id="variationForm">
+            <form action="{{ route('admin.store.product.variant') }}" method="POST" enctype="multipart/form-data">
                 @csrf
 
                 <div class="form-grid">
@@ -376,11 +408,11 @@
                             <i class="fas fa-box"></i> Product
                             <span class="required-star">*</span>
                         </label>
-                        <select name="product_id" id="product_id" class="form-control" required>
+                        <select name="product_id" id="product_id" class="form-control" >
                             <option value="">Select Product</option>
-                            {{-- @foreach($products as $product)
+                            @foreach(allProduct() as $product)
                                 <option value="{{ $product->id }}">{{ $product->name }}</option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
 
@@ -389,13 +421,13 @@
                             <i class="fas fa-palette"></i> Color
                             <span class="required-star">*</span>
                         </label>
-                        <select name="color_id" id="color_id" class="form-control" required>
+                        <select name="color_id" id="color_id" class="form-control" >
                             <option value="">Select Color</option>
-                            {{-- @foreach($colors as $color)
+                             @foreach(GetColor() as $color)
                                 <option value="{{ $color->id }}">
                                     {{ $color->name }}
                                 </option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
 
@@ -404,11 +436,11 @@
                             <i class="fas fa-ruler"></i> Size
                             <span class="required-star">*</span>
                         </label>
-                        <select name="size_id" id="size_id" class="form-control" required>
+                        <select name="size_id" id="size_id" class="form-control" >
                             <option value="">Select Size</option>
-                            {{-- @foreach($sizes as $size)
+                             @foreach(GetSize() as $size)
                                 <option value="{{ $size->id }}">{{ $size->name }}</option>
-                            @endforeach --}}
+                            @endforeach
                         </select>
                     </div>
 
@@ -417,7 +449,7 @@
                             <i class="fas fa-barcode"></i> SKU
                             <span class="required-star">*</span>
                         </label>
-                        <input type="text" name="sku" id="sku" class="form-control" placeholder="Unique SKU code" required>
+                        <input type="text" name="sku" id="sku" class="form-control" placeholder="Unique SKU code" >
                     </div>
 
                     <div class="form-group">
@@ -425,7 +457,7 @@
                             <i class="fas fa-dollar-sign"></i> Regular Price
                             <span class="required-star">*</span>
                         </label>
-                        <input type="number" name="price" id="price" class="form-control" placeholder="0.00" step="0.01" required>
+                        <input type="number" name="price" id="price" class="form-control" placeholder="0.00" step="0.01" >
                     </div>
 
                     <div class="form-group">
@@ -440,7 +472,7 @@
                             <i class="fas fa-boxes"></i> Stock Quantity
                             <span class="required-star">*</span>
                         </label>
-                        <input type="number" name="stock" id="stock" class="form-control" value="0" required>
+                        <input type="number" name="stock" id="stock" class="form-control" value="0" >
                     </div>
 
                     <div class="form-group">
@@ -452,7 +484,7 @@
                             <p>Click to upload image</p>
                             <small>PNG, JPG up to 2MB</small>
                         </div>
-                        <input type="file" name="image" id="image" style="display: none;" accept="image/*">
+                        <input type="file" name="image[]" id="image" style="display: none;" accept="image/*" multiple>
                         <div class="image-preview" id="imagePreview">
                             <img id="previewImg" src="#" alt="Preview">
                         </div>
@@ -592,8 +624,10 @@
     const previewContainer = document.getElementById('imagePreview');
     const previewImg = document.getElementById('previewImg');
 
+
     imageInput.addEventListener('change', function(e) {
-        const file = e.target.files[0];
+        const file = e.target.files;
+
         if(file) {
             const reader = new FileReader();
             reader.onload = function(e) {

@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-        /* Modern CSS for Price Management */
+      
         .price-management-container {
             max-width: 1200px;
             margin: 0 auto;
