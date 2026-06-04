@@ -232,6 +232,151 @@
 
             </div>
         </div>
+
+
+        <div class="bg-white shadow-lg rounded-lg overflow-hidden mt-6">
+    <div class="px-6 py-4 border-b">
+        <h2 class="text-xl font-semibold text-gray-800">
+            Product Images Listing
+        </h2>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-3">#</th>
+                    <th class="px-6 py-3">Product Name</th>
+                    <th class="px-6 py-3">Thumbnail</th>
+                    <th class="px-6 py-3">Gallery Images</th>
+                    <th class="px-6 py-3 text-center">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <!-- Product 1 -->
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">1</td>
+
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        Premium Cotton T-Shirt
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <img src="https://via.placeholder.com/60"
+                             alt="Thumbnail"
+                             class="w-16 h-16 rounded-lg object-cover border">
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Product 2 -->
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">2</td>
+
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        Denim Jacket
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <img src="https://via.placeholder.com/60"
+                             alt="Thumbnail"
+                             class="w-16 h-16 rounded-lg object-cover border">
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <!-- Product 3 -->
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4">3</td>
+
+                    <td class="px-6 py-4 font-medium text-gray-900">
+                        Sports Shoes
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <img src="https://via.placeholder.com/60"
+                             alt="Thumbnail"
+                             class="w-16 h-16 rounded-lg object-cover border">
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex items-center gap-2">
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+
+                            <img src="https://via.placeholder.com/50"
+                                 class="w-12 h-12 rounded object-cover border">
+                        </div>
+                    </td>
+
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
     </div>
 
     <script>

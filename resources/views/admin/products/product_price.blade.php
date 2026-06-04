@@ -2,7 +2,7 @@
 
 @section('content')
     <style>
-      
+
         .price-management-container {
             max-width: 1200px;
             margin: 0 auto;
@@ -459,7 +459,80 @@
             </div>
         </div>
 
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-4 border-b">
+        <h2 class="text-xl font-semibold text-gray-800">
+            Product Price Listing
+        </h2>
+    </div>
 
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-3">#</th>
+                    <th class="px-6 py-3">Product Name</th>
+                    <th class="px-6 py-3">Price</th>
+                    <th class="px-6 py-3">Location</th>
+                    <th class="px-6 py-3 text-center">Action</th>
+                </tr>
+            </thead>
+
+            {{-- <tbody>
+                @forelse($prices as $key => $price)
+                    <tr class="border-b hover:bg-gray-50 transition">
+                        <td class="px-6 py-4">
+                            {{ $key + 1 }}
+                        </td>
+
+                        <td class="px-6 py-4 font-medium text-gray-900">
+                            {{ $price->product->name ?? 'N/A' }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            ₹{{ number_format($price->price, 2) }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            {{ $price->location }}
+                        </td>
+
+                        <td class="px-6 py-4">
+                            <div class="flex justify-center gap-2">
+
+                                <!-- Edit -->
+                                <a href="{{ route('admin.price.edit', $price->id) }}"
+                                   class="px-3 py-1.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
+                                    <i class="fas fa-edit"></i>
+                                </a>
+
+                                <!-- Delete -->
+                                <form action="{{ route('admin.price.delete', $price->id) }}"
+                                      method="POST"
+                                      onsubmit="return confirm('Are you sure you want to delete this record?')">
+                                    @csrf
+                                    @method('DELETE')
+
+                                    <button type="submit"
+                                            class="px-3 py-1.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
+                                </form>
+
+                            </div>
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="5" class="px-6 py-6 text-center text-gray-500">
+                            No price records found.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody> --}}
+        </table>
+    </div>
+</div>
     </div>
 
     <script>

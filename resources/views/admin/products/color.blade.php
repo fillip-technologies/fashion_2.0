@@ -488,7 +488,118 @@
             </form>
         </div>
     </div>
+<div class="bg-white shadow-md rounded-lg overflow-hidden">
+    <div class="px-6 py-4 border-b">
+        <h2 class="text-xl font-semibold text-gray-800">
+            Color Listing
+        </h2>
+    </div>
 
+    <div class="overflow-x-auto">
+        <table class="w-full text-sm text-left text-gray-600">
+            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+                <tr>
+                    <th class="px-6 py-3">#</th>
+                    <th class="px-6 py-3">Color Name</th>
+                    <th class="px-6 py-3">Color Preview</th>
+                    <th class="px-6 py-3 text-center">Action</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">1</td>
+                    <td class="px-6 py-4 font-medium">Red</td>
+                    <td class="px-6 py-4">
+                        <span class="w-6 h-6 rounded-full bg-red-500 inline-block border"></span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">2</td>
+                    <td class="px-6 py-4 font-medium">Blue</td>
+                    <td class="px-6 py-4">
+                        <span class="w-6 h-6 rounded-full bg-blue-500 inline-block border"></span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">3</td>
+                    <td class="px-6 py-4 font-medium">Green</td>
+                    <td class="px-6 py-4">
+                        <span class="w-6 h-6 rounded-full bg-green-500 inline-block border"></span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="border-b hover:bg-gray-50">
+                    <td class="px-6 py-4">4</td>
+                    <td class="px-6 py-4 font-medium">Black</td>
+                    <td class="px-6 py-4">
+                        <span class="w-6 h-6 rounded-full bg-black inline-block border"></span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr class="hover:bg-gray-50">
+                    <td class="px-6 py-4">5</td>
+                    <td class="px-6 py-4 font-medium">White</td>
+                    <td class="px-6 py-4">
+                        <span class="w-6 h-6 rounded-full bg-white inline-block border border-gray-400"></span>
+                    </td>
+                    <td class="px-6 py-4">
+                        <div class="flex justify-center gap-2">
+                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                Edit
+                            </button>
+                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </div>
 
 
