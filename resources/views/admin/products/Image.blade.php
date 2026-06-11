@@ -107,7 +107,7 @@
             margin-top: 5px;
         }
     </style>
-@if (session('success'))
+    @if (session('success'))
         <script>
             Swal.fire({
                 icon: 'success',
@@ -177,7 +177,7 @@
                             <div class="form-group">
                                 <label>Select Product</label>
 
-                                <select name="product_id" class="custom-select" >
+                                <select name="product_id" class="custom-select">
 
                                     <option value="">
                                         -- Select Product --
@@ -202,7 +202,7 @@
                                 <label>Select Images</label>
 
                                 <input type="file" name="image[]" id="image" class="file-upload-input" multiple
-                                    accept="image/*" >
+                                    accept="image/*">
 
                                 @error('image')
                                     <div class="text-danger">{{ $message }}</div>
@@ -235,148 +235,74 @@
 
 
         <div class="bg-white shadow-lg rounded-lg overflow-hidden mt-6">
-    <div class="px-6 py-4 border-b">
-        <h2 class="text-xl font-semibold text-gray-800">
-            Product Images Listing
-        </h2>
-    </div>
+            <div class="px-6 py-4 border-b">
+                <h2 class="text-xl font-semibold text-gray-800">
+                    Product Images Listing
+                </h2>
+            </div>
 
-    <div class="overflow-x-auto">
-        <table class="w-full text-sm text-left text-gray-600">
-            <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
-                <tr>
-                    <th class="px-6 py-3">#</th>
-                    <th class="px-6 py-3">Product Name</th>
-                    <th class="px-6 py-3">Thumbnail</th>
-                    <th class="px-6 py-3">Gallery Images</th>
-                    <th class="px-6 py-3 text-center">Action</th>
-                </tr>
-            </thead>
+            <div class="overflow-x-auto">
+                <table class="w-full text-sm text-left text-gray-600">
+                    <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
+                        <tr>
+                            <th class="px-6 py-3">#</th>
+                            <th class="px-6 py-3">Product Name</th>
+                            <th class="px-6 py-3">Thumbnail</th>
+                            <th class="px-6 py-3">Gallery Images</th>
+                            <th class="px-6 py-3 text-center">Action</th>
+                        </tr>
+                    </thead>
 
-            <tbody>
-                <!-- Product 1 -->
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="px-6 py-4">1</td>
+                    <tbody>
+                        <!-- Product 1 -->
+                        @forelse ($productImage as $pimage)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4">1</td>
 
-                    <td class="px-6 py-4 font-medium text-gray-900">
-                        Premium Cotton T-Shirt
-                    </td>
+                                <td class="px-6 py-4 font-medium text-gray-900">
+                                    {{ $pimage->product->name ?? 'N/A' }}
+                                </td>
 
-                    <td class="px-6 py-4">
-                        <img src="https://via.placeholder.com/60"
-                             alt="Thumbnail"
-                             class="w-16 h-16 rounded-lg object-cover border">
-                    </td>
+                                <td class="px-6 py-4">
+                                    <img src="{{ asset($pimage->product->thumbnail) ?? 'default.png' }}" alt="Thumbnail"
+                                        class="w-16 h-16 rounded-lg object-cover border">
+                                </td>
 
-                    <td class="px-6 py-4">
-                        <div class="flex items-center gap-2">
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
+                                <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
 
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
+                                        @foreach ($pimage->image ?? [] as $img)
+                                            <img src="{{ asset($img) ?? 'default.png' }}"
+                                                class="w-12 h-12 rounded object-cover border">
+                                        @endforeach
 
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-                        </div>
-                    </td>
+                                    </div>
+                                </td>
 
-                    <td class="px-6 py-4">
-                        <div class="flex justify-center gap-2">
-                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                Edit
-                            </button>
+                                <td class="px-6 py-4">
+                                    <div class="flex justify-center gap-2">
+                                        <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+                                            Edit
+                                        </button>
 
-                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Product 2 -->
-                <tr class="border-b hover:bg-gray-50">
-                    <td class="px-6 py-4">2</td>
-
-                    <td class="px-6 py-4 font-medium text-gray-900">
-                        Denim Jacket
-                    </td>
-
-                    <td class="px-6 py-4">
-                        <img src="https://via.placeholder.com/60"
-                             alt="Thumbnail"
-                             class="w-16 h-16 rounded-lg object-cover border">
-                    </td>
-
-                    <td class="px-6 py-4">
-                        <div class="flex items-center gap-2">
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-                        </div>
-                    </td>
-
-                    <td class="px-6 py-4">
-                        <div class="flex justify-center gap-2">
-                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                Edit
-                            </button>
-
-                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-
-                <!-- Product 3 -->
-                <tr class="hover:bg-gray-50">
-                    <td class="px-6 py-4">3</td>
-
-                    <td class="px-6 py-4 font-medium text-gray-900">
-                        Sports Shoes
-                    </td>
-
-                    <td class="px-6 py-4">
-                        <img src="https://via.placeholder.com/60"
-                             alt="Thumbnail"
-                             class="w-16 h-16 rounded-lg object-cover border">
-                    </td>
-
-                    <td class="px-6 py-4">
-                        <div class="flex items-center gap-2">
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-
-                            <img src="https://via.placeholder.com/50"
-                                 class="w-12 h-12 rounded object-cover border">
-                        </div>
-                    </td>
-
-                    <td class="px-6 py-4">
-                        <div class="flex justify-center gap-2">
-                            <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                Edit
-                            </button>
-
-                            <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                Delete
-                            </button>
-                        </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
+                                        <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                            Delete
+                                        </button>
+                                    </div>
+                                </td>
+                            </tr>
+                        @empty
+                            <div>
+                                <p>No product</p>
+                            </div>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                {{ $productImage->links() }}
+            </div>
+        </div>
     </div>
 
     <script>

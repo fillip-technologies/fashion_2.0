@@ -518,7 +518,7 @@
                 <i class="fas fa-list"></i>
                 Product Variations
             </h2>
-            <p>Total Variations: 0</p>
+            <p>Total Variations: {{ $productVarialt->count() }}</p>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -537,8 +537,8 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    {{-- <tbody>
-                        @forelse($variations as $variation)
+                     <tbody>
+                        @forelse($productVarialt as $variation)
                         <tr>
                             <td>#{{ $variation->id }}</td>
                             <td>{{ $variation->product->name ?? 'N/A' }}</td>
@@ -570,13 +570,16 @@
                                     {{ $variation->stock }} units
                                 </span>
                             </td>
-                            <td>
-                                @if($variation->image)
-                                    <img src="{{ asset('storage/' . $variation->image) }}" width="50" height="50" style="border-radius: 8px; object-fit: cover;">
-                                @else
-                                    <span style="color: #999;">No image</span>
-                                @endif
-                            </td>
+                             <td class="px-6 py-4">
+                                    <div class="flex items-center gap-2">
+
+                                        @foreach ($variation->image ?? [] as $img)
+                                            <img src="{{ asset($img) ?? 'default.png' }}"
+                                                class="w-12 h-12 rounded object-cover border">
+                                        @endforeach
+
+                                    </div>
+                                </td>
                             <td>
                                 <label class="switch">
                                     <input type="checkbox" class="status-toggle" data-id="{{ $variation->id }}" {{ $variation->status ? 'checked' : '' }}>
@@ -588,7 +591,7 @@
                                     <button class="btn-edit" onclick="editVariation({{ $variation->id }})">
                                         <i class="fas fa-edit"></i> Edit
                                     </button>
-                                    <form action="{{ route('admin.product-variations.destroy', $variation->id) }}" method="POST" style="display: inline;">
+                                    <form action="" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn-delete" onclick="return confirm('Delete this variation?')">
@@ -607,12 +610,12 @@
                             </td>
                         </tr>
                         @endforelse
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
 
             <div style="margin-top: 20px;">
-                {{-- {{ $variations->links() }} --}}
+                 {{ $productVarialt->links() }}
             </div>
         </div>
     </div>

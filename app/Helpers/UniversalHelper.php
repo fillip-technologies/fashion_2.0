@@ -135,4 +135,14 @@ if (!function_exists('GetColor')) {
     }
 }
 
+if (!function_exists('getRelationData')) {
+
+    function getRelationData($model, $relations = [],  $perPage = 5,$select = [])
+    {
+        return $model::with($relations)
+            ->paginate($perPage)
+            ->select($select);
+    }
+}
+
 

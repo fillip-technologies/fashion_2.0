@@ -42,17 +42,17 @@
                     </tr>
                 </thead>
 
-                {{-- <tbody class="divide-y divide-gray-200">
-                    @forelse($products as $key => $product)
+                 <tbody class="divide-y divide-gray-200">
+                    @forelse($productList as $key => $product)
                         <tr class="hover:bg-gray-50">
 
                             <td class="px-4 py-3">
-                                {{ $products->firstItem() + $key }}
+                                {{  $key +1 }}
                             </td>
 
                             <td class="px-4 py-3">
                                 <img
-                                    src="{{ $product->thumbnail ? asset('storage/'.$product->thumbnail) : asset('images/no-image.png') }}"
+                                    src="{{ $product->thumbnail ? asset($product->thumbnail) : asset('images/no-image.png') }}"
                                     alt="{{ $product->name }}"
                                     class="w-14 h-14 object-cover rounded-lg border">
                             </td>
@@ -160,14 +160,14 @@
                             </td>
                         </tr>
                     @endforelse
-                </tbody> --}}
+                </tbody>
             </table>
         </div>
 
         <!-- Pagination -->
-        <div class="px-6 py-4 border-t">
-            {{-- {{ $products->links() }} --}}
-        </div>
+        {{-- <div class="px-6 py-4 border-t">
+             {{ $products->links() }}
+        </div> --}}
 
     </div>
 </div>

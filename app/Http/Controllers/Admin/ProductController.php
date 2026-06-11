@@ -22,39 +22,56 @@ class ProductController extends Controller
 
     public function sizes()
     {
-        return view('admin.products.size_create');
+        $sizes = Size::paginate(5);
+        return view('admin.products.size_create',compact('sizes'));
     }
 
     public function produtList()
     {
-        return view('admin.listings.product_list');
+    $productList = Product::with([
+    'category:id,name',
+    'productImg:id,product_id,image'])->select(
+    'id',
+    'category_id',
+    'name',
+    'thumbnail',
+    'price',
+    'sale_price',
+    'sku',
+    'stock',
+    'status'
+)
+->get() ?? [];
+        return view('admin.listings.product_list',compact('productList'));
     }
-
     public function product_image()
     {
-        return view('admin.products.Image');
+        $productImage = ProductImage::with('product')->paginate(5) ?? [];
+        return view('admin.products.Image',compact('productImage'));
     }
 
     public function product_price()
     {
-        return view('admin.products.product_price');
+        $productPrice = ProductPrice::with(['product:id,name'])->select('price','country','product_id')->paginate(5);
+        return view('admin.products.product_price',compact('productPrice'));
     }
 
     public function product_color()
     {
-        return view('admin.products.color');
+        $colors = Color::paginate(5);
+        return view('admin.products.color',compact('colors'));
     }
 
     public function product_category()
     {
         $categories = GetAll(Category::class) ?? [];
-
         return view('admin.products.category', compact('categories'));
     }
 
     public function product_variants()
     {
-        return view('admin.products.variants.create_variant');
+        $productVarialt = ProductVariant::with(['color:id,code,name','size:id,name','product:id,name'])->paginate(5) ?? [];
+        return view('admin.products.variants.create_variant',compact('productVarialt'));
     }
 
     public function store_product(Request $request)
@@ -80,28 +97,19 @@ class ProductController extends Controller
             ]);
 
             $uploadFile = null;
-
             if ($request->hasFile('thumbnail')) {
-
                 $file = $request->file('thumbnail');
-
                 $filename = time().'_'.uniqid().'.'.$file->getClientOriginalExtension();
-
                 $destinationPath = public_path('thumbnails');
-
                 if (! file_exists($destinationPath)) {
                     mkdir($destinationPath, 0777, true);
                 }
-
                 $file->move($destinationPath, $filename);
-
                 $uploadFile = 'thumbnails/'.$filename;
             }
 
             $product_slug = Str::slug($request->name);
-
             $slugExists = Product::where('slug', $product_slug)->exists();
-
             if ($slugExists) {
                 $product_slug .= '-'.time();
             }

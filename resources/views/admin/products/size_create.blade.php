@@ -127,42 +127,26 @@
                             </th>
                         </tr>
                     </thead>
-                    {{-- <tbody class="bg-white divide-y divide-gray-200">
+                    <tbody class="bg-white divide-y divide-gray-200">
                         @forelse($sizes as $size)
                         <tr class="hover:bg-gray-50 transition-colors duration-200">
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <input type="checkbox" class="rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                              {{ $loop->iteration }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                                #{{ $size->id }}
+                                #{{ $size->name }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
-                                <div class="text-sm font-medium text-gray-900">{{ $size->name }}</div>
+                                <div class="text-sm font-medium text-gray-900">{{ $size->size_magerment }}</div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-blue-100 text-blue-800">
-                                    {{ ucfirst($size->size_management) }}
-                                </span>
-                            </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
-                                @if($size->status ?? true)
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
-                                        <span class="w-1.5 h-1.5 bg-green-500 rounded-full mr-1.5"></span>
-                                        Active
-                                    </span>
-                                @else
-                                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-gray-100 text-gray-800">
-                                        <span class="w-1.5 h-1.5 bg-gray-400 rounded-full mr-1.5"></span>
-                                        Inactive
-                                    </span>
-                                @endif
-                            </td>
+
+
                             <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
                                 {{ $size->created_at->format('M d, Y') }}
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
                                 <div class="flex items-center justify-end space-x-2">
-                                    <a href="{{ route('admin.sizes.edit', $size) }}"
+                                    <a href=""
                                        class="text-blue-600 hover:text-blue-900 transition-colors duration-200"
                                        title="Edit">
                                         <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -206,16 +190,16 @@
                             </td>
                         </tr>
                         @endforelse
-                    </tbody> --}}
+                    </tbody>
                 </table>
             </div>
 
             <!-- Pagination -->
-            {{-- @if($sizes->hasPages())
+            @if($sizes->hasPages())
             <div class="bg-white px-4 py-3 border-t border-gray-200 sm:px-6">
                {{ $sizes->links() }}
             </div>
-            @endif --}}
+            @endif
         </div>
     </div>
 
