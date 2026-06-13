@@ -15,6 +15,21 @@ class AdminController extends Controller
         return view('admin.login.signin');
     }
 
+    public function userList(){
+        $users = User::where('role','!=','admin')->get();
+        return view('admin.listings.userlist',compact('users'));
+    }
+
+public function deleteUser($id)
+{
+    $user = User::findOrFail($id);
+
+    if ($user->delete()) {
+        return back()->with('success', 'User Deleted Successfully');
+    }
+    return back()->with('error', 'Something went wrong');
+}
+
     public function admin_login(Request $request)
     {
         $request->validate([

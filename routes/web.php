@@ -1,9 +1,12 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 
+Route::post('/create/users',[UserController::class, 'createUsers'])->name('create.users');
+Route::post('/login/user',[UserController::class, 'UserLogin'])->name('user.login');
 Route::get('/', function () {
     return view('pages.landing');
 });
@@ -80,21 +83,8 @@ Route::get('/location', function () {
     return view('pages.location');
 });
 
-Route::get('/accountoverview', function () {
-    return view('pages.accountoverview');
-});
 
-Route::get('/profile', function () {
-    return view('pages.profile');
-});
 
-Route::get('/wishlist', function () {
-    return view('pages.wishlist');
-});
-
-Route::get('/orders', function () {
-    return view('pages.orders');
-});
 
 Route::get('/orderhistory', function () {
     return view('pages.orderhistory');

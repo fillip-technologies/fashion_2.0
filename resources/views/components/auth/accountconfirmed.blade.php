@@ -14,8 +14,8 @@
                 </div>
             </div>
 
-           
-            <a href="{{ url('/accountoverview') }}" class="flex items-center text-[0.8125rem] cursor-pointer">
+
+            <a href="{{ route('user.account') }}" class="flex items-center text-[0.8125rem] cursor-pointer">
                 <span class="mr-1 sm:mr-2 hidden md:block" style="font-weight: 300">Go to your
                     profile</span>
                 {{-- <i class="fa-solid fa-chevron-right fa-sm"></i>
@@ -39,7 +39,7 @@
 
     <div class="absolute inset-0 flex flex-col items-center justify-center text-center z-10 text-white px-4">
         <h1 class="text-[1.5625rem] mb-2" style="font-weight: 200">Welcome to Brand name </h1>
-        <p class="text-[1.5625rem]" style="font-weight: 200">Ms. Name Surname</p>
+        <p class="text-[1.5625rem]" style="font-weight: 200"> {{ UserLogin() ? trim(UserLogin()->title.' '.UserLogin()->firstname.' '.UserLogin()->lastname) : 'Ms. Name Surname' }}</p>
     </div>
 
 </div>

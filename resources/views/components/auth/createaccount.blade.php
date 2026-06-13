@@ -1,3 +1,34 @@
+@if ($errors->any())
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Validation Error',
+            html: `{!! implode('<br>', $errors->all()) !!}`,
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+@if (session('success'))
+    <script>
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+@if (session('error'))
+    <script>
+        Swal.fire({
+            icon: 'error',
+            title: 'Error',
+            text: '{{ session('error') }}',
+            confirmButtonText: 'OK'
+        });
+    </script>
+@endif
+
 <div class="bg-background">
     <header class="relative border-b border-black/10 bg-secondary">
         <div class="mx-auto px-6 sm:px-14 h-24 flex items-center">
@@ -12,8 +43,8 @@
     </header>
     <img src="{{ asset('assets/images/rectangle-house.png') }}" alt="Search Visual" class="w-full h-full object-contain" />
 
-    <form autocomplete="off">
-
+    <form autocomplete="off" action="{{ route('create.users') }}" method="POST">
+        @csrf
         <section class="w-11/12 mx-auto px-2  md:px-10 py-16 text-primary">
             <div class="flex flex-col md:flex-row items-start md:items-center gap-4 mb-16">
                 <h1 class="text-[1.25rem] tracking-wide uppercase font-medium">
@@ -202,7 +233,7 @@
 
 
                         <div class="relative mt-12">
-                            <input type="secondname" id="secondname" name="secondname" autocomplete="new-secondname"
+                            <input type="lastname" id="lastname" name="lastname" autocomplete="new-lastname"
                                 required oninput="handleFilled(this)" onblur="handleFilled(this)"
                                 class="peer w-full
                                 bg-transparent
@@ -215,7 +246,7 @@
                                 focus:border-border
                                 data-[filled=true]:font-medium" />
 
-                            <label for="secondname"
+                            <label for="lastname"
                                 class="absolute left-0 top-2
                                 text-[0.9375rem]
                                 text-primary
@@ -248,7 +279,7 @@
                                 </div>
 
 
-                                <input type="text" placeholder="Phone number"
+                                <input type="text" placeholder="Phone number" name="phone"
                                     class="flex-1 pl-5 bg-transparent text-primary border-b border-border outline-none text-[0.9375rem]" />
                             </div>
 
@@ -494,7 +525,7 @@
 
 
                                 <div class="relative mt-12">
-                                    <input type="addresstwo" id="addresstwo" name="addresstwo"
+                                    <input type="addresstwo" id="addresstwo" name="addres_two"
                                         autocomplete="new-addresstwo" required oninput="handleFilled(this)"
                                         onblur="handleFilled(this)"
                                         class="peer w-full
@@ -718,7 +749,7 @@
 
                     <div class="flex flex-col items-center gap-6">
 
-                        <button onclick="window.location.href='/accountconfirmed'"
+                        <button type="submit"
                             class="w-64 h-12 bg-secondary text-white text-[1.25rem] rounded-md hover:bg-primary transition">
                             Create Account
                         </button>

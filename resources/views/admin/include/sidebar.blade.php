@@ -13,11 +13,18 @@
         <i
             class="fas fa-chart-line w-5 text-lg transition-all duration-200 {{ request()->is('admin/dashboard') ? 'text-primary scale-110' : 'text-gray-400 group-hover:text-primary group-hover:scale-110' }}"></i>
         <span class="text-sm font-medium">Dashboard</span>
-        @if(request()->is('admin/dashboard'))
+        @if (request()->is('admin/dashboard'))
             <div class="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full"></div>
         @endif
     </a>
+    <a href="{{ url('admin/user/list') }}"
+        class="sidebar-link group relative flex items-center gap-3 px-6 py-2.5 mx-3 mt-3 rounded-xl transition-all duration-200 {{ request()->is('admin/users*') ? 'active bg-gradient-to-r from-primary/10 to-transparent text-primary shadow-sm' : 'text-gray-500 hover:bg-gray-50/80 hover:text-primary' }}">
+        <i
+            class="fas fa-users w-5 text-lg transition-all duration-200 {{ request()->is('admin/users*') ? 'text-primary scale-110' : 'text-gray-400 group-hover:text-primary group-hover:scale-110' }}"></i>
 
+        <span class="text-sm font-medium">Users List</span>
+
+    </a>
     <!-- PRODUCT MANAGEMENT -->
     <details class="group mx-3 mt-3" {{ request()->is('admin/product*') ? 'open' : '' }}>
         <summary
@@ -56,7 +63,7 @@
             <a href="{{ route('admin.index.size') }}"
                 class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.index.size') ? 'text-primary font-medium bg-primary/5' : '' }}">
                 <span class="flex items-center gap-2">
-                     <i class="fas fa-ruler-combined text-xs opacity-60"></i>
+                    <i class="fas fa-ruler-combined text-xs opacity-60"></i>
                     Add Sizes
                 </span>
             </a>
@@ -168,4 +175,3 @@
     </details>
     -->
 </nav>
-

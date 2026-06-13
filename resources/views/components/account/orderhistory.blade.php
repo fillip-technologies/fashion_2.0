@@ -12,24 +12,24 @@
              pb-6 pt-6 sm:pt-8
              scrollbar-hide">
 
-                <a href="/accountoverview" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="{{ route('user.account') }}" class="relative text-white flex-shrink-0">
                     Account in perspective
-                </a>
-
-                <a href="/profile" class="opacity-70 hover:opacity-100 flex-shrink-0">
-                    My Profile
-                </a>
-
-                <a href="/wishlist" class="opacity-70 hover:opacity-100 flex-shrink-0">
-                    My Wishlist
-                </a>
-
-                <a href="/orders" class="relative text-white flex-shrink-0">
-                    My Orders
                     <span class="absolute left-0 -bottom-6 w-full h-1 bg-tertiary rounded"></span>
                 </a>
 
-                <a href="/addressbook" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="{{ route('user.profile') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                    My Profile
+                </a>
+
+                <a href="{{ route('user.wishlist') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                    My Wishlist
+                </a>
+
+                <a href="{{ route('user.orders') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                    My Orders
+                </a>
+
+                <a href="{{ route('user.addressbook') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Addressbook
                 </a>
 

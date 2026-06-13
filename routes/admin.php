@@ -39,4 +39,6 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
      Route::post('/store/product/variant',[ProductController::class, 'store_product_variant'])->name('store.product.variant');
 
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');
+      Route::delete('users/delete/{id}',[AdminController::class ,'deleteUser'])->name('delete.user');
+     Route::get('user/list',[AdminController::class ,'userList'])->name('users.list');
 });

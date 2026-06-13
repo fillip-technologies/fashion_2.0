@@ -12,31 +12,30 @@
              pb-6 pt-6 sm:pt-8
              scrollbar-hide">
 
-                <a href="/accountoverview" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="{{ route('user.account') }}" class="relative text-white flex-shrink-0">
                     Account in perspective
-                </a>
-
-                <a href="/profile" class="relative text-white flex-shrink-0">
-                    My Profile
                     <span class="absolute left-0 -bottom-6 w-full h-1 bg-tertiary rounded"></span>
                 </a>
 
-                <a href="/wishlist" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="{{ route('user.profile') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                    My Profile
+                </a>
+
+                <a href="{{ route('user.wishlist') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Wishlist
                 </a>
 
-                <a href="/orders" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="{{ route('user.orders') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Orders
                 </a>
 
-                <a href="/addressbook" class="opacity-70 hover:opacity-100 flex-shrink-0">
+                <a href="{{ route('user.addressbook') }}" class="opacity-70 hover:opacity-100 flex-shrink-0">
                     My Addressbook
                 </a>
 
             </nav>
         </div>
     </div>
-
 
 </section>
 
@@ -119,7 +118,7 @@
         </div>
 
         <div class="relative mt-16">
-            <input type="secondname" id="secondname" name="secondname" autocomplete="new-secondname" required
+            <input type="secondname" id="lastname" name="lastname" autocomplete="new-secondname" required
                 oninput="handleFilled(this)" onblur="handleFilled(this)"
                 class="peer w-full
                                 bg-transparent
@@ -163,7 +162,7 @@
                 </div>
 
 
-                <input type="text" placeholder="Phone number"
+                <input type="text" placeholder="Phone number" name="phone"
                     class="flex-1 pl-5 bg-transparent text-primary border-b border-border outline-none text-[0.9375rem]" />
             </div>
 
