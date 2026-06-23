@@ -1,4 +1,6 @@
 @props([
+    'pid'=>1,
+    'slug'=>null,
     'image',
     'hoverImage',
     'title',
@@ -11,14 +13,18 @@
     'neverReturned' => false,
 ])
 
-<a href="{{ $url }}" {{ $attributes->merge(['class' => 'group block cursor-pointer']) }}>
+@php
+
+@endphp
+
+<a href="{{ url('/productdetails/'.$pid.'/'.$slug) }}" {{ $attributes->merge(['class' => 'group block cursor-pointer']) }}>
 
 
 
     <div class="relative aspect-[9/8] overflow-hidden">
 
         <!-- Images -->
-        <img src="{{ $image }}"
+        <img src="{{ asset($image) }}"
             class="absolute inset-0 w-full h-full object-cover transition-opacity duration-300 group-hover:opacity-0"
             alt="{{ $title }}" />
 

@@ -4,5 +4,5 @@
 
 @section('content')
 
-    <x-cart.bag />
+    <x-cart.bag  :bagDatas="$cartdata" :totalprice="$totalprice"/>
 @endsection

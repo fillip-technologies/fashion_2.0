@@ -28,7 +28,7 @@ class CategoryController extends Controller
 
         $dataedit = SingleData(Category::class, $id) ?? [];
 
-        return view('admin.products.category', compact('dataedit'));
+        return view('admin.products.categorys.category', compact('dataedit'));
 
     }
 

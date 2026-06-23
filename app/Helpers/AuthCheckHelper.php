@@ -11,7 +11,7 @@ if (! function_exists('AdminLogin')) {
 
             return $users;
         } else {
-            return redirect()->route('admin.admin');
+            return null;
         }
     }
 }
@@ -23,8 +23,8 @@ if (! function_exists('UserLogin')) {
             $users = Auth::guard('user')->user();
 
             return $users;
-        } else {
-            return redirect('/');
+        }else {
+            return null;
         }
     }
 }

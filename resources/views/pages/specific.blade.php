@@ -4,5 +4,5 @@
 
 @section('content')
 
-    <x-category.specific />
+    <x-category.specific :product="$products" />
 @endsection

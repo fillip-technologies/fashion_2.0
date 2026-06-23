@@ -4,5 +4,5 @@
 
 @section('content')
 
-    <x-category.productdetails />
+    <x-category.productdetails :details="$details_product" />
 @endsection

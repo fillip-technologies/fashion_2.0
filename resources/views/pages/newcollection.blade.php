@@ -4,5 +4,5 @@
 
 @section('content')
 
-    <x-category.newcollection />
+   <x-category.newcollection  />
 @endsection

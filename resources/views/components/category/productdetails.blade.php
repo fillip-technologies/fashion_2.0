@@ -31,24 +31,32 @@
                     style="font-weight: 200">
 
                     <p class="text-[1.25rem] uppercase font-medium">The Line</p>
-                    <p>
-                        Honouring Loro Piana’s centenary, Loro Piana’s book Master of Fibres recounts
-                        the Maison’s unique story from a wool-trading company to the ultimate destination for
-                        sophistication, excellence, and textile artisanship. Published by Assouline and written by
-                        Nicholas Foulkes.
-                        Loro Piana Gift Card
-                    </p>
-                    <p>
-                        Surprise your beloved ones with a refined Gift Card by Loro Piana. Let them discover a universe
-                        of inspiration and unique elegance
-                        Knit Design Award
-                    </p>
-                    <p>
-                        The Knit Design Award celebrates talented students from leading design schools around the world
-                        with an extraordinary passion for knitwear who demonstrate their creativity in reinterpreting
-                        Loro Piana's iconic yarns.
-                        Fall/Winter 2025-2026
-                    </p>
+                    @if ($details->the_line)
+                        {{ $details->the_line }}
+                    @else
+                        <p>
+                            Honouring Loro Piana’s centenary, Loro Piana’s book Master of Fibres recounts
+                            the Maison’s unique story from a wool-trading company to the ultimate destination for
+                            sophistication, excellence, and textile artisanship. Published by Assouline and written by
+                            Nicholas Foulkes.
+                            Loro Piana Gift Card
+                        </p>
+                        <p>
+                            Surprise your beloved ones with a refined Gift Card by Loro Piana. Let them discover a
+                            universe
+                            of inspiration and unique elegance
+                            Knit Design Award
+                        </p>
+                        <p>
+                            The Knit Design Award celebrates talented students from leading design schools around the
+                            world
+                            with an extraordinary passion for knitwear who demonstrate their creativity in
+                            reinterpreting
+                            Loro Piana's iconic yarns.
+                            Fall/Winter 2025-2026
+                        </p>
+                    @endif
+
                 </div>
 
                 <div class="w-full h-px bg-dash-dot"></div>
@@ -84,14 +92,14 @@
                         </h1>
 
                         <p class="text-[0.75rem] text-secondary">
-                            Main materials
+                            {{ $details->name ?? 'N/A' }}
                         </p>
                     </div>
 
 
                     <div class="flex justify-between items-end mt-6">
                         <p class="text-[0.75rem] text-black">
-                            ₹10,000
+                            ₹{{ $details->sale_price ?? '000' }}
                         </p>
 
                         <p class="text-[0.75rem] text-secondary">
@@ -227,28 +235,40 @@
                             U need to sing in to be able to purchase or add this item to your Wishlist.
                         </h1>
                     </div>
-                    <div class="flex justify-start items-end mt-5">
-                        <p class="text-[0.875rem] underline font-medium cursor-pointer"
-                            onclick="toggleMasterDrawer('drawerlogin')">
-                            Sign in?
-                        </p>
-                    </div>
+
+                    @if (empty(UserLogin()))
+                        <div class="flex justify-start items-end mt-5">
+                            <p class="text-[0.875rem] underline font-medium cursor-pointer"
+                                onclick="toggleMasterDrawer('drawerlogin')">
+                                Sign in?
+                            </p>
+                        </div>
+                    @else
                 </div>
             </div>
 
+
             <div class="pt-10 pb-5 px-6 md:px-16 bg-background">
                 <div class="max-w-6xl mx-auto flex items-center justify-center">
-                    <button class="bg-secondary hover:bg-primary text-white px-10 py-3 rounded text-[1rem]"
-                        onclick="toggleMasterDrawer('cartnotification')">
-                        Add to bag
-                    </button>
+                    <form id="fromdata">
+                        @csrf
+                        <input type="hidden" name="user_id" value="{{ UserLogin()->id ?? 0 }}">
+                        <input type="hidden" name="product_id" value="{{ $details->id }}">
+                        <input type="hidden" name="price" value="{{ $details->sale_price }}">
+                        <input type="hidden" name="quantity" value="1">
+                        <button type="submit" onclick="toggleMasterDrawer('cartnotification')"
+                            class="bg-secondary hover:bg-primary text-white px-10 py-3 rounded text-[1rem]">
+                            Add to Bag
+                        </button>
+                    </form>
+
                 </div>
             </div>
+            @endif
 
 
 
             <div class="h-0.5 bg-white mt-4"></div>
-
             <div class=" pb-5 bg-background overflow-y-auto max-h-screen custom-scroll">
                 <div class="px-6 md:px-16 pt-12 pb-5 ">
                     <div class="max-w-6xl mx-auto">
@@ -267,10 +287,7 @@
                         <div class="flex flex-col mt-5 pr-8" id="productstory">
                             <p id="storyText"
                                 class="text-[0.75rem] text-justify text-secondary overflow-hidden transition-all duration-300 max-h-[4.2em]">
-                                This pullover is a sophisticated staple in a cozy cashmere knit in a rich seasonal shade
-                                for elevated daily styling. It is crafted in a classic fit with a crew neckline and wide
-                                ribbed hems. Designed for comfort and durability, it pairs effortlessly with both casual
-                                and formal looks across seasons.
+                                {{ $details->product_story ?? 'Not Found' }}
                             </p>
 
                             <button onclick="toggleReadMore()" id="readMoreBtn"
@@ -284,7 +301,6 @@
 
 
                 <div class="h-0.5 bg-white mt-4"></div>
-
 
                 <div class="px-6 md:px-16 pb-5 pt-12">
                     <div class="max-w-6xl mx-auto">
@@ -303,21 +319,7 @@
 
                         <div class="flex flex-col justify-start items-start mt-5 hidden" id="materialbreakdown">
                             <div class="text-[0.75rem] text-justify text-secondary pr-8">
-                                <p>
-                                    Diagonal edges
-                                </p>
-                                <p>
-                                    Natural Australia print
-                                </p>
-                                <p>
-                                    Composition: 100% Silk
-                                </p>
-                                <p>
-                                    Made in Italy
-                                </p>
-                                <p>
-                                    Product code: FAQ0586
-                                </p>
+                                {{ $details->material_breakdown ?? 'material_breakdown' }}
                             </div>
 
                         </div>
@@ -346,39 +348,51 @@
                             id="deliveryandpayment">
                             <div class="text-[0.75rem] text-justify text-secondary pr-8">
                                 <p class="text-black mb-2">Payment</p>
-                                <p class="mb-3">
-                                    We accept the following payment methods:
-                                </p>
-                                <p>
-                                    Credit Cards: Visa, MasterCard and American Express. Secure Payment.
-                                </p>
-                                <p>
-                                    Paypal
-                                </p>
-                                <p>
-                                    Alipay
-                                </p>
-                                <p>
-                                    Apple Pay
-                                </p>
-                                <p>
-                                    Google Pay
-                                </p>
-                                <p>
-                                    Gift Card
-                                </p>
+
+                                @if ($details->payment)
+                                    {{ $details->payment }}
+                                @else
+                                    <p class="mb-3">
+                                        We accept the following payment methods:
+                                    </p>
+                                    <p>
+                                        Credit Cards: Visa, MasterCard and American Express. Secure Payment.
+                                    </p>
+                                    <p>
+                                        Paypal
+                                    </p>
+                                    <p>
+                                        Alipay
+                                    </p>
+                                    <p>
+                                        Apple Pay
+                                    </p>
+                                    <p>
+                                        Google Pay
+                                    </p>
+                                    <p>
+                                        Gift Card
+                                    </p>
+                                @endif
+
                             </div>
 
 
                             <div class="text-[0.75rem] text-justify text-secondary pr-8">
                                 <p class="text-black mb-2">Delivery</p>
-                                <p>
-                                    Free shipping.
-                                </p>
-                                <p>
-                                    Within the E.U. we ship using DHL express and your order should arrive within three
-                                    to five business days.
-                                </p>
+                                @if ($details->delivery)
+                                    {{ $details->delivery ?? 'Delivery' }}
+                                @else
+                                    <p>
+                                        Free shipping.
+                                    </p>
+                                    <p>
+                                        Within the E.U. we ship using DHL express and your order should arrive within
+                                        three
+                                        to five business days.
+                                    </p>
+                                @endif
+
                             </div>
 
                         </div>
@@ -404,10 +418,17 @@
 
                         <div class="flex flex-col justify-start items-start mt-5 hidden" id="packaging">
                             <p class="text-[0.75rem] text-justify text-secondary pr-8">
-                                We do our utmost to ensure the most enjoyable gifting experience, both for you and for
-                                the person who receives your gift. All orders are delivered in the iconic Louis Vuitton
-                                box. The delivery box contains inserts that ensure the gift reaches the recipient in
-                                perfect condition.
+                                @if ($details->packaging)
+                                    {{ $details->packaging }}
+                                @else
+                                    We do our utmost to ensure the most enjoyable gifting experience, both for you and
+                                    for
+                                    the person who receives your gift. All orders are delivered in the iconic Louis
+                                    Vuitton
+                                    box. The delivery box contains inserts that ensure the gift reaches the recipient in
+                                    perfect condition.
+                                @endif
+
                             </p>
 
                         </div>
@@ -428,24 +449,30 @@
             style="font-weight: 200">
 
             <p class="text-[1.25rem] uppercase font-medium">The Line</p>
-            <p>
-                Honouring Loro Piana’s centenary, Loro Piana’s book Master of Fibres recounts
-                the Maison’s unique story from a wool-trading company to the ultimate destination for
-                sophistication, excellence, and textile artisanship. Published by Assouline and written by
-                Nicholas Foulkes.
-                Loro Piana Gift Card
-            </p>
-            <p>
-                Surprise your beloved ones with a refined Gift Card by Loro Piana. Let them discover a universe
-                of inspiration and unique elegance
-                Knit Design Award
-            </p>
-            <p>
-                The Knit Design Award celebrates talented students from leading design schools around the world
-                with an extraordinary passion for knitwear who demonstrate their creativity in reinterpreting
-                Loro Piana's iconic yarns.
-                Fall/Winter 2025-2026
-            </p>
+
+            @if ($details->the_line)
+                {{ $details->the_line }}
+            @else
+                <p>
+                    Honouring Loro Piana’s centenary, Loro Piana’s book Master of Fibres recounts
+                    the Maison’s unique story from a wool-trading company to the ultimate destination for
+                    sophistication, excellence, and textile artisanship. Published by Assouline and written by
+                    Nicholas Foulkes.
+                    Loro Piana Gift Card
+                </p>
+                <p>
+                    Surprise your beloved ones with a refined Gift Card by Loro Piana. Let them discover a universe
+                    of inspiration and unique elegance
+                    Knit Design Award
+                </p>
+                <p>
+                    The Knit Design Award celebrates talented students from leading design schools around the world
+                    with an extraordinary passion for knitwear who demonstrate their creativity in reinterpreting
+                    Loro Piana's iconic yarns.
+                    Fall/Winter 2025-2026
+                </p>
+            @endif
+
         </div>
     </div>
 
@@ -531,6 +558,51 @@
         </button>
     </div>
 </div>
+
+
+<nav id="cartnotification"
+    class="fixed -top-0.5 right-0 w-full md:w-1/3 bg-background text-black z-[1200]
+         transform translate-x-full transition-transform duration-500
+         ease-[cubic-bezier(0.86,0,0.07,1)]
+        flex flex-col overflow-y-auto bg-background rounded-md shadow-2xl shadow-primary">
+
+    <div class="relative mt-0.5">
+        <div class="w-full h-px bg-dash-dot"></div>
+    </div>
+
+    <div class="py-6 px-6 md:px-8 flex items-center justify-between">
+        <p class="text-[1.25rem] tracking-wide font-semibold">
+            MY CART <span class="ml-2">(1)</span>
+        </p>
+        <button onclick="toggleMasterDrawer('cartnotification')"
+            class="text-3xl font-light text-black/60 hover:text-black transition">
+            &times;
+        </button>
+    </div>
+
+    <div class="relative">
+        <div class="w-full h-px bg-dash-dot"></div>
+    </div>
+
+    <div class="flex-1 flex items-center justify-center py-10 md:py-14">
+        <div class="grid grid-cols-1 md:grid-cols-2 items-center mx-auto max-w-7xl gap-2" >
+            <div class="flex justify-center col-span-4">
+                <img id="img_id" src="assets/icons/bigcart.png" alt="Bag" class="" />
+            </div>
+
+            <div class="text-center flex flex-col items-center justify-center font-light col-end-8">
+                <p class="mb-1 text-[0.875rem]">
+                    You have added this item in your cart.
+                </p>
+                <a href="{{ route('bag') }}" class="underline font-normal hover:opacity-70 transition text-[0.75rem]">
+                    Go to <span class="font-semibold text-[0.875rem]">My Cart</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</nav>
+
+
 
 <style>
     body.product-image-viewer-lock {
@@ -820,28 +892,6 @@
     });
 </script>
 
-{{-- <script>
-    function visibleSection(activeId) {
-        const sections = [
-            // "productstory",
-            "materialbreakdown",
-            "deliveryandpayment",
-            "packaging",
-        ];
-
-        sections.forEach(id => {
-            const el = document.getElementById(id);
-            if (!el) return;
-
-            if (id === activeId) {
-                el.classList.remove("hidden"); // ALWAYS SHOW
-            } else {
-                el.classList.add("hidden"); // HIDE OTHERS
-            }
-        });
-    }
-</script> --}}
-
 <script>
     function visibleSection(activeId) {
         const sections = [
@@ -870,7 +920,6 @@
     }
 </script>
 
-
 <script>
     const text = document.getElementById("storyText");
     const btn = document.getElementById("readMoreBtn");
@@ -898,11 +947,6 @@
         );
     });
 </script>
-
-
-
-
-
 <script>
     document.addEventListener("DOMContentLoaded", () => {
         const items = document.querySelectorAll('.color-item');
@@ -916,79 +960,98 @@
     });
 </script>
 
-
-
-
+@php
+    $images = collect($details->productImg->first()->image ?? [])
+        ->map(function ($pair) {
+            return collect($pair)->map(fn($img) => asset($img))->toArray();
+        })
+        ->toArray();
+@endphp
 
 <script>
     const thumbCarousel = document.getElementById("thumbCarousel");
     const thumbCarouselMobile = document.getElementById("thumbCarouselMobile");
     const bigCarousel = document.getElementById("bigCarousel");
+
     const productImageViewer = document.getElementById("productImageViewer");
     const productImageViewerShell = document.getElementById("productImageViewerShell");
     const productViewerImage = document.getElementById("productViewerImage");
+
     const productViewerThumbs = document.getElementById("productViewerThumbs");
     const productViewerThumbsMobile = document.getElementById("productViewerThumbsMobile");
+
     const productViewerCloseButtons = document.querySelectorAll(".product-viewer-close");
     const productViewerZoomInButtons = document.querySelectorAll(".product-viewer-zoom-in");
     const productViewerZoomOutButtons = document.querySelectorAll(".product-viewer-zoom-out");
-    const thumbCarouselContainers = [thumbCarousel, thumbCarouselMobile].filter(Boolean);
-    const nextButtons = [document.getElementById("nextBtn"), document.getElementById("nextBtnMobile")].filter(Boolean);
-    const prevButtons = [document.getElementById("prevBtn"), document.getElementById("prevBtnMobile")].filter(Boolean);
 
 
-    const imagePairs = [
-        [
-            "{{ asset('assets/images/products/one.png') }}",
-            "{{ asset('assets/images/products/two.png') }}"
-        ],
-        [
-            "{{ asset('assets/images/products/three.png') }}",
-            "{{ asset('assets/images/products/four.png') }}"
-        ],
-        [
-            "{{ asset('assets/images/products/two.png') }}",
-            "{{ asset('assets/images/products/three.png') }}"
-        ],
-        [
-            "{{ asset('assets/images/products/four.png') }}",
-            "{{ asset('assets/images/products/one.png') }}"
-        ],
-    ];
+    const thumbCarouselContainers = [thumbCarousel, thumbCarouselMobile].filter(el => el !== null);
+
+    const nextButtons = [
+        document.getElementById("nextBtn"),
+        document.getElementById("nextBtnMobile")
+    ].filter(Boolean);
+
+    const prevButtons = [
+        document.getElementById("prevBtn"),
+        document.getElementById("prevBtnMobile")
+    ].filter(Boolean);
+
+
+    const imagePairs = (typeof window !== "undefined" && Array.isArray(@json($images))) ?
+        @json($images) : [];
+
 
     const viewerGalleryImages = [...new Set(
-        imagePairs.flat().map(src => new URL(src, window.location.href).href)
+        imagePairs
+        .flat()
+        .filter(Boolean)
+        .map(src => new URL(src, window.location.href).href)
     )];
+
     let viewerActiveIndex = 0;
     let viewerIsDetailMode = false;
+
     const carouselAutoRotateDelay = 2000;
     let carouselAutoRotateTimer = null;
 
-    let queue = imagePairs.map(pair => [...pair]);
+    // Queue safe copy
+    let queue = imagePairs.map(pair => Array.isArray(pair) ? [...pair] : []);
 
-    function createCarouselItem(pair, isActive = false) {
+    // Safe image fallback
+    function safeSrc(src) {
+        return (typeof src === "string" && src.trim() !== "") ?
+            src :
+            "/assets/images/placeholder.png";
+    }
+
+
+    function createCarouselItem(pair = [], isActive = false) {
+        const img1 = safeSrc(pair?.[0]);
+        const img2 = safeSrc(pair?.[1]);
+
         const div = document.createElement("div");
         div.className = `carousel-item grid grid-cols-2 gap-3 p-2 ${isActive ? "bg-primary active" : ""}`;
+
         div.innerHTML = `
-            <button
-                type="button"
-                class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden appearance-none border-0 bg-transparent p-0"
-                data-viewer-image-src="${pair[0]}"
-                aria-label="Open product image 1">
-                <img src="${pair[0]}" class="w-full h-full" alt="Product thumbnail 1" />
-            </button>
-            <button
-                type="button"
-                class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden appearance-none border-0 bg-transparent p-0"
-                data-viewer-image-src="${pair[1]}"
-                aria-label="Open product image 2">
-                <img src="${pair[1]}" class="w-full h-full" alt="Product thumbnail 2" />
-            </button>
-        `;
+        <button type="button"
+            class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden border-0 bg-transparent p-0"
+            data-viewer-image-src="${img1}">
+            <img src="${img1}" class="w-full h-full object-cover" />
+        </button>
+
+        <button type="button"
+            class="aspect-[1/1] block w-full cursor-zoom-in overflow-hidden border-0 bg-transparent p-0"
+            data-viewer-image-src="${img2}">
+            <img src="${img2}" class="w-full h-full object-cover" />
+        </button>
+    `;
 
         div.querySelectorAll("[data-viewer-image-src]").forEach(button => {
             button.addEventListener("click", () => {
-                openProductImageViewer(button.dataset.viewerImageSrc);
+                if (typeof openProductImageViewer === "function") {
+                    openProductImageViewer(button.dataset.viewerImageSrc);
+                }
             });
         });
 
@@ -1209,4 +1272,43 @@
             renderViewer();
         }
     });
+</script>
+
+
+<script>
+function toggleMasterDrawer(id) {
+            const drawer = document.getElementById(id);
+            if (!drawer) return;
+            drawer.classList.toggle('translate-x-full');
+            drawer.classList.toggle('translate-x-0');
+}
+$(document).ready(function() {
+    $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
+    });
+    $("#fromdata").submit(function(e) {
+        e.preventDefault();
+        $.ajax({
+            url: "{{ route('add.To.Cart') }}",
+            type: "POST",
+            data: $(this).serialize(),
+            success: function(response) {
+                console.log(response);
+
+            },
+            error: function(xhr) {
+                console.log(xhr.responseJSON);
+
+                if (xhr.responseJSON?.errors) {
+                    $.each(xhr.responseJSON.errors, function(key, value) {
+                        console.log(key + " : " + value[0]);
+                    });
+                }
+            }
+        });
+    });
+
+});
 </script>

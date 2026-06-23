@@ -23,6 +23,9 @@ class Product extends Model
         'product_story',
         'payment',
         'packaging',
+        'size',
+        'color',
+        'ref.no',
         'the_line'
     ];
 
@@ -58,5 +61,9 @@ class Product extends Model
     public function price()
     {
         return $this->hasMany(ProductPrice::class);
+    }
+
+    public function cart(){
+        return $this->hasMany(Cart::class);
     }
 }

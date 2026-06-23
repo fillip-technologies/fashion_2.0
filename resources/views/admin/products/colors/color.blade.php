@@ -503,28 +503,53 @@
                     </thead>
 
                     <tbody>
-                        <tr class="border-b hover:bg-gray-50">
-                            @forelse ($colors as $color)
-                                <td class="px-6 py-4">1</td>
-                                <td class="px-6 py-4 font-medium">{{ $color->name }}</td>
-                                <td class="px-6 py-4">
-                                    <span class="w-6 h-6 rounded-full bg-{{ lcfirst($color->name) ?? '#0000' }}-500 inline-block border"></span>
+                        @forelse ($colors as $index => $color)
+                            <tr class="border-b hover:bg-gray-50">
+                                <td class="px-6 py-4">{{ $index + 1 }}</td>
+
+                                <td class="px-6 py-4 font-medium">
+                                    {{ $color->name }}
                                 </td>
+
+                                <td class="px-6 py-4">
+                                    <span class="w-6 h-6 rounded-full inline-block border"
+                                        style="background-color: {{ $color->code }}">
+                                    </span>
+
+                                    <span class="ml-2 text-sm text-gray-500">
+                                        {{ $color->code }}
+                                    </span>
+                                </td>
+
                                 <td class="px-6 py-4">
                                     <div class="flex justify-center gap-2">
-                                        <button class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
+
+                                        <a href=""
+                                            class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
                                             Edit
-                                        </button>
-                                        <button class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                            Delete
-                                        </button>
+                                        </a>
+
+                                        <form action="" method="POST"
+                                            onsubmit="return confirm('Are you sure?')">
+                                            @csrf
+                                            @method('DELETE')
+
+                                            <button type="submit"
+                                                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
+                                                Delete
+                                            </button>
+                                        </form>
+
                                     </div>
                                 </td>
-                            @empty
-                            @endforelse
-
-                        </tr>
-
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="px-6 py-4 text-center text-gray-500">
+                                    No colors found.
+                                </td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>

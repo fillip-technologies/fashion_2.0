@@ -49,6 +49,10 @@
                 <a href="{{ route('admin.product.index') }}" class="btn btn-secondary">
                     <i class="fas fa-arrow-left"></i> Back to Products
                 </a>
+
+                <button id="importModel" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i> Import products
+                </button>
             </div>
         </div>
 
@@ -75,8 +79,6 @@
                                             <option value="{{ $items->id }}">
                                                 {{ $items->name }}</option>
                                         @endforeach
-
-
                                     </select>
                                     @error('category_id')
                                         <span class="error-message">{{ $message }}</span>
@@ -104,6 +106,25 @@
                                     class="form-control @error('name') is-invalid @enderror" value="{{ old('name') }}"
                                     placeholder="e.g., Wireless Bluetooth Headphones">
                                 @error('name')
+                                    <span class="error-message">{{ $message }}</span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
+                                <label for="name">Product Color <span class="required">*</span></label>
+                                <input type="text" name="color"
+                                    class="form-control @error('color') is-invalid @enderror" value="{{ old('color') }}"
+                                    placeholder="Reg,Green,Yellow">
+                                @error('color')
+                                    <span class="error-message">{{ $message }}</span>
+                                @enderror
+                            </div>
+
+                            <div class="form-group">
+                                <label for="name">Product Size <span class="required">*</span></label>
+                                <input type="text" name="size"
+                                    class="form-control @error('size') is-invalid @enderror" value="{{ old('size') }}"
+                                    placeholder="Large,Small,Medium">
+                                @error('size')
                                     <span class="error-message">{{ $message }}</span>
                                 @enderror
                             </div>

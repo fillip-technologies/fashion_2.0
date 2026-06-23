@@ -23,7 +23,7 @@ class ProductController extends Controller
     public function sizes()
     {
         $sizes = Size::paginate(5);
-        return view('admin.products.size_create',compact('sizes'));
+        return view('admin.products.sizes.size_create',compact('sizes'));
     }
 
     public function produtList()
@@ -47,25 +47,26 @@ class ProductController extends Controller
     public function product_image()
     {
         $productImage = ProductImage::with('product')->paginate(5) ?? [];
-        return view('admin.products.Image',compact('productImage'));
+        return view('admin.products.images.Image',compact('productImage'));
     }
 
     public function product_price()
     {
         $productPrice = ProductPrice::with(['product:id,name'])->select('price','country','product_id')->paginate(5);
-        return view('admin.products.product_price',compact('productPrice'));
+        return view('admin.products.price.product_price',compact('productPrice'));
     }
 
     public function product_color()
     {
         $colors = Color::paginate(5);
-        return view('admin.products.color',compact('colors'));
+
+        return view('admin.products.colors.color',compact('colors'));
     }
 
     public function product_category()
     {
         $categories = GetAll(Category::class) ?? [];
-        return view('admin.products.category', compact('categories'));
+        return view('admin.products.categorys.category', compact('categories'));
     }
 
     public function product_variants()
@@ -89,6 +90,9 @@ class ProductController extends Controller
                 'thumbnail' => 'nullable|image|mimes:jpg,jpeg,png,webp|max:2048',
                 'status' => 'required',
                 'delivery' => 'required',
+                'color'=>'required|string',
+                'size'=>'required|string',
+                'ref.no'=>'nullable',
                 'material_breakdown' => 'required',
                 'product_story' => 'required',
                 'payment' => 'required',

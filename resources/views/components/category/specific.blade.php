@@ -28,11 +28,15 @@
 
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-5 pt-12 px-6 md:px-8">
-        @for ($i = 1; $i <= 3; $i++)
-            <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
-                hoverImage="{{ asset('assets/images/category/second-photo.png') }}" title="Title {{ $i }}"
-                subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
-        @endfor
+        @forelse ($product as $items)
+            <x-category.product-card  :image="$items->thumbnail" :title="$items->name" :price="$items->sale_price" :colors="['#4DBA3F', '#000000', '#B23A3A']" :pid="$items->id" :slug="$items->slug" />
+        @empty
+            @for ($i = 1; $i <= 3; $i++)
+                <x-category.product-card image="{{ asset('assets/images/category/first-photo.png') }}"
+                    hoverImage="{{ asset('assets/images/category/second-photo.png') }}"
+                    title="Title {{ $i }}" subtitle="Sub title" price="45600" :colors="['#4DBA3F', '#000000', '#B23A3A']" />
+            @endfor
+        @endforelse
     </div>
 
 

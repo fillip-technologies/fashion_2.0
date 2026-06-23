@@ -1,117 +1,41 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\PageController;
 use Illuminate\Support\Facades\Route;
 
 
-Route::post('/create/users',[UserController::class, 'createUsers'])->name('create.users');
-Route::post('/login/user',[UserController::class, 'UserLogin'])->name('user.login');
-Route::get('/', function () {
-    return view('pages.landing');
+
+Route::controller(UserController::class)->group(function(){
+Route::post('/create/users','createUsers')->name('create.users');
+Route::post('/login/user','UserLogin')->name('user.login');
 });
 
-Route::get('/about', function () {
-    return view('pages.about');
+Route::controller(PageController::class)->group(function () {
+    Route::get('/','landing');
+    Route::get('/about', 'about');
+    Route::get('/yarn-story', 'yarnStory');
+    Route::get('/journey', 'journey');
+    Route::get('/lookbook', 'lookbook');
+    Route::get('/yarn', 'yarn');
+    Route::get('/newcollection', 'newCollection');
+    Route::get('/seeall', 'seeAll');
+    Route::get('/specific', 'specific');
+    Route::get('/filteredproduct', 'filteredProduct');
+    Route::get('/productdetails/{pid}/{slug}', 'productDetails')->name('product.details');;
+    Route::get('/createaccount', 'createAccount');
+    Route::get('/accountconfirmed', 'accountConfirmed');
+    // Route::get('/bag', 'bag');
+    Route::get('/test', 'test');
+    Route::get('/checkout', 'checkout');
+    Route::get('/order-completed', 'orderCompleted');
+    Route::get('/contact', 'contact');
+    Route::get('/location', 'location');
+    Route::get('/orderhistory', 'orderHistory');
+    Route::get('/viewdetails', 'viewDetails');
+    Route::get('/addressbook', 'addressBook');
+    Route::get('/shippingaddress', 'shippingAddress');
+    Route::get('/billingaddress', 'billingAddress');
+    Route::get('/sitemap', 'sitemap');
+    Route::get('/fashionlanding', 'fashionLanding');
 });
-
-Route::get('/yarn-story', function () {
-    return view('pages.yarnstory');
-});
-
-Route::get('/journey', function () {
-    return view('pages.journey');
-});
-
-Route::get('/lookbook', function () {
-    return view('pages.lookbook');
-});
-
-Route::get('/yarn', function () {
-    return view('pages.yarn');
-});
-
-Route::get('/newcollection', function () {
-    return view('pages.newcollection');
-});
-
-Route::get('/seeall', function () {
-    return view('pages.seeall');
-});
-
-Route::get('/specific', function () {
-    return view('pages.specific');
-});
-
-Route::get('/filteredproduct', function () {
-    return view('pages.filteredprodcuts');
-});
-
-Route::get('/productdetails', function () {
-    return view('pages.productdetails');
-});
-
-Route::get('/createaccount', function () {
-    return view('pages.createaccount');
-});
-
-Route::get('/accountconfirmed', function () {
-    return view('pages.accountconfirmed');
-});
-
-Route::get('/bag', function () {
-    return view('pages.bag');
-});
-
-Route::get('/test', function () {
-    return view('test');
-});
-
-Route::get('/checkout', function () {
-    return view('pages.checkout');
-});
-
-Route::get('/order-completed', function () {
-    return view('pages.confirmorder');
-});
-
-Route::get('/contact', function () {
-    return view('pages.contact');
-});
-
-Route::get('/location', function () {
-    return view('pages.location');
-});
-
-
-
-
-Route::get('/orderhistory', function () {
-    return view('pages.orderhistory');
-});
-
-Route::get('/viewdetails', function () {
-    return view('pages.viewdetails');
-});
-
-Route::get('/addressbook', function () {
-    return view('pages.addressbook');
-});
-
-Route::get('/shippingaddress', function () {
-    return view('pages.shippingaddress');
-});
-
-Route::get('/billingaddress', function () {
-    return view('pages.billingaddress');
-});
-
-Route::get('/sitemap', function () {
-    return view('pages.sitemap');
-});
-
-Route::get('/fashionlanding', function () {
-    return view('pages.fashionlanding');
-});
-
-
