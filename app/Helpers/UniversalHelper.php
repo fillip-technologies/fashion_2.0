@@ -145,4 +145,12 @@ if (!function_exists('getRelationData')) {
     }
 }
 
+if (!function_exists('OrderID')) {
+
+    function OrderID()
+    {
+        return 'ORD-' . date('Ymd') . '-' . strtoupper(substr(uniqid(), -6));
+    }
+
+}
 

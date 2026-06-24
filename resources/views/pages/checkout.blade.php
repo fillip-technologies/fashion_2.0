@@ -4,5 +4,5 @@
 
 @section('content')
 
-    <x-cart.checkout />
+    <x-cart.checkout :myItems="$cartdata" :totalPrice="$totalprice" :shipPrice="$shipping" :currentPrice="$currentPrice" />
 @endsection

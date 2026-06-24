@@ -27,7 +27,7 @@ Route::controller(PageController::class)->group(function () {
     Route::get('/accountconfirmed', 'accountConfirmed');
     // Route::get('/bag', 'bag');
     Route::get('/test', 'test');
-    Route::get('/checkout', 'checkout');
+
     Route::get('/order-completed', 'orderCompleted');
     Route::get('/contact', 'contact');
     Route::get('/location', 'location');

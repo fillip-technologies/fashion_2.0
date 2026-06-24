@@ -19,7 +19,6 @@
 </header>
 <div class="h-px w-full bg-dash-dot"></div>
 
-
 <div class="w-full bg-background sticky top-0 z-[999] border-b-8 border-secondary ">
     <div class="w-10/12 mx-auto py-10 bg-background">
         <div class="flex items-center md:grid md:grid-cols-12 md:items-center">
@@ -89,7 +88,7 @@
 
 
                     <div class="text-[0.875rem] uppercase px-5 py-6" style="font-weight: 600">
-                        My Items - (2)
+                        My Items - ({{ $myItems->count() }})
                     </div>
 
                     <div class="relative">
@@ -98,6 +97,31 @@
 
 
                     <!-- ITEM 1 -->
+                    @forelse ($myItems as $items)
+                        <div class="flex gap-4 border-b  px-5 py-6">
+
+                            <div class="w-20 h-20">
+                                <img src="{{ asset($items->product->thumbnail ?? '') }}" class="w-full h-full" />
+                            </div>
+
+                            <div class="flex-1 text-right">
+                                <p class="text-[0.75rem] font-medium">{{ $items->product->name }}</p>
+                                <p class="text-[0.75rem]" style="font-weight: 300">
+                                    ({{ $items->product->color }}, {{ $items->product->material_breakdown }})
+                                </p>
+
+                                <p class="text-[0.75rem] mt-2" style="font-weight: 300">Qty : {{ $items->quantity }}</p>
+
+                                <p class="text-[0.75rem] mt-2" style="font-weight: 300">
+                                    ₹{{ $items->price }}
+                                </p>
+                            </div>
+                        </div>
+                    @empty
+                    @endforelse
+
+
+                    {{-- <!-- ITEM 2 -->
                     <div class="flex gap-4 border-b  px-5 py-6">
 
                         <div class="w-20 h-20">
@@ -116,45 +140,24 @@
                                 ₹10,000.00
                             </p>
                         </div>
-                    </div>
-
-                    <!-- ITEM 2 -->
-                    <div class="flex gap-4 border-b  px-5 py-6">
-
-                        <div class="w-20 h-20">
-                            <img src="assets/images/products/one.png" class="w-full h-full" />
-                        </div>
-
-                        <div class="flex-1 text-right">
-                            <p class="text-[0.75rem] font-medium">Product name</p>
-                            <p class="text-[0.75rem]" style="font-weight: 300">
-                                (Colour, in material name)
-                            </p>
-
-                            <p class="text-[0.75rem] mt-2" style="font-weight: 300">Qty : 1</p>
-
-                            <p class="text-[0.75rem] mt-2" style="font-weight: 300">
-                                ₹10,000.00
-                            </p>
-                        </div>
-                    </div>
+                    </div> --}}
 
                     <!-- PRICE SUMMARY -->
                     <div class="py-6 px-5 space-y-3 text-[0.875rem]" style="font-weight: 500">
 
                         <div class="flex justify-between">
                             <span>Subtotal</span>
-                            <span>₹20,000.00</span>
+                            <span>₹{{ number_format($totalPrice, 2) }}</span>
                         </div>
 
                         <div class="flex justify-between">
                             <span>Shipping (India)</span>
-                            <span>₹0.00</span>
+                            <span>₹{{ number_format($shipPrice, 2) }}</span>
                         </div>
 
                         <div class="flex justify-between font-medium">
                             <span>Total</span>
-                            <span>₹20,000.00</span>
+                            <span>₹{{ number_format($currentPrice, 2) }}</span>
                         </div>
 
                     </div>
@@ -248,7 +251,8 @@
                 <div class="border border-gray-300 rounded-md px-6 md:px-14 py-5 mt-5">
                     <p class="text-[0.875rem] text-black py-7" style="font-weight: 400">
                         Your email -
-                        <span class="ml-2" style="font-weight: 300">Yourname@domain</span>
+                        <span class="ml-2"
+                            style="font-weight: 300">{{ UserLogin() ? UserLogin()->email : 'Youremail' }}</span>
                     </p>
                 </div>
             </div>
@@ -396,8 +400,8 @@
                         <div class="px-10 py-8">
 
                             <div class="flex items-start gap-4">
-                                <input type="checkbox" class="mt-1 accent-black cursor-pointer"
-                                    onchange="handleOrderComplete(this)" />
+                                <input type="checkbox" class="mt-1 accent-black cursor-pointer orderType"
+                                    data-userid="{{ UserLogin() ? UserLogin()->id : 0 }}" data-type="express" />
                                 <div>
                                     <p class="text-[0.875rem]" style="font-weight: 500">Express Delivery</p>
                                     <p class="text-[0.6875rem] mt-1">
@@ -426,8 +430,8 @@
                         <div class="px-10 py-8">
 
                             <div class="flex items-start gap-4">
-                                <input type="checkbox" class="mt-1 accent-black cursor-pointer"
-                                    onchange="handleOrderComplete(this)" />
+                                <input type="checkbox" class="mt-1 accent-black cursor-pointer orderType"
+                                    data-userid="{{ UserLogin() ? UserLogin()->id : 0 }}" data-type="standard" />
                                 <div>
                                     <p class="text-[0.875rem]" style="font-weight: 500">Standard Delivery</p>
                                     <p class="text-[0.6875rem] mt-1">
@@ -562,28 +566,45 @@
     </div>
 </div>
 
-{{-- 
 <script>
-    const checkoutBtn = document.getElementById("checkoutBtn");
-    const deliverySection = document.getElementById("deliverySection");
+    $(document).ready(function() {
+        $(".orderType").on('click', function() {
+            var userId = $(this).data('userid');
+            var type = $(this).data('type');
+            $.ajax({
+                url: "{{ route('payment.done') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    userId: userId,
+                    dtype: type
+                },
+                success: function(response) {
+                    console.log(response);
 
-    checkoutBtn.addEventListener("click", () => {
-        deliverySection.classList.remove("hidden");
+                },
+                error: function(error) {
+                    console.log(error);
 
-        deliverySection.scrollIntoView({
-            behavior: "smooth",
-            block: "start"
-        });
+                }
+            })
+
+
+           
+
+
+        })
     });
-</script> --}}
-
-<script>
-    function handleOrderComplete(el) {
-        if (el.checked) {
-            window.location.href = "/order-completed";
-        }
-    }
 </script>
+
+
+
+
+
+
+
+
+
 
 <script>
     const checkoutBtn = document.getElementById("checkoutBtn");

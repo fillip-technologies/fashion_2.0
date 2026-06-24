@@ -17,4 +17,6 @@ Route::get('/logout',[UserController::class, 'UserLogout'])->name('user.loggedou
 Route::post('/add/to/cart',[CartManagementController::class, 'addToCart'])->name('add.To.Cart');
 Route::get('/bag',[CartManagementController::class, 'cardList'])->name('bag');
 Route::post('update/qyt',[CartManagementController::class, 'updateQuantity'])->name('cart.update.quantity');
+Route::get('/checkout',[CartManagementController::class, 'checkout'])->name('checkout');
+Route::post('/paymentDone',[CartManagementController::class, 'paymentDone'])->name('payment.done');
 });

@@ -311,7 +311,7 @@
 
 
             <div class="flex justify-center pt-20 pb-16">
-                <a href="/checkout">
+                <a href="{{ route('checkout') }}">
                     <button
                         class="bg-secondary text-white text-[0.875rem]
                px-8 py-3 tracking-wide

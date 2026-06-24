@@ -86,10 +86,7 @@ class PageController extends Controller
         return view('test');
     }
 
-    public function checkout()
-    {
-        return view('pages.checkout');
-    }
+    
 
     public function orderCompleted()
     {

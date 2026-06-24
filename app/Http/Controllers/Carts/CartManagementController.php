@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Carts;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cart;
+use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class CartManagementController extends Controller
 {
@@ -58,5 +61,95 @@ public function updateQuantity(Request $request)
         'quantity' => $cart->quantity,
         'price' => $cart->price
     ]);
+}
+
+
+  public function checkout()
+    {
+         $cartdata = Cart::with(['product'])->where('user_id',UserLogin()->id)->get();
+         $totalprice = Cart::where('user_id', UserLogin()->id)->sum('price');
+         $shipping = 50;
+         $currentPrice = $totalprice + $shipping;
+         return view('pages.checkout',compact('cartdata','totalprice','shipping','currentPrice'));
+    }
+
+
+   public function paymentDone(Request $request)
+{
+    $userdata = UserLogin();
+
+    if (!$userdata->location || !$userdata->phone || !$userdata->address) {
+        return response()->json([
+            'status' => false,
+            'message' => 'First add your address details.'
+        ]);
+    }
+
+    $tax = ($request->dtype == 'express') ? 200 : 0;
+
+    $cartdata = Cart::with('product')
+        ->where('user_id', $userdata->id)
+        ->get();
+
+    if ($cartdata->isEmpty()) {
+        return response()->json([
+            'status' => false,
+            'message' => 'Cart is empty.'
+        ]);
+    }
+
+    $subtotal = $cartdata->sum('price');
+    $shipping = 50;
+    $totalAmount = $subtotal + $shipping + $tax;
+
+    DB::beginTransaction();
+
+    try {
+
+        $order = Order::create([
+            'user_id' => $userdata->id,
+            'order_number' => OrderID(),
+            'subtotal' => $subtotal,
+            'shipping_charge' => $shipping,
+            'tax' => $tax,
+            'total_amount' => $totalAmount,
+            'customer_name' => $userdata->firstname . ' ' . $userdata->lastname,
+            'customer_email' => $userdata->email,
+            'customer_phone' => $userdata->phone,
+            'shipping_address' => $userdata->address,
+        ]);
+
+        foreach ($cartdata as $cart) {
+
+            OrderItem::create([
+                'order_id'   => $order->id,
+                'product_id' => $cart->product_id,
+                'price'      => $cart->product->sale_price,
+                'quantity'   => $cart->quantity,
+                'total'      => $cart->price,
+            ]);
+        }
+
+        Cart::where('user_id', $userdata->id)->delete();
+
+        DB::commit();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Order Created Successfully',
+            'order_id' => $order->id,
+            'order_number' => $order->order_number,
+            'amount' => $totalAmount
+        ]);
+
+    } catch (\Exception $e) {
+
+        DB::rollBack();
+
+        return response()->json([
+            'status' => false,
+            'message' => $e->getMessage()
+        ], 500);
+    }
 }
 }
