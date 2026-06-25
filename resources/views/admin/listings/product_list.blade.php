@@ -127,12 +127,12 @@
                             <td class="px-4 py-3">
                                 <div class="flex items-center justify-center gap-2">
 
-                                    <a href=""
+                                    <a href="{{ route('admin.edit.product',$product->id) }}"
                                         class="w-9 h-9 flex items-center justify-center rounded-lg bg-blue-100 text-blue-600 hover:bg-blue-200">
                                         <i class="fas fa-edit"></i>
                                     </a>
 
-                                    <form action=""
+                                    <form action="{{ route('admin.delete.product',$product->id) }}"
                                         method="POST"
                                         onsubmit="return confirm('Are you sure you want to delete this product?')">
                                         @csrf

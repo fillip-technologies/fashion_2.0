@@ -19,4 +19,6 @@ Route::get('/bag',[CartManagementController::class, 'cardList'])->name('bag');
 Route::post('update/qyt',[CartManagementController::class, 'updateQuantity'])->name('cart.update.quantity');
 Route::get('/checkout',[CartManagementController::class, 'checkout'])->name('checkout');
 Route::post('/paymentDone',[CartManagementController::class, 'paymentDone'])->name('payment.done');
+Route::post('/update/profile',[UserController::class, 'update.profile'])->name('update.profile');
+Route::delete('/card/item/{itemId}/delete/{userID}',[CartManagementController::class, 'deleteCart'])->name('delete.cart');
 });

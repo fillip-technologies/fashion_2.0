@@ -152,4 +152,11 @@ public function updateQuantity(Request $request)
         ], 500);
     }
 }
+
+public function deleteCart($userID,$itemId){
+    // echo $userID;
+    // echo $itemId;
+    $cartdata = Cart::findOrFail($itemId);
+    dd($cartdata);
+}
 }

@@ -1,3 +1,16 @@
+{{-- @if(session('success'))
+<script>
+    toastr.success("{{ session('success') }}");
+</script>
+@endif
+
+@if(session('error'))
+<script>
+    toastr.error("{{ session('error') }}");
+</script>
+@endif --}}
+
+
 <section class="bg-background min-h-screen  pt-14 text-black">
 
 
@@ -22,7 +35,8 @@
     <div class="w-full h-px bg-dash-dot"></div>
 
 
-    <form autocomplete="off">
+    <form autocomplete="off" action="{{ route('contact') }}" method="POST">
+        @csrf
 
         <section class="w-full mx-auto  md:px-10 py-16 text-primary bg-white">
 
@@ -45,7 +59,7 @@
 
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-36">
                             <div class="relative mt-12 title-wrappernew">
-                                <input type="text" id="titlenew" name="title" autocomplete="off" required
+                                <input type="text" id="titlenew" name="title" autocomplete="off"
                                     oninput="handleFilledNew(this)" onclick="toggleDropdownNew()"
                                     class="peer w-full bg-transparent border-b border-border py-1 pl-4
                                 text-[0.9375rem] font-normal focus:outline-none focus:border-border
@@ -78,7 +92,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-36">
                             <div class="relative mt-12">
                                 <input type="firstname" id="firstname" name="firstname" autocomplete="new-firstname"
-                                    required oninput="handleFilledNew(this)" onblur="handleFilledNew(this)"
+                                     oninput="handleFilledNew(this)" onblur="handleFilledNew(this)"
                                     class="peer w-full
                                 bg-transparent
                                 border-b border-border
@@ -106,8 +120,8 @@
                             </div>
 
                             <div class="relative mt-12">
-                                <input type="secondname" id="secondname" name="secondname" autocomplete="new-secondname"
-                                    required oninput="handleFilledNew(this)" onblur="handleFilledNew(this)"
+                                <input type="text" id="secondname" name="lastname" autocomplete="new-secondname"
+                                     oninput="handleFilledNew(this)" onblur="handleFilledNew(this)"
                                     class="peer w-full
                                 bg-transparent
                                 border-b border-border
@@ -138,7 +152,7 @@
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-36 items-center mt-5">
 
                             <div class="relative mt-12">
-                                <input type="email" id="email" name="email" autocomplete="new-email" required
+                                <input type="email" id="email" name="email" autocomplete="new-email"
                                     oninput="handleFilledNew(this)" onblur="handleFilledNew(this)"
                                     class="peer w-full
                                 bg-transparent
@@ -181,14 +195,14 @@
                                     </div>
 
 
-                                    <input type="text" placeholder="Phone number"
+                                    <input type="number" placeholder="Phone number" name="phone"
                                         class="flex-1 pl-5 bg-transparent text-primary border-b border-border outline-none text-[0.9375rem]" />
                                 </div>
 
                                 <div id="countryDropdownnew"
                                     class="absolute left-0 right-0 mt-1 bg-white shadow-xl z-[200] hidden">
                                     <div
-                                        class="absolute 
+                                        class="absolute
                                     text-[0.9375rem] text-primary font-medium
                                     bg-background shadow-2xl
                                     w-full z-[100]">
@@ -226,7 +240,7 @@
 
                         <div class="grid grid-cols-1">
                             <div class="relative mt-12 subject-wrappernew">
-                                <input type="text" id="subjectnew" name="title" autocomplete="off" required
+                                <input type="text" id="subjectnew" name="query_type" autocomplete="off"
                                     oninput="handleFilledNew(this)" onclick="toggleSubject()"
                                     class="peer w-full bg-transparent border-b border-border py-1 pl-4
                                 text-[0.9375rem] font-normal focus:outline-none focus:border-border
@@ -264,7 +278,7 @@
                         <div class="grid grid-cols-1 mt-16">
                             <label class="text-[0.9375rem]" style="font-weight: 400">*Your message</label>
                             <div class="relative mt-4">
-                                <textarea id="message" name="message" rows="6" maxlength="1000" required oninput="handleFilledNew(this)"
+                                <textarea id="message" name="message" rows="6" maxlength="1000"  oninput="handleFilledNew(this)"
                                     onblur="handleFilledNew(this)"
                                     class="peer w-full
                                     resize-none
@@ -294,7 +308,7 @@
 
                 <div class="px-4 md:px-8 mt-8 ">
 
-                    <button class="bg-secondary hover:bg-primary text-white px-10 py-3 rounded text-[1rem]">
+                    <button  type="submit" class="bg-secondary hover:bg-primary text-white px-10 py-3 rounded text-[1rem]">
                         Send
                     </button>
 

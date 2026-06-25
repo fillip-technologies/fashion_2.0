@@ -77,8 +77,11 @@
                         </div>
                         <div class="col-span-8">
                             <div class="flex gap-6 mt-0 md:mt-6 text-[0.75rem]">
-                                <button class="underline remove-item">Remove</button>
-
+                                <form action="{{ route('delete.cart',['itemId'=>$items->id,'userID'=>UserLogin()->id]) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="underline remove-item">Remove</button>
+                                </form>
                             </div>
                         </div>
                         <div class="col-span-2">
@@ -542,52 +545,52 @@
 
 
 <script>
-  $(document).ready(function() {
+    $(document).ready(function() {
 
-    $('.quenty-plus, .quenty-minus').click(function() {
+        $('.quenty-plus, .quenty-minus').click(function() {
 
-        let wrapper = $(this).closest('.quantity-wrapper');
-        let productId = wrapper.data('product-id');
-        let qtyElement = wrapper.find('.qty');
-        let qty = parseInt(qtyElement.text());
+            let wrapper = $(this).closest('.quantity-wrapper');
+            let productId = wrapper.data('product-id');
+            let qtyElement = wrapper.find('.qty');
+            let qty = parseInt(qtyElement.text());
 
-        let action = '';
+            let action = '';
 
-        if ($(this).hasClass('quenty-plus')) {
-            qty++;
-            action = 'plus';
-        } else if (qty > 1) {
-            qty--;
-            action = 'minus';
-        }
-
-        qtyElement.text(qty);
-
-        updateQuantity(qty, productId, action);
-    });
-
-    function updateQuantity(qty, productId, action) {
-
-        $.ajax({
-            url: "{{ route('cart.update.quantity') }}",
-            type: "POST",
-            data: {
-                _token: "{{ csrf_token() }}",
-                quantity: qty,
-                product_id: productId,
-                action: action
-            },
-            success: function(response) {
-                window.location.reload();
-            },
-            error: function(xhr) {
-                console.log(xhr.responseText);
+            if ($(this).hasClass('quenty-plus')) {
+                qty++;
+                action = 'plus';
+            } else if (qty > 1) {
+                qty--;
+                action = 'minus';
             }
+
+            qtyElement.text(qty);
+
+            updateQuantity(qty, productId, action);
         });
 
-    }
+        function updateQuantity(qty, productId, action) {
 
-});
+            $.ajax({
+                url: "{{ route('cart.update.quantity') }}",
+                type: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    quantity: qty,
+                    product_id: productId,
+                    action: action
+                },
+                success: function(response) {
+                    window.location.reload();
+                },
+                error: function(xhr) {
+                    console.log(xhr.responseText);
+                }
+            });
+
+        }
+
+    });
 </script>
 
 

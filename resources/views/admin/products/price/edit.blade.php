@@ -354,7 +354,7 @@
         <!-- Add Price Form -->
         <div class="price-card">
             <div class="price-header">
-                <h2><i class="fas fa-tag"></i> Add Product Price</h2>
+                <h2><i class="fas fa-tag"></i> Edit Product Price</h2>
                 <p>Manage product pricing for different countries</p>
             </div>
             <div class="price-body">
@@ -373,7 +373,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin.store.price') }}" method="POST">
+                <form action="{{ route('admin.update.price',$editdata->id) }}" method="POST">
                     @csrf
 
                     <div class="form-row">
@@ -388,7 +388,7 @@
                             @enderror">
                                 <option value="">-- Choose Product --</option>
                                 @foreach (allProduct() as $product)
-                                    <option value="{{ $product->id }}">
+                                    <option value="{{ $product->id }}" @selected($editdata->product_id === $product->id)>
                                         {{ $product->name }}
                                     </option>
                                 @endforeach
@@ -405,28 +405,28 @@
                                is-invalid
                         @enderror">
                                 <option value="">-- Select Country --</option>
-                                <option value="India" {{ old('country') == 'India' ? 'selected' : '' }}>
+                                <option value="India" @selected($editdata->country == "India")>
                                     🇮🇳 India (₹ INR)
                                 </option>
-                                <option value="USA" {{ old('country') == 'USA' ? 'selected' : '' }}>
+                                <option value="USA" @selected($editdata->country == "USA")>
                                     🇺🇸 USA ($ USD)
                                 </option>
-                                <option value="UK" {{ old('country') == 'UK' ? 'selected' : '' }}>
+                                <option value="UK" @selected($editdata->country == "UK")>
                                     🇬🇧 UK (£ GBP)
                                 </option>
-                                <option value="Canada" {{ old('country') == 'Canada' ? 'selected' : '' }}>
+                                <option value="Canada" @selected($editdata->country == "Canada")>
                                     🇨🇦 Canada (C$ CAD)
                                 </option>
-                                <option value="Australia" {{ old('country') == 'Australia' ? 'selected' : '' }}>
+                                <option value="Australia" @selected($editdata->country == "Australia")>
                                     🇦🇺 Australia (A$ AUD)
                                 </option>
-                                <option value="UAE" {{ old('country') == 'UAE' ? 'selected' : '' }}>
+                                <option value="UAE" @selected($editdata->country == "UAE")>
                                     🇦🇪 UAE (د.إ AED)
                                 </option>
-                                <option value="Singapore" {{ old('country') == 'Singapore' ? 'selected' : '' }}>
+                                <option value="Singapore" @selected($editdata->country == "Singapore")>
                                     🇸🇬 Singapore (S$ SGD)
                                 </option>
-                                <option value="Germany" {{ old('country') == 'Germany' ? 'selected' : '' }}>
+                                <option value="Germany" @selected($editdata->country == "Germany")>
                                     🇩🇪 Germany (€ EUR)
                                 </option>
                             </select>
@@ -443,14 +443,14 @@
                                     class="form-control @error('price') is-invalid
 
                                 @enderror"
-                                    placeholder="Enter price" step="0.01" value="{{ old('price') }}">
+                                    placeholder="Enter price" step="0.01" value="{{ old('price',$editdata->price ?? "") }}">
                             </div>
                         </div>
                     </div>
 
                     <div class="btn-group">
                         <button type="submit" class="btn-primary">
-                            <i class="fas fa-save"></i> Save Price
+                            <i class="fas fa-save"></i> Update Price
                         </button>
 
                     </div>
@@ -458,83 +458,10 @@
             </div>
         </div>
 
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <div class="px-6 py-4 border-b">
-                <h2 class="text-xl font-semibold text-gray-800">
-                    Product Price Listing
-                </h2>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-600">
-                    <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
-                        <tr>
-                            <th class="px-6 py-3">#</th>
-                            <th class="px-6 py-3">Product Name</th>
-                            <th class="px-6 py-3">Price</th>
-                            <th class="px-6 py-3">Location</th>
-                            <th class="px-6 py-3 text-center">Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @forelse($productPrice as $key => $price)
-                            <tr class="border-b hover:bg-gray-50 transition">
-                                <td class="px-6 py-4">
-                                    {{ $key + 1 }}
-                                </td>
-
-                                <td class="px-6 py-4 font-medium text-gray-900">
-                                    {{ $price->product->name ?? 'N/A' }}
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    ₹{{ number_format($price->price, 2) }}
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    {{ $price->country }}
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    <div class="flex justify-center gap-2">
-
-                                        <!-- Edit -->
-                                        <a href="{{ route('admin.edit.price',$price->id) }}"
-                                            class="px-3 py-1.5 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition">
-                                            <i class="fas fa-edit"></i>
-                                        </a>
-
-                                        <!-- Delete -->
-                                        <form action="{{ route('admin.price.delete',$price->id) }}" method="POST"
-                                            onsubmit="return confirm('Are you sure you want to delete this record?')">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit"
-                                                class="px-3 py-1.5 bg-red-500 text-white rounded-md hover:bg-red-600 transition">
-                                                <i class="fas fa-trash"></i>
-                                            </button>
-                                        </form>
-
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="5" class="px-6 py-6 text-center text-gray-500">
-                                    No price records found.
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 
     <script>
-        // Dynamic currency symbol based on country selection
+      
         const countrySelect = document.getElementById('country');
         const currencySymbol = document.getElementById('currencySymbol');
 

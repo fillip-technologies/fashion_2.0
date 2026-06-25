@@ -26,19 +26,36 @@
 
     </a>
     <!-- PRODUCT MANAGEMENT -->
-    <details class="group mx-3 mt-3" {{ request()->is('admin/product*') ? 'open' : '' }}>
+
+    @php
+        $productMenuOpen = request()->routeIs('admin.product.*', 'admin.index.size');
+    @endphp
+
+    <details class="group mx-3 mt-3" {{ $productMenuOpen ? 'open' : '' }}>
         <summary
-            class="flex items-center gap-3 px-4 py-2.5 rounded-xl cursor-pointer transition-all duration-200 text-gray-500 hover:bg-gray-50/80 hover:text-primary list-none">
-            <i class="fas fa-box w-5 text-lg text-gray-400 group-hover:text-primary transition-all duration-200"></i>
-            <span class="text-sm font-medium flex-1">Product</span>
+            class="flex items-center gap-3 px-4 py-2.5 rounded-xl cursor-pointer transition-all duration-200 list-none
+        {{ $productMenuOpen ? 'bg-primary/5 text-primary' : 'text-gray-500 hover:bg-gray-50/80 hover:text-primary' }}">
+
             <i
-                class="fas fa-chevron-down text-xs text-gray-400 transition-all duration-300 group-open:rotate-180 group-open:text-primary"></i>
+                class="fas fa-box w-5 text-lg transition-all duration-200
+            {{ $productMenuOpen ? 'text-primary scale-110' : 'text-gray-400 group-hover:text-primary group-hover:scale-110' }}">
+            </i>
+
+            <span class="text-sm font-medium flex-1">Product</span>
+
+            <i
+                class="fas fa-chevron-down text-xs transition-all duration-300 group-open:rotate-180
+            {{ $productMenuOpen ? 'text-primary' : 'text-gray-400' }}">
+            </i>
         </summary>
 
-        <!-- Submenu Items with better visual hierarchy -->
         <div class="pl-11 mt-2 flex flex-col space-y-1.5 border-l-2 border-gray-100 ml-5">
+
             <a href="{{ route('admin.product.index') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.product.index') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.product.index')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-plus-circle text-xs opacity-60"></i>
                     Add Product
@@ -46,7 +63,10 @@
             </a>
 
             <a href="{{ route('admin.product.price') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.product.price') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.product.price')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-tag text-xs opacity-60"></i>
                     Add Price
@@ -54,14 +74,21 @@
             </a>
 
             <a href="{{ route('admin.product.color') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.product.color') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.product.color')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-palette text-xs opacity-60"></i>
                     Add Colors
                 </span>
             </a>
+
             <a href="{{ route('admin.index.size') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.index.size') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.index.size')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-ruler-combined text-xs opacity-60"></i>
                     Add Sizes
@@ -69,7 +96,10 @@
             </a>
 
             <a href="{{ route('admin.product.category') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.product.category') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.product.category')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-folder-tree text-xs opacity-60"></i>
                     Add Category
@@ -77,7 +107,10 @@
             </a>
 
             <a href="{{ route('admin.product.image') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.product.image') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.product.image')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-image text-xs opacity-60"></i>
                     Add Images
@@ -85,15 +118,31 @@
             </a>
 
             <a href="{{ route('admin.product.variant') }}"
-                class="relative block py-2 px-3 text-sm text-gray-500 rounded-lg hover:text-primary hover:bg-primary/5 transition-all duration-200 {{ request()->routeIs('admin.product.variant') ? 'text-primary font-medium bg-primary/5' : '' }}">
+                class="relative block py-2 px-3 text-sm rounded-lg transition-all duration-200
+            {{ request()->routeIs('admin.product.variant')
+                ? 'text-primary font-medium bg-primary/5'
+                : 'text-gray-500 hover:text-primary hover:bg-primary/5' }}">
                 <span class="flex items-center gap-2">
                     <i class="fas fa-copy text-xs opacity-60"></i>
                     Add Variants
                 </span>
             </a>
+
         </div>
     </details>
 
+
+    <a href="{{ url('admin/query/list') }}"
+        class="sidebar-link group relative flex items-center gap-3 px-6 py-2.5 mx-3 mt-3 rounded-xl transition-all duration-200
+    {{ request()->is('admin/user*') ? 'active bg-gradient-to-r from-primary/10 to-transparent text-primary shadow-sm' : 'text-gray-500 hover:bg-gray-50/80 hover:text-primary' }}">
+
+        <i
+            class="fas fa-envelope w-5 text-lg transition-all duration-200
+    {{ request()->is('admin/user*') ? 'text-primary scale-110' : 'text-gray-400 group-hover:text-primary group-hover:scale-110' }}"></i>
+
+        <span class="text-sm font-medium">Queries</span>
+
+    </a>
     <!-- OPTIONAL: Add a divider before commented sections -->
     <div class="px-6 my-6">
         <div class="h-px bg-gradient-to-r from-gray-200 to-transparent"></div>

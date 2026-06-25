@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Contact;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -86,7 +87,7 @@ class PageController extends Controller
         return view('test');
     }
 
-    
+
 
     public function orderCompleted()
     {
@@ -95,6 +96,7 @@ class PageController extends Controller
 
     public function contact()
     {
+       
         return view('pages.contact');
     }
 

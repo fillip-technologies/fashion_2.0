@@ -46,8 +46,8 @@
         class="w-4/12 hidden md:block h-auto absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
 </div>
 
-
-
+<form action="{{ route('update.profile',UserLogin()->id) }}" method="POST">
+    @csrf
 <div class="bg-white border-x-[1rem] border-secondary text-black">
 
     <div class="h-10 md:h-40 bg-white"> </div>
@@ -58,38 +58,21 @@
         <div class="text-[0.625rem] text-[#97A0A1] mt-7" style="font-weight: 300">*Required information</div>
 
         <div class="relative mt-16 title-wrapper-profile">
-            <input type="text" id="title-profile" name="title" autocomplete="off" required
+            <input type="text" id="title-profile" name="title" autocomplete="off"
+                value="{{ UserLogin()->title ?? '' }}" data-filled="{{ !empty(UserLogin()->title) ? 'true' : 'false' }}"
                 oninput="handleFilledProfile(this)" onclick="toggleDropdownProfile()"
-                class="peer w-full bg-transparent border-b border-border py-1 pl-4
-                                text-[0.9375rem] font-normal focus:outline-none focus:border-border
-                                data-[filled=true]:font-medium" />
+                class="peer w-full bg-transparent border-b border-border py-1 pl-4 text-[0.9375rem] font-normal focus:outline-none focus:border-border data-[filled=true]:font-medium" />
+
             <label for="title-profile"
-                class="absolute left-0 top-2 text-[0.9375rem] text-primary
-                                transition-all duration-200
-                                peer-focus:-top-6 peer-focus:text-[0.6875rem]
-                                peer-data-[filled=true]:-top-6
-                                peer-data-[filled=true]:text-[0.6875rem]">
+                class="absolute left-0 top-2 text-[0.9375rem] text-primary transition-all duration-200 peer-focus:-top-6 peer-focus:text-[0.6875rem] peer-data-[filled=true]:-top-6 peer-data-[filled=true]:text-[0.6875rem]">
                 * Title
             </label>
-            <i id="sizeChevronProfile"
-                class="fa-solid fa-chevron-down absolute right-2 top-3
-                                text-[0.75rem] transition-transform duration-300"></i>
-            <div id="titleDropdownProfile"
-                class="absolute mt-2  text-[0.9375rem]
-                                text-primary bg-background shadow-lg w-full z-[100] hidden">
-                <p class="size-option cursor-pointer px-6 py-2 hover:bg-black hover:text-white"
-                    onclick="selectTitleProfile('Ms.')">Ms.</p>
-                <p class="size-option cursor-pointer  px-6 py-2 hover:bg-black hover:text-white"
-                    onclick="selectTitleProfile('Mrs.')">Mrs.</p>
-                <p class="size-option cursor-pointer  px-6 py-2 hover:bg-black hover:text-white"
-                    onclick="selectTitleProfile('Mr.')">Mr.</p>
-            </div>
-
         </div>
 
         <div class="relative mt-16">
-            <input type="firstname" id="firstname" name="firstname" autocomplete="new-firstname" required
-                oninput="handleFilled(this)" onblur="handleFilled(this)"
+            <input type="firstname" value="{{ UserLogin()->firstname ?? '' }}"
+                data-filled="{{ !empty(UserLogin()->firstname) ? 'true' : 'false' }}" id="firstname" name="firstname"
+                autocomplete="new-firstname" required oninput="handleFilled(this)" onblur="handleFilled(this)"
                 class="peer w-full
                                 bg-transparent
                                 border-b border-border
@@ -118,8 +101,9 @@
         </div>
 
         <div class="relative mt-16">
-            <input type="secondname" id="lastname" name="lastname" autocomplete="new-secondname" required
-                oninput="handleFilled(this)" onblur="handleFilled(this)"
+            <input type="secondname" value="{{ UserLogin()->lastname ?? '' }}"
+                data-filled="{{ !empty(UserLogin()->lastname) ? 'true' : 'false' }}" id="lastname" name="lastname"
+                autocomplete="new-secondname" required oninput="handleFilled(this)" onblur="handleFilled(this)"
                 class="peer w-full
                                 bg-transparent
                                 border-b border-border
@@ -151,19 +135,21 @@
             <label class="absolute -top-10 left-0 text-[0.75rem] text-primary">
                 * Phone no.
             </label>
-            <div class="flex items-end gap-6  pb-2 ">
-                <div class="flex items-center gap-2 border-b border-border cursor-pointer pl-3"
-                    onclick="toggleCountryDropdownProfile()">
-                    <span class="text-[0.9375rem]">In</span>
-                    <i id="phoneChevronProfile"
-                        class="fa-solid fa-chevron-down text-[0.75rem]
-                                        transition-transform duration-300"></i>
-                    <span id="selectedCodeProfile" class="text-[0.9375rem]">(+91)</span>
+            <div class="relative mt-20">
+                <label class="absolute -top-10 left-0 text-[0.75rem] text-primary">
+                    * Phone no.
+                </label>
+
+                <div class="flex items-end gap-6 pb-2">
+                    <div class="flex items-center gap-2 border-b border-border cursor-pointer pl-3">
+                        <span>In</span>
+                        <span id="selectedCodeProfile">(+91)</span>
+                    </div>
+
+                    <input type="text" name="phone" value="{{ UserLogin()->phone ?? '' }}"
+                        placeholder="Phone number"
+                        class="flex-1 pl-5 bg-transparent text-primary border-b border-border outline-none text-[0.9375rem]" />
                 </div>
-
-
-                <input type="text" placeholder="Phone number" name="phone"
-                    class="flex-1 pl-5 bg-transparent text-primary border-b border-border outline-none text-[0.9375rem]" />
             </div>
 
             <div id="countryDropdownProfile" class="absolute left-0 right-0 mt-1 bg-white shadow-xl z-[200] hidden">
@@ -209,88 +195,63 @@
         <div class="relative grid grid-cols-1 md:grid-cols-3 gap-2 md:gap-10">
 
             <div class="relative mt-12 month-wrapper-profile">
-                <input type="text" id="month-profile" name="month" autocomplete="off" required
+                <input type="text" id="month-profile" name="month" value="{{ UserLogin()->month ?? '' }}"
+                    data-filled="{{ !empty(UserLogin()->month) ? 'true' : 'false' }}" autocomplete="off" required
                     oninput="handleFilled(this)" onclick="toggleMonthDropdownProfile()"
                     class="peer w-full bg-transparent border-b border-border py-1 pl-4
-                                text-[0.9375rem] font-normal focus:outline-none focus:border-border
-                                data-[filled=true]:font-medium" />
+               text-[0.9375rem] font-normal focus:outline-none focus:border-border
+               data-[filled=true]:font-medium" />
+
                 <label for="month-profile"
                     class="absolute left-0 top-2 text-[0.9375rem] text-primary
-                                transition-all duration-200
-                                peer-focus:-top-6 peer-focus:text-[0.6875rem]
-                                peer-data-[filled=true]:-top-6
-                                peer-data-[filled=true]:text-[0.6875rem]">
+               transition-all duration-200
+               peer-focus:-top-6 peer-focus:text-[0.6875rem]
+               peer-data-[filled=true]:-top-6
+               peer-data-[filled=true]:text-[0.6875rem]">
                     * Month
                 </label>
+
                 <i id="sizeChevronProfile"
                     class="fa-solid fa-chevron-down absolute right-2 top-3
-                                text-[0.75rem] transition-transform duration-300"></i>
+               text-[0.75rem] transition-transform duration-300"></i>
+
                 <div id="monthDropdownProfile"
                     class="absolute mt-2 text-[0.9375rem] font-medium
-                                text-primary bg-background shadow-lg w-full z-[100] hidden">
+               text-primary bg-background shadow-lg w-full z-[100] hidden">
                     <p class="size-option cursor-pointer px-6 py-2 hover:bg-black hover:text-white"
                         onclick="selectMonthProfile('January')">January</p>
+
                     <p class="size-option cursor-pointer px-6 py-2 hover:bg-black hover:text-white"
-                        onclick="selectMonthProfile('February')">February
-                    </p>
+                        onclick="selectMonthProfile('February')">February</p>
+
                     <p class="size-option cursor-pointer px-6 py-2 hover:bg-black hover:text-white"
                         onclick="selectMonthProfile('March')">March</p>
                 </div>
-
             </div>
             <div class="relative mt-12">
-                <input type="day" id="day-profile" name="day" autocomplete="new-day" required
-                    oninput="handleFilled(this)" onblur="handleFilled(this)"
-                    class="peer w-full
-                                bg-transparent
-                                border-b border-border
-                                py-1
-                                pl-4
-                                text-[0.9375rem]
-                                font-normal
-                                focus:outline-none
-                                focus:border-border
-                                data-[filled=true]:font-medium" />
+                <input type="text" id="day-profile" name="day"
+                    value="{{ UserLogin() ? UserLogin()->day : '' }}"
+                    data-filled="{{ UserLogin()->day ? 'true' : 'false' }}" oninput="handleFilled(this)"
+                    class="peer w-full bg-transparent border-b border-border py-1 pl-4 text-[0.9375rem] focus:outline-none" />
 
-                <label for="day"
-                    class="absolute left-0 top-2
-                                text-[0.9375rem]
-                                text-primary
-                                transition-all duration-200
-                                peer-focus:-top-6
-                                peer-focus:text-[0.6875rem]
-                                peer-focus:text-primary
-                                peer-data-[filled=true]:-top-6
-                                peer-data-[filled=true]:text-[0.6875rem]
-                                peer-data-[filled=true]:text-primary">
+                <label for="day-profile"
+                    class="absolute left-0 top-2 text-[0.9375rem] text-primary transition-all duration-200 peer-focus:-top-6 peer-focus:text-[0.6875rem] peer-data-[filled=true]:-top-6 peer-data-[filled=true]:text-[0.6875rem]">
                     * Day
                 </label>
             </div>
+
             <div class="relative mt-12">
-                <input type="year" id="year" name="year" autocomplete="new-year" required
+                <input type="text" id="year" name="year" value="{{ UserLogin()->year ?? '' }}"
+                    data-filled="{{ !empty(UserLogin()->year) ? 'true' : 'false' }}" autocomplete="off" required
                     oninput="handleFilled(this)" onblur="handleFilled(this)"
-                    class="peer w-full
-                                bg-transparent
-                                border-b border-border
-                                py-1
-                                pl-4
-                                text-[0.9375rem]
-                                font-normal
-                                focus:outline-none
-                                focus:border-border
-                                data-[filled=true]:font-medium" />
+                    class="peer w-full bg-transparent border-b border-border py-1 pl-4 text-[0.9375rem] font-normal focus:outline-none focus:border-border data-[filled=true]:font-medium" />
 
                 <label for="year"
-                    class="absolute left-0 top-2
-                                text-[0.9375rem]
-                                text-primary
-                                transition-all duration-200
-                                peer-focus:-top-6
-                                peer-focus:text-[0.6875rem]
-                                peer-focus:text-primary
-                                peer-data-[filled=true]:-top-6
-                                peer-data-[filled=true]:text-[0.6875rem]
-                                peer-data-[filled=true]:text-primary">
+                    class="absolute left-0 top-2 text-[0.9375rem] text-primary transition-all duration-200
+        peer-focus:-top-6
+        peer-focus:text-[0.6875rem]
+        peer-data-[filled=true]:-top-6
+        peer-data-[filled=true]:text-[0.6875rem]">
                     * Year
                 </label>
             </div>
@@ -338,6 +299,9 @@
     </div>
 
 </div>
+</form>
+
+
 
 <script>
     function handleFilled(input) {

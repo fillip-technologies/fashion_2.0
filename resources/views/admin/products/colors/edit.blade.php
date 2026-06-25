@@ -438,7 +438,7 @@
                     </div>
                 @endif
 
-                <form action="{{ route('admin.store.color') }}" method="POST">
+                <form action="{{ route('admin.color.update',$data->id) }}" method="POST">
                     @csrf
 
                     <div class="form-row">
@@ -448,7 +448,7 @@
                                 <span class="required-star">*</span>
                             </label>
                             <input type="text" name="name" id="name" class="form-control"
-                                placeholder="e.g., Red, Blue, Green" value="{{ old('name') }}">
+                                placeholder="e.g., Red, Blue, Green" value="{{ old('name',$data->name ?? "") }}">
                         </div>
 
                         <div class="form-group">
@@ -458,7 +458,7 @@
                             </label>
                             <div class="color-input-group">
                                 <input type="text" name="code" id="code" class="form-control"
-                                    placeholder="#FF0000 or rgb(255,0,0)" value="{{ old('code') }}">
+                                    placeholder="#FF0000 or rgb(255,0,0)" value="{{ old('code',$data->code ?? "") }}">
                                 <div class="color-preview" id="colorPreview"
                                     style="background-color: {{ old('code', '#667eea') }}"></div>
                             </div>
@@ -475,7 +475,7 @@
 
                     <div class="btn-group">
                         <button type="submit" class="btn-primary" id="submitBtn">
-                            <i class="fas fa-save"></i> Add Color
+                            <i class="fas fa-save"></i> Update Color
                         </button>
                         <button type="button" class="btn-primary" onclick="resetForm()" style="background: #6c757d;">
                             <i class="fas fa-redo"></i> Reset
@@ -484,76 +484,7 @@
                 </form>
             </div>
         </div>
-        <div class="bg-white shadow-md rounded-lg overflow-hidden">
-            <div class="px-6 py-4 border-b">
-                <h2 class="text-xl font-semibold text-gray-800">
-                    Color Listing
-                </h2>
-            </div>
 
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-600">
-                    <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
-                        <tr>
-                            <th class="px-6 py-3">#</th>
-                            <th class="px-6 py-3">Color Name</th>
-                            <th class="px-6 py-3">Color Preview</th>
-                            <th class="px-6 py-3 text-center">Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        @forelse ($colors as $index => $color)
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="px-6 py-4">{{ $index + 1 }}</td>
-
-                                <td class="px-6 py-4 font-medium">
-                                    {{ $color->name }}
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    <span class="w-6 h-6 rounded-full inline-block border"
-                                        style="background-color: {{ $color->code }}">
-                                    </span>
-
-                                    <span class="ml-2 text-sm text-gray-500">
-                                        {{ $color->code }}
-                                    </span>
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    <div class="flex justify-center gap-2">
-
-                                        <a href="{{ route('admin.edit.color',$color->id) }}"
-                                            class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                            Edit
-                                        </a>
-
-                                        <form action="{{ route('admin.color.delete',$color->id) }}" method="POST"
-                                            onsubmit="return confirm('Are you sure?')">
-                                            @csrf
-                                            @method('DELETE')
-
-                                            <button type="submit"
-                                                class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                                Delete
-                                            </button>
-                                        </form>
-
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <tr>
-                                <td colspan="4" class="px-6 py-4 text-center text-gray-500">
-                                    No colors found.
-                                </td>
-                            </tr>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-        </div>
     </div>
 
 

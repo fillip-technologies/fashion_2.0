@@ -588,13 +588,13 @@
                             </td>
                             <td>
                                 <div class="action-buttons">
-                                    <button class="btn-edit" onclick="editVariation({{ $variation->id }})">
+                                    <a href="{{ route('admin.edit.product_variant',$variation->id) }}" class="btn-edit">
                                         <i class="fas fa-edit"></i> Edit
-                                    </button>
-                                    <form action="" method="POST" style="display: inline;">
+                                    </a>
+                                    <form action="{{ route('admin.product_variant.delete',$variation->id) }}" method="POST" style="display: inline;">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn-delete" onclick="return confirm('Delete this variation?')">
+                                        <button type="submit" class="btn-delete">
                                             <i class="fas fa-trash"></i> Delete
                                         </button>
                                     </form>

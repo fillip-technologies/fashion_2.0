@@ -2,10 +2,12 @@
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\User\ContactController;
 use Illuminate\Support\Facades\Route;
 
 
 
+Route::post('/contact/me',[ContactController::class, 'customerQuery'])->name('contact');
 Route::controller(UserController::class)->group(function(){
 Route::post('/create/users','createUsers')->name('create.users');
 Route::post('/login/user','UserLogin')->name('user.login');

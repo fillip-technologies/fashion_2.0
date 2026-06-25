@@ -93,6 +93,48 @@
             padding: 3px;
         }
 
+        .existing-images {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .existing-img-wrapper {
+            position: relative;
+            display: inline-block;
+        }
+
+        .existing-img-wrapper img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            padding: 3px;
+        }
+
+        .remove-image-btn {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #dc3545;
+            color: #fff;
+            border: none;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            font-size: 14px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .remove-image-btn:hover {
+            background: #c82333;
+        }
+
         .alert-danger {
             background: #f8d7da;
             color: #721c24;
@@ -106,7 +148,15 @@
             font-size: 13px;
             margin-top: 5px;
         }
+
+        .section-title {
+            font-weight: 600;
+            margin-top: 15px;
+            margin-bottom: 10px;
+            color: #555;
+        }
     </style>
+
     @if (session('success'))
         <script>
             Swal.fire({
@@ -119,7 +169,6 @@
         </script>
     @endif
 
-    {{-- Error Message --}}
     @if (session('error'))
         <script>
             Swal.fire({
@@ -130,34 +179,31 @@
         </script>
     @endif
 
-    {{-- Validation Errors --}}
     @if ($errors->any())
         <script>
             Swal.fire({
                 icon: 'error',
                 title: 'Validation Error',
                 html: `
-        <ul style="text-align:left;">
-            @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-            @endforeach
-        </ul>
-    `
+                    <ul style="text-align:left;">
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                `
             });
         </script>
     @endif
+
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
                 <div class="product-image-card">
-
                     <div class="card-header">
-                        <h3>📸 Add Product Images</h3>
+                        <h3>📸 Update Product Images</h3>
                     </div>
 
                     <div class="card-body">
-
                         @if (session('success'))
                             <div class="alert alert-success">
                                 {{ session('success') }}
@@ -170,177 +216,133 @@
                             </div>
                         @endif
 
-                        <form action="{{ route('admin.store.images.product') }}" method="POST" enctype="multipart/form-data">
-
+                        {{-- Update Form --}}
+                        <form action="{{ route('admin.image.update', $data->id) }}" method="POST"
+                            enctype="multipart/form-data">
                             @csrf
 
+
+                            {{-- Hidden ID for reference --}}
+                            <input type="hidden" name="id" value="{{ $data->id }}">
+
+                            {{-- Product Selection (disabled for update, or you can keep it editable) --}}
                             <div class="form-group">
                                 <label>Select Product</label>
-
-                                <select name="product_id" class="custom-select">
-
+                                <select name="product_id" class="custom-select" {{-- Uncomment below to disable changing product on update --}} {{-- disabled --}}>
                                     <option value="">
                                         -- Select Product --
                                     </option>
-
                                     @foreach (allProduct() as $product)
-                                        <option value="{{ $product->id }}"
-                                            {{ old('product_id') == $product->id ? 'selected' : '' }}>
+                                        <option value="{{ $product->id }}" @selected($data->product_id == $product->id)>
                                             {{ $product->name }}
                                         </option>
                                     @endforeach
-
                                 </select>
-
                                 @error('product_id')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>
 
+                            {{-- Existing Images Display --}}
+                            @if ($data->image && count($data->image) > 0)
+                                <div class="form-group">
+                                    <label>Existing Images</label>
+                                    <div class="existing-images">
+                                        @foreach ($data->image as $key => $image)
+                                            <div class="existing-img-wrapper">
+                                                <img src="{{ asset($image) }}" alt="Product Image">
+                                                <button type="button" class="remove-image-btn delete-image"
+                                                    data-index="{{ $key }}" data-id="{{ $data->id }}">
+                                                    ×
+                                                </button>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            @endif
+
+                            {{-- Upload New Images --}}
                             <div class="form-group">
-
-                                <label>Select Images</label>
-
+                                <label>Add New Images (Optional)</label>
                                 <input type="file" name="image[]" id="image" class="file-upload-input" multiple
                                     accept="image/*">
-
                                 @error('image')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
-
                                 @error('image.*')
                                     <div class="text-danger">{{ $message }}</div>
                                 @enderror
 
-                                <div class="image-preview-container" id="imagePreviewContainer">
-                                </div>
-
+                                <div class="image-preview-container" id="imagePreviewContainer"></div>
                             </div>
 
                             <button type="submit" class="btn-submit">
-                                Upload Images
+                                Update Images
                             </button>
 
                             <a href="{{ url()->previous() }}" class="btn-cancel">
-                                Cancel
+                                Back
                             </a>
-
                         </form>
 
+                        {{-- Optional: Delete all images form --}}
+                        @if ($data->images && count($data->images) > 0)
+                            <form action="{{ route('admin.product-images.destroy-all', $data->id) }}" method="POST"
+                                style="margin-top:20px; display:inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-danger"
+                                    onclick="return confirm('Are you sure you want to delete all images?')">
+                                    Delete All Images
+                                </button>
+                            </form>
+                        @endif
                     </div>
                 </div>
-
-            </div>
-        </div>
-
-
-        <div class="bg-white shadow-lg rounded-lg overflow-hidden mt-6">
-            <div class="px-6 py-4 border-b">
-                <h2 class="text-xl font-semibold text-gray-800">
-                    Product Images Listing
-                </h2>
-            </div>
-
-            <div class="overflow-x-auto">
-                <table class="w-full text-sm text-left text-gray-600">
-                    <thead class="bg-gray-100 text-gray-700 uppercase text-xs">
-                        <tr>
-                            <th class="px-6 py-3">#</th>
-                            <th class="px-6 py-3">Product Name</th>
-                            <th class="px-6 py-3">Thumbnail</th>
-                            <th class="px-6 py-3">Gallery Images</th>
-                            <th class="px-6 py-3 text-center">Action</th>
-                        </tr>
-                    </thead>
-
-                    <tbody>
-                        <!-- Product 1 -->
-                        @forelse ($productImage as $pimage)
-                            <tr class="border-b hover:bg-gray-50">
-                                <td class="px-6 py-4">1</td>
-
-                                <td class="px-6 py-4 font-medium text-gray-900">
-                                    {{ $pimage->product->name ?? 'N/A' }}
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    <img src="{{ asset($pimage->product->thumbnail) ?? 'default.png' }}" alt="Thumbnail"
-                                        class="w-16 h-16 rounded-lg object-cover border">
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    <div class="flex items-center gap-2">
-
-                                        @foreach ($pimage->image ?? [] as $img)
-                                            <img src="{{ asset($img) ?? 'default.png' }}"
-                                                class="w-12 h-12 rounded object-cover border">
-                                        @endforeach
-
-                                    </div>
-                                </td>
-
-                                <td class="px-6 py-4">
-                                    <div class="flex justify-center gap-2">
-                                        <a href="{{ route('admin.edit.image', $pimage->id) }}"
-                                            class="px-3 py-1 bg-blue-500 text-white rounded hover:bg-blue-600">
-                                            Edit
-                                        </a>
-                                        <form action="{{ route('admin.image.delete',$pimage->id) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="px-3 py-1 bg-red-500 text-white rounded hover:bg-red-600">
-                                                Delete
-                                            </button>
-                                        </form>
-
-                                    </div>
-                                </td>
-                            </tr>
-                        @empty
-                            <div>
-                                <p>No product</p>
-                            </div>
-                        @endforelse
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                {{ $productImage->links() }}
             </div>
         </div>
     </div>
 
     <script>
+        $(document).ready(function() {
+            $(".delete-image").on('click', function() {
+                var value = $(this).data('index');
+                var pid = $(this).data('id');
+                $.ajax({
+                    url: "{{ route('admin.index.image.del') }}",
+                    type: "GET",
+                    data: {
+                        index: value,
+                        id:pid
+                    },
+                    success: function(respons) {
+                      window.location.reload();
+                    },
+                    error: function(error) {
+                        console.log(error);
+
+                    }
+                });
+            })
+        })
+        // Image preview for new uploads
         document.getElementById('image').addEventListener('change', function() {
-
             const previewContainer = document.getElementById('imagePreviewContainer');
-
             previewContainer.innerHTML = '';
-
             const files = this.files;
 
-            if (!files.length) {
-                return;
-            }
+            if (!files.length) return;
 
             Array.from(files).forEach(file => {
-
-                if (!file.type.startsWith('image/')) {
-                    return;
-                }
+                if (!file.type.startsWith('image/')) return;
 
                 const reader = new FileReader();
-
                 reader.onload = function(e) {
-
                     const img = document.createElement('img');
-
                     img.src = e.target.result;
                     img.classList.add('preview-img');
-
                     previewContainer.appendChild(img);
                 };
-
                 reader.readAsDataURL(file);
             });
         });

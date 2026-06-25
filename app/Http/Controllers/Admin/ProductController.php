@@ -52,7 +52,7 @@ class ProductController extends Controller
 
     public function product_price()
     {
-        $productPrice = ProductPrice::with(['product:id,name'])->select('price','country','product_id')->paginate(5);
+        $productPrice = ProductPrice::with(['product:id,name'])->select('id','price','country','product_id')->paginate(5);
         return view('admin.products.price.product_price',compact('productPrice'));
     }
 

@@ -37,27 +37,52 @@
 
                 </div>
                 <div class="absolute left-1/2 -translate-x-1/2 mt-2 md:-mt-9">
-                    <a href="/"
-                        class="w-20 h-12 bg-[#4f6fc6] flex items-center justify-center sm:hidden">
+                    <a href="/" class="w-20 h-12 bg-[#4f6fc6] flex items-center justify-center sm:hidden">
                         <span class="text-white font-semibold text-xs">
                             LOGO 2
                         </span>
                     </a>
 
-                    <a href="/"
-                        class="hidden sm:flex sm:w-32 sm:h-36 bg-purple-600 items-center justify-center">
+                    <a href="/" class="hidden sm:flex sm:w-32 sm:h-36 bg-purple-600 items-center justify-center">
                         <span class="text-white font-semibold text-base">
                             LOGO 1
                         </span>
                     </a>
                 </div>
                 <div class="flex items-center gap-3 sm:gap-9">
-                     <img src="{{ asset('assets/SVG/Wishlist black.svg') }}" alt="Cart" class="hidden sm:block w-6 sm:w-7 h-auto" /> 
 
-                    <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
-                        class="w-5 sm:w-5 h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
+                    @if (UserLogin())
+                        <a href="">
+                            <img src="{{ asset('assets/SVG/Wishlist black.svg') }}" alt="Wishlist"
+                                class="hidden sm:block w-6 sm:w-7 h-auto">
+                        </a>
+                    @else
+                        <a href="javascript:void(0);" onclick="toggleMasterDrawer('drawerlogin')">
+                            <img src="{{ asset('assets/SVG/Wishlist black.svg') }}" alt="Wishlist"
+                                class="hidden sm:block w-6 sm:w-7 h-auto">
+                        </a>
+                    @endif
 
-                     <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart" class="hidden md:block w-6 sm:w-7 h-auto" /> 
+                    @if (UserLogin())
+                        <a href="{{ route('user.profile') }}">
+                            <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
+                                class="w-5 sm:w-5 h-auto cursor-pointer" />
+                        </a>
+                    @else
+                        <img src="{{ asset('assets/SVG/Profile black.svg') }}" alt="User"
+                            class="w-5 sm:w-5 h-auto cursor-pointer" onclick="toggleMasterDrawer('drawerlogin')" />
+                    @endif
+
+                    @if (UserLogin())
+                        <a href="{{ route('bag') }}">
+                            <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart"
+                                class="hidden md:block w-6 sm:w-7 h-auto" />
+                        </a>
+                    @else
+                        <img src="{{ asset('assets/SVG/Bag black.svg') }}" alt="Cart"
+                            class="hidden md:block w-6 sm:w-7 h-auto cursor-pointer"
+                            onclick="toggleMasterDrawer('drawerlogin')" />
+                    @endif
                 </div>
             </div>
         </div>
@@ -102,16 +127,36 @@
 
                 <div class="flex items-center gap-3 sm:gap-9">
 
-                    @unless (request()->is('accountoverview', 'profile', 'wishlist', 'orders', 'addressbook', 'orderhistory', 'viewdetails', 'shippingaddress', 'billingaddress'))
-                        <img src="{{ asset('assets/SVG/Wishlist white.svg') }}" class="hidden sm:block w-6 sm:w-7 h-auto" />
+                    @unless (request()->is(
+                            'accountoverview',
+                            'profile',
+                            'wishlist',
+                            'orders',
+                            'addressbook',
+                            'orderhistory',
+                            'viewdetails',
+                            'shippingaddress',
+                            'billingaddress'))
+                        <img src="{{ asset('assets/SVG/Wishlist white.svg') }}"
+                            class="hidden sm:block w-6 sm:w-7 h-auto" />
                     @endunless
 
-                    @unless (request()->is('accountoverview', 'profile', 'wishlist', 'orders', 'addressbook', 'orderhistory', 'viewdetails', 'shippingaddress', 'billingaddress'))
+                    @unless (request()->is(
+                            'accountoverview',
+                            'profile',
+                            'wishlist',
+                            'orders',
+                            'addressbook',
+                            'orderhistory',
+                            'viewdetails',
+                            'shippingaddress',
+                            'billingaddress'))
                         <img src="{{ asset('assets/SVG/Profile white.svg') }}" class="w-5 md:w-5 cursor-pointer"
                             onclick="toggleMasterDrawer('drawerlogin')" />
                     @endunless
 
-                    <img src="{{ asset('assets/SVG/Bag white.svg') }}" class="hidden md:block w-6 md:w-6 cursor-pointer" />
+                    <img src="{{ asset('assets/SVG/Bag white.svg') }}"
+                        class="hidden md:block w-6 md:w-6 cursor-pointer" />
 
                 </div>
             </div>
@@ -140,8 +185,9 @@
             path.includes("shippingaddress") ||
             path.includes("billingaddress");
 
-        const isSeeAllPage = path.includes("specific") || path.includes("seeall") || path.includes("newcollection") || path.includes("yarn");
-        
+        const isSeeAllPage = path.includes("specific") || path.includes("seeall") || path.includes(
+            "newcollection") || path.includes("yarn");
+
 
         const getHeaderHeight = (el) => el ? el.getBoundingClientRect().height : 0;
         let oldHeaderHeight = getHeaderHeight(oldheader);
@@ -310,7 +356,8 @@
         <div class="flex-1 bg-primary/30 backdrop-blur-sm flex items-center justify-center relative py-10">
             <img id="menuImage" class="object-contain" data-menu-keep-open />
 
-            <button id="closeMenu" class="absolute top-6 right-10 text-[24px] font-light text-white" data-menu-keep-open>
+            <button id="closeMenu" class="absolute top-6 right-10 text-[24px] font-light text-white"
+                data-menu-keep-open>
                 {{-- <i class="fa-solid fa-minus"></i> --}}
                 <img src="{{ asset('assets/icons/minus.png') }}" alt="minus" />
             </button>
