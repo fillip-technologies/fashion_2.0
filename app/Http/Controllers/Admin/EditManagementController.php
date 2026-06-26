@@ -328,68 +328,61 @@ public function editproduct_variant($id){
 public function product_variant_update(Request $request, $id)
 {
    try {
+
         $request->validate([
-            'product_id' => 'required|integer|exists:products,id',
-            'color_id' => 'required|integer|exists:colors,id',
-            'size_id' => 'required|integer|exists:sizes,id',
-            'sku' => 'nullable|string|max:255|unique:product_variants,sku,' . $id,
-            'price' => 'required|numeric|min:0',
-            'sale_price' => 'nullable|numeric|min:0|lt:price',
-            'stock' => 'required|integer|min:0',
-            'image' => 'nullable|array',
-            'image.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048', 
-            'status' => 'required|boolean',
+            'product_id' => 'required|integer',
+            'color_id'   => 'required|integer',
+            'size_id'    => 'required|integer',
+            'sku'        => 'nullable',
+            'price'      => 'required',
+            'sale_price' => 'required',
+            'stock'      => 'required',
+            'image'      => 'nullable|array',
+            'image.*'    => 'image',
+            'status'     => 'required',
         ]);
 
-        $variant = ProductVariant::find($id);
+        $variant = ProductVariant::findOrFail($id);
 
-        if (!$variant) {
-            return ErrorResponse('Product Variant not found');
-        }
-
-
-        $imagePaths = [];
+        $uploadFiles = $variant->image;
 
         if ($request->hasFile('image')) {
 
-            if ($variant->image) {
-                $oldImages = is_array($variant->image) ? $variant->image : [$variant->image];
-                foreach ($oldImages as $oldImage) {
-                    if ($oldImage && file_exists(public_path($oldImage))) {
-                        unlink(public_path($oldImage));
+           
+            if (!empty($variant->image)) {
+                foreach ($variant->image as $oldImage) {
+                    $path = public_path($oldImage);
+
+                    if (file_exists($path)) {
+                        unlink($path);
                     }
                 }
             }
 
-
-            $uploadPath = public_path('product_variant');
-            if (!file_exists($uploadPath)) {
-                mkdir($uploadPath, 0777, true);
-            }
+            $uploadFiles = [];
 
             foreach ($request->file('image') as $image) {
-                if ($image->isValid()) {
-                    $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
-                    $image->move($uploadPath, $filename);
-                    $imagePaths[] = 'product_variant/' . $filename;
-                }
-            }
-        } else {
 
-            $imagePaths = is_array($variant->image) ? $variant->image :
-                         (empty($variant->image) ? [] : [$variant->image]);
+                $filename = time() . '_' . uniqid() . '.' . $image->getClientOriginalExtension();
+
+                $uploadPath = public_path('product_variant');
+
+                $image->move($uploadPath, $filename);
+
+                $uploadFiles[] = 'product_variant/' . $filename;
+            }
         }
 
         $data = [
             'product_id' => $request->product_id,
-            'color_id' => $request->color_id,
-            'size_id' => $request->size_id,
-            'sku' => $request->sku,
-            'price' => $request->price,
+            'color_id'   => $request->color_id,
+            'size_id'    => $request->size_id,
+            'sku'        => $request->sku,
+            'price'      => $request->price,
             'sale_price' => $request->sale_price,
-            'stock' => $request->stock,
-            'image' => json_encode($imagePaths),
-            'status' => $request->status,
+            'stock'      => $request->stock,
+            'image'      => $uploadFiles,
+            'status'     => $request->status,
         ];
 
         $result = $variant->update($data);
@@ -400,8 +393,6 @@ public function product_variant_update(Request $request, $id)
 
         return ErrorResponse('Product Variant Update Failed');
 
-    } catch (\Illuminate\Validation\ValidationException $e) {
-        return ErrorResponse($e->errors());
     } catch (\Exception $e) {
         return ErrorResponse($e->getMessage());
     }

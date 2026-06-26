@@ -143,6 +143,17 @@
         <span class="text-sm font-medium">Queries</span>
 
     </a>
+
+    <a href="{{ route('admin.orders.index') }}"
+    class="sidebar-link group relative flex items-center gap-3 px-6 py-2.5 mx-3 mt-3 rounded-xl transition-all duration-200
+    {{ request()->is('admin/orders*') ? 'active bg-gradient-to-r from-primary/10 to-transparent text-primary shadow-sm' : 'text-gray-500 hover:bg-gray-50/80 hover:text-primary' }}">
+
+    <i class="fas fa-shopping-bag w-5 text-lg transition-all duration-200
+    {{ request()->is('admin/orders*') ? 'text-primary scale-110' : 'text-gray-400 group-hover:text-primary group-hover:scale-110' }}"></i>
+
+    <span class="text-sm font-medium">Orders</span>
+
+</a>
     <!-- OPTIONAL: Add a divider before commented sections -->
     <div class="px-6 my-6">
         <div class="h-px bg-gradient-to-r from-gray-200 to-transparent"></div>

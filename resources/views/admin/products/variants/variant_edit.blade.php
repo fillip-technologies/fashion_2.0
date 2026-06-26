@@ -298,15 +298,7 @@
         </script>
     @endif
 
-    @if (session('error'))
-        <script>
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: "{{ session('error') }}"
-            });
-        </script>
-    @endif
+
 
     @if ($errors->any())
         <script>
@@ -338,7 +330,7 @@
 
                 <form action="{{ route('admin.product_variant.update',$data->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
-                   
+
 
                     <input type="hidden" name="id" value="{{ $data->id }}">
 

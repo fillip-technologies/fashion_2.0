@@ -5,8 +5,10 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\EditManagementController;
 use App\Http\Controllers\Admin\LoginController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Carts\CartManagementController;
 use App\Http\Controllers\User\ContactController;
 use Illuminate\Support\Facades\Route;
+
 
 
 Route::get('/admin/log', [AdminController::class, 'admin'])->name('admin');
@@ -44,7 +46,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
 
      });
 
-    Route::get('/query/list',[ContactController::class, 'queryList']);
+    Route::get('/query/list',[ContactController::class, 'queryList'])->name('query.list');
     Route::get('product/index', [ProductController::class, 'produtList'])->name('product.index');
     Route::get('product/image', [ProductController::class, 'product_image'])->name('product.image');
     Route::get('product/price', [ProductController::class, 'product_price'])->name('product.price');
@@ -66,6 +68,7 @@ Route::prefix('admin')->middleware(['admin'])->group(function () {
      Route::post('store/color',[ProductController::class, 'store_color'])->name('store.color');
      Route::post('store/images/product',[ProductController::class, 'store_image'])->name('store.images.product');
      Route::post('/store/size',[ProductController::class, 'store_size'])->name('store.size');
+     Route::get('/order/list',[CartManagementController::class, 'OrderList'])->name('orders.index');
      Route::post('/store/product/variant',[ProductController::class, 'store_product_variant'])->name('store.product.variant');
 
     Route::get('logout', [AdminController::class, 'logout'])->name('logout');

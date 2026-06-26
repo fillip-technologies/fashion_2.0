@@ -159,4 +159,9 @@ public function deleteCart($userID,$itemId){
     $cartdata = Cart::findOrFail($itemId);
     dd($cartdata);
 }
+
+public function OrderList(){
+    $orders = Order::all();
+    return view('admin.orders.index',compact('orders'));
+}
 }
