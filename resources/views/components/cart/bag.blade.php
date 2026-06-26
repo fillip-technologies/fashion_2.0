@@ -72,12 +72,18 @@
 
                         <div class="col-span-2">
                             <div class="flex gap-6 mt-6 text-[0.75rem]">
-                                <button class="underline">Add to wishlist</button>
+                                <form action="{{ route('add.wishlist') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="user_id" value="{{ UserLogin()->id }}">
+                                    <input type="hidden" name="product_id" value="{{ $items->product->id }}">
+                                    <button type="submit" class="underline">Add to wishlist</button>
+                                </form>
+
                             </div>
                         </div>
                         <div class="col-span-8">
                             <div class="flex gap-6 mt-0 md:mt-6 text-[0.75rem]">
-                                <form action="{{ route('delete.cart',['itemId'=>$items->id,'userID'=>UserLogin()->id]) }}" method="POST">
+                                <form action="{{ route('delete.cart', $items->id) }}" method="POST">
                                     @csrf
                                     @method('DELETE')
                                     <button type="submit" class="underline remove-item">Remove</button>

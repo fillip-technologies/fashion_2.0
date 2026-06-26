@@ -13,9 +13,6 @@
     'neverReturned' => false,
 ])
 
-@php
-
-@endphp
 
 <a href="{{ url('/productdetails/'.$pid.'/'.$slug) }}" {{ $attributes->merge(['class' => 'group block cursor-pointer']) }}>
 

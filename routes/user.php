@@ -1,7 +1,9 @@
 <?php
 
+use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Carts\CartManagementController;
+use App\Http\Controllers\User\WishListController;
 use Illuminate\Support\Facades\Route;
 
 Route::prefix('user')->middleware(['user'])->group(function(){
@@ -21,6 +23,12 @@ Route::get('/bag','cardList')->name('bag');
 Route::post('update/qyt','updateQuantity')->name('cart.update.quantity');
 Route::get('/checkout','checkout')->name('checkout');
 Route::post('/paymentDone','paymentDone')->name('payment.done');
-Route::delete('/card/item/{itemId}/delete/{userID}',[CartManagementController::class, 'deleteCart'])->name('delete.cart');
+Route::delete('/card/item/{id}','deleteCart')->name('delete.cart');
 });
+Route::controller(WishListController::class)->group(function(){
+    Route::post('/add/wishlist','addWhishList')->name('add.wishlist');
+});
+
+Route::get('order/completed',[ProductController::class,'orderCompleted']);
+
 });

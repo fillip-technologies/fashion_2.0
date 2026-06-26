@@ -25,7 +25,6 @@ if (! function_exists('GetAll')) {
             return $model::get();
         } catch (\Exception $e) {
             Log::error('GetAll Error: '.$e->getMessage());
-
             return false;
         }
     }

@@ -580,8 +580,7 @@
                     dtype: type
                 },
                 success: function(response) {
-                    console.log(response);
-
+                    window.location.href="order/completed";
                 },
                 error: function(error) {
                     console.log(error);
@@ -590,7 +589,7 @@
             })
 
 
-           
+
 
 
         })

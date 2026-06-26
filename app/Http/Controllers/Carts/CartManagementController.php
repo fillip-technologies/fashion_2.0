@@ -153,11 +153,14 @@ public function updateQuantity(Request $request)
     }
 }
 
-public function deleteCart($userID,$itemId){
-    // echo $userID;
-    // echo $itemId;
-    $cartdata = Cart::findOrFail($itemId);
-    dd($cartdata);
+public function deleteCart($id){
+    try{
+    $cartdata = Cart::findOrFail($id);
+    $cartdata->delete();
+    return SuccessResponse('Remove Items in the cart list');
+    }catch(\Exception $e){
+        return ErrorResponse($e->getMessage());
+    }
 }
 
 public function OrderList(){

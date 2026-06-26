@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Models\WishList;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -96,9 +97,21 @@ class UserController extends Controller
     }
 
 
-   public function wishList(){
-     return view('pages.wishlist');
-   }
+  public function wishList()
+{
+      $user = UserLogin();
+      $latestWishlist = WishList::with(['user', 'product'])
+        ->where('user_id', $user->id)
+        ->latest()
+        ->get();
+
+      $oldestWishlist = WishList::with(['user', 'product'])
+        ->where('user_id', $user->id)
+        ->oldest()
+        ->get();
+
+    return view('pages.wishlist', compact('latestWishlist', 'oldestWishlist'));
+}
 
    public function oredrList(){
      return view('pages.orders');

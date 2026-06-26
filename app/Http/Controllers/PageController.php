@@ -89,14 +89,11 @@ class PageController extends Controller
 
 
 
-    public function orderCompleted()
-    {
-        return view('pages.confirmorder');
-    }
+    
 
     public function contact()
     {
-       
+
         return view('pages.contact');
     }
 

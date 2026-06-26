@@ -309,4 +309,10 @@ class ProductController extends Controller
         }
 
     }
+
+
+    public function orderCompleted()
+    {
+        return view('pages.confirmorder');
+    }
 }

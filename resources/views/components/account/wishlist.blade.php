@@ -64,27 +64,11 @@
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-5 px-6 md:px-8 pt-20">
-
-            <x-category.product-card image="{{ asset('assets/images/wishlist/w-1.jpg') }}"
-                hoverImage="{{ asset('assets/images/wishlist/w-1.jpg') }}" title="THE IVY LEAGUE"
-                subtitle="Cashmere & Cotton" price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" />
-
-            <x-category.product-card image="{{ asset('assets/images/wishlist/w-2.jpg') }}"
-                hoverImage="{{ asset('assets/images/wishlist/w-2.jpg') }}" title="THE IVY LEAGUE"
-                subtitle="Cashmere & Cotton" price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" />
-
-            <x-category.product-card image="{{ asset('assets/images/wishlist/w-3.jpg') }}"
-                hoverImage="{{ asset('assets/images/wishlist/w-3.jpg') }}" title="THE IVY LEAGUE"
-                subtitle="Cashmere & Cotton" price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" />
-
-            <x-category.product-card image="{{ asset('assets/images/wishlist/w-4.png') }}"
-                hoverImage="{{ asset('assets/images/wishlist/w-4.png') }}" title="THE IVY LEAGUE"
-                subtitle="Cashmere & Cotton" price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" :soldOut="true" />
-
-
-            <x-category.product-card image="{{ asset('assets/images/wishlist/w-4.png') }}"
-                hoverImage="{{ asset('assets/images/wishlist/w-4.png') }}" title="THE IVY LEAGUE"
-                subtitle="Cashmere & Cotton" price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" :neverReturned="true" />
+            @forelse ($latestWishlist as $items)
+                <x-category.product-card :image="$items->product->thumbnail" :hoverImage="$items->product->thumbnail" :title="$items->product->name" :price="$items->product->sale_price"
+                    :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" :slug="$items->product->slug" />
+            @empty
+            @endforelse
 
         </div>
     </div>
@@ -96,13 +80,14 @@
 
     <div class="grid grid-cols-1 md:grid-cols-3 gap-5 pb-28 px-6 md:px-8">
 
-        <x-category.product-card image="{{ asset('assets/images/jeans.jpg') }}"
-            hoverImage="{{ asset('assets/images/jeans.jpg') }}" title="THE IVY LEAGUE" subtitle="Cashmere & Cotton"
-            price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" />
+        @forelse ($oldestWishlist as $items)
+            <x-category.product-card :image="$items->product->thumbnail" :hoverImage="$items->product->thumbnail" :title="$items->product->name" :price="$items->product->sale_price"
+                :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" :slug="$items->product->slug" />
+        @empty
+        @endforelse
 
-        <x-category.product-card image="{{ asset('assets/images/sweater.jpg') }}"
-            hoverImage="{{ asset('assets/images/sweater.jpg') }}" title="THE IVY LEAGUE" subtitle="Cashmere & Cotton"
-            price="71600" :colors="['#4DBA3F', '#000000', '#B23A3A']" :wishlistIcon="true" />
+
+
 
     </div>
 </div>
