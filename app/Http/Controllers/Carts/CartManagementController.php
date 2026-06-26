@@ -164,4 +164,37 @@ public function OrderList(){
     $orders = Order::all();
     return view('admin.orders.index',compact('orders'));
 }
+
+public function orderFilter(Request $request)
+{
+    $search   = $request->search;
+    $status   = $request->status;
+    $fromDate = $request->date_from;
+    $toDate   = $request->date_to;
+
+    $orders = Order::query();
+    if (!empty($search)) {
+        $orders->where(function ($query) use ($search) {
+            $query->where('customer_name', 'LIKE', "%{$search}%")
+                  ->orWhere('order_number', 'LIKE', "%{$search}%")
+                  ->orWhere('customer_email', 'LIKE', "%{$search}%")
+                  ->orWhere('customer_phone','LIKE',"%{$search}%");
+        });
+    }
+    if (!empty($status)) {
+        $orders->where('status', $status);
+    }
+
+    if (!empty($fromDate) && !empty($toDate)) {
+        $orders->whereBetween('created_at', [$fromDate, $toDate]);
+    } elseif (!empty($fromDate)) {
+        $orders->whereDate('created_at', '>=', $fromDate);
+    } elseif (!empty($toDate)) {
+        $orders->whereDate('created_at', '<=', $toDate);
+    }
+
+    $orders = $orders->latest()->get();
+
+    return view('admin.orders.index', compact('orders'));
+}
 }

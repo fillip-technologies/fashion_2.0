@@ -29,7 +29,7 @@
 
     <!-- Filters and Search -->
     <div class="bg-white rounded-xl shadow-sm border border-gray-100 p-4 mb-6">
-        <form action="{{ route('admin.orders.index') }}" method="GET" class="flex flex-wrap items-center gap-4">
+        <form action="{{ route('admin.search.order') }}" method="GET" class="flex flex-wrap items-center gap-4">
             <!-- Search -->
             <div class="flex-1 min-w-[200px]">
                 <div class="relative">
@@ -88,7 +88,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Total Orders</p>
-                    <p class="text-2xl font-bold text-gray-800 mt-1">{{ $totalOrders ?? 0 }}</p>
+                    <p class="text-2xl font-bold text-gray-800 mt-1">{{ $orders->count() ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center">
                     <i class="fas fa-shopping-bag text-primary text-xl"></i>
@@ -99,7 +99,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Pending</p>
-                    <p class="text-2xl font-bold text-yellow-600 mt-1">{{ $pendingOrders ?? 0 }}</p>
+                    <p class="text-2xl font-bold text-yellow-600 mt-1">{{ $orders->where('status','pending')->count() ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-yellow-50 flex items-center justify-center">
                     <i class="fas fa-clock text-yellow-600 text-xl"></i>
@@ -110,7 +110,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Processing</p>
-                    <p class="text-2xl font-bold text-blue-600 mt-1">{{ $processingOrders ?? 0 }}</p>
+                    <p class="text-2xl font-bold text-blue-600 mt-1">{{ $orders->where('status','processing')->count() ?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-blue-50 flex items-center justify-center">
                     <i class="fas fa-spinner text-blue-600 text-xl"></i>
@@ -121,7 +121,7 @@
             <div class="flex items-center justify-between">
                 <div>
                     <p class="text-xs font-medium text-gray-500 uppercase tracking-wider">Completed</p>
-                    <p class="text-2xl font-bold text-green-600 mt-1">{{ $completedOrders ?? 0 }}</p>
+                    <p class="text-2xl font-bold text-green-600 mt-1">{{ $orders->where('status','completed')->count()?? 0 }}</p>
                 </div>
                 <div class="w-12 h-12 rounded-full bg-green-50 flex items-center justify-center">
                     <i class="fas fa-check-circle text-green-600 text-xl"></i>
@@ -145,8 +145,8 @@
                         <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Date</th>
                         <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Total</th>
                         <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Status</th>
-                        <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Items</th>
-                        <th class="text-center text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Actions</th>
+                        {{-- <th class="text-left text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Items</th> --}}
+                        {{-- <th class="text-center text-xs font-semibold text-gray-500 uppercase tracking-wider px-6 py-4">Actions</th> --}}
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-100">
@@ -219,15 +219,15 @@
                         </td>
 
                         <!-- Items Count -->
-                        <td class="px-6 py-4">
+                        {{-- <td class="px-6 py-4">
                             <span class="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-600">
                                 <i class="fas fa-box text-[10px]"></i>
                                 {{ $order->items_count ?? 0 }}
                             </span>
-                        </td>
+                        </td> --}}
 
                         <!-- Actions -->
-                        <td class="px-6 py-4">
+                        {{-- <td class="px-6 py-4">
                             <div class="flex items-center justify-center gap-1">
                                 <a href=""
                                    class="p-2 rounded-lg text-primary hover:bg-primary/10 transition-all duration-200 group-hover:scale-110"
@@ -245,7 +245,7 @@
                                     <i class="fas fa-trash text-sm"></i>
                                 </button>
                             </div>
-                        </td>
+                        </td> --}}
                     </tr>
                     @empty
                     <tr>

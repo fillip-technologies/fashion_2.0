@@ -348,7 +348,7 @@ public function product_variant_update(Request $request, $id)
 
         if ($request->hasFile('image')) {
 
-           
+
             if (!empty($variant->image)) {
                 foreach ($variant->image as $oldImage) {
                     $path = public_path($oldImage);
@@ -428,4 +428,6 @@ public function delete_product_variant($id)
         return ErrorResponse($e->getMessage());
     }
 }
+
+
 }

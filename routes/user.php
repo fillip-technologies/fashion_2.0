@@ -4,21 +4,23 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Carts\CartManagementController;
 use Illuminate\Support\Facades\Route;
 
-
-
 Route::prefix('user')->middleware(['user'])->group(function(){
-Route::get('/welcome',[UserController::class, 'WelcomeUser'])->name('user.welcome');
-Route::get('/aacount',[UserController::class, 'UserDashboard'])->name('user.account');
-Route::get('/profile',[UserController::class, 'profile'])->name('user.profile');
-Route::get("/wishlist",[UserController::class, 'wishList'])->name('user.wishlist');
-Route::get('/oreder',[UserController::class, 'oredrList'])->name('user.orders');
-Route::get('/addressbook',[UserController::class, 'addressBook'])->name('user.addressbook');
-Route::get('/logout',[UserController::class, 'UserLogout'])->name('user.loggedout');
-Route::post('/add/to/cart',[CartManagementController::class, 'addToCart'])->name('add.To.Cart');
-Route::get('/bag',[CartManagementController::class, 'cardList'])->name('bag');
-Route::post('update/qyt',[CartManagementController::class, 'updateQuantity'])->name('cart.update.quantity');
-Route::get('/checkout',[CartManagementController::class, 'checkout'])->name('checkout');
-Route::post('/paymentDone',[CartManagementController::class, 'paymentDone'])->name('payment.done');
-Route::post('/update/profile',[UserController::class, 'update.profile'])->name('update.profile');
+Route::controller(UserController::class)->group(function(){
+Route::get('/welcome', 'WelcomeUser')->name('user.welcome');
+Route::get('/aacount', 'UserDashboard')->name('user.account');
+Route::get('/profile', 'profile')->name('user.profile');
+Route::get("/wishlist", 'wishList')->name('user.wishlist');
+Route::get('/oreder', 'oredrList')->name('user.orders');
+Route::get('/addressbook', 'addressBook')->name('user.addressbook');
+Route::get('/logout', 'UserLogout')->name('user.loggedout');
+Route::post('/update/profile','update.profile')->name('update.profile');
+});
+Route::controller(CartManagementController::class)->group(function(){
+Route::post('/add/to/cart','addToCart')->name('add.To.Cart');
+Route::get('/bag','cardList')->name('bag');
+Route::post('update/qyt','updateQuantity')->name('cart.update.quantity');
+Route::get('/checkout','checkout')->name('checkout');
+Route::post('/paymentDone','paymentDone')->name('payment.done');
 Route::delete('/card/item/{itemId}/delete/{userID}',[CartManagementController::class, 'deleteCart'])->name('delete.cart');
+});
 });
