@@ -121,6 +121,33 @@ class UserController extends Controller
     return view('pages.addressbook');
     }
 
+    public function updateInfo(Request $request,$id){
+        $request->validate([
+            'title'=>'required',
+            'firstname'=>'required',
+            'lastname'=>'required',
+            'phone'=>'required',
+            'day'=>'required',
+            'month'=>'required',
+            'year'=>'required'
+        ]);
 
+        $data = User::findOrFail($id);
+        $data->update([
+            'title'=>$request->title,
+            'firstname'=>$request->firstname,
+            'lastname'=>$request->lastname,
+            'phone'=>$request->phone,
+            'day'=>$request->day,
+            'month'=>$request->month,
+            'year'=>$request->year
+        ]);
 
+        if($data){
+            return back()->with('success','Profile Updated');
+        }else{
+            return back()->with('error','Something went wrong');
+        }
+
+    }
 }

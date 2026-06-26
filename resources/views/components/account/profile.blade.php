@@ -46,7 +46,7 @@
         class="w-4/12 hidden md:block h-auto absolute top-1/2 mt-10 left-1/2 transform -translate-x-1/2 -translate-y-1/2" />
 </div>
 
-<form action="{{ route('update.profile',UserLogin()->id) }}" method="POST">
+<form action="{{ route('user.info.update',UserLogin()->id) }}" method="POST">
     @csrf
 <div class="bg-white border-x-[1rem] border-secondary text-black">
 

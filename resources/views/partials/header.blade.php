@@ -52,7 +52,7 @@
                 <div class="flex items-center gap-3 sm:gap-9">
 
                     @if (UserLogin())
-                        <a href="">
+                        <a href="{{ url('user/wishlist') }}">
                             <img src="{{ asset('assets/SVG/Wishlist black.svg') }}" alt="Wishlist"
                                 class="hidden sm:block w-6 sm:w-7 h-auto">
                         </a>

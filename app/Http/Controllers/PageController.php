@@ -56,8 +56,9 @@ class PageController extends Controller
         return view('pages.specific',compact('products'));
     }
 
-    public function filteredProduct()
+    public function filteredProduct(Request $request)
     {
+        $data = $request->query('serach');
         return view('pages.filteredprodcuts');
     }
 
@@ -89,7 +90,7 @@ class PageController extends Controller
 
 
 
-    
+
 
     public function contact()
     {
