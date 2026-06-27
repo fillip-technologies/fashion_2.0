@@ -74,8 +74,6 @@
                 <i class="fa-solid fa-xmark text-sm"></i>
             </button>
             `;
-
-
                 container.appendChild(chip);
             });
         });
